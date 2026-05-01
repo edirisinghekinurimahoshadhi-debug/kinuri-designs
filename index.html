@@ -3,148 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kinuri Designs | Portfolio</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
-
+    <title>Kinuri Designs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        body { 
-            background-color: #000; 
-            color: #D4AF37; 
-            font-family: 'Montserrat', sans-serif; 
-            margin: 0; 
-            text-align: center; 
-            overflow-x: hidden;
-        }
-
-        /* Hero Section */
-        .container { padding: 60px 20px; }
-        
-        .logo { 
-            width: 140px; 
-            border-radius: 50%; 
-            border: 2px solid #D4AF37; 
-            margin-top: 20px;
-            transition: transform 0.8s ease;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-        }
-        .logo:hover { transform: scale(1.1) rotate(10deg); }
-
-        h1 { 
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem; 
-            letter-spacing: 6px; 
-            margin: 20px 0 10px 0;
-            text-transform: uppercase;
-            animation: fadeInDown 1.5s ease;
-        }
-
-        .tagline { color: #888; font-size: 1rem; margin-bottom: 40px; }
-
-        /* Gallery Image Effects */
-        .gallery { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 25px; 
-            padding: 40px 20px; 
-        }
-        .gallery img { 
-            width: 320px; 
-            border-radius: 15px; 
-            border: 1px solid #222; 
-            transition: all 0.4s ease;
-            filter: brightness(0.7);
-        }
-        .gallery img:hover { 
-            transform: translateY(-10px) scale(1.03); 
-            border-color: #D4AF37; 
-            filter: brightness(1);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
-        }
-
-        /* Modern Footer & Buttons */
-        footer { 
-            background: linear-gradient(to bottom, #000, #0a0a0a); 
-            padding: 80px 20px; 
-            margin-top: 50px; 
-            border-top: 1px solid #1a1a1a; 
-        }
-
-        .btn { 
-            display: inline-block; 
-            padding: 16px 40px; 
-            margin: 12px; 
-            border-radius: 50px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            font-size: 0.9rem; 
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .canva-btn { 
-            border: 2px solid #D4AF37; 
-            color: #D4AF37; 
-        }
-        .canva-btn:hover { 
-            background: #D4AF37; 
-            color: #000; 
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
-        }
-
-        .wa-btn { 
-            background: #D4AF37; 
-            color: #000; 
-        }
-        .wa-btn:hover { 
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .gallery img { width: 100%; }
-        }
+        body { background-color: #000; color: #D4AF37; font-family: 'Montserrat', sans-serif; margin: 0; text-align: center; }
+        .container { padding: 40px 20px; }
+        .logo { width: 130px; border-radius: 50%; border: 2px solid #D4AF37; margin-bottom: 20px; transition: 0.5s; }
+        .logo:hover { transform: rotate(10deg) scale(1.1); }
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; letter-spacing: 5px; margin-bottom: 5px; }
+        .gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 40px 10px; }
+        .gallery img { width: 300px; border-radius: 12px; border: 1px solid #222; transition: 0.4s; }
+        .gallery img:hover { transform: translateY(-10px); border-color: #D4AF37; box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2); }
+        footer { background: #0a0a0a; padding: 60px 20px; border-top: 1px solid #1a1a1a; margin-top: 50px; }
+        .btn { display: inline-block; padding: 15px 35px; margin: 10px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: 0.3s; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        .canva-btn { border: 2px solid #D4AF37; color: #D4AF37; }
+        .canva-btn:hover { background: #D4AF37; color: #000; }
+        .wa-btn { background: #D4AF37; color: #000; }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <img src="KME.png" alt="Kinuri Designs Logo" class="logo">
-        <h1>Kinuri Designs</h1>
-        <p class="tagline">Blending logic with creativity to bring unique digital experiences to life.</p>
-
+        <img src="KME.png" class="logo">
+        <h1>KINURI DESIGNS</h1>
+        <p style="color: #888;">Creative Designer & Aspiring Legal Mind</p>
         <div class="gallery">
-            <img src="IMG_2917.jpg" alt="Design 1">
-            <img src="IMG_2918.jpg" alt="Design 2">
-            <img src="3.jpg.png" alt="Design 3">
+            <img src="1.jpg.png">
+            <img src="2.png">
+            <img src="3.png">
         </div>
     </div>
-
     <footer>
-        <p style="color: #fff; margin-bottom: 25px;">Interested in seeing more of my work?</p>
-        
-        <a href="https://www.canva.com/design/DAHIDk_RyrA/S04Tfyu4wdQsxeNUvZdrdg/view?utm_content=DAHIDk_RyrA&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink" 
-           target="_blank" class="btn canva-btn">
-           View Full Portfolio
-        </a>
-
+        <p style="color: #fff; margin-bottom: 20px;">Let's work together!</p>
+        <a href="https://www.canva.com/design/DAHIDk_RyrA/S04Tfyu4wdQsxeNUvZdrdg/view" target="_blank" class="btn canva-btn">View Full Portfolio</a>
         <br>
-
-        <a href="https://wa.me/94774799172" target="_blank" class="btn wa-btn">
-           Contact on WhatsApp
-        </a>
-
-        <p style="color: #555; font-size: 11px; margin-top: 40px;">&copy; 2026 KINURI DESIGNS. All Rights Reserved.</p>
+        <a href="https://wa.me/94774799172" target="_blank" class="btn wa-btn">WhatsApp Me</a>
+        <p style="color: #444; font-size: 10px; margin-top: 30px;">© 2026 KINURI DESIGNS</p>
     </footer>
-
 </body>
 </html>

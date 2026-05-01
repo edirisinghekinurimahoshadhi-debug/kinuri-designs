@@ -3,11 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kinuri Designs | Luxury Animated</title>
+    <title>Kinuri Designs | Premium Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #D4AF37; --black: #050505; }
-        body { background-color: var(--black) !important; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; text-align: center; }
+        :root { 
+            --gold: #D4AF37; 
+            --black: #050505; 
+            --card-bg: #111;
+        }
+        
+        body { 
+            background-color: var(--black) !important; 
+            color: #fff; 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0; 
+            text-align: center; 
+            overflow-x: hidden;
+        }
+
         .container { padding: 60px 20px; }
 
         /* Animated Logo Ring */
@@ -17,29 +30,47 @@
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             margin: 0 auto 30px auto;
-            overflow: hidden; /* GIF එක රවුමට කැපෙන්න */
+            overflow: hidden; 
             box-shadow: 0 0 25px rgba(212,175,55,0.3);
             background: #000;
         }
+        .logo-ring img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* මෙතන තමයි වැදගත්ම කොටස */
-        .logo-ring img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
+        h1 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 2.8rem; letter-spacing: 8px; color: var(--gold);
+            margin: 10px 0; text-transform: uppercase;
         }
 
-        h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; letter-spacing: 8px; color: var(--gold); text-transform: uppercase; margin-bottom: 50px; }
+        .tagline { color: #666; font-size: 0.8rem; letter-spacing: 4px; margin-bottom: 50px; }
 
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        /* Gallery Grid */
+        .gallery { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 25px; max-width: 1200px; margin: 0 auto; padding: 20px;
+        }
         .design-card { border-radius: 15px; overflow: hidden; background: #000; border: 1px solid #222; transition: 0.5s; }
-        .design-card img { width: 100%; display: block; filter: brightness(0.9); }
-        .design-card:hover { transform: translateY(-10px); border-color: var(--gold); }
+        .design-card img { width: 100%; height: auto; display: block; filter: brightness(0.8); transition: 0.5s; }
+        .design-card:hover { transform: translateY(-10px); border-color: var(--gold); box-shadow: 0 10px 30px rgba(212,175,55,0.2); }
+        .design-card:hover img { filter: brightness(1.1); }
 
+        /* Buttons Section */
         footer { margin-top: 80px; padding: 60px 20px; border-top: 1px solid #111; }
-        .btn { padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-block; margin: 10px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        .btn-group { display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        
+        .btn { 
+            padding: 18px 45px; border-radius: 50px; 
+            text-decoration: none; font-weight: bold; transition: 0.3s; 
+            text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px;
+            width: 280px;
+        }
+
         .wa-btn { background: var(--gold); color: #000; }
-        .canva-btn { border: 1px solid var(--gold); color: var(--gold); }
+        .wa-btn:hover { background: #fff; transform: scale(1.05); }
+
+        .canva-btn { border: 2px solid var(--gold); color: var(--gold); }
+        .canva-btn:hover { background: var(--gold); color: #000; }
+
     </style>
 </head>
 <body>
@@ -50,18 +81,22 @@
         </div>
 
         <h1>KINURI DESIGNS</h1>
+        <p class="tagline">PREMIUM VISUAL CONCEPTS</p>
 
         <div class="gallery">
-            <div class="design-card"><img src="IMG_2917.jpg"></div>
-            <div class="design-card"><img src="IMG_2918.jpg"></div>
-            <div class="design-card"><img src="3.jpg.png"></div>
+            <div class="design-card"><img src="1.jpg.png"></div>
+            <div class="design-card"><img src="2.png"></div>
+            <div class="design-card"><img src="3.png"></div>
         </div>
     </div>
 
     <footer>
-        <a href="https://www.canva.com/design/DAHIDk_RyrA/S04Tfyu4wdQsxeNUvZdrdg/view" target="_blank" class="btn canva-btn">Full Portfolio</a>
-        <br>
-        <a href="https://wa.me/94774799172" target="_blank" class="btn wa-btn">WhatsApp Me</a>
+        <div class="btn-group">
+            <a href="https://www.canva.com/design/DAHIDk_RyrA/S04Tfyu4wdQsxeNUvZdrdg/view" target="_blank" class="btn canva-btn">View Canva Portfolio</a>
+            
+            <a href="https://wa.me/94774799172" target="_blank" class="btn wa-btn">Contact on WhatsApp</a>
+        </div>
+        <p style="color: #222; font-size: 10px; margin-top: 40px;">&copy; 2026 KINURI DESIGNS</p>
     </footer>
 
 </body>

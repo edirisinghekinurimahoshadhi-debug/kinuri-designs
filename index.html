@@ -3,126 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kinuri Designs | Pro Portfolio</title>
+    <title>Kinuri Designs | Golden Luxury</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #D4AF37; --black: #000; --dark-grey: #111; }
+        :root { 
+            --gold: #D4AF37; 
+            --gold-light: #F9E2AF;
+            --black: #0a0a0a; 
+            --dark-grey: #151515;
+        }
         
         body { 
-            <div class="logo-container">
-    <div class="logo-ring">
-        <div class="brand-logo">K<span>M</span></div>
-    </div>
-</div>
             background-color: var(--black); 
-            color: var(--gold); 
+            color: #fff; 
             font-family: 'Montserrat', sans-serif; 
             margin: 0; 
             text-align: center; 
             overflow-x: hidden;
         }
 
-        .container { padding: 50px 20px; }
+        .container { padding: 60px 20px; }
 
-        /* Animated Logo Styles */
-        .logo-container {
-            margin-top: 20px;
-            perspective: 1000px;
+        /* --- GOLDEN CSS LOGO --- */
+        .logo-container { margin-top: 20px; perspective: 1000px; }
+        
+        .logo-ring {
+            width: 130px; height: 130px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 30px auto;
+            position: relative;
+            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+            box-shadow: 0 0 20px rgba(212,175,55,0.2);
+            animation: float 4s ease-in-out infinite;
         }
 
-        .logo { 
-            width: 130px; 
-            height: 130px;
-            border-radius: 50%; 
-            border: 2px solid var(--gold); 
-            margin-bottom: 20px; 
-            object-fit: cover;
-            animation: logoEntrance 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
-            transition: 0.6s ease-in-out;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        .brand-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem; font-weight: 700;
+            color: var(--gold); letter-spacing: -5px;
+            transition: 0.5s; cursor: pointer;
+            text-shadow: 0 0 10px rgba(212,175,55,0.5);
         }
 
-        .logo:hover { 
-            transform: rotateY(360deg) scale(1.1); 
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
-            border-color: #fff;
-        }
+        .brand-logo span { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
 
-        @keyframes logoEntrance {
-            0% { transform: scale(0) rotate(-180deg); opacity: 0; }
-            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        .brand-logo:hover { letter-spacing: 5px; transform: scale(1.1); }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
         }
 
         h1 { 
             font-family: 'Playfair Display', serif; 
-            font-size: 3rem; 
-            letter-spacing: 8px; 
-            margin: 10px 0;
-            animation: fadeInDown 1s ease;
+            font-size: 3.2rem; letter-spacing: 10px; 
+            margin: 10px 0; color: var(--gold);
+            text-transform: uppercase;
         }
 
-        .tagline { color: #888; font-size: 0.9rem; letter-spacing: 3px; margin-bottom: 40px; }
+        .tagline { color: #666; font-size: 0.8rem; letter-spacing: 5px; margin-bottom: 50px; text-transform: uppercase; }
 
-        /* Search Bar */
-        .search-box { margin-bottom: 50px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        /* Search Bar Luxury Style */
+        .search-box { margin-bottom: 60px; max-width: 500px; margin-left: auto; margin-right: auto; }
         #designSearch {
-            width: 90%; padding: 15px 25px; border-radius: 50px; border: 1px solid var(--gold);
-            background: transparent; color: #fff; font-size: 1rem; outline: none; transition: 0.4s;
+            width: 90%; padding: 18px 30px; border-radius: 50px; border: 1px solid #333;
+            background: var(--dark-grey); color: var(--gold); font-size: 1rem; outline: none; transition: 0.4s;
         }
-        #designSearch:focus { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+        #designSearch:focus { border-color: var(--gold); box-shadow: 0 0 20px rgba(212,175,55,0.3); background: #1a1a1a; }
 
         /* Gallery Grid */
         .gallery { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 25px; 
-            max-width: 1100px; 
-            margin: 0 auto; 
-            padding: 20px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; max-width: 1200px; margin: 0 auto; padding: 20px;
         }
 
         .design-card { 
-            border-radius: 15px; 
-            overflow: hidden; 
-            border: 1px solid #222; 
-            transition: 0.5s;
-            animation: fadeInUp 0.8s ease;
+            border-radius: 15px; overflow: hidden; 
+            background: #111; border: 1px solid #222; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        .design-card img { width: 100%; height: auto; display: block; transition: 0.5s; }
-        .design-card:hover { transform: translateY(-10px); border-color: var(--gold); }
+        .design-card img { width: 100%; height: auto; display: block; filter: brightness(0.8); transition: 0.6s; }
+        
+        .design-card:hover { 
+            transform: translateY(-20px) scale(1.03); 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+            border-color: var(--gold);
+        }
 
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        .design-card:hover img { filter: brightness(1.1); }
 
-        footer { margin-top: 100px; padding: 60px 20px; border-top: 1px solid #1a1a1a; }
+        footer { margin-top: 100px; padding: 100px 20px; border-top: 1px solid #222; background: linear-gradient(to top, #000, #0a0a0a); }
+        
         .btn { 
-            display: inline-block; padding: 15px 35px; border-radius: 50px; 
+            display: inline-block; padding: 20px 50px; border-radius: 50px; 
             text-decoration: none; font-weight: bold; transition: 0.4s; 
-            text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;
+            text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px;
         }
-        .wa-btn { background: var(--gold); color: #000; }
+        .wa-btn { background: var(--gold); color: #000; box-shadow: 0 10px 20px rgba(212,175,55,0.3); }
+        .wa-btn:hover { background: #fff; transform: translateY(-5px); box-shadow: 0 15px 30px rgba(212,175,55,0.5); }
+
     </style>
 </head>
 <body>
 
     <div class="container">
         <div class="logo-container">
-            <img src="KME.png" alt="Kinuri Designs Logo" class="logo">
+            <div class="logo-ring">
+                <div class="brand-logo">K<span>M</span></div>
+            </div>
         </div>
 
         <h1>KINURI DESIGNS</h1>
-        <p class="tagline">PREMIUM GRAPHIC SOLUTIONS</p>
+        <p class="tagline">The Gold Standard of Design</p>
 
         <div class="search-box">
-            <input type="text" id="designSearch" placeholder="Search designs (Logo, Branding...)" onkeyup="filterDesigns()">
+            <input type="text" id="designSearch" placeholder="Explore Portfolio..." onkeyup="filterDesigns()">
         </div>
 
         <div class="gallery" id="designGallery">
             <div class="design-card" data-category="logo branding">
                 <img src="1.jpg.png" alt="Design">
             </div>
-            <div class="design-card" data-category="social media">
+            <div class="design-card" data-category="social media branding">
                 <img src="2.png" alt="Design">
             </div>
             <div class="design-card" data-category="logo branding">
@@ -132,8 +136,9 @@
     </div>
 
     <footer>
-        <a href="https://wa.me/94774799172" target="_blank" class="btn wa-btn">Contact Me</a>
-        <p style="color: #333; font-size: 10px; margin-top: 30px;">&copy; 2026 KINURI DESIGNS</p>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 30px; color: var(--gold);">Ready to build your Empire?</h2>
+        <a href="https://wa.me/94774799172" target="_blank" class="btn wa-btn">Start a Project</a>
+        <p style="color: #444; font-size: 11px; margin-top: 60px; letter-spacing: 2px;">EST. 2026 • KINURI DESIGNS • COLOMBO</p>
     </footer>
 
     <script>

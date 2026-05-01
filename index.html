@@ -1,145 +1,101 @@
-<!DOCTYPE html>
+
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kinuri Designs | Premium Brand</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <title>KME - Premium Designs</title>
     <style>
-        :root { 
-            --gold: #D4AF37; 
-            --black: #080808; 
-            --glass: rgba(255, 255, 255, 0.03);
-        }
-        
-        body { 
-            background: radial-gradient(circle at center, #151515 0%, #050505 100%) !important;
-            color: #fff; font-family: 'Montserrat', sans-serif; 
-            margin: 0; text-align: center; min-height: 100vh; overflow-x: hidden;
-        }
-
-        /* --- LUXURY LOADER --- */
-        #loader {
-            position: fixed; width: 100%; height: 100vh; background: #050505;
-            z-index: 9999; display: flex; align-items: center; justify-content: center;
-        }
-        .loader-logo {
-            width: 120px; animation: pulse 2s infinite ease-in-out;
-        }
-        @keyframes pulse {
-            0% { transform: scale(0.9); opacity: 0.5; filter: drop-shadow(0 0 5px var(--gold)); }
-            50% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 20px var(--gold)); }
-            100% { transform: scale(0.9); opacity: 0.5; filter: drop-shadow(0 0 5px var(--gold)); }
+        body {
+            margin: 0;
+            background-color: #0a0a0a;
+            color: #D4AF37;
+            font-family: 'Playfair Display', serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        /* --- CONTENT WRAPPER --- */
-        #content { opacity: 0; transition: 1.5s ease; }
-
-        .container { padding: 40px 20px; }
-
-        .logo-ring {
-            width: 140px; height: 140px; border: 1px solid var(--gold);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 20px auto; overflow: hidden;
-            box-shadow: 0 0 30px rgba(212,175,55,0.15);
-        }
-        .logo-ring img { width: 100%; height: 100%; object-fit: cover; }
-
-        h1 { 
-            font-family: 'Playfair Display', serif; font-size: 2.2rem; 
-            letter-spacing: 12px; color: var(--gold); text-transform: uppercase;
-            margin: 20px 0; text-shadow: 0 0 15px rgba(212,175,55,0.2);
+        .card-container {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+            border: 2px solid #D4AF37;
+            border-radius: 10px;
         }
 
-        /* --- MODERN SEARCH --- */
-        .search-wrapper { margin: 40px auto; max-width: 400px; }
-        #designSearch {
-            width: 100%; padding: 15px 25px; border-radius: 30px;
-            border: 1px solid rgba(212,175,55,0.2); background: var(--glass);
-            color: #fff; backdrop-filter: blur(10px); outline: none; transition: 0.4s;
+        .card-container:hover {
+            transform: scale(1.05);
         }
-        #designSearch:focus { border-color: var(--gold); box-shadow: 0 0 20px rgba(212,175,55,0.1); }
 
-        /* --- GALLERY --- */
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1100px; margin: 0 auto; }
-        .design-card { 
-            border-radius: 12px; overflow: hidden; background: var(--glass);
-            border: 1px solid rgba(255,255,255,0.05); transition: 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+        img {
+            width: 350px;
+            display: block;
+            border-radius: 8px;
         }
-        .design-card:hover { transform: translateY(-12px) scale(1.02); border-color: var(--gold); }
-        .design-card img { width: 100%; display: block; filter: grayscale(30%); transition: 0.5s; }
-        .design-card:hover img { filter: grayscale(0%); }
 
-        footer { margin-top: 80px; padding-bottom: 60px; }
-        .btn { 
-            padding: 15px 45px; border-radius: 2px; text-decoration: none; 
-            font-weight: bold; text-transform: uppercase; font-size: 11px; 
-            letter-spacing: 3px; display: inline-block; width: 250px; transition: 0.4s;
+        .controls {
+            margin-top: 30px;
+            text-align: center;
         }
-        .wa-btn { background: var(--gold); color: #000; margin-top: 15px; }
-        .canva-btn { border: 1px solid var(--gold); color: var(--gold); }
-        .btn:hover { letter-spacing: 5px; box-shadow: 0 0 20px rgba(212,175,55,0.2); }
 
+        button {
+            background: transparent;
+            color: #D4AF37;
+            border: 1px solid #D4AF37;
+            padding: 10px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        button:hover {
+            background: #D4AF37;
+            color: black;
+        }
+
+        .tagline {
+            margin-top: 15px;
+            font-style: italic;
+            opacity: 0.8;
+            letter-spacing: 1px;
+        }
     </style>
 </head>
-<body onload="siteLoaded()">
+<body>
 
-    <div id="loader">
-        <img src="logo-animated.gif.gif" class="loader-logo" alt="Loading...">
+    <div class="card-container" onclick="playAll()">
+        <img src="1.jpg.png" alt="KME Business Card">
     </div>
 
-    <div id="content">
-        <div class="container">
-            <div class="logo-ring">
-                <img src="logo-animated.gif.gif" alt="Kinuri Designs">
-            </div>
-
-            <h1>KINURI DESIGNS</h1>
-
-            <div class="search-wrapper">
-                <input type="text" id="designSearch" placeholder="EXPLORE CREATIONS..." onkeyup="searchWork()">
-            </div>
-
-            <div class="gallery">
-                <div class="design-card" data-title="logo branding">
-                    <img src="1.jpg.png" alt="Design 1">
-                </div>
-                <div class="design-card" data-title="social media branding">
-                    <img src="2.png" alt="Design 2">
-                </div>
-                <div class="design-card" data-title="logo identity">
-                    <img src="3.png" alt="Design 3">
-                </div>
-            </div>
-        </div>
-
-        <footer>
-            <a href="https://www.canva.com/design/DAHIDk_RyrA/S04Tfyu4wdQsxeNUvZdrdg/view" target="_blank" class="btn canva-btn">Full Portfolio</a>
-            <br>
-            <a href="https://wa.me/94774799172" target="_blank" class="btn wa-btn">Contact Me</a>
-        </footer>
+    <div class="controls">
+        <button onclick="playAll()">Experience KME</button>
+        <p class="tagline">"Create your dream design"</p>
     </div>
+
+    <audio id="voiceAudio" src="voice.mp3"></audio>
+    <audio id="bgMusic" src="bg-music.mp3" loop></audio>
 
     <script>
-        function siteLoaded() {
-            // සයිට් එක ලෝඩ් වුණාම ලෝඩර් එක අයින් කරන්න
-            setTimeout(() => {
-                document.getElementById('loader').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('loader').style.display = 'none';
-                    document.getElementById('content').style.opacity = '1';
-                }, 500);
-            }, 1800); 
-        }
+        function playAll() {
+            var voice = document.getElementById('voiceAudio');
+            var music = document.getElementById('bgMusic');
+            
+            // Music එක හීන් සැරේ ප්ලේ වෙන්න (Low volume)
+            music.volume = 0.3; 
+            music.play();
 
-        function searchWork() {
-            let input = document.getElementById('designSearch').value.toLowerCase();
-            let cards = document.getElementsByClassName('design-card');
-            for (let i = 0; i < cards.length; i++) {
-                let title = cards[i].getAttribute('data-title').toLowerCase();
-                cards[i].style.display = title.includes(input) ? "block" : "none";
-            }
+            // Voice එක ප්ලේ වෙන්න
+            voice.play();
         }
     </script>
+
 </body>
 </html>

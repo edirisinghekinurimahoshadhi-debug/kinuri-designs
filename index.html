@@ -3,41 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kinuri Designs</title>
+    <title>Kinuri Designs | Pro Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #000; color: #D4AF37; font-family: 'Montserrat', sans-serif; margin: 0; text-align: center; }
-        .container { padding: 40px 20px; }
-        .logo { width: 130px; border-radius: 50%; border: 2px solid #D4AF37; margin-bottom: 20px; transition: 0.5s; }
-        .logo:hover { transform: rotate(10deg) scale(1.1); }
-        h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; letter-spacing: 5px; margin-bottom: 5px; }
-        .gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 40px 10px; }
-        .gallery img { width: 300px; border-radius: 12px; border: 1px solid #222; transition: 0.4s; }
-        .gallery img:hover { transform: translateY(-10px); border-color: #D4AF37; box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2); }
-        footer { background: #0a0a0a; padding: 60px 20px; border-top: 1px solid #1a1a1a; margin-top: 50px; }
-        .btn { display: inline-block; padding: 15px 35px; margin: 10px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: 0.3s; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
-        .canva-btn { border: 2px solid #D4AF37; color: #D4AF37; }
-        .canva-btn:hover { background: #D4AF37; color: #000; }
-        .wa-btn { background: #D4AF37; color: #000; }
+        :root { --gold: #D4AF37; --black: #000; --dark-grey: #111; }
+        
+        body { 
+            background-color: var(--black); 
+            color: var(--gold); 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0; 
+            text-align: center; 
+            overflow-x: hidden;
+        }
+
+        .container { padding: 50px 20px; }
+
+        /* Animated Logo Styles */
+        .logo-container {
+            margin-top: 20px;
+            perspective: 1000px;
+        }
+
+        .logo { 
+            width: 130px; 
+            height: 130px;
+            border-radius: 50%; 
+            border: 2px solid var(--gold); 
+            margin-bottom: 20px; 
+            object-fit: cover;
+            animation: logoEntrance 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+            transition: 0.6s ease-in-out;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .logo:hover { 
+            transform: rotateY(360deg) scale(1.1); 
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+            border-color: #fff;
+        }
+
+        @keyframes logoEntrance {
+            0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        h1 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 3rem; 
+            letter-spacing: 8px; 
+            margin: 10px 0;
+            animation: fadeInDown 1s ease;
+        }
+
+        .tagline { color: #888; font-size: 0.9rem; letter-spacing: 3px; margin-bottom: 40px; }
+
+        /* Search Bar */
+        .search-box { margin-bottom: 50px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        #designSearch {
+            width: 90%; padding: 15px 25px; border-radius: 50px; border: 1px solid var(--gold);
+            background: transparent; color: #fff; font-size: 1rem; outline: none; transition: 0.4s;
+        }
+        #designSearch:focus { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+
+        /* Gallery Grid */
+        .gallery { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 25px; 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            padding: 20px;
+        }
+
+        .design-card { 
+            border-radius: 15px; 
+            overflow: hidden; 
+            border: 1px solid #222; 
+            transition: 0.5s;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .design-card img { width: 100%; height: auto; display: block; transition: 0.5s; }
+        .design-card:hover { transform: translateY(-10px); border-color: var(--gold); }
+
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+        footer { margin-top: 100px; padding: 60px 20px; border-top: 1px solid #1a1a1a; }
+        .btn { 
+            display: inline-block; padding: 15px 35px; border-radius: 50px; 
+            text-decoration: none; font-weight: bold; transition: 0.4s; 
+            text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;
+        }
+        .wa-btn { background: var(--gold); color: #000; }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <img src="KME.png" class="logo">
+        <div class="logo-container">
+            <img src="KME.png" alt="Kinuri Designs Logo" class="logo">
+        </div>
+
         <h1>KINURI DESIGNS</h1>
-        <p style="color: #888;">Creative Designer & Aspiring Legal Mind</p>
-        <div class="gallery">
-            <img src="1.jpg.png">
-            <img src="2.png">
-            <img src="3.png">
+        <p class="tagline">PREMIUM GRAPHIC SOLUTIONS</p>
+
+        <div class="search-box">
+            <input type="text" id="designSearch" placeholder="Search designs (Logo, Branding...)" onkeyup="filterDesigns()">
+        </div>
+
+        <div class="gallery" id="designGallery">
+            <div class="design-card" data-category="logo branding">
+                <img src="IMG_2917.jpg" alt="Design">
+            </div>
+            <div class="design-card" data-category="social media">
+                <img src="IMG_2918.jpg" alt="Design">
+            </div>
+            <div class="design-card" data-category="logo branding">
+                <img src="3.jpg.png" alt="Design">
+            </div>
         </div>
     </div>
+
     <footer>
-        <p style="color: #fff; margin-bottom: 20px;">Let's work together!</p>
-        <a href="https://www.canva.com/design/DAHIDk_RyrA/S04Tfyu4wdQsxeNUvZdrdg/view" target="_blank" class="btn canva-btn">View Full Portfolio</a>
-        <br>
-        <a href="https://wa.me/94774799172" target="_blank" class="btn wa-btn">WhatsApp Me</a>
-        <p style="color: #444; font-size: 10px; margin-top: 30px;">© 2026 KINURI DESIGNS</p>
+        <a href="https://wa.me/94774799172" target="_blank" class="btn wa-btn">Contact Me</a>
+        <p style="color: #333; font-size: 10px; margin-top: 30px;">&copy; 2026 KINURI DESIGNS</p>
     </footer>
+
+    <script>
+        function filterDesigns() {
+            let input = document.getElementById('designSearch').value.toLowerCase();
+            let cards = document.getElementsByClassName('design-card');
+            for (let i = 0; i < cards.length; i++) {
+                let category = cards[i].getAttribute('data-category').toLowerCase();
+                cards[i].style.display = category.includes(input) ? "block" : "none";
+            }
+        }
+    </script>
 </body>
 </html>

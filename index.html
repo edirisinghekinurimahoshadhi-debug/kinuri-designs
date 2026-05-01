@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kinuri Designs | Golden Luxury</title>
+    <title>Kinuri Designs | Premium Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root { 
             --gold: #D4AF37; 
-            --gold-light: #F9E2AF;
-            --black: #0a0a0a; 
-            --dark-grey: #151515;
+            --black: #050505; 
+            --dark-grey: #111;
         }
         
-        body { 
-            background-color: var(--black); 
+        /* මුළු සයිට් එකම කළු කරන බව සහතිකයි */
+        html, body { 
+            background-color: var(--black) !important; 
             color: #fff; 
             font-family: 'Montserrat', sans-serif; 
             margin: 0; 
@@ -24,56 +24,48 @@
 
         .container { padding: 60px 20px; }
 
-        /* --- GOLDEN CSS LOGO --- */
+        /* Golden Animated Logo */
         .logo-container { margin-top: 20px; perspective: 1000px; }
-        
         .logo-ring {
-            width: 130px; height: 130px;
+            width: 120px; height: 120px;
             border: 2px solid var(--gold);
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             margin: 0 auto 30px auto;
-            position: relative;
-            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
             box-shadow: 0 0 20px rgba(212,175,55,0.2);
             animation: float 4s ease-in-out infinite;
         }
-
         .brand-logo {
             font-family: 'Playfair Display', serif;
             font-size: 3.5rem; font-weight: 700;
             color: var(--gold); letter-spacing: -5px;
             transition: 0.5s; cursor: pointer;
-            text-shadow: 0 0 10px rgba(212,175,55,0.5);
         }
-
-        .brand-logo span { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
-
+        .brand-logo span { color: #fff; }
         .brand-logo:hover { letter-spacing: 5px; transform: scale(1.1); }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(2deg); }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
         h1 { 
             font-family: 'Playfair Display', serif; 
-            font-size: 3.2rem; letter-spacing: 10px; 
-            margin: 10px 0; color: var(--gold);
-            text-transform: uppercase;
+            font-size: 3rem; letter-spacing: 8px; color: var(--gold);
+            margin: 10px 0; text-transform: uppercase;
         }
 
-        .tagline { color: #666; font-size: 0.8rem; letter-spacing: 5px; margin-bottom: 50px; text-transform: uppercase; }
+        .tagline { color: #666; font-size: 0.8rem; letter-spacing: 4px; margin-bottom: 50px; }
 
-        /* Search Bar Luxury Style */
+        /* Search Bar */
         .search-box { margin-bottom: 60px; max-width: 500px; margin-left: auto; margin-right: auto; }
         #designSearch {
-            width: 90%; padding: 18px 30px; border-radius: 50px; border: 1px solid #333;
+            width: 90%; padding: 15px 25px; border-radius: 50px; border: 1px solid #333;
             background: var(--dark-grey); color: var(--gold); font-size: 1rem; outline: none; transition: 0.4s;
         }
-        #designSearch:focus { border-color: var(--gold); box-shadow: 0 0 20px rgba(212,175,55,0.3); background: #1a1a1a; }
+        #designSearch:focus { border-color: var(--gold); box-shadow: 0 0 15px rgba(212,175,55,0.2); }
 
-        /* Gallery Grid */
+        /* Gallery Grid - මෙන්න ඔයාගේ Portfolio එක */
         .gallery { 
             display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
             gap: 30px; max-width: 1200px; margin: 0 auto; padding: 20px;
@@ -81,28 +73,26 @@
 
         .design-card { 
             border-radius: 15px; overflow: hidden; 
-            background: #111; border: 1px solid #222; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            background: #000; border: 1px solid #222; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .design-card img { width: 100%; height: auto; display: block; filter: brightness(0.8); transition: 0.6s; }
+        .design-card img { width: 100%; height: auto; display: block; filter: brightness(0.8); transition: 0.5s; }
         
         .design-card:hover { 
-            transform: translateY(-20px) scale(1.03); 
-            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+            transform: translateY(-15px); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
             border-color: var(--gold);
         }
-
         .design-card:hover img { filter: brightness(1.1); }
 
-        footer { margin-top: 100px; padding: 100px 20px; border-top: 1px solid #222; background: linear-gradient(to top, #000, #0a0a0a); }
-        
+        footer { margin-top: 100px; padding: 80px 20px; border-top: 1px solid #111; background: #030303; }
         .btn { 
-            display: inline-block; padding: 20px 50px; border-radius: 50px; 
+            display: inline-block; padding: 18px 45px; border-radius: 50px; 
             text-decoration: none; font-weight: bold; transition: 0.4s; 
-            text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px;
+            text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;
         }
-        .wa-btn { background: var(--gold); color: #000; box-shadow: 0 10px 20px rgba(212,175,55,0.3); }
-        .wa-btn:hover { background: #fff; transform: translateY(-5px); box-shadow: 0 15px 30px rgba(212,175,55,0.5); }
+        .wa-btn { background: var(--gold); color: #000; }
+        .wa-btn:hover { background: #fff; transform: scale(1.05); }
 
     </style>
 </head>
@@ -116,32 +106,32 @@
         </div>
 
         <h1>KINURI DESIGNS</h1>
-        <p class="tagline">The Gold Standard of Design</p>
+        <p class="tagline">PREMIUM VISUAL SOLUTIONS</p>
 
         <div class="search-box">
-            <input type="text" id="designSearch" placeholder="Explore Portfolio..." onkeyup="filterDesigns()">
+            <input type="text" id="designSearch" placeholder="Search my portfolio (Logo, Branding...)" onkeyup="filterDesigns()">
         </div>
 
         <div class="gallery" id="designGallery">
             <div class="design-card" data-category="logo branding">
-                <img src="1.jpg.png" alt="Design">
+                <img src="IMG_2917.jpg" alt="Design 1">
             </div>
             <div class="design-card" data-category="social media branding">
-                <img src="2.png" alt="Design">
+                <img src="IMG_2918.jpg" alt="Design 2">
             </div>
             <div class="design-card" data-category="logo branding">
-                <img src="3.png" alt="Design">
+                <img src="3.jpg.png" alt="Design 3">
             </div>
-        </div>
+            </div>
     </div>
 
     <footer>
-        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 30px; color: var(--gold);">Ready to build your Empire?</h2>
-        <a href="https://wa.me/94774799172" target="_blank" class="btn wa-btn">Start a Project</a>
-        <p style="color: #444; font-size: 11px; margin-top: 60px; letter-spacing: 2px;">EST. 2026 • KINURI DESIGNS • COLOMBO</p>
+        <a href="https://wa.me/94774799172" target="_blank" class="btn wa-btn">Contact on WhatsApp</a>
+        <p style="color: #333; font-size: 11px; margin-top: 50px;">&copy; 2026 KINURI DESIGNS</p>
     </footer>
 
     <script>
+        // Search function එකත් වැඩ කරනවා දැන්
         function filterDesigns() {
             let input = document.getElementById('designSearch').value.toLowerCase();
             let cards = document.getElementsByClassName('design-card');

@@ -1,101 +1,91 @@
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME - Premium Designs</title>
+    <title>KME Premium Experience</title>
     <style>
         body {
             margin: 0;
-            background-color: #0a0a0a;
+            background: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
             color: #D4AF37;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Georgia', serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            overflow: hidden;
+            text-align: center;
         }
 
-        .card-container {
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.5s ease;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
-            border: 2px solid #D4AF37;
-            border-radius: 10px;
+        .card-box {
+            padding: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transition: 0.5s;
         }
 
-        .card-container:hover {
-            transform: scale(1.05);
+        .card-box:hover {
+            border-color: #D4AF37;
+            transform: translateY(-10px);
         }
 
         img {
             width: 350px;
+            border-radius: 10px;
             display: block;
-            border-radius: 8px;
-        }
-
-        .controls {
-            margin-top: 30px;
-            text-align: center;
         }
 
         button {
-            background: transparent;
+            margin-top: 30px;
+            background: none;
             color: #D4AF37;
             border: 1px solid #D4AF37;
-            padding: 10px 25px;
-            font-size: 16px;
+            padding: 12px 30px;
+            font-size: 14px;
+            letter-spacing: 3px;
             cursor: pointer;
-            border-radius: 20px;
-            transition: 0.3s;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            transition: 0.4s;
+            border-radius: 50px;
         }
 
         button:hover {
             background: #D4AF37;
             color: black;
-        }
-
-        .tagline {
-            margin-top: 15px;
-            font-style: italic;
-            opacity: 0.8;
-            letter-spacing: 1px;
+            box-shadow: 0 0 20px #D4AF37;
         }
     </style>
 </head>
 <body>
 
-    <div class="card-container" onclick="playAll()">
+    <div class="card-box">
         <img src="1.jpg.png" alt="KME Business Card">
     </div>
 
-    <div class="controls">
-        <button onclick="playAll()">Experience KME</button>
-        <p class="tagline">"Create your dream design"</p>
-    </div>
+    <button onclick="playBrandExperience()">Play Experience</button>
 
-    <audio id="voiceAudio" src="voice.mp3"></audio>
     <audio id="bgMusic" src="bg-music.mp3" loop></audio>
+    <audio id="brandVoice" src="voice.mp3"></audio>
 
     <script>
-        function playAll() {
-            var voice = document.getElementById('voiceAudio');
-            var music = document.getElementById('bgMusic');
-            
-            // Music එක හීන් සැරේ ප්ලේ වෙන්න (Low volume)
-            music.volume = 0.3; 
+        function playBrandExperience() {
+            var music = monume-luxury-509454.mp3;
+            var voice = mp3-output-ttsfree(dot_)com.mp3
+            // Background music එක හීන් සැරේ පටන් ගන්නවා
+            music.volume = 0.2; // සද්දේ අඩු කළා voice එක ඇහෙන්න ඕන නිසා
             music.play();
 
-            // Voice එක ප්ලේ වෙන්න
-            voice.play();
+            // තත්පර 1කට පස්සේ Voice එක ප්ලේ වෙනවා (එතකොට ලස්සනයි)
+            setTimeout(function() {
+                voice.play();
+            }, 1000);
         }
     </script>
 
 </body>
 </html>
+
+   

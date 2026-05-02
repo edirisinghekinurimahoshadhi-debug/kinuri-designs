@@ -29,7 +29,6 @@
             text-transform: uppercase;
         }
 
-        /* Luxury Gallery Grid */
         .gallery { 
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -45,7 +44,6 @@
             overflow: hidden;
             background: rgba(15, 15, 15, 0.9);
             transition: 0.4s ease;
-            cursor: pointer;
         }
 
         .card:hover {
@@ -54,18 +52,54 @@
             box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
         }
 
-        .card img { width: 100%; height: auto; display: block; }
-
-        .btn-group { margin: 50px 0; display: flex; flex-direction: column; align-items: center; gap: 20px; }
-        .lux-btn {
-            width: 260px; background: transparent; color: #D4AF37;
-            border: 1px solid #D4AF37; padding: 15px;
-            text-transform: uppercase; letter-spacing: 3px;
-            border-radius: 50px; cursor: pointer;
-            text-decoration: none; font-size: 12px;
-            transition: 0.3s;
+        /* වීඩියෝ එක කාඩ් එකට හරියටම ෆිට් වෙන්න */
+        .card video, .card img { 
+            width: 100%; 
+            height: auto; 
+            display: block; 
         }
-        .lux-btn:hover { background: #D4AF37; color: #000; }
+
+        .btn-container {
+            margin: 50px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 100px;
+        }
+
+        .lux-btn {
+            display: block;
+            width: 280px;
+            padding: 18px;
+            text-decoration: none;
+            color: #D4AF37;
+            border: 1px solid #D4AF37;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 13px;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: 0.4s all;
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .lux-btn:hover {
+            background: #D4AF37;
+            color: #000;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            transform: scale(1.05);
+        }
+
+        .whatsapp-btn {
+            border-color: #25D366;
+            color: #25D366;
+        }
+
+        .whatsapp-btn:hover {
+            background: #25D366;
+            color: #fff;
+        }
     </style>
 </head>
 <body onclick="initAudio()">
@@ -79,22 +113,23 @@
 
     <div class="gallery">
         <div class="card">
-            <img src="KME(4).mp4" alt="KME New Design">
+            <video autoplay loop muted playsinline>
+                <source src="KME (4).mp4" type="video/mp4">
+            </video>
         </div>
 
         <div class="card"><img src="1.jpg.png"></div>
         <div class="card"><img src="2.png"></div>
     </div>
 
-    <div class="btn-group">
+    <div class="btn-container">
         <a href="https://canva.link/zbwo5ma56hbqnuz" target="_blank" class="lux-btn">View Portfolio</a>
-        <a href="https://wa.me/94774799172" target="_blank" class="lux-btn">Contact Me</a>
+        <a href="https://wa.me/94774799172" target="_blank" class="lux-btn whatsapp-btn">Contact via WhatsApp</a>
     </div>
 
     <audio id="bgMusic" src="monume-luxury-509454.mp3" loop></audio>
 
     <script>
-        // Particle System
         const canvas = document.getElementById('dustCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];

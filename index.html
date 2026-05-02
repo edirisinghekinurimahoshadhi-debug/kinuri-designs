@@ -1,86 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME Premium Experience</title>
+    <title>KME - Premium Experience</title>
     <style>
+        /* 1. ලෝගෝ ලෝඩර් එක (Loader Screen) */
+        #loader {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s ease;
+        }
+
+        #loader img {
+            width: 150px;
+        }
+
+        /* 2. මුළු පිටුවේම පෙනුම */
         body {
             margin: 0;
             background: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
             color: #D4AF37;
-            font-family: 'Georgia', serif;
+            font-family: 'Playfair Display', serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
             text-align: center;
+            opacity: 0; /* ලෝඩර් එක අයින් වෙනකම් මේක පේන්නේ නැහැ */
+            transition: opacity 1.5s ease;
         }
 
-        .card-box {
-            padding: 15px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            background: rgba(255, 255, 255, 0.02);
+        /* 3. Business Card එකේ Animation එක */
+        .card-container {
+            padding: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
             border-radius: 15px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            transition: 0.5s;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            transform: translateY(30px); /* පොඩ්ඩක් පල්ලෙහාට වෙලා තියෙන්නේ */
+            transition: 1s ease;
         }
 
-        .card-box:hover {
-            border-color: #D4AF37;
-            transform: translateY(-10px);
-        }
-
-        img {
-            width: 350px;
+        img.main-card {
+            width: 320px;
             border-radius: 10px;
             display: block;
         }
 
+        /* 4. Experience Button එක */
         button {
-            margin-top: 30px;
-            background: none;
+            margin-top: 40px;
+            background: transparent;
             color: #D4AF37;
             border: 1px solid #D4AF37;
-            padding: 12px 30px;
+            padding: 12px 35px;
             font-size: 14px;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             cursor: pointer;
             text-transform: uppercase;
-            transition: 0.4s;
             border-radius: 50px;
+            transition: 0.4s;
         }
 
         button:hover {
             background: #D4AF37;
             color: black;
-            box-shadow: 0 0 20px #D4AF37;
+            box-shadow: 0 0 25px #D4AF37;
         }
     </style>
 </head>
-<body>
+<body onload="showContent()">
 
-    <div class="card-box">
-        <img src="1.jpg.png" alt="KME Business Card">
+    <div id="loader">
+        <img src="logo-animated.gif.gif" alt="Loading...">
     </div>
 
-    <button onclick="playBrandExperience()">Play Experience</button>
+    <div class="card-container" id="card">
+        <img src="1.jpg.png" alt="KME Design" class="main-card">
+    </div>
 
-    <audio id="bgMusic" src="bg-music.mp3" loop></audio>
-    <audio id="brandVoice" src="voice.mp3"></audio>
+    <button onclick="startExperience()">Experience KME</button>
+
+    <audio id="bgMusic" src="monume-luxury-509454.mp3" loop></audio>
+    <audio id="voice" src="mp3-output-ttsfree(dot)com.mp3"></audio>
 
     <script>
-        function playBrandExperience() {
-            var music = monume-luxury-509454.mp3;
-            var voice = mp3-output-ttsfree(dot_)com.mp3
-            // Background music එක හීන් සැරේ පටන් ගන්නවා
-            music.volume = 0.2; // සද්දේ අඩු කළා voice එක ඇහෙන්න ඕන නිසා
+        // පිටුව ලෝඩ් වුණාම වැඩ කරන හැටි
+        function showContent() {
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loader').style.display = 'none';
+                    document.body.style.opacity = '1';
+                    document.getElementById('card').style.transform = 'translateY(0)';
+                }, 1000);
+            }, 2500); // තත්පර 2.5ක් ලෝගෝ එක පෙනේ
+        }
+
+        // බටන් එක එබුවම Music සහ Voice වැඩ කරන හැටි
+        function startExperience() {
+            var music = document.getElementById('bgMusic');
+            var voice = document.getElementById('voice');
+
+            music.volume = 0.2; // සින්දුවේ සද්දේ ටිකක් අඩු කළා
             music.play();
 
-            // තත්පර 1කට පස්සේ Voice එක ප්ලේ වෙනවා (එතකොට ලස්සනයි)
+            // තත්පර 1කට පස්සේ Voice එක ඇහෙන්න හැදුවා
             setTimeout(function() {
                 voice.play();
             }, 1000);
@@ -89,5 +121,3 @@
 
 </body>
 </html>
-
-   

@@ -3,112 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME | Luxury Design Studio</title>
+    <title>KME | LUXURY DESIGNS</title>
     <style>
         body, html {
             margin: 0; padding: 0;
-            width: 100%; background-color: #000;
-            color: #D4AF37; font-family: 'Georgia', serif;
+            background-color: #000;
+            color: #D4AF37;
+            font-family: 'Georgia', serif;
+            display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh;
             scroll-behavior: smooth;
         }
 
-        /* Loader */
-        #loader {
-            position: fixed; width: 100%; height: 100vh;
-            background: #000; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; z-index: 100;
-            transition: opacity 0.8s ease;
-        }
-        #loader img { width: 100px; animation: pulse 2s infinite ease-in-out; }
-
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-
-        /* Main Wrapper */
-        #main-content {
-            opacity: 0; visibility: hidden;
-            display: flex; flex-direction: column; align-items: center;
-            padding: 40px 20px; transition: 1.5s ease;
+        /* 1. Logo & Glowing Text Section */
+        .header-section {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 30px;
         }
 
-        .show-content { opacity: 1 !important; visibility: visible !important; }
+        .header-section img {
+            width: 100px;
+            margin-bottom: 15px;
+        }
 
-        /* Design Cards Style */
+        .brand-name {
+            font-size: 22px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            /* දිලිසෙන ඉෆෙක්ට් එක (Glowing Effect) */
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.8), 0 0 20px rgba(212, 175, 55, 0.5);
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #D4AF37; }
+            to { text-shadow: 0 0 25px #D4AF37, 0 0 10px #fff; }
+        }
+
+        /* 2. Portfolio Gallery (Horizontal on Desktop, Vertical on Mobile) */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+            width: 95%;
+        }
+
         .card-frame {
             border: 1px solid rgba(212, 175, 55, 0.3);
-            padding: 8px; border-radius: 15px;
-            margin-bottom: 30px; background: #0a0a0a;
-            max-width: 350px; width: 100%;
+            padding: 5px;
+            border-radius: 10px;
+            background: #0a0a0a;
+            max-width: 320px; /* රූප එක ළඟ තිබිය හැකි ප්‍රමාණය */
+            transition: 0.4s;
         }
-        img.design-img { width: 100%; border-radius: 10px; display: block; }
 
-        /* Buttons Section */
-        .btn-group { display: flex; flex-direction: column; gap: 15px; margin: 20px 0; width: 250px; }
-        
+        .card-frame:hover {
+            transform: scale(1.03);
+            border-color: #D4AF37;
+        }
+
+        img.design-img {
+            width: 100%;
+            border-radius: 8px;
+            display: block;
+        }
+
+        /* 3. Buttons Section */
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 30px 0;
+            width: 280px;
+        }
+
         .luxury-btn {
             background: transparent; color: #D4AF37;
             border: 1px solid #D4AF37; padding: 12px;
             text-transform: uppercase; letter-spacing: 2px;
-            text-decoration: none; font-size: 12px;
-            border-radius: 50px; transition: 0.4s; cursor: pointer;
-            text-align: center;
+            text-decoration: none; font-size: 11px;
+            border-radius: 50px; transition: 0.4s;
+            text-align: center; cursor: pointer;
         }
-        .luxury-btn:hover { background: #D4AF37; color: #000; box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
 
-        .music-toggle { font-size: 10px; opacity: 0.6; cursor: pointer; margin-top: 10px; }
+        .luxury-btn:hover { background: #D4AF37; color: #000; }
 
     </style>
 </head>
-<body onclick="initExperience()">
+<body onclick="startExperience()">
 
-    <div id="loader">
+    <div class="header-section">
         <img src="logo-animated.gif.gif" alt="KME Logo">
-        <p style="font-size: 10px; letter-spacing: 2px; margin-top: 15px;">TAP TO ENTER</p>
+        <div class="brand-name">KME - LUXURY DESIGNS</div>
     </div>
 
-    <div id="main-content">
-        <div class="card-frame">
-            <img src="1.jpg.png" alt="Design 1" class="design-img">
-        </div>
+    <div class="gallery">
+        <div class="card-frame"><img src="1.jpg.png" class="design-img"></div>
+        <div class="card-frame"><img src="2.png" class="design-img"></div>
+        <div class="card-frame"><img src="3.png" class="design-img"></div>
+    </div>
 
-        <div class="btn-group">
-            <a href="https://canva.link/zbwo5ma56hbqnuz" target="_blank" class="luxury-btn">View Full Portfolio</a>
-            <a href="https://wa.me/0774799172" target="_blank" class="luxury-btn">Contact Me</a>
-            <div class="music-toggle" onclick="toggleMusic(event)">Toggle Background Music 🎷</div>
-        </div>
-
-        <h3 style="letter-spacing: 3px; font-weight: 300; margin-top: 40px;">MORE DESIGNS</h3>
-        
-        <div class="card-frame">
-            <img src="2.png" alt="Design 2" class="design-img">
-        </div>
-
-        <div class="card-frame">
-            <img src="3.png" alt="Design 3" class="design-img">
-        </div>
+    <div class="btn-container">
+        <a href="ඔයාගේ_කැන්වා_Portfolio_Link_එක" target="_blank" class="luxury-btn">Full Portfolio (Canva)</a>
+        <a href="https://wa.me/947XXXXXXXX" target="_blank" class="luxury-btn">Contact Me</a>
+        <button class="luxury-btn" onclick="toggleMusic(event)">Music ON/OFF 🎷</button>
     </div>
 
     <audio id="voiceAudio" src="mp3-output-ttsfree(dot)com.mp3"></audio>
     <audio id="bgMusic" src="monume-luxury-509454.mp3" loop></audio>
 
     <script>
-        let hasStarted = false;
-        function initExperience() {
-            if (hasStarted) return;
-            hasStarted = true;
-            document.getElementById('loader').style.opacity = '0';
-            setTimeout(() => {
-                document.getElementById('loader').style.display = 'none';
-                document.getElementById('main-content').classList.add('show-content');
+        let experienceStarted = false;
+
+        function startExperience() {
+            if (!experienceStarted) {
                 document.getElementById('voiceAudio').play();
-            }, 800);
+                experienceStarted = true;
+            }
         }
 
         function toggleMusic(event) {
             event.stopPropagation();
             const music = document.getElementById('bgMusic');
-            if (music.paused) { music.volume = 0.2; music.play(); } 
-            else { music.pause(); }
+            if (music.paused) {
+                music.volume = 0.2;
+                music.play();
+            } else {
+                music.pause();
+            }
         }
     </script>
 </body>
 </html>
+        

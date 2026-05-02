@@ -14,11 +14,15 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             min-height: 100vh;
             text-align: center;
+            padding-bottom: 50px;
         }
 
+        /* Logo Section */
+        .header {
+            margin-top: 50px;
+        }
         .header img {
             width: 120px;
             margin-bottom: 10px;
@@ -29,11 +33,35 @@
             letter-spacing: 5px;
             text-transform: uppercase;
             font-weight: bold;
-            margin-bottom: 40px;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            margin-bottom: 30px;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
         }
 
-        /* Golden Glowing Buttons */
+        /* Portfolio Gallery (ඔයාගේ වැඩ ටික) */
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+
+        .card {
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 8px;
+            border-radius: 15px;
+            background: #050505;
+            max-width: 330px;
+            width: 85%;
+        }
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+            display: block;
+        }
+
+        /* Glowing Buttons */
         .lux-btn {
             width: 280px;
             background: transparent;
@@ -49,18 +77,15 @@
             text-decoration: none;
             transition: all 0.3s ease;
             display: inline-block;
-            outline: none;
         }
 
-        /* බටන් එක ක්ලික් කරනකොට දිලිසෙන Magic එක */
         .lux-btn:active {
             background: #D4AF37;
             color: #000;
-            box-shadow: 0 0 30px #D4AF37, 0 0 50px #D4AF37;
+            box-shadow: 0 0 30px #D4AF37;
             transform: scale(0.96);
         }
 
-        /* Hover කරනකොට පොඩි Glow එකක් */
         .lux-btn:hover {
             box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
         }
@@ -73,9 +98,14 @@
         <div class="brand-name">KME LUXURY DESIGNS</div>
     </div>
 
-    <button class="lux-btn" onclick="startExperience()">Experience KME</button>
+    <div class="gallery">
+        <div class="card"><img src="1.jpg.png" alt="Work 1"></div>
+        <div class="card"><img src="2.png" alt="Work 2"></div>
+        <div class="card"><img src="3.png" alt="Work 3"></div>
+    </div>
 
-    <a href="https://canva.link/zbwo5ma56hbqnuz" target="_blank" class="lux-btn">View Portfolio</a>
+    <button class="lux-btn" onclick="startExperience()">Experience KME (Play Voice)</button>
+    <a href="https://canva.link/zbwo5ma56hbqnuz" target="_blank" class="lux-btn">Full Portfolio (Canva)</a>
     <a href="https://wa.me/94760517560" target="_blank" class="lux-btn">Contact Me</a>
 
     <audio id="voice" src="mp3-output-ttsfree(dot)com.mp3"></audio>
@@ -83,14 +113,11 @@
 
     <script>
         function startExperience() {
-            var voiceAudio = document.getElementById('voice');
-            var bgMusic = document.getElementById('bgMusic');
-
-            // සයිට් එකේදිම ප්ලේ වෙන්න මෙහෙම කරමු
-            voiceAudio.play();
-            
-            bgMusic.volume = 0.2;
-            bgMusic.play();
+            var v = document.getElementById('voice');
+            var m = document.getElementById('bgMusic');
+            v.play();
+            m.volume = 0.2;
+            m.play();
         }
     </script>
 

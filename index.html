@@ -5,121 +5,163 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KME LUXURY DESIGNS</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #000;
+        body, html {
+            margin: 0; padding: 0;
+            background: #000;
             color: #D4AF37;
             font-family: 'Playfair Display', serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            text-align: center;
-            padding-bottom: 50px;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* Logo Section */
-        .header {
-            margin-top: 50px;
-        }
-        .header img {
-            width: 120px;
-            margin-bottom: 10px;
-        }
-
-        .brand-name {
-            font-size: 24px;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            font-weight: bold;
-            margin-bottom: 30px;
-            text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+        /* 1. Golden Dust Background Canvas */
+        #dustCanvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1; /* කන්ටෙන්ට් එකට යටින් තියෙන්න */
         }
 
-        /* Portfolio Gallery (ඔයාගේ වැඩ ටික) */
-        .gallery {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 40px;
-            width: 100%;
+        /* 2. Side Menu (YouTube Style) */
+        .menu-btn {
+            position: fixed; top: 20px; left: 20px;
+            font-size: 25px; cursor: pointer; z-index: 1001;
+            color: #D4AF37;
         }
+
+        .side-nav {
+            position: fixed; top: 0; left: -250px;
+            width: 200px; height: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(212, 175, 55, 0.3);
+            z-index: 1000; transition: 0.4s;
+            display: flex; flex-direction: column; padding-top: 80px;
+        }
+
+        .side-nav a {
+            padding: 15px 25px; text-decoration: none;
+            color: #D4AF37; font-size: 16px;
+            letter-spacing: 2px; transition: 0.3s;
+        }
+
+        .side-nav a:hover { background: rgba(212, 175, 55, 0.1); padding-left: 35px; }
+
+        /* 3. Content Layout */
+        .wrapper {
+            display: flex; flex-direction: column; align-items: center;
+            padding: 50px 20px;
+        }
+
+        .header img { width: 110px; margin-bottom: 10px; }
+        .brand-name { font-size: 22px; letter-spacing: 5px; margin-bottom: 40px; text-shadow: 0 0 10px #D4AF37; }
 
         .card {
             border: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 8px;
-            border-radius: 15px;
-            background: #050505;
-            max-width: 330px;
-            width: 85%;
+            padding: 8px; border-radius: 15px;
+            background: rgba(5, 5, 5, 0.8);
+            max-width: 330px; width: 90%; margin-bottom: 25px;
         }
-        .card img {
-            width: 100%;
-            border-radius: 10px;
-            display: block;
-        }
+        .card img { width: 100%; border-radius: 10px; display: block; }
 
-        /* Glowing Buttons */
         .lux-btn {
-            width: 280px;
-            background: transparent;
-            color: #D4AF37;
-            border: 1px solid #D4AF37;
-            padding: 15px;
-            margin: 10px 0;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 13px;
-            border-radius: 50px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
+            width: 260px; background: transparent; color: #D4AF37;
+            border: 1px solid #D4AF37; padding: 14px;
+            margin: 10px 0; text-transform: uppercase;
+            letter-spacing: 3px; border-radius: 50px;
+            cursor: pointer; transition: 0.3s;
         }
 
-        .lux-btn:active {
-            background: #D4AF37;
-            color: #000;
-            box-shadow: 0 0 30px #D4AF37;
-            transform: scale(0.96);
-        }
-
-        .lux-btn:hover {
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-        }
+        .lux-btn:active { background: #D4AF37; color: #000; box-shadow: 0 0 30px #D4AF37; }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <img src="logo-animated.gif.gif" alt="KME Logo">
-        <div class="brand-name">KME LUXURY DESIGNS</div>
+    <canvas id="dustCanvas"></canvas>
+
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <div id="sideNav" class="side-nav">
+        <a href="#home">Home</a>
+        <a href="#gallery">Portfolio</a>
+        <a href="https://wa.me/94760517560">Contact</a>
     </div>
 
-    <div class="gallery">
-        <div class="card"><img src="1.jpg.png" alt="Work 1"></div>
-        <div class="card"><img src="2.png" alt="Work 2"></div>
-        <div class="card"><img src="3.png" alt="Work 3"></div>
-    </div>
+    <div class="wrapper" id="home">
+        <div class="header">
+            <img src="logo-animated.gif.gif" alt="Logo">
+            <div class="brand-name">KME LUXURY DESIGNS</div>
+        </div>
 
-    <button class="lux-btn" onclick="startExperience()">Experience KME (Play Voice)</button>
-    <a href="https://canva.link/zbwo5ma56hbqnuz" target="_blank" class="lux-btn">Full Portfolio (Canva)</a>
-    <a href="https://wa.me/94760517560" target="_blank" class="lux-btn">Contact Me</a>
+        <div class="gallery" id="gallery">
+            <div class="card"><img src="1.jpg.png"></div>
+            <div class="card"><img src="2.png"></div>
+            <div class="card"><img src="3.png"></div>
+        </div>
+
+        <button class="lux-btn" onclick="startExperience()">Experience KME</button>
+        <a href="https://canva.link/zbwo5ma56hbqnuz" target="_blank" class="lux-btn" style="text-decoration:none; text-align:center;">Canva Portfolio</a>
+    </div>
 
     <audio id="voice" src="mp3-output-ttsfree(dot)com.mp3"></audio>
     <audio id="bgMusic" src="monume-luxury-509454.mp3" loop></audio>
 
     <script>
+        // 1. Particle System (Golden Dust)
+        const canvas = document.getElementById('dustCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(212, 175, 55, 0.5)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 100; i++) { particles.push(new Particle()); }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // 2. Functions
+        function toggleMenu() {
+            const nav = document.getElementById("sideNav");
+            nav.style.left = (nav.style.left === "0px") ? "-250px" : "0px";
+        }
+
         function startExperience() {
-            var v = document.getElementById('voice');
-            var m = document.getElementById('bgMusic');
-            v.play();
-            m.volume = 0.2;
-            m.play();
+            document.getElementById('voice').play();
+            const music = document.getElementById('bgMusic');
+            music.volume = 0.2; music.play();
         }
     </script>
-
 </body>
 </html>

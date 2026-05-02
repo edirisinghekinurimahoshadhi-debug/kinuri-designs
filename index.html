@@ -5,97 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KME | Luxury Design Studio</title>
     <style>
-        /* 1. Global Styles */
         body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            color: #D4AF37;
-            font-family: 'Playfair Display', serif;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin: 0; padding: 0;
+            width: 100%; background-color: #000;
+            color: #D4AF37; font-family: 'Georgia', serif;
+            scroll-behavior: smooth;
         }
 
-        /* 2. Full Screen Loader */
+        /* Loader */
         #loader {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: #000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            transition: opacity 1s ease-out;
+            position: fixed; width: 100%; height: 100vh;
+            background: #000; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; z-index: 100;
+            transition: opacity 0.8s ease;
         }
+        #loader img { width: 100px; animation: pulse 2s infinite ease-in-out; }
 
-        #loader img {
-            width: 120px;
-            animation: pulse 2s infinite ease-in-out;
-        }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.8; }
-        }
-
-        /* 3. Main Content Animation */
+        /* Main Wrapper */
         #main-content {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 1.5s ease;
-            text-align: center;
-            visibility: hidden;
+            opacity: 0; visibility: hidden;
+            display: flex; flex-direction: column; align-items: center;
+            padding: 40px 20px; transition: 1.5s ease;
         }
 
-        .show-content {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-            visibility: visible !important;
-        }
+        .show-content { opacity: 1 !important; visibility: visible !important; }
 
+        /* Design Cards Style */
         .card-frame {
-            border: 1px solid #D4AF37;
-            padding: 10px;
-            border-radius: 15px;
-            background: linear-gradient(145deg, #1a1a1a, #000);
-            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.1);
-            display: inline-block;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 8px; border-radius: 15px;
+            margin-bottom: 30px; background: #0a0a0a;
+            max-width: 350px; width: 100%;
         }
+        img.design-img { width: 100%; border-radius: 10px; display: block; }
 
-        img.main-img {
-            width: 320px;
-            max-width: 85vw;
-            border-radius: 10px;
-            display: block;
+        /* Buttons Section */
+        .btn-group { display: flex; flex-direction: column; gap: 15px; margin: 20px 0; width: 250px; }
+        
+        .luxury-btn {
+            background: transparent; color: #D4AF37;
+            border: 1px solid #D4AF37; padding: 12px;
+            text-transform: uppercase; letter-spacing: 2px;
+            text-decoration: none; font-size: 12px;
+            border-radius: 50px; transition: 0.4s; cursor: pointer;
+            text-align: center;
         }
+        .luxury-btn:hover { background: #D4AF37; color: #000; box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
 
-        /* 4. Luxury Button */
-        .music-btn {
-            margin-top: 30px;
-            background: transparent;
-            color: #D4AF37;
-            border: 1px solid #D4AF37;
-            padding: 12px 25px;
-            font-size: 12px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            cursor: pointer;
-            border-radius: 50px;
-            transition: 0.4s;
-        }
-
-        .music-btn:hover {
-            background: #D4AF37;
-            color: #000;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-        }
+        .music-toggle { font-size: 10px; opacity: 0.6; cursor: pointer; margin-top: 10px; }
 
     </style>
 </head>
@@ -103,17 +62,29 @@
 
     <div id="loader">
         <img src="logo-animated.gif.gif" alt="KME Logo">
-        <p style="font-size: 10px; letter-spacing: 2px; margin-top: 15px; opacity: 0.6;">TAP TO ENTER EXPERIENCE</p>
+        <p style="font-size: 10px; letter-spacing: 2px; margin-top: 15px;">TAP TO ENTER</p>
     </div>
 
     <div id="main-content">
         <div class="card-frame">
-            <img src="1.jpg.png" alt="KME Design" class="main-img">
-        <img src="2.png" alt="designs" class="second-img"> 
-        <img src="3.png" alt="designs" class="third-img">
+            <img src="1.jpg.png" alt="Design 1" class="design-img">
         </div>
-        <br>
-        <button class="music-btn" id="musicBtn" onclick="toggleMusic(event)">Play Saxophone</button>
+
+        <div class="btn-group">
+            <a href="ඔයාගේ_කැන්වා_ලින්ක්_එක_මෙතනට_දාන්න" target="_blank" class="luxury-btn">View Full Portfolio</a>
+            <a href="https://wa.me/ඔයාගේ_whatsapp_අංකය" target="_blank" class="luxury-btn">Contact Me</a>
+            <div class="music-toggle" onclick="toggleMusic(event)">Toggle Background Music 🎷</div>
+        </div>
+
+        <h3 style="letter-spacing: 3px; font-weight: 300; margin-top: 40px;">MORE DESIGNS</h3>
+        
+        <div class="card-frame">
+            <img src="2.png" alt="Design 2" class="design-img">
+        </div>
+
+        <div class="card-frame">
+            <img src="3.png" alt="Design 3" class="design-img">
+        </div>
     </div>
 
     <audio id="voiceAudio" src="mp3-output-ttsfree(dot)com.mp3"></audio>
@@ -121,42 +92,23 @@
 
     <script>
         let hasStarted = false;
-
         function initExperience() {
             if (hasStarted) return;
             hasStarted = true;
-
-            // Loader එක අයින් කිරීම
-            const loader = document.getElementById('loader');
-            const mainContent = document.getElementById('main-content');
-            const voice = document.getElementById('voiceAudio');
-
-            loader.style.opacity = '0';
-            
+            document.getElementById('loader').style.opacity = '0';
             setTimeout(() => {
-                loader.style.display = 'none';
-                mainContent.classList.add('show-content');
-                
-                // පිටුවට ආපු ගමන් Voice එක Play කිරීම
-                voice.play();
-            }, 1000);
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('main-content').classList.add('show-content');
+                document.getElementById('voiceAudio').play();
+            }, 800);
         }
 
         function toggleMusic(event) {
-            event.stopPropagation(); // Screen එක touch කරන එකෙන් මේක වළක්වයි
+            event.stopPropagation();
             const music = document.getElementById('bgMusic');
-            const btn = document.getElementById('musicBtn');
-
-            if (music.paused) {
-                music.volume = 0.3;
-                music.play();
-                btn.innerHTML = "Pause Music";
-            } else {
-                music.pause();
-                btn.innerHTML = "Play Saxophone";
-            }
+            if (music.paused) { music.volume = 0.2; music.play(); } 
+            else { music.pause(); }
         }
     </script>
-
 </body>
 </html>

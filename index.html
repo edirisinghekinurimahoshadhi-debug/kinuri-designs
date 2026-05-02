@@ -3,130 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME LUXURY DESIGNS</title>
+    <title>KME LUXURY DESIGNS | Official Site</title>
     <style>
-        /* මූලික සැකසුම් (කලින් ඒවාමයි) */
-        body, html { margin: 0; padding: 0; background: #000; color: #D4AF37; font-family: 'Playfair Display', serif; text-align: center; }
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400&display=swap');
+
+        body, html {
+            margin: 0; padding: 0;
+            background: #000; color: #D4AF37;
+            font-family: 'Playfair Display', serif;
+            scroll-behavior: smooth;
+        }
+
         #dustCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.4; }
 
-        /* භාෂා බටන් සෙට් එක */
-        .lang-switch { padding: 20px; display: flex; justify-content: center; gap: 15px; }
-        .lang-btn { background: none; border: 1px solid #D4AF37; color: #D4AF37; padding: 5px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; transition: 0.3s; }
-        .lang-btn:hover, .lang-btn.active { background: #D4AF37; color: #000; }
+        /* Navigation Menu */
+        nav {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
 
-        .header { padding: 40px 20px; }
-        .header img { width: 100px; filter: drop-shadow(0 0 10px #D4AF37); }
-        
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; padding: 40px; max-width: 1200px; margin: 0 auto; }
-        .card { border: 1px solid rgba(212,175,55,0.1); border-radius: 15px; overflow: hidden; background: rgba(15,15,15,0.9); text-align: left; }
-        .card-info { padding: 20px; }
+        .menu-links { display: flex; gap: 25px; align-items: center; }
+        .menu-links a { 
+            color: #D4AF37; text-decoration: none; font-size: 14px; 
+            text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
+        }
+        .menu-links a:hover { opacity: 0.7; }
+
+        /* Search Box */
+        .search-container { position: relative; }
+        .search-container input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #D4AF37;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            width: 150px;
+            transition: 0.3s;
+        }
+        .search-container input:focus { width: 220px; outline: none; background: rgba(255, 255, 255, 0.1); }
+
+        .header { padding: 80px 20px; text-align: center; }
+        .header img { width: 110px; filter: drop-shadow(0 0 15px #D4AF37); }
+        .brand-name { font-size: 28px; letter-spacing: 10px; font-weight: bold; margin-top: 15px; }
+
+        /* Gallery Grid */
+        .gallery { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px; padding: 40px; max-width: 1200px; margin: 0 auto; 
+        }
+        .card { 
+            border: 1px solid rgba(212, 175, 55, 0.1); border-radius: 15px; 
+            overflow: hidden; background: rgba(15, 15, 15, 0.9); transition: 0.4s;
+        }
+        .card:hover { transform: translateY(-10px); border-color: #D4AF37; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2); }
+        .card video, .card img { width: 100%; height: auto; display: block; }
+        .card-info { padding: 20px; text-align: left; }
         .card-title { font-size: 18px; font-weight: bold; color: #D4AF37; margin-bottom: 5px; }
-        .card-desc { font-size: 13px; color: #aaa; line-height: 1.5; }
+        .card-desc { font-size: 13px; color: #aaa; line-height: 1.5; font-family: 'Inter', sans-serif; }
 
         /* Feedback Section */
-        .feedback-section { padding: 60px 20px; background: rgba(20,20,20,0.5); margin-top: 40px; }
-        .review-card { max-width: 600px; margin: 20px auto; padding: 20px; border-left: 3px solid #D4AF37; font-style: italic; color: #ddd; }
-        
-        .btn-container { margin: 50px auto; display: flex; flex-direction: column; align-items: center; gap: 15px; padding-bottom: 100px; }
-        .lux-btn { display: block; width: 280px; padding: 18px; text-decoration: none; color: #D4AF37; border: 1px solid #D4AF37; text-transform: uppercase; letter-spacing: 3px; font-size: 13px; border-radius: 50px; transition: 0.4s; }
-        .lux-btn:hover { background: #D4AF37; color: #000; box-shadow: 0 0 15px #D4AF37; }
+        .feedback-form-section { padding: 80px 20px; text-align: center; background: rgba(10,10,10,0.8); }
+        .feedback-container { max-width: 500px; margin: 0 auto; }
+        .feedback-input {
+            width: 100%; padding: 15px; margin: 10px 0;
+            background: rgba(255,255,255,0.05); border: 1px solid #D4AF37;
+            color: #fff; border-radius: 10px; font-family: 'Inter', sans-serif;
+        }
+        .submit-btn {
+            background: #D4AF37; color: #000; border: none; padding: 15px 30px;
+            border-radius: 50px; cursor: pointer; font-weight: bold; text-transform: uppercase;
+            width: 100%; transition: 0.3s;
+        }
+        .submit-btn:hover { background: #fff; transform: scale(1.02); }
+
+        .footer { padding: 50px; text-align: center; font-size: 12px; color: #555; }
     </style>
 </head>
 <body onclick="initAudio()">
 
     <canvas id="dustCanvas"></canvas>
 
-    <div class="lang-switch">
-        <button class="lang-btn active" onclick="changeLang('en')">English</button>
-        <button class="lang-btn" onclick="changeLang('si')">සිංහල</button>
-        <button class="lang-btn" onclick="changeLang('ta')">தமிழ்</button>
+    <nav>
+        <div class="menu-links">
+            <a href="#home">Home</a>
+            <a href="#gallery">Portfolio</a>
+            <a href="#feedback">Feedback</a>
+            <a href="https://canva.link/zbwo5ma56hbqnuz" target="_blank">Canva Designs</a>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search designs...">
+        </div>
+    </nav>
+
+    <div class="header" id="home">
+        <img src="logo-animated.gif.gif" alt="KME Logo">
+        <div class="brand-name">KME LUXURY DESIGNS</div>
     </div>
 
-    <div class="header">
-        <img src="logo-animated.gif.gif" alt="Logo">
-        <div class="brand-name" id="brandName">KME LUXURY DESIGNS</div>
-        <p id="tagline" style="color: #888; margin-top: 10px;">Premium Branding & Motion Solutions</p>
-    </div>
-
-    <div class="gallery">
+    <div class="gallery" id="gallery">
         <div class="card">
-            <video autoplay loop muted playsinline width="100%"><source src="KME (1).mp4" type="video/mp4"></video>
+            <video autoplay loop muted playsinline><source src="KME (1).mp4" type="video/mp4"></video>
             <div class="card-info">
-                <div class="card-title" id="t1">LUXURY ANIMATION</div>
-                <div class="card-desc" id="d1">Premium gold motion graphics for high-end branding.</div>
+                <div class="card-title">LUXURY ANIMATION</div>
+                <div class="card-desc">Premium gold motion graphics.</div>
             </div>
         </div>
-        </div>
-    
-
-    <div class="feedback-section">
-        <h2 id="feedbackTitle">CLIENT FEEDBACK</h2>
-        <div class="review-card">
-            <p>"Highly professional designs. The luxury feel is exactly what my brand needed!"</p>
-            <small>- Elite Motors</small>
+        <div class="card">
+            <img src="1.jpg.png" alt="Graphic Design">
+            <div class="card-info">
+                <div class="card-title">ELEGANT BRANDING</div>
+                <div class="card-desc">Corporate minimalist identity.</div>
+            </div>
         </div>
     </div>
 
-    <div class="btn-container">
-        <a href="https://wa.me/94774799172" class="lux-btn" id="contactBtn">Contact via WhatsApp</a>
+    <div class="feedback-form-section" id="feedback">
+        <h2 style="letter-spacing: 5px;">CLIENT FEEDBACK</h2>
+        <p style="color: #888; font-family: 'Inter', sans-serif;">ඔබේ අදහස අපට ඉතා වටිනවා.</p>
+        <div class="feedback-container">
+            <input type="text" id="clientName" class="feedback-input" placeholder="Your Name">
+            <textarea id="clientMsg" class="feedback-input" rows="4" placeholder="Your Feedback / Message"></textarea>
+            <button class="submit-btn" onclick="sendFeedback()">Send via WhatsApp</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2026 KME LUXURY DESIGNS. All Rights Reserved.
     </div>
 
     <audio id="bgMusic" src="monume-luxury-509454.mp3" loop></audio>
 
     <script>
-        // භාෂා දත්ත
-        const translations = {
-            en: {
-                tagline: "Premium Branding & Motion Solutions",
-                t1: "LUXURY ANIMATION",
-                d1: "Premium gold motion graphics for high-end branding.",
-                feedback: "CLIENT FEEDBACK",
-                contact: "Contact via WhatsApp"
-            },
-            si: {
-                tagline: "උසස් තත්වයේ බ්‍රෑන්ඩින් සහ මෝෂන් නිර්මාණ",
-                t1: "ලක්ෂරි ඇනිමේෂන්",
-                d1: "ඉහළ පෙළේ ව්‍යාපාර සඳහා වටිනාකමක් එක් කරන රන්වන් මෝෂන් ග්‍රැෆික්ස්.",
-                feedback: "පාරිභෝගික අදහස්",
-                contact: "වට්ස්ඇප් හරහා සම්බන්ධ වන්න"
-            },
-            ta: {
-                tagline: "பிரீமியம் பிராண்டிங் மற்றும் மோஷன் தீர்வுகள்",
-                t1: "சொகுசு அனிமேஷன்",
-                d1: "உயர்நிலை பிராண்டிங்கிற்கான பிரீமியம் தங்க மோஷன் கிராபிக்ஸ்.",
-                feedback: "வாடிக்கையாளர் கருத்து",
-                contact: "வாட்ஸ்அப் மூலம் தொடர்பு கொள்ளவும்"
+        function sendFeedback() {
+            const name = document.getElementById('clientName').value;
+            const msg = document.getElementById('clientMsg').value;
+            if(name && msg) {
+                const whatsappUrl = `https://wa.me/94774799172?text=Feedback from ${name}: ${msg}`;
+                window.open(whatsappUrl, '_blank');
+            } else {
+                alert("Please fill in your name and message.");
             }
-        };
-
-        function changeLang(lang) {
-            // අකුරු වෙනස් කිරීම
-            document.getElementById('tagline').innerText = translations[lang].tagline;
-            document.getElementById('t1').innerText = translations[lang].t1;
-            document.getElementById('d1').innerText = translations[lang].d1;
-            document.getElementById('feedbackTitle').innerText = translations[lang].feedback;
-            document.getElementById('contactBtn').innerText = translations[lang].contact;
-
-            // බටන් එකේ Active ගතිය පෙන්වීම
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
         }
 
-        // Particle System සහ Audio (කලින් ඒවාමයි)
+        // Particle System
         const canvas = document.getElementById('dustCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
         function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener('resize', resize); resize();
         class Particle {
-            constructor() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.size = Math.random() * 1.5; this.speedX = Math.random() * 0.3 - 0.15; this.speedY = Math.random() * 0.3 - 0.15; }
-            update() { this.x += this.speedX; this.y += this.speedY; if (this.x > canvas.width) this.x = 0; if (this.y > canvas.height) this.y = 0; }
-            draw() { ctx.fillStyle = 'rgba(212, 175, 55, 0.3)'; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.5;
+                this.speedX = Math.random() * 0.3 - 0.15;
+                this.speedY = Math.random() * 0.3 - 0.15;
+            }
+            update() {
+                this.x += this.speedX; this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0; if (this.y > canvas.height) this.y = 0;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(212, 175, 55, 0.3)';
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+            }
         }
         for (let i = 0; i < 60; i++) { particles.push(new Particle()); }
-        function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate); }
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
         animate();
-        function initAudio() { const m = document.getElementById('bgMusic'); m.volume = 0.2; m.play(); }
+
+        function initAudio() {
+            const m = document.getElementById('bgMusic');
+            m.volume = 0.2;
+            m.play();
+        }
     </script>
 </body>
 </html>

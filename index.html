@@ -19,20 +19,13 @@
         }
 
         .header { padding: 60px 20px; }
-        .header img { 
-            width: 120px; 
-            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5));
-        }
-        .brand-name { 
-            font-size: 24px; letter-spacing: 8px; 
-            font-weight: bold; margin-top: 20px;
-            text-transform: uppercase;
-        }
+        .header img { width: 120px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5)); }
+        .brand-name { font-size: 24px; letter-spacing: 8px; font-weight: bold; margin-top: 20px; text-transform: uppercase; }
 
         .gallery { 
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
             padding: 40px;
             max-width: 1200px;
             margin: 0 auto;
@@ -44,6 +37,7 @@
             overflow: hidden;
             background: rgba(15, 15, 15, 0.9);
             transition: 0.4s ease;
+            text-align: left; /* විස්තරය වමට කරන්න */
         }
 
         .card:hover {
@@ -52,54 +46,33 @@
             box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
         }
 
-        /* වීඩියෝ එක කාඩ් එකට හරියටම ෆිට් වෙන්න */
-        .card video, .card img { 
-            width: 100%; 
-            height: auto; 
-            display: block; 
+        .card video, .card img { width: 100%; height: auto; display: block; }
+
+        /* විස්තරය සඳහා Style */
+        .card-info {
+            padding: 20px;
         }
 
-        .btn-container {
-            margin: 50px auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            padding-bottom: 100px;
-        }
-
-        .lux-btn {
-            display: block;
-            width: 280px;
-            padding: 18px;
-            text-decoration: none;
-            color: #D4AF37;
-            border: 1px solid #D4AF37;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-size: 13px;
+        .card-title {
+            font-size: 18px;
             font-weight: bold;
-            border-radius: 50px;
-            transition: 0.4s all;
-            background: rgba(212, 175, 55, 0.05);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            color: #D4AF37;
         }
 
-        .lux-btn:hover {
-            background: #D4AF37;
-            color: #000;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-            transform: scale(1.05);
+        .card-desc {
+            font-size: 13px;
+            color: #aaa; /* ටිකක් ලා පාටක් */
+            line-height: 1.6;
+            font-family: 'Inter', sans-serif; /* සරල ෆොන්ට් එකක් */
         }
 
-        .whatsapp-btn {
-            border-color: #25D366;
-            color: #25D366;
-        }
-
-        .whatsapp-btn:hover {
-            background: #25D366;
-            color: #fff;
-        }
+        .btn-container { margin: 50px auto; display: flex; flex-direction: column; align-items: center; gap: 15px; padding-bottom: 100px; }
+        .lux-btn { display: block; width: 280px; padding: 18px; text-decoration: none; color: #D4AF37; border: 1px solid #D4AF37; text-transform: uppercase; letter-spacing: 4px; font-size: 13px; font-weight: bold; border-radius: 50px; transition: 0.4s all; background: rgba(212, 175, 55, 0.05); }
+        .lux-btn:hover { background: #D4AF37; color: #000; box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); transform: scale(1.05); }
+        .whatsapp-btn { border-color: #25D366; color: #25D366; }
+        .whatsapp-btn:hover { background: #25D366; color: #fff; }
     </style>
 </head>
 <body onclick="initAudio()">
@@ -116,20 +89,41 @@
             <video autoplay loop muted playsinline>
                 <source src="KME (4).mp4" type="video/mp4">
             </video>
+            <div class="card-info">
+                <div class="card-title">LUXURY ANIMATION</div>
+                <div class="card-desc">Premium gold motion graphics designed for high-end branding and digital identity.</div>
+            </div>
         </div>
 
-        <div class="card"><img src="1.jpg.png"></div>
-        <div class="card"><img src="2.png"></div>
+        <div class="card">
+            <img src="1.jpg.png">
+            <div class="card-info">
+                <div class="card-title">ELEGANT BRANDING</div>
+                <div class="card-desc">Minimalist corporate identity design with deep black and metallic gold accents.</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="2.png">
+            <div class="card-info">
+                <div class="card-title">MODERN UI DESIGN</div>
+                <div class="card-desc">User interface elements crafted for a seamless and rich digital experience.</div>
+            </div>
+        </div>
     </div>
 
     <div class="btn-container">
         <a href="https://canva.link/zbwo5ma56hbqnuz" target="_blank" class="lux-btn">View Portfolio</a>
         <a href="https://wa.me/94774799172" target="_blank" class="lux-btn whatsapp-btn">Contact via WhatsApp</a>
     </div>
+    <div style="max-width: 800px; margin: 0 auto; padding: 20px; color: #aaa; font-size: 16px; line-height: 1.8;">
+    <p>Crafting <span style="color: #D4AF37; font-weight: bold;">Luxury Digital Experiences</span> for high-end brands. Specializing in minimalist design, premium motion graphics, and elite branding solutions.</p>
+</div>
 
     <audio id="bgMusic" src="monume-luxury-509454.mp3" loop></audio>
 
     <script>
+        // (Particle system and audio scripts remain the same as before)
         const canvas = document.getElementById('dustCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];

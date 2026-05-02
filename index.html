@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KME - Premium Experience</title>
     <style>
-        /* 1. ලෝගෝ ලෝඩර් එක (Loader Screen) */
+        /* 1. Logo Loader Screen */
         #loader {
             position: fixed;
             width: 100%;
@@ -22,7 +22,7 @@
             width: 150px;
         }
 
-        /* 2. මුළු පිටුවේම පෙනුම */
+        /* 2. Page Design */
         body {
             margin: 0;
             background: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
@@ -34,17 +34,17 @@
             justify-content: center;
             height: 100vh;
             text-align: center;
-            opacity: 0; /* ලෝඩර් එක අයින් වෙනකම් මේක පේන්නේ නැහැ */
+            opacity: 0; 
             transition: opacity 1.5s ease;
         }
 
-        /* 3. Business Card එකේ Animation එක */
+        /* 3. Business Card Animation */
         .card-container {
             padding: 10px;
             border: 1px solid rgba(212, 175, 55, 0.2);
             border-radius: 15px;
             box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-            transform: translateY(30px); /* පොඩ්ඩක් පල්ලෙහාට වෙලා තියෙන්නේ */
+            transform: translateY(30px);
             transition: 1s ease;
         }
 
@@ -54,7 +54,7 @@
             display: block;
         }
 
-        /* 4. Experience Button එක */
+        /* 4. Gold Button Style */
         button {
             margin-top: 40px;
             background: transparent;
@@ -92,7 +92,7 @@
     <audio id="voice" src="mp3-output-ttsfree(dot)com.mp3"></audio>
 
     <script>
-        // පිටුව ලෝඩ් වුණාම වැඩ කරන හැටි
+        // Page Loading Logic
         function showContent() {
             setTimeout(() => {
                 document.getElementById('loader').style.opacity = '0';
@@ -101,18 +101,17 @@
                     document.body.style.opacity = '1';
                     document.getElementById('card').style.transform = 'translateY(0)';
                 }, 1000);
-            }, 2500); // තත්පර 2.5ක් ලෝගෝ එක පෙනේ
+            }, 2500); 
         }
 
-        // බටන් එක එබුවම Music සහ Voice වැඩ කරන හැටි
+        // Music and Voice Play Logic
         function startExperience() {
             var music = document.getElementById('bgMusic');
             var voice = document.getElementById('voice');
 
-            music.volume = 0.2; // සින්දුවේ සද්දේ ටිකක් අඩු කළා
+            music.volume = 0.2; 
             music.play();
 
-            // තත්පර 1කට පස්සේ Voice එක ඇහෙන්න හැදුවා
             setTimeout(function() {
                 voice.play();
             }, 1000);

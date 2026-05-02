@@ -3,60 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME | LUXURY</title>
+    <title>KME LUXURY DESIGNS</title>
     <style>
         body {
+            margin: 0;
+            padding: 0;
             background-color: #000;
             color: #D4AF37;
             font-family: 'Playfair Display', serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 40px 20px;
-            margin: 0;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
         }
 
-        /* 1. Golden Glowing Buttons */
+        .header img {
+            width: 120px;
+            margin-bottom: 10px;
+        }
+
+        .brand-name {
+            font-size: 24px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Golden Glowing Buttons */
         .lux-btn {
-            width: 250px;
+            width: 280px;
             background: transparent;
             color: #D4AF37;
             border: 1px solid #D4AF37;
-            padding: 14px;
+            padding: 15px;
+            margin: 10px 0;
             text-transform: uppercase;
             letter-spacing: 3px;
-            text-decoration: none;
+            font-size: 13px;
             border-radius: 50px;
-            text-align: center;
-            font-size: 12px;
-            margin: 10px 0;
-            transition: all 0.3s ease;
             cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
             outline: none;
-            position: relative;
-            overflow: hidden;
         }
 
-        /* බටන් එක ක්ලික් කරනකොට දිලිසෙන ඉෆෙක්ට් එක */
-        .lux-btn:active, .lux-btn:focus {
+        /* බටන් එක ක්ලික් කරනකොට දිලිසෙන Magic එක */
+        .lux-btn:active {
             background: #D4AF37;
             color: #000;
-            box-shadow: 0 0 30px #D4AF37, 0 0 60px rgba(212, 175, 55, 0.6);
-            transform: scale(0.95);
+            box-shadow: 0 0 30px #D4AF37, 0 0 50px #D4AF37;
+            transform: scale(0.96);
         }
 
-        /* ලස්සනට පාවෙලා එන ඇනිමේෂන් එක */
+        /* Hover කරනකොට පොඩි Glow එකක් */
         .lux-btn:hover {
             box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-            letter-spacing: 4px;
-        }
-
-        .header img { width: 120px; margin-bottom: 20px; }
-        .glow-text {
-            font-size: 22px;
-            letter-spacing: 5px;
-            text-shadow: 0 0 10px #D4AF37;
-            margin-bottom: 30px;
         }
     </style>
 </head>
@@ -64,11 +70,11 @@
 
     <div class="header">
         <img src="logo-animated.gif.gif" alt="KME Logo">
-        <div class="glow-text">KME LUXURY DESIGNS</div>
+        <div class="brand-name">KME LUXURY DESIGNS</div>
     </div>
 
     <button class="lux-btn" onclick="startExperience()">Experience KME</button>
-    
+
     <a href="https://canva.link/zbwo5ma56hbqnuz" target="_blank" class="lux-btn">View Portfolio</a>
     <a href="https://wa.me/94760517560" target="_blank" class="lux-btn">Contact Me</a>
 
@@ -77,18 +83,16 @@
 
     <script>
         function startExperience() {
-            var voice = document.getElementById('voice');
-            var music = document.getElementById('bgMusic');
+            var voiceAudio = document.getElementById('voice');
+            var bgMusic = document.getElementById('bgMusic');
 
-            // Voice එකයි Music එකයි දෙකම මෙතනදීම පටන් ගන්නවා
-            voice.play();
+            // සයිට් එකේදිම ප්ලේ වෙන්න මෙහෙම කරමු
+            voiceAudio.play();
             
-            // මියුසික් එක හෙමින් පසුබිමෙන් ඇහෙන්න සෙට් කරනවා
-            music.volume = 0.2;
-            music.play();
+            bgMusic.volume = 0.2;
+            bgMusic.play();
         }
     </script>
 
 </body>
 </html>
-              

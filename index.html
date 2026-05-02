@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KME - Premium Experience</title>
     <style>
-        /* 1. Logo Loader Screen */
+        /* Loader එක හරි තැනට ගමු */
         #loader {
             position: fixed;
             width: 100%;
@@ -19,60 +19,60 @@
         }
 
         #loader img {
-            width: 150px;
+            width: 120px; /* ලෝගෝ එක පොඩ්ඩක් කුඩා කළා ෆෝන් එකට ගැලපෙන්න */
         }
 
-        /* 2. Page Design */
         body {
             margin: 0;
+            padding: 0;
             background: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
             color: #D4AF37;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Georgia', serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            height: 100vh;
+            justify-content: center; /* මැදටම ගේන්න */
+            min-height: 100vh;
             text-align: center;
             opacity: 0; 
             transition: opacity 1.5s ease;
+            overflow: hidden; /* Screen එකෙන් එළියට යෑම වැළැක්වීමට */
         }
 
-        /* 3. Business Card Animation */
         .card-container {
-            padding: 10px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            width: 90%; /* ෆෝන් එකේ පැතිවල නොවදින්න */
+            max-width: 350px;
+            padding: 5px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
             border-radius: 15px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-            transform: translateY(30px);
-            transition: 1s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            margin-bottom: 20px; /* බටන් එකට ඉඩ තැබීමට */
         }
 
         img.main-card {
-            width: 320px;
+            width: 100%;
+            height: auto;
             border-radius: 10px;
             display: block;
         }
 
-        /* 4. Gold Button Style */
         button {
-            margin-top: 40px;
             background: transparent;
             color: #D4AF37;
             border: 1px solid #D4AF37;
-            padding: 12px 35px;
-            font-size: 14px;
-            letter-spacing: 4px;
+            padding: 12px 30px;
+            font-size: 13px;
+            letter-spacing: 3px;
             cursor: pointer;
             text-transform: uppercase;
             border-radius: 50px;
             transition: 0.4s;
+            margin-top: 10px;
         }
 
-        button:hover {
+        button:active {
             background: #D4AF37;
             color: black;
-            box-shadow: 0 0 25px #D4AF37;
         }
     </style>
 </head>
@@ -92,26 +92,21 @@
     <audio id="voice" src="mp3-output-ttsfree(dot)com.mp3"></audio>
 
     <script>
-        // Page Loading Logic
         function showContent() {
             setTimeout(() => {
                 document.getElementById('loader').style.opacity = '0';
                 setTimeout(() => {
                     document.getElementById('loader').style.display = 'none';
                     document.body.style.opacity = '1';
-                    document.getElementById('card').style.transform = 'translateY(0)';
                 }, 1000);
-            }, 2500); 
+            }, 2000); 
         }
 
-        // Music and Voice Play Logic
         function startExperience() {
             var music = document.getElementById('bgMusic');
             var voice = document.getElementById('voice');
-
             music.volume = 0.2; 
             music.play();
-
             setTimeout(function() {
                 voice.play();
             }, 1000);

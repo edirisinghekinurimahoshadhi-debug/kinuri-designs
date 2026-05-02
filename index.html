@@ -3,110 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME - Premium Experience</title>
+    <title>KME Premium</title>
     <style>
-        /* Loader එක හරි තැනට ගමු */
-        #loader {
-            position: fixed;
-            width: 100%;
-            height: 100vh;
-            background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 1s ease;
-        }
-
-        #loader img {
-            width: 120px; /* ලෝගෝ එක පොඩ්ඩක් කුඩා කළා ෆෝන් එකට ගැලපෙන්න */
-        }
-
         body {
             margin: 0;
-            padding: 0;
-            background: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
+            background-color: #0a0a0a;
             color: #D4AF37;
             font-family: 'Georgia', serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* මැදටම ගේන්න */
-            min-height: 100vh;
-            text-align: center;
-            opacity: 0; 
-            transition: opacity 1.5s ease;
-            overflow: hidden; /* Screen එකෙන් එළියට යෑම වැළැක්වීමට */
+            justify-content: center;
+            height: 100vh;
         }
 
         .card-container {
-            width: 90%; /* ෆෝන් එකේ පැතිවල නොවදින්න */
-            max-width: 350px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border: 1px solid #D4AF37;
             padding: 5px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            margin-bottom: 20px; /* බටන් එකට ඉඩ තැබීමට */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
         }
 
-        img.main-card {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
+        img {
+            width: 320px;
             display: block;
+            border-radius: 8px;
         }
 
         button {
+            margin-top: 30px;
             background: transparent;
             color: #D4AF37;
             border: 1px solid #D4AF37;
-            padding: 12px 30px;
-            font-size: 13px;
-            letter-spacing: 3px;
+            padding: 10px 25px;
+            font-size: 16px;
             cursor: pointer;
-            text-transform: uppercase;
             border-radius: 50px;
-            transition: 0.4s;
-            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        button:active {
+        button:hover {
             background: #D4AF37;
             color: black;
         }
     </style>
 </head>
-<body onload="showContent()">
+<body>
 
-    <div id="loader">
-        <img src="logo-animated.gif.gif" alt="Loading...">
+    <div class="card-container">
+        <img src="1.jpg.png" alt="KME Design">
     </div>
 
-    <div class="card-container" id="card">
-        <img src="1.jpg.png" alt="KME Design" class="main-card">
-    </div>
+    <button onclick="playBrand()">Experience KME</button>
 
-    <button onclick="startExperience()">Experience KME</button>
-
-    <audio id="bgMusic" src="monume-luxury-509454.mp3" loop></audio>
+    <audio id="music" src="monume-luxury-509454.mp3" loop></audio>
     <audio id="voice" src="mp3-output-ttsfree(dot)com.mp3"></audio>
 
     <script>
-        function showContent() {
-            setTimeout(() => {
-                document.getElementById('loader').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('loader').style.display = 'none';
-                    document.body.style.opacity = '1';
-                }, 1000);
-            }, 2000); 
-        }
-
-        function startExperience() {
-            var music = document.getElementById('bgMusic');
+        function playBrand() {
+            var music = document.getElementById('music');
             var voice = document.getElementById('voice');
-            music.volume = 0.2; 
+            
+            music.volume = 0.3;
             music.play();
+            
             setTimeout(function() {
                 voice.play();
             }, 1000);

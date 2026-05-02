@@ -9,134 +9,162 @@
             margin: 0; padding: 0;
             background-color: #000;
             color: #D4AF37;
-            font-family: 'Georgia', serif;
-            display: flex; flex-direction: column; align-items: center;
-            min-height: 100vh;
+            font-family: 'Playfair Display', serif;
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
-        /* 1. Logo & Glowing Text Section */
-        .header-section {
-            text-align: center;
-            margin-top: 40px;
-            margin-bottom: 30px;
-        }
-
-        .header-section img {
-            width: 100px;
-            margin-bottom: 15px;
-        }
-
-        .brand-name {
-            font-size: 22px;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            font-weight: bold;
-            /* දිලිසෙන ඉෆෙක්ට් එක (Glowing Effect) */
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.8), 0 0 20px rgba(212, 175, 55, 0.5);
-            animation: glow 2s infinite alternate;
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 10px #D4AF37; }
-            to { text-shadow: 0 0 25px #D4AF37, 0 0 10px #fff; }
-        }
-
-        /* 2. Portfolio Gallery (Horizontal on Desktop, Vertical on Mobile) */
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            padding: 20px;
-            width: 95%;
-        }
-
-        .card-frame {
+        /* 1. Side Menu Style */
+        .menu-btn {
+            position: fixed; top: 20px; right: 20px;
+            font-size: 28px; cursor: pointer; z-index: 1001;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 8px 12px; border-radius: 8px;
             border: 1px solid rgba(212, 175, 55, 0.3);
-            padding: 5px;
-            border-radius: 10px;
-            background: #0a0a0a;
-            max-width: 320px; /* රූප එක ළඟ තිබිය හැකි ප්‍රමාණය */
-            transition: 0.4s;
         }
 
-        .card-frame:hover {
-            transform: scale(1.03);
-            border-color: #D4AF37;
+        .side-nav {
+            position: fixed; top: 0; right: -280px;
+            width: 250px; height: 100%;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(15px);
+            border-left: 1px solid #D4AF37;
+            z-index: 1000; transition: 0.4s ease;
+            display: flex; flex-direction: column; 
+            justify-content: center; align-items: center;
         }
 
-        img.design-img {
-            width: 100%;
-            border-radius: 8px;
-            display: block;
+        .side-nav a {
+            text-decoration: none; color: #D4AF37;
+            font-size: 18px; margin: 20px 0;
+            letter-spacing: 3px; text-transform: uppercase;
+            transition: 0.3s;
         }
 
-        /* 3. Buttons Section */
-        .btn-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin: 30px 0;
-            width: 280px;
+        .side-nav a:hover { transform: scale(1.1); text-shadow: 0 0 15px #D4AF37; }
+
+        /* 2. Floating Animations */
+        .reveal {
+            opacity: 0; transform: translateY(40px);
+            transition: all 1.2s ease-out;
         }
 
-        .luxury-btn {
-            background: transparent; color: #D4AF37;
-            border: 1px solid #D4AF37; padding: 12px;
-            text-transform: uppercase; letter-spacing: 2px;
-            text-decoration: none; font-size: 11px;
-            border-radius: 50px; transition: 0.4s;
-            text-align: center; cursor: pointer;
+        .reveal.active {
+            opacity: 1; transform: translateY(0);
         }
 
-        .luxury-btn:hover { background: #D4AF37; color: #000; }
+        /* 3. Header & Glow */
+        .header { text-align: center; padding: 60px 20px; }
+        .header img { width: 110px; margin-bottom: 20px; }
+        
+        .glow-text {
+            font-size: 26px; letter-spacing: 7px; font-weight: bold;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
+            animation: pulse-glow 2s infinite alternate;
+        }
 
+        @keyframes pulse-glow {
+            from { text-shadow: 0 0 10px #D4AF37; }
+            to { text-shadow: 0 0 25px #D4AF37, 0 0 5px #fff; }
+        }
+
+        /* 4. Gallery Layout */
+        .gallery {
+            display: flex; flex-direction: column; align-items: center;
+            gap: 25px; padding-bottom: 50px;
+        }
+
+        .card {
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 8px; border-radius: 15px;
+            background: #050505; max-width: 330px;
+            width: 85%; transition: 0.4s;
+        }
+
+        .card:hover { border-color: #D4AF37; box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
+        .card img { width: 100%; border-radius: 10px; display: block; }
+
+        /* Buttons */
+        .btn-wrap { margin: 30px 0; display: flex; flex-direction: column; gap: 15px; align-items: center; }
+        .lux-btn {
+            width: 240px; background: transparent; color: #D4AF37;
+            border: 1px solid #D4AF37; padding: 13px;
+            text-transform: uppercase; letter-spacing: 3px;
+            text-decoration: none; border-radius: 50px; text-align: center;
+            font-size: 12px; transition: 0.4s;
+        }
+        .lux-btn:hover { background: #D4AF37; color: #000; }
     </style>
 </head>
-<body onclick="startExperience()">
+<body onclick="playVoice()">
 
-    <div class="header-section">
-        <img src="logo-animated.gif.gif" alt="KME Logo">
-        <div class="brand-name">KME - LUXURY DESIGNS</div>
+    <div class="menu-btn" onclick="toggleNav(event)">☰</div>
+
+    <div id="sideNav" class="side-nav">
+        <a href="#home" onclick="toggleNav(event)">Home</a>
+        <a href="#work" onclick="toggleNav(event)">Designs</a>
+        <a href="https://canva.link/zbwo5ma56hbqnuz" target="_blank">Full Portfolio</a>
+        <a href="https://wa.me/94760517560" target="_blank">WhatsApp Me</a>
     </div>
 
-    <div class="gallery">
-        <div class="card-frame"><img src="1.jpg.png" class="design-img"></div>
-        <div class="card-frame"><img src="2.png" class="design-img"></div>
-        <div class="card-frame"><img src="3.png" class="design-img"></div>
+    <div id="home" class="header reveal">
+        <img src="logo-animated.gif.gif" alt="Logo">
+        <div class="glow-text">KME LUXURY DESIGNS</div>
+        <p style="font-size: 10px; letter-spacing: 4px; margin-top: 10px; opacity: 0.6;">ELEVATING YOUR BRAND</p>
     </div>
 
-    <div class="btn-container">
-        <a href="https://canva.link/zbwo5ma56hbqnuz" target="_blank" class="luxury-btn">Full Portfolio (Canva)</a>
-        <a href="https://wa.me/94774799172" target="_blank" class="luxury-btn">Contact Me</a>
-        <button class="luxury-btn" onclick="toggleMusic(event)">Music ON/OFF 🎷</button>
+    <div id="work" class="gallery">
+        <div class="card reveal"><img src="1.jpg.png"></div>
+        <div class="card reveal"><img src="2.png"></div>
+        <div class="card reveal"><img src="3.png"></div>
     </div>
 
-    <audio id="voiceAudio" src="mp3-output-ttsfree(dot)com.mp3"></audio>
+    <div class="btn-wrap reveal">
+        <a href="https://canva.link/zbwo5ma56hbqnuz" target="_blank" class="lux-btn">View Canva Portfolio</a>
+        <button class="lux-btn" onclick="toggleMusic(event)">Saxophone ON/OFF 🎷</button>
+    </div>
+
+    <audio id="voice" src="mp3-output-ttsfree(dot)com.mp3"></audio>
     <audio id="bgMusic" src="monume-luxury-509454.mp3" loop></audio>
 
     <script>
-        let experienceStarted = false;
-
-        function startExperience() {
-            if (!experienceStarted) {
-                document.getElementById('voiceAudio').play();
-                experienceStarted = true;
+        // Scroll Animation Logic
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
             }
+        }
+        window.addEventListener("scroll", reveal);
+        window.onload = reveal;
+
+        let voiced = false;
+        function playVoice() {
+            if (!voiced) {
+                document.getElementById('voice').play();
+                voiced = true;
+            }
+        }
+
+        function toggleNav(event) {
+            event.stopPropagation();
+            const nav = document.getElementById("sideNav");
+            nav.style.right = (nav.style.right === "0px") ? "-280px" : "0px";
         }
 
         function toggleMusic(event) {
             event.stopPropagation();
             const music = document.getElementById('bgMusic');
             if (music.paused) {
-                music.volume = 0.2;
-                music.play();
-            } else {
-                music.pause();
-            }
+                music.volume = 0.2; music.play();
+            } else { music.pause(); }
         }
     </script>
 </body>
 </html>
-        

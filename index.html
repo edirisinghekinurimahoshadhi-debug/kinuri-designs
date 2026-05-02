@@ -3,76 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME Premium</title>
+    <title>KME | Luxury Design Studio</title>
     <style>
-        body {
+        /* 1. Global Styles */
+        body, html {
             margin: 0;
-            background-color: #0a0a0a;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
             color: #D4AF37;
-            font-family: 'Georgia', serif;
+            font-family: 'Playfair Display', serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 2. Full Screen Loader */
+        #loader {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: #000;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            height: 100vh;
+            align-items: center;
+            z-index: 100;
+            transition: opacity 1s ease-out;
         }
 
-        .card-container {
-            cursor: pointer;
-            transition: transform 0.3s;
+        #loader img {
+            width: 120px;
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        /* 3. Main Content Animation */
+        #main-content {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1.5s ease;
+            text-align: center;
+            visibility: hidden;
+        }
+
+        .show-content {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            visibility: visible !important;
+        }
+
+        .card-frame {
             border: 1px solid #D4AF37;
-            padding: 5px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+            padding: 10px;
+            border-radius: 15px;
+            background: linear-gradient(145deg, #1a1a1a, #000);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.1);
+            display: inline-block;
         }
 
-        img {
+        img.main-img {
             width: 320px;
+            max-width: 85vw;
+            border-radius: 10px;
             display: block;
-            border-radius: 8px;
         }
 
-        button {
+        /* 4. Luxury Button */
+        .music-btn {
             margin-top: 30px;
             background: transparent;
             color: #D4AF37;
             border: 1px solid #D4AF37;
-            padding: 10px 25px;
-            font-size: 16px;
+            padding: 12px 25px;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
             cursor: pointer;
             border-radius: 50px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            transition: 0.4s;
         }
 
-        button:hover {
+        .music-btn:hover {
             background: #D4AF37;
-            color: black;
+            color: #000;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
         }
+
     </style>
 </head>
-<body>
+<body onclick="initExperience()">
 
-    <div class="card-container">
-        <img src="1.jpg.png" alt="KME Design">
+    <div id="loader">
+        <img src="logo-animated.gif.gif" alt="KME Logo">
+        <p style="font-size: 10px; letter-spacing: 2px; margin-top: 15px; opacity: 0.6;">TAP TO ENTER EXPERIENCE</p>
     </div>
 
-    <button onclick="playBrand()">Experience KME</button>
+    <div id="main-content">
+        <div class="card-frame">
+            <img src="1.jpg.png" alt="KME Design" class="main-img">
+        </div>
+        <br>
+        <button class="music-btn" id="musicBtn" onclick="toggleMusic(event)">Play Saxophone</button>
+    </div>
 
-    <audio id="music" src="monume-luxury-509454.mp3" loop></audio>
-    <audio id="voice" src="mp3-output-ttsfree(dot)com.mp3"></audio>
+    <audio id="voiceAudio" src="mp3-output-ttsfree(dot)com.mp3"></audio>
+    <audio id="bgMusic" src="monume-luxury-509454.mp3" loop></audio>
 
     <script>
-        function playBrand() {
-            var music = document.getElementById('music');
-            var voice = document.getElementById('voice');
+        let hasStarted = false;
+
+        function initExperience() {
+            if (hasStarted) return;
+            hasStarted = true;
+
+            // Loader එක අයින් කිරීම
+            const loader = document.getElementById('loader');
+            const mainContent = document.getElementById('main-content');
+            const voice = document.getElementById('voiceAudio');
+
+            loader.style.opacity = '0';
             
-            music.volume = 0.3;
-            music.play();
-            
-            setTimeout(function() {
+            setTimeout(() => {
+                loader.style.display = 'none';
+                mainContent.classList.add('show-content');
+                
+                // පිටුවට ආපු ගමන් Voice එක Play කිරීම
                 voice.play();
             }, 1000);
+        }
+
+        function toggleMusic(event) {
+            event.stopPropagation(); // Screen එක touch කරන එකෙන් මේක වළක්වයි
+            const music = document.getElementById('bgMusic');
+            const btn = document.getElementById('musicBtn');
+
+            if (music.paused) {
+                music.volume = 0.3;
+                music.play();
+                btn.innerHTML = "Pause Music";
+            } else {
+                music.pause();
+                btn.innerHTML = "Play Saxophone";
+            }
         }
     </script>
 

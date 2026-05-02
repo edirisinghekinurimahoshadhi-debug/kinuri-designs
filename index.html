@@ -3,98 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME LUXURY DESIGNS | Portfolio</title>
+    <title>KME LUXURY DESIGNS</title>
     <style>
-        /* 1. Global Styles */
         body, html {
             margin: 0; padding: 0;
             background: #000; color: #D4AF37;
             font-family: 'Playfair Display', serif;
             text-align: center; scroll-behavior: smooth;
-            overflow-x: hidden;
         }
 
-        /* 2. Golden Dust Background */
         #dustCanvas {
             position: fixed; top: 0; left: 0;
             width: 100%; height: 100%;
-            z-index: -1; opacity: 0.6;
+            z-index: -1; opacity: 0.5;
         }
 
-        /* 3. Header & Logo (Middle Top) */
-        .header { padding-top: 50px; margin-bottom: 20px; }
+        .header { padding: 60px 20px; }
         .header img { 
-            width: 130px; 
-            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
-            animation: pulse 3s infinite ease-in-out;
-        }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.05); opacity: 1; }
+            width: 120px; 
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5));
         }
         .brand-name { 
-            font-size: 26px; letter-spacing: 6px; 
-            font-weight: bold; margin-top: 15px;
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            font-size: 24px; letter-spacing: 8px; 
+            font-weight: bold; margin-top: 20px;
+            text-transform: uppercase;
         }
 
-        /* 4. Luxury Search Box */
-        .search-container { margin: 30px auto; width: 85%; max-width: 450px; }
-        #designSearch {
-            width: 100%; padding: 15px 25px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 50px; color: #D4AF37;
-            outline: none; font-family: inherit;
-            transition: 0.4s; text-align: center; font-size: 14px;
-        }
-        #designSearch:focus { 
-            border-color: #D4AF37; 
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-            background: rgba(255, 255, 255, 0.07);
-        }
-
-        /* 5. Design Gallery */
+        /* Luxury Gallery Grid */
         .gallery { 
-            display: flex; flex-direction: column; 
-            align-items: center; gap: 30px; padding: 20px; 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
+
         .card {
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 10px; border-radius: 20px; 
-            background: rgba(10, 10, 10, 0.8);
-            max-width: 350px; width: 90%; 
-            transition: 0.5s ease;
-            backdrop-filter: blur(5px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 15px; 
+            overflow: hidden;
+            background: rgba(15, 15, 15, 0.9);
+            transition: 0.4s ease;
+            cursor: pointer;
         }
-        .card:hover { 
-            border-color: #D4AF37; 
+
+        .card:hover {
             transform: translateY(-10px);
+            border-color: #D4AF37;
             box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
         }
-        .card img { width: 100%; border-radius: 15px; display: block; }
-        .hide { display: none; }
 
-        /* 6. Glowing Buttons */
-        .btn-group { margin: 40px 0; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        .card img { width: 100%; height: auto; display: block; }
+
+        .btn-group { margin: 50px 0; display: flex; flex-direction: column; align-items: center; gap: 20px; }
         .lux-btn {
-            width: 280px; background: transparent; color: #D4AF37;
-            border: 1px solid #D4AF37; padding: 16px;
+            width: 260px; background: transparent; color: #D4AF37;
+            border: 1px solid #D4AF37; padding: 15px;
             text-transform: uppercase; letter-spacing: 3px;
             border-radius: 50px; cursor: pointer;
-            text-decoration: none; font-size: 13px;
-            transition: all 0.3s ease; outline: none;
+            text-decoration: none; font-size: 12px;
+            transition: 0.3s;
         }
-        .lux-btn:active {
-            background: #D4AF37; color: #000;
-            box-shadow: 0 0 40px #D4AF37;
-            transform: scale(0.95);
-        }
-        .lux-btn:hover { box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); }
-
+        .lux-btn:hover { background: #D4AF37; color: #000; }
     </style>
 </head>
-<body onclick="initExperience()">
+<body onclick="initAudio()">
 
     <canvas id="dustCanvas"></canvas>
 
@@ -103,55 +77,47 @@
         <div class="brand-name">KME LUXURY DESIGNS</div>
     </div>
 
-    <div class="search-container">
-        <input type="text" id="designSearch" placeholder="Search Designs (e.g. Logo, Brand...)" onkeyup="filterDesigns()">
-    </div>
+    <div class="gallery">
+        <div class="card">
+            <img src="KME(4).mp4" alt="KME New Design">
+        </div>
 
-    <div class="gallery" id="gallery">
-        <div class="card" data-tag="logo luxury gold design"><img src="1.jpg.png"></div>
-        <div class="card" data-tag="brand identity social media"><img src="2.png"></div>
-        <div class="card" data-tag="creative graphic art design"><img src="3.png"></div>
+        <div class="card"><img src="1.jpg.png"></div>
+        <div class="card"><img src="2.png"></div>
     </div>
 
     <div class="btn-group">
-        <button class="lux-btn" id="mainAction">Experience KME ✨</button>
-        <a href="https://canva.link/zbwo5ma56hbqnuz" target="_blank" class="lux-btn">Canva Portfolio</a>
-        <a href="https://wa.me/94774799172
-            " target="_blank" class="lux-btn">Contact Me</a>
+        <a href="https://canva.link/zbwo5ma56hbqnuz" target="_blank" class="lux-btn">View Portfolio</a>
+        <a href="https://wa.me/94774799172" target="_blank" class="lux-btn">Contact Me</a>
     </div>
 
-    <audio id="voice" src="mp3-output-ttsfree(dot)com.mp3"></audio>
     <audio id="bgMusic" src="monume-luxury-509454.mp3" loop></audio>
 
     <script>
-        // 1. Particle System (Golden Dust)
+        // Particle System
         const canvas = document.getElementById('dustCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
-
         function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener('resize', resize); resize();
-
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2;
-                this.speedX = Math.random() * 0.4 - 0.2;
-                this.speedY = Math.random() * 0.4 - 0.2;
+                this.size = Math.random() * 1.5;
+                this.speedX = Math.random() * 0.3 - 0.15;
+                this.speedY = Math.random() * 0.3 - 0.15;
             }
             update() {
                 this.x += this.speedX; this.y += this.speedY;
-                if (this.x > canvas.width) this.x = 0; if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0; if (this.y < 0) this.y = canvas.height;
+                if (this.x > canvas.width) this.x = 0; if (this.y > canvas.height) this.y = 0;
             }
             draw() {
-                ctx.fillStyle = 'rgba(212, 175, 55, 0.4)';
+                ctx.fillStyle = 'rgba(212, 175, 55, 0.3)';
                 ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
             }
         }
-
-        for (let i = 0; i < 80; i++) { particles.push(new Particle()); }
+        for (let i = 0; i < 60; i++) { particles.push(new Particle()); }
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.forEach(p => { p.update(); p.draw(); });
@@ -159,26 +125,10 @@
         }
         animate();
 
-        // 2. Search Function
-        function filterDesigns() {
-            let input = document.getElementById('designSearch').value.toLowerCase();
-            let cards = document.getElementsByClassName('card');
-            for (let i = 0; i < cards.length; i++) {
-                let tags = cards[i].getAttribute('data-tag').toLowerCase();
-                cards[i].classList.toggle('hide', !tags.includes(input));
-            }
-        }
-
-        // 3. Audio Experience
-        let isStarted = false;
-        function initExperience() {
-            if (isStarted) return;
-            const v = document.getElementById('voice');
+        function initAudio() {
             const m = document.getElementById('bgMusic');
-            v.play(); 
-            m.volume = 0.2; m.play();
-            isStarted = true;
-            document.getElementById('mainAction').innerText = "Music Playing... 🎷";
+            m.volume = 0.2;
+            m.play();
         }
     </script>
 </body>

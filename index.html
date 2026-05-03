@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME LUXURY DESIGNS | Official Portfolio</title>
+    <title>KME LUXURY DESIGNS | Visionary Portfolio</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap');
 
         body, html {
             margin: 0; padding: 0;
@@ -15,60 +15,77 @@
             overflow-x: hidden;
         }
 
-        #dustCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.5; }
+        #dustCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.6; pointer-events: none; }
 
+        /* Navigation */
         nav {
-            background: rgba(0, 0, 0, 0.95);
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px 60px;
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 100;
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             backdrop-filter: blur(10px);
         }
 
-        .menu-links { display: flex; gap: 30px; }
+        .menu-links { display: flex; gap: 35px; }
         .menu-links a { 
-            color: #D4AF37; text-decoration: none; font-size: 13px; 
-            text-transform: uppercase; letter-spacing: 2px; transition: 0.4s;
-            font-weight: bold;
+            color: #D4AF37; text-decoration: none; font-size: 12px; 
+            text-transform: uppercase; letter-spacing: 3px; transition: 0.4s;
+            font-family: 'Inter', sans-serif; font-weight: 600;
         }
         .menu-links a:hover { color: #fff; text-shadow: 0 0 10px #D4AF37; }
 
-        .header { padding: 100px 20px; text-align: center; }
-        .brand-name { font-size: 35px; letter-spacing: 12px; font-weight: bold; text-transform: uppercase; }
-
-        .about-section { padding: 80px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
-        .about-box {
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 40px; border-radius: 20px;
-            background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+        .search-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #fff; padding: 10px 25px; border-radius: 30px;
+            outline: none; width: 200px; transition: 0.4s;
         }
-        .about-box p { font-family: 'Inter', sans-serif; line-height: 1.8; color: #bbb; }
+        .search-box:focus { width: 300px; border-color: #D4AF37; }
 
+        /* Header */
+        .header { padding: 120px 20px; text-align: center; }
+        .header img { width: 140px; filter: drop-shadow(0 0 20px #D4AF37); margin-bottom: 30px; }
+        .brand-name { font-size: 45px; letter-spacing: 15px; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; }
+        .tagline { font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 6px; color: #888; text-transform: uppercase; }
+
+        /* Audio Controls */
+        .audio-toggle {
+            position: fixed; bottom: 30px; left: 30px;
+            background: rgba(212, 175, 55, 0.1); border: 1px solid #D4AF37;
+            color: #D4AF37; padding: 15px; border-radius: 50%;
+            cursor: pointer; z-index: 1000; transition: 0.3s;
+        }
+        .audio-toggle:hover { background: #D4AF37; color: #000; }
+
+        /* Portfolio Cards */
         .gallery { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px; padding: 60px 40px; max-width: 1200px; margin: 0 auto; 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 50px; padding: 80px 60px; max-width: 1300px; margin: 0 auto; 
         }
-        .card { border: 1px solid rgba(212, 175, 55, 0.1); border-radius: 20px; overflow: hidden; background: #0f0f0f; transition: 0.5s; }
-        .card:hover { transform: translateY(-15px); border-color: #D4AF37; }
-        .card video, .card img { width: 100%; display: block; }
+        .card { border: 1px solid rgba(212, 175, 55, 0.1); background: #080808; border-radius: 5px; overflow: hidden; transition: 0.5s; }
+        .card:hover { transform: translateY(-10px); border-color: #D4AF37; box-shadow: 0 10px 40px rgba(212, 175, 55, 0.1); }
+        .card video, .card img { width: 100%; display: block; object-fit: cover; height: 300px; }
+        .card-info { padding: 30px; text-align: left; }
+        .card-title { font-size: 20px; letter-spacing: 4px; margin-bottom: 12px; }
+        .card-desc { font-family: 'Inter', sans-serif; color: #777; font-size: 14px; line-height: 1.6; }
 
-        .feedback-section { padding: 100px 20px; text-align: center; background: #050505; }
-        .feedback-container { max-width: 550px; margin: 0 auto; }
+        /* Feedback Section */
+        .feedback-section { padding: 120px 20px; text-align: center; background: #050505; }
+        .feedback-container { max-width: 600px; margin: 40px auto; }
         .feedback-input {
-            width: 100%; padding: 18px; margin: 15px 0; background: #111;
-            border: 1px solid rgba(212, 175, 55, 0.3); color: #fff; border-radius: 12px; outline: none; box-sizing: border-box;
+            width: 100%; padding: 20px; margin: 15px 0; background: #111;
+            border: 1px solid rgba(212, 175, 55, 0.2); color: #fff; border-radius: 5px;
+            outline: none; font-family: 'Inter', sans-serif;
         }
-        .submit-btn {
-            background: #D4AF37; color: #000; border: none; padding: 18px; width: 100%;
-            border-radius: 50px; cursor: pointer; font-weight: bold; text-transform: uppercase;
+        .cta-btn {
+            background: #D4AF37; color: #000; border: none; padding: 20px 50px;
+            border-radius: 50px; cursor: pointer; font-weight: bold;
+            text-transform: uppercase; letter-spacing: 3px; font-size: 13px; transition: 0.4s;
         }
+        .cta-btn:hover { background: #fff; transform: scale(1.05); }
 
-        .footer { padding: 40px; text-align: center; font-size: 11px; color: #444; letter-spacing: 2px; }
+        .footer { padding: 60px; text-align: center; font-size: 10px; color: #444; letter-spacing: 4px; border-top: 1px solid rgba(212, 175, 55, 0.1); }
     </style>
 </head>
 <body>
@@ -77,69 +94,12 @@
 
     <nav>
         <div class="menu-links">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
+            <a href="#home">Philosophy</a>
             <a href="#gallery">Portfolio</a>
-            <a href="#feedback">Contact</a>
+            <a href="https://canva.link/zbwo5ma56hbqnuz" target="_blank" style="border: 1px solid #D4AF37; padding: 8px 15px;">Canva Studio</a>
+            <a href="#feedback">Connect</a>
         </div>
+        <input type="text" class="search-box" placeholder="Explore creations...">
     </nav>
 
-    <div class="header" id="home">
-        <div class="brand-name">KME LUXURY DESIGNS</div>
-    </div>
-
-    <div class="about-section" id="about">
-        <div class="about-box">
-            <h2>LUXURY IS AN ATTITUDE</h2>
-            <p>I am a 14-year-old **Graphic Designer** and **Motion Artist** specialized in high-end branding. My focus is to create visual identities that represent elegance and prestige.</p>
-        </div>
-    </div>
-
-    <div class="feedback-section" id="feedback">
-        <h2 style="letter-spacing: 5px;">CLIENT INQUIRIES</h2>
-        <div class="feedback-container">
-            <input type="text" id="nameField" class="feedback-input" placeholder="Your Name">
-            <textarea id="msgField" class="feedback-input" rows="4" placeholder="Describe your project..."></textarea>
-            <button class="submit-btn" onclick="sendToWhatsApp()">Send to WhatsApp</button>
-        </div>
-    </div>
-
-    <div class="footer">
-        © 2026 KME LUXURY DESIGNS. DESIGNED BY A 14-YEAR OLD VISIONARY.
-    </div>
-
-    <script>
-        function sendToWhatsApp() {
-            const name = document.getElementById('nameField').value;
-            const msg = document.getElementById('msgField').value;
-            if(name && msg) {
-                const url = "https://wa.me/94774799172?text=" + encodeURIComponent("Client: " + name + "\nMessage: " + msg);
-                window.open(url, '_blank');
-            } else {
-                alert("Please fill all details.");
-            }
-        }
-
-        // Particle Dust Effect
-        const canvas = document.getElementById('dustCanvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        window.addEventListener('resize', resize); resize();
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 1.5;
-                this.speedX = Math.random() * 0.4 - 0.2;
-                this.speedY = Math.random() * 0.4 - 0.2;
-            }
-            update() { this.x += this.speedX; this.y += this.speedY; if (this.x > canvas.width) this.x = 0; if (this.y > canvas.height) this.y = 0; }
-            draw() { ctx.fillStyle = 'rgba(212, 175, 55, 0.4)'; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
-        }
-        for (let i = 0; i < 150; i++) particles.push(new Particle());
-        function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate); }
-        animate();
-    </script>
-</body>
-</html>
+    <button class="audio-toggle" id="audioBtn" onclick="toggle

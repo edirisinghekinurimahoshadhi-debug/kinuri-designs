@@ -1,165 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME LUXURY DESIGNS | Bespoke Branding & Identity</title>
-    <style>
-        /* වැඩි දියුණු කළ Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;800&family=Inter:wght@200;400&display=swap');
+<style>
+    /* Categories සඳහා අලුත් Styles */
+    .category-title {
+        text-align: center; margin-top: 60px; font-size: 14px;
+        letter-spacing: 5px; color: #888; text-transform: uppercase;
+    }
 
-        body, html {
-            margin: 0; padding: 0;
-            background: #050505; color: #D4AF37;
-            font-family: 'Playfair Display', serif;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
+    /* Contact Section Style */
+    #contact {
+        padding: 100px 20px; text-align: center; background: #080808;
+    }
+    .contact-container { max-width: 600px; margin: 0 auto; }
+</style>
 
-        /* Particles - Dust effect */
-        #dustCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.6; }
-
-        nav {
-            background: rgba(0, 0, 0, 0.85);
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
-            backdrop-filter: blur(15px);
-        }
-
-        .menu-links { display: flex; gap: 30px; }
-        .menu-links a { 
-            color: #D4AF37; text-decoration: none; font-size: 11px; 
-            text-transform: uppercase; letter-spacing: 2.5px; transition: 0.4s ease;
-            font-weight: 400; font-family: 'Inter', sans-serif;
-        }
-        .menu-links a:hover { color: #fff; text-shadow: 0 0 8px rgba(212, 175, 55, 0.8); }
-
-        .header { padding: 120px 20px; text-align: center; }
-        .header img { width: 130px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4)); margin-bottom: 25px; }
-        .brand-name { font-size: 40px; letter-spacing: 15px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
-        .tagline { font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 5px; color: #888; text-transform: uppercase; }
-
-        .about-section { padding: 100px 20px; max-width: 850px; margin: 0 auto; }
-        .about-box {
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            padding: 50px; border-radius: 5px; /* Luxury look often uses sharp or slight corners */
-            background: linear-gradient(145deg, #0d0d0d, #050505);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            text-align: center;
-        }
-        .about-box h2 { letter-spacing: 8px; font-size: 24px; margin-bottom: 25px; }
-        .about-box p { font-family: 'Inter', sans-serif; line-height: 2; color: #a1a1a1; font-weight: 300; font-size: 15px; }
-
-        .gallery { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px; padding: 60px 40px; max-width: 1200px; margin: 0 auto; 
-        }
-        .card { 
-            border: 1px solid rgba(212, 175, 55, 0.05); 
-            background: #0a0a0a; transition: 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); 
-        }
-        .card:hover { transform: scale(1.02); border-color: #D4AF37; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1); }
-        .card video, .card img { width: 100%; grayscale: 20%; transition: 0.6s; }
-        .card:hover img, .card:hover video { grayscale: 0%; }
-        .card-info { padding: 30px; }
-        .card-title { font-size: 18px; letter-spacing: 3px; margin-bottom: 10px; font-weight: bold; }
-        .card-desc { font-family: 'Inter', sans-serif; font-size: 13px; color: #666; line-height: 1.6; }
-
-        .footer { padding: 60px; text-align: center; font-size: 10px; color: #444; letter-spacing: 3px; border-top: 1px solid rgba(212, 175, 55, 0.05); }
-        
-        /* Buttons */
-        .cta-button {
-            display: inline-block; text-decoration: none; color: #000; background: #D4AF37; 
-            padding: 18px 45px; border-radius: 2px; font-weight: bold; 
-            text-transform: uppercase; letter-spacing: 3px; font-size: 12px;
-            transition: 0.4s; margin-top: 20px;
-        }
-        .cta-button:hover { background: #fff; transform: translateY(-3px); }
-    </style>
-</head>
-<body>
-
-    <canvas id="dustCanvas"></canvas>
-
-    <nav>
-        <div class="menu-links">
-            <a href="#home">Home</a>
-            <a href="#about">Philosophy</a>
-            <a href="#gallery">Portfolio</a>
-            <a href="#feedback">Contact</a>
-        </div>
-        <div class="menu-links">
-             <a href="https://canva.link/zbwo5ma56hbqnuz" target="_blank" style="border: 1px solid #D4AF37; padding: 8px 15px;">Canva Studio</a>
-        </div>
-    </nav>
-
-    <div class="header" id="home">
-        <img src="logo-animated.gif.gif" alt="KME Logo">
-        <div class="brand-name">KME LUXURY</div>
-        <div class="tagline">The Art of Prestige Design</div>
-    </div>
-
-    <div class="about-section" id="about">
-        <div class="about-box">
-            <h2>ELEVATING VISUAL IDENTITIES</h2>
-            <p>Guided by a passion for minimalism and elegance, I specialize in crafting bespoke visual narratives. At just 14, I blend motion artistry with sophisticated branding to create identities that resonate with power and prestige.</p>
-        </div>
-    </div>
-
-    <div class="gallery" id="gallery">
+<div id="gallery">
+    <div class="category-title">Section I: Motion Artistry</div>
+    <div class="gallery">
         <div class="card">
             <video autoplay loop muted playsinline><source src="KME (4).mp4" type="video/mp4"></video>
             <div class="card-info">
                 <div class="card-title">GOLDEN MOTION ID</div>
-                <div class="card-desc">Advanced motion graphics designed for high-end digital presence.</div>
+                <div class="card-desc">Signature luxury animation.</div>
             </div>
         </div>
+    </div>
+
+    <div class="category-title">Section II: Visual Branding</div>
+    <div class="gallery">
         <div class="card">
             <img src="1.jpg.png" alt="Branding">
             <div class="card-info">
                 <div class="card-title">MINIMALIST IDENTITY</div>
-                <div class="card-desc">Clean, corporate brand guidelines tailored for modern luxury sectors.</div>
+                <div class="card-desc">Clean brand guidelines.</div>
             </div>
         </div>
     </div>
+</div>
 
-    <div style="text-align: center; padding: 100px 20px;">
-        <a href="https://canva.link/zbwo5ma56hbqnuz" target="_blank" class="cta-button">
-            Explore Full Portfolio
+<div id="contact">
+    <div class="contact-container">
+        <h2 style="letter-spacing: 8px;">GET IN TOUCH</h2>
+        <p style="font-family: 'Inter', sans-serif; color: #666; margin-bottom: 30px;">For bespoke inquiries and luxury collaborations.</p>
+        
+        <a href="https://wa.me/94774799172?text=Hello Kinuri, I'm interested in your Luxury Designs." 
+           target="_blank" class="cta-button">
+            Send a Message
         </a>
     </div>
+</div>
 
-    <div class="footer">
-        © 2026 KME LUXURY DESIGNS. CRAFTED BY A 14-YEAR OLD VISIONARY.
-    </div>
-
-    <script>
-        // Particle Animation (Dust) - Keep your original logic as it is very efficient
-        const canvas = document.getElementById('dustCanvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        window.addEventListener('resize', resize); resize();
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 1.2;
-                this.speedX = Math.random() * 0.3 - 0.15;
-                this.speedY = Math.random() * 0.3 - 0.15;
-            }
-            update() { this.x += this.speedX; this.y += this.speedY; if (this.x > canvas.width) this.x = 0; if (this.y > canvas.height) this.y = 0; }
-            draw() { ctx.fillStyle = 'rgba(212, 175, 55, 0.3)'; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
-        }
-        for (let i = 0; i < 80; i++) particles.push(new Particle());
-        function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate); }
-        animate();
-    </script>
-</body>
-</html>
+<script>
+    // Gold Dust Animation එක තවදුරටත් හොඳින් පෙනෙන්න මම Particle ප්‍රමාණය වැඩි කළා
+    // මම කලින් දුන්නු Script එකේ අන්තිමට තියෙන loop එකේ 80 වෙනුවට 150 දාන්න.
+    for (let i = 0; i < 150; i++) particles.push(new Particle());
+</script>

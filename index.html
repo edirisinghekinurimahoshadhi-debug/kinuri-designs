@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME LUXURY DESIGNS | Official Site</title>
+    <title>KME LUXURY DESIGNS | Official Portfolio</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400&display=swap');
 
+        /* මුලික සැකසුම් */
         body, html {
             margin: 0; padding: 0;
             background: #000; color: #D4AF37;
             font-family: 'Playfair Display', serif;
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
-        #dustCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.4; }
+        #dustCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.5; }
 
         /* Navigation Menu */
         nav {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 15px 30px;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -27,79 +29,110 @@
             top: 0;
             z-index: 100;
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(10px);
         }
 
-        .menu-links { display: flex; gap: 25px; align-items: center; }
+        .menu-links { display: flex; gap: 30px; }
         .menu-links a { 
-            color: #D4AF37; text-decoration: none; font-size: 14px; 
-            text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
+            color: #D4AF37; text-decoration: none; font-size: 13px; 
+            text-transform: uppercase; letter-spacing: 2px; transition: 0.4s;
+            font-weight: bold;
         }
-        .menu-links a:hover { opacity: 0.7; }
+        .menu-links a:hover { color: #fff; text-shadow: 0 0 10px #D4AF37; }
 
-        /* Search Box */
-        .search-container { position: relative; }
         .search-container input {
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid #D4AF37;
+            border: 1px solid rgba(212, 175, 55, 0.5);
             color: #fff;
-            padding: 8px 15px;
-            border-radius: 20px;
+            padding: 10px 20px;
+            border-radius: 30px;
             font-size: 12px;
-            width: 150px;
-            transition: 0.3s;
+            width: 180px;
+            outline: none;
+            transition: 0.4s;
         }
-        .search-container input:focus { width: 220px; outline: none; background: rgba(255, 255, 255, 0.1); }
+        .search-container input:focus { width: 250px; border-color: #D4AF37; background: rgba(255, 255, 255, 0.1); }
 
-        .header { padding: 80px 20px; text-align: center; }
-        .header img { width: 110px; filter: drop-shadow(0 0 15px #D4AF37); }
-        .brand-name { font-size: 28px; letter-spacing: 10px; font-weight: bold; margin-top: 15px; }
+        /* Header */
+        .header { padding: 100px 20px; text-align: center; }
+        .header img { width: 120px; filter: drop-shadow(0 0 20px #D4AF37); margin-bottom: 20px; }
+        .brand-name { font-size: 35px; letter-spacing: 12px; font-weight: bold; text-transform: uppercase; }
 
-        /* Gallery Grid */
+        /* About Me Section */
+        .about-section { 
+            padding: 80px 20px; max-width: 900px; margin: 0 auto; text-align: center; 
+        }
+        .about-box {
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 40px;
+            border-radius: 20px;
+            background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+        .about-box h2 { font-size: 24px; letter-spacing: 5px; margin-bottom: 20px; }
+        .about-box p { 
+            font-family: 'Inter', sans-serif; line-height: 1.8; color: #bbb; font-size: 16px;
+        }
+
+        /* Portfolio Grid */
         .gallery { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px; padding: 40px; max-width: 1200px; margin: 0 auto; 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px; padding: 60px 40px; max-width: 1200px; margin: 0 auto; 
         }
         .card { 
-            border: 1px solid rgba(212, 175, 55, 0.1); border-radius: 15px; 
-            overflow: hidden; background: rgba(15, 15, 15, 0.9); transition: 0.4s;
+            border: 1px solid rgba(212, 175, 55, 0.1); border-radius: 20px; 
+            overflow: hidden; background: #0f0f0f; transition: 0.5s;
+            position: relative;
         }
-        .card:hover { transform: translateY(-10px); border-color: #D4AF37; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2); }
-        .card video, .card img { width: 100%; height: auto; display: block; }
-        .card-info { padding: 20px; text-align: left; }
-        .card-title { font-size: 18px; font-weight: bold; color: #D4AF37; margin-bottom: 5px; }
-        .card-desc { font-size: 13px; color: #aaa; line-height: 1.5; font-family: 'Inter', sans-serif; }
+        .card:hover { transform: translateY(-15px); border-color: #D4AF37; box-shadow: 0 15px 40px rgba(212, 175, 55, 0.15); }
+        .card video { width: 100%; display: block; }
+        .card-info { padding: 25px; }
+        .card-title { font-size: 20px; font-weight: bold; color: #D4AF37; margin-bottom: 10px; }
+        .card-desc { font-size: 14px; color: #888; font-family: 'Inter', sans-serif; }
 
         /* Feedback Section */
-        .feedback-form-section { padding: 80px 20px; text-align: center; background: rgba(10,10,10,0.8); }
-        .feedback-container { max-width: 500px; margin: 0 auto; }
+        .feedback-section { padding: 100px 20px; text-align: center; background: #050505; }
+        .feedback-container { max-width: 550px; margin: 0 auto; }
         .feedback-input {
-            width: 100%; padding: 15px; margin: 10px 0;
-            background: rgba(255,255,255,0.05); border: 1px solid #D4AF37;
-            color: #fff; border-radius: 10px; font-family: 'Inter', sans-serif;
+            width: 100%; padding: 18px; margin: 15px 0;
+            background: #111; border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #fff; border-radius: 12px; font-family: 'Inter', sans-serif; outline: none;
         }
+        .feedback-input:focus { border-color: #D4AF37; }
         .submit-btn {
-            background: #D4AF37; color: #000; border: none; padding: 15px 30px;
+            background: #D4AF37; color: #000; border: none; padding: 18px;
             border-radius: 50px; cursor: pointer; font-weight: bold; text-transform: uppercase;
-            width: 100%; transition: 0.3s;
+            width: 100%; font-size: 14px; letter-spacing: 2px; transition: 0.4s;
         }
-        .submit-btn:hover { background: #fff; transform: scale(1.02); }
+        .submit-btn:hover { background: #fff; transform: scale(1.05); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
 
-        .footer { padding: 50px; text-align: center; font-size: 12px; color: #555; }
+        /* Canva Portfolio Link */
+        .canva-link {
+            text-align: center; padding: 60px;
+        }
+        .canva-btn {
+            text-decoration: none; color: #D4AF37; border: 2px solid #D4AF37;
+            padding: 15px 40px; border-radius: 50px; font-size: 14px;
+            text-transform: uppercase; letter-spacing: 3px; transition: 0.4s;
+        }
+        .canva-btn:hover { background: #D4AF37; color: #000; }
+
+        .footer { padding: 40px; text-align: center; font-size: 11px; color: #444; letter-spacing: 2px; }
     </style>
 </head>
-<body onclick="initAudio()">
+<body onload="playVoice()">
 
     <canvas id="dustCanvas"></canvas>
 
     <nav>
         <div class="menu-links">
             <a href="#home">Home</a>
+            <a href="#about">About</a>
             <a href="#gallery">Portfolio</a>
             <a href="#feedback">Feedback</a>
-            <a href="https://canva.link/zbwo5ma56hbqnuz" target="_blank">Canva Designs</a>
         </div>
         <div class="search-container">
-            <input type="text" placeholder="Search designs...">
+            <input type="text" placeholder="Search luxury designs...">
         </div>
     </nav>
 
@@ -108,48 +141,73 @@
         <div class="brand-name">KME LUXURY DESIGNS</div>
     </div>
 
+    <div class="about-section" id="about">
+        <div class="about-box">
+            <h2>LUXURY IS AN ATTITUDE</h2>
+            <p>
+                I am a 14-year-old **Graphic Designer** and **Motion Artist** specialized in high-end branding. 
+                My focus is to create visual identities that represent elegance, power, and prestige. 
+                Using tools like Canva and Motion Graphics, I turn simple ideas into premium brand experiences.
+            </p>
+        </div>
+    </div>
+
     <div class="gallery" id="gallery">
         <div class="card">
-            <video autoplay loop muted playsinline><source src="KME (1).mp4" type="video/mp4"></video>
+            <video autoplay loop muted playsinline><source src="KME (4).mp4" type="video/mp4"></video>
             <div class="card-info">
-                <div class="card-title">LUXURY ANIMATION</div>
-                <div class="card-desc">Premium gold motion graphics.</div>
+                <div class="card-title">GOLDEN MOTION ID</div>
+                <div class="card-desc">Advanced luxury animation for KME official branding.</div>
             </div>
         </div>
+
         <div class="card">
-            <img src="1.jpg.png" alt="Graphic Design">
+            <img src="1.jpg.png" alt="Branding" style="width: 100%;">
             <div class="card-info">
-                <div class="card-title">ELEGANT BRANDING</div>
-                <div class="card-desc">Corporate minimalist identity.</div>
+                <div class="card-title">MINIMALIST IDENTITY</div>
+                <div class="card-desc">Clean and modern brand guidelines for corporate clients.</div>
             </div>
         </div>
     </div>
 
-    <div class="feedback-form-section" id="feedback">
-        <h2 style="letter-spacing: 5px;">CLIENT FEEDBACK</h2>
-        <p style="color: #888; font-family: 'Inter', sans-serif;">ඔබේ අදහස අපට ඉතා වටිනවා.</p>
+    <div class="canva-link">
+        <a href="https://canva.link/zbwo5ma56hbqnuz" target="_blank" class="canva-btn">View More on Canva</a>
+    </div>
+
+    <div class="feedback-section" id="feedback">
+        <h2 style="letter-spacing: 5px;">CLIENT VOICES</h2>
+        <p style="color: #666; margin-bottom: 30px;">Share your experience with KME Designs</p>
         <div class="feedback-container">
             <input type="text" id="clientName" class="feedback-input" placeholder="Your Name">
-            <textarea id="clientMsg" class="feedback-input" rows="4" placeholder="Your Feedback / Message"></textarea>
-            <button class="submit-btn" onclick="sendFeedback()">Send via WhatsApp</button>
+            <textarea id="clientMsg" class="feedback-input" rows="4" placeholder="How was your experience?"></textarea>
+            <button class="submit-btn" onclick="sendFeedback()">Send to WhatsApp</button>
         </div>
     </div>
 
     <div class="footer">
-        © 2026 KME LUXURY DESIGNS. All Rights Reserved.
+        © 2026 KME LUXURY DESIGNS. DESIGNED BY A 14-YEAR OLD VISIONARY.
     </div>
 
-    <audio id="bgMusic" src="monume-luxury-509454.mp3" loop></audio>
-
     <script>
+        // Voice cut එක ප්ලේ කිරීම (එක පාරක් පමණයි)
+        function playVoice() {
+            // මෙතනට ඔයාගේ voice file එකේ නම නිවැරදිව දාන්න. උදා: 'voice.mp3'
+            const voice = new Audio(mp3-output-ttsfree(dot)com.mp3); 
+            voice.volume = 0.7;
+            voice.play().catch(e => {
+                console.log("Autoplay is blocked. Interactive with page to hear voice.");
+            });
+        }
+
+        // WhatsApp Feedback
         function sendFeedback() {
             const name = document.getElementById('clientName').value;
             const msg = document.getElementById('clientMsg').value;
             if(name && msg) {
-                const whatsappUrl = `https://wa.me/94774799172?text=Feedback from ${name}: ${msg}`;
+                const whatsappUrl = `https://wa.me/94774799172?text=New Feedback from ${name}: ${msg}`;
                 window.open(whatsappUrl, '_blank');
             } else {
-                alert("Please fill in your name and message.");
+                alert("Please enter your name and feedback.");
             }
         }
 
@@ -164,31 +222,25 @@
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
                 this.size = Math.random() * 1.5;
-                this.speedX = Math.random() * 0.3 - 0.15;
-                this.speedY = Math.random() * 0.3 - 0.15;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = Math.random() * 0.4 - 0.2;
             }
             update() {
                 this.x += this.speedX; this.y += this.speedY;
                 if (this.x > canvas.width) this.x = 0; if (this.y > canvas.height) this.y = 0;
             }
             draw() {
-                ctx.fillStyle = 'rgba(212, 175, 55, 0.3)';
+                ctx.fillStyle = 'rgba(212, 175, 55, 0.4)';
                 ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
             }
         }
-        for (let i = 0; i < 60; i++) { particles.push(new Particle()); }
+        for (let i = 0; i < 70; i++) { particles.push(new Particle()); }
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.forEach(p => { p.update(); p.draw(); });
             requestAnimationFrame(animate);
         }
         animate();
-
-        function initAudio() {
-            const m = document.getElementById('bgMusic');
-            m.volume = 0.2;
-            m.play();
-        }
     </script>
 </body>
 </html>

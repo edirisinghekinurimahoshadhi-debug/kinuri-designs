@@ -4,36 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KME Luxury Designs | Official Portfolio</title>
-    <!-- අයිකන්ස් පේන්න මේ ලින්ක් එක අනිවාර්යයි -->
+    
+    <!-- External Styles -->
     <link rel="stylesheet" href="https://cloudflare.com">
+    <link href="https://unpkg.com" rel="stylesheet">
+    
     <style>
-        body { margin: 0; padding: 0; background: #000; color: #D4AF37; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
-        #dust-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; background: radial-gradient(circle, #1a1a1a 0%, #000 100%); }
+        :root { --gold: #D4AF37; --dark: #000; --light-dark: #1a1a1a; }
         
-        .sidebar { position: fixed; left: 0; top: 25%; background: rgba(212, 175, 55, 0.1); backdrop-filter: blur(5px); border-radius: 0 10px 10px 0; padding: 20px 10px; z-index: 1000; border: 1px solid rgba(212, 175, 55, 0.3); }
-        .sidebar a { display: block; color: #D4AF37; margin: 20px 0; font-size: 24px; transition: 0.3s; text-decoration: none; }
-        .sidebar a:hover { transform: scale(1.2); text-shadow: 0 0 10px gold; }
+        body { margin: 0; padding: 0; background: var(--dark); color: var(--gold); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+        
+        #dust-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
 
-        header { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-        .logo { width: 150px; cursor: pointer; transition: 0.5s; }
-        .voice-btn { background: none; border: 1px solid #D4AF37; color: #D4AF37; padding: 12px 25px; border-radius: 30px; cursor: pointer; margin-top: 20px; font-weight: bold; transition: 0.3s; text-decoration: none; display: inline-block; }
-        .voice-btn:hover { background: #D4AF37; color: #000; box-shadow: 0 0 15px gold; }
+        /* NAVIGATION & SIDEBAR */
+        .sidebar { position: fixed; left: 0; top: 30%; background: rgba(212, 175, 55, 0.1); backdrop-filter: blur(8px); border-radius: 0 12px 12px 0; padding: 25px 12px; z-index: 1000; border: 1px solid rgba(212, 175, 55, 0.2); }
+        .sidebar a { display: block; color: var(--gold); margin: 25px 0; font-size: 26px; transition: 0.4s; text-decoration: none; }
+        .sidebar a:hover { transform: scale(1.3) translateX(5px); text-shadow: 0 0 15px gold; }
 
-        section { padding: 80px 10%; text-align: center; }
-        h2 { font-size: 2.5rem; text-transform: uppercase; letter-spacing: 5px; margin-bottom: 50px; }
+        /* HEADER */
+        header { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: radial-gradient(circle, #1a1a1a 0%, #000 100%); }
+        .logo { width: 160px; cursor: pointer; transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .logo:hover { transform: rotate(5deg) scale(1.1); filter: drop-shadow(0 0 30px gold); }
+        h1 { font-size: 3.5rem; letter-spacing: 12px; margin: 20px 0 10px; font-weight: 300; }
 
-        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .project-card { border: 1px solid #D4AF37; overflow: hidden; border-radius: 10px; height: 250px; }
-        .project-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .project-card:hover img { transform: scale(1.1); filter: brightness(70%); }
+        /* BUTTONS */
+        .voice-btn { background: none; border: 1px solid var(--gold); color: var(--gold); padding: 14px 30px; border-radius: 40px; cursor: pointer; margin-top: 25px; font-weight: 600; letter-spacing: 2px; transition: 0.4s; text-decoration: none; display: inline-block; }
+        .voice-btn:hover { background: var(--gold); color: var(--dark); box-shadow: 0 0 25px gold; transform: translateY(-3px); }
 
-         
-            </div>
-        </div>
-    </section>
+        /* SECTIONS */
+        section { padding: 120px 12%; text-align: center; }
+        h2 { font-size: 2.8rem; text-transform: uppercase; letter-spacing: 8px; margin-bottom: 60px; position: relative; display: inline-block; }
+        h2::after { content: ''; display: block; width: 50%; height: 2px; background: var(--gold); margin: 15px auto; }
 
+        /* PORTFOLIO GRID */
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .project-card { border: 1px solid rgba(212, 175, 55, 0.3); overflow: hidden; border-radius: 15px; height: 250px; position: relative; background: #080808; }
+        .project-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.7s; opacity: 0.8; }
+        .project-card:hover img { transform: scale(1.15); opacity: 1; filter: contrast(110%); }
 
-        footer { text-align: center; padding: 40px; font-size: 0.8rem; border-top: 1px solid rgba(212, 175, 55, 0.3); }
+        /* ABOUT BOX */
+        .about-box { max-width: 850px; margin: 0 auto; background: rgba(212, 175, 55, 0.03); padding: 50px; border-radius: 25px; border: 1px solid rgba(212, 175, 55, 0.1); line-height: 1.8; }
+
+        footer { text-align: center; padding: 60px; font-size: 0.9rem; border-top: 1px solid rgba(212, 175, 55, 0.1); background: #050505; }
+        .interest-link { color: #888; text-decoration: none; font-style: italic; transition: 0.3s; }
+        .interest-link:hover { color: var(--gold); }
     </style>
 </head>
 <body>
@@ -43,75 +57,75 @@
     <div class="sidebar">
         <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
         <a href="https://share.google" target="_blank"><i class="fas fa-briefcase"></i></a>
+        <a href="https://wa.me" target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
 
     <header>
-        <img src="logo-animated.gif.gif" alt="KME Logo" class="logo" onclick="playVoice()">
-        <h1 style="letter-spacing: 8px;">KME LUXURY DESIGNS</h1>
-        <p>Minimalist Identity • Elegant Branding</p>
-        <button class="voice-btn" onclick="playVoice()"><i class="fas fa-play"></i> PLAY VOICE TAG</button>
+        <img src="logo-animated.gif.gif" alt="KME Logo" class="logo" onclick="playVoice()" data-aos="zoom-in">
+        <h1 data-aos="fade-down" data-aos-delay="300">KME LUXURY DESIGNS</h1>
+        <p data-aos="fade-up" data-aos-delay="500">MINIMALIST IDENTITY • ELEGANT BRANDING</p>
+        <button class="voice-btn" onclick="playVoice()" data-aos="fade-up" data-aos-delay="700">
+            <i class="fas fa-play"></i> PLAY VOICE TAG
+        </button>
         <audio id="voiceTag" src="mp3-output-ttsfree(dot)com.mp3"></audio>
     </header>
 
-     <!-- ABOUT ME SECTION -->
-    <section id="about">
+    <section id="about" data-aos="fade-up">
         <h2>About Me</h2>
-        <div style="max-width: 800px; margin: 0 auto; background: rgba(212, 175, 55, 0.05); padding: 40px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.2);">
-            <p style="font-size: 1.2rem; line-height: 1.8; color: #f0f0f0;">
-                I am <span style="color: #D4AF37; font-weight: bold;">Kinuri Edirisinghe</span>, a 14-year-old passionate Graphic Designer specializing in high-end minimalist branding.
-            </p>
-            <p style="font-size: 1.1rem; line-height: 1.8; color: #ccc;">
-                As a <span style="border-bottom: 2px solid #D4AF37;">Certified Canva Designer</span>, I blend creativity with professional precision to create visual identities that speak luxury. My focus is on helping brands establish a sophisticated presence through elegant logos and minimalist designs.
-            </p>
-            <div style="margin-top: 30px;">
-                <span style="border: 1px solid #D4AF37; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; margin-right: 10px;">Certified Professional</span>
-                <span style="border: 1px solid #D4AF37; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem;">Minimalist Specialist</span>
-
-    <section id="projects">
-        <h2>Portfolio</h2>
-        <div class="portfolio-grid">
-            <div class="project-card"><img src="1.jpg.png"></div>
-            <div class="project-card"><img src="2.png"></div>
-            <div class="project-card"><img src="3.png"></div>
-            <div class="project-card"><img src="LIFE BLOOD NATURE.png"></div>
+        <div class="about-box">
+            <p style="font-size: 1.3rem;">I am <span style="color: white; font-weight: 500;">Kinuri Edirisinghe</span>, a 14-year-old visionary Graphic Designer.</p>
+            <p style="color: #bbb;">Certified in Canva Design Essentials, I specialize in crafting high-end visual identities. My design philosophy revolves around 'Less is More', ensuring every brand I touch exudes sophistication and timeless elegance.</p>
         </div>
-        <br>
-        <a href="https://canva.link/xawfs47c04lmskd" target="_blank" class="voice-btn">VIEW FULL CANVA PORTFOLIO</a>
     </section>
 
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Let's create something luxury together.</p>
-        <!-- WhatsApp අංකය නිවැරදි කළා -->
-        <a href="https://wa.me" target="_blank" class="voice-btn" style="background:#25D366; border:none; color:white;">
-            <i class="fab fa-whatsapp"></i> WHATSAPP ME
+    <section id="projects">
+        <h2 data-aos="fade-up">Portfolio Highlights</h2>
+        <div class="portfolio-grid">
+            <div class="project-card" data-aos="flip-left" data-aos-delay="100"><img src="1.jpg.png"></div>
+            <div class="project-card" data-aos="flip-left" data-aos-delay="200"><img src="2.png"></div>
+            <div class="project-card" data-aos="flip-left" data-aos-delay="300"><img src="3.png"></div>
+            <div class="project-card" data-aos="flip-left" data-aos-delay="400"><img src="LIFE BLOOD NATURE.png"></div>
+        </div>
+        <div style="margin-top: 50px;" data-aos="fade-up">
+            <a href="https://canva.link" target="_blank" class="voice-btn">VIEW FULL PORTFOLIO</a>
+        </div>
+    </section>
+
+    <section id="contact" data-aos="zoom-in">
+        <h2>Consultation</h2>
+        <p style="color: #888; margin-bottom: 30px;">Let’s elevate your brand to its luxury potential.</p>
+        <a href="https://wa.me" target="_blank" class="voice-btn" style="background:rgba(212,175,55,0.1);">
+            <i class="fab fa-whatsapp"></i> INQUIRE VIA WHATSAPP
         </a>
     </section>
 
-    <section id="feedback">
-        <h2>Interactive Feedback</h2>
-        <!-- Wordwall Embed ලින්ක් එක නිවැරදි කළා -->
-        <iframe src="<iframe style="max-width:100%" src="https://wordwall.net/embed/5af524a9128b40058377b3b2829a3bf1?themeId=49&templateId=25&fontStackId=0" width="500" height="380" frameborder="0" allowfullscreen></iframe>" height="500" frameborder="0" allowfullscreen></iframe>
-    </section>
-
     <footer>
-        <div style="max-width: 800px; margin: 0 auto; background: rgba(212, 175, 55, 0.05); padding: 40px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.2);">
-            <p style="font-size: 1.2rem; line-height: 1.8; color: #f0f0f0;"> <p>&copy; 2026 KME LUXURY DESIGNS. All Rights Reserved. | Designed by Kinuri</p>
+        <p data-aos="fade-up">&copy; 2024 KME LUXURY DESIGNS. All Rights Reserved.</p>
+        <p><a href="https://wordwall.net" target="_blank" class="interest-link">Explore Interactive Interests &gt;</a></p>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://unpkg.com"></script>
     <script>
+        // Initialize Animations
+        AOS.init({ duration: 1200, once: true });
+
         function playVoice() { document.getElementById('voiceTag').play(); }
         
+        // Premium Dust Particles
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         document.getElementById('dust-canvas').appendChild(canvas);
-        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.onresize = resize; resize();
+
         let particles = [];
-        for(let i=0; i<80; i++) particles.push({x: Math.random()*canvas.width, y: Math.random()*canvas.height, size: Math.random()*1.5, speed: Math.random()*0.3});
+        for(let i=0; i<100; i++) particles.push({x: Math.random()*canvas.width, y: Math.random()*canvas.height, size: Math.random()*1.8, speed: Math.random()*0.4, opacity: Math.random()});
+        
         function animate() {
             ctx.clearRect(0,0,canvas.width, canvas.height);
-            ctx.fillStyle = "rgba(212, 175, 55, 0.4)";
             particles.forEach(p => {
+                ctx.fillStyle = `rgba(212, 175, 55, ${p.opacity})`;
                 ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
                 p.y -= p.speed; if(p.y < 0) p.y = canvas.height;
             });

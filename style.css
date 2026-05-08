@@ -88,3 +88,18 @@ body {
     box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
     transform: translateY(-3px);
 }
+/* සරල Fade-in Animation එකක් */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+    animation: fadeInUp 1.2s ease-out forwards;
+}
+
+/* මුලින්ම පේන්නේ නැති වෙන්න */
+section, h1, .about-box {
+    opacity: 0;
+}
+

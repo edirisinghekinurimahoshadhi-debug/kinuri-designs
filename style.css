@@ -102,4 +102,9 @@ body {
 section, h1, .about-box {
     opacity: 0;
 }
+/* CSS එකට මේක ඇඩ් කරන්න */
+section {
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1); /* හරිම ලාවට පේන ඉරක් */
+    margin-bottom: 20px;
+}
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME Luxury Designs | Official Portfolio</title>
+    <title>KME Luxury Designs | Official Website</title>
     
     <!-- External Styles -->
     <link rel="stylesheet" href="https://cloudflare.com">
@@ -25,15 +25,15 @@
         header { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: radial-gradient(circle, #1a1a1a 0%, #000 100%); }
         .logo { width: 160px; cursor: pointer; transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .logo:hover { transform: rotate(5deg) scale(1.1); filter: drop-shadow(0 0 30px gold); }
-        h1 { font-size: 3.5rem; letter-spacing: 12px; margin: 20px 0 10px; font-weight: 300; }
+        h1 { font-size: 3rem; letter-spacing: 10px; margin: 20px 0 10px; font-weight: 300; }
 
         /* BUTTONS */
         .voice-btn { background: none; border: 1px solid var(--gold); color: var(--gold); padding: 14px 30px; border-radius: 40px; cursor: pointer; margin-top: 25px; font-weight: 600; letter-spacing: 2px; transition: 0.4s; text-decoration: none; display: inline-block; }
         .voice-btn:hover { background: var(--gold); color: var(--dark); box-shadow: 0 0 25px gold; transform: translateY(-3px); }
 
         /* SECTIONS */
-        section { padding: 120px 12%; text-align: center; }
-        h2 { font-size: 2.8rem; text-transform: uppercase; letter-spacing: 8px; margin-bottom: 60px; position: relative; display: inline-block; }
+        section { padding: 100px 12%; text-align: center; }
+        h2 { font-size: 2.5rem; text-transform: uppercase; letter-spacing: 8px; margin-bottom: 50px; position: relative; display: inline-block; }
         h2::after { content: ''; display: block; width: 50%; height: 2px; background: var(--gold); margin: 15px auto; }
 
         /* PORTFOLIO GRID */
@@ -87,16 +87,27 @@
             <div class="project-card" data-aos="flip-left" data-aos-delay="400"><img src="LIFE BLOOD NATURE.png"></div>
         </div>
         <div style="margin-top: 50px;" data-aos="fade-up">
-            <a href="https://canva.link" target="_blank" class="voice-btn">VIEW FULL PORTFOLIO</a>
+            <a href="https://canva.com" target="_blank" class="voice-btn">VIEW FULL PORTFOLIO</a>
         </div>
     </section>
 
     <section id="contact" data-aos="zoom-in">
         <h2>Consultation</h2>
         <p style="color: #888; margin-bottom: 30px;">Let’s elevate your brand to its luxury potential.</p>
-        <a href="https://wa.me" target="_blank" class="voice-btn" style="background:rgba(212,175,55,0.1);">
-            <i class="fab fa-whatsapp"></i> INQUIRE VIA WHATSAPP
-        </a>
+        
+        <div style="margin-bottom: 40px;">
+            <a href="https://wa.me" target="_blank" class="voice-btn" style="background:rgba(212,175,55,0.1); margin-right: 15px;">
+                <i class="fab fa-whatsapp"></i> INQUIRE VIA WHATSAPP
+            </a>
+            <a href="https://share.google" target="_blank" class="voice-btn">
+                <i class="fab fa-google"></i> VIEW BUSINESS PROFILE
+            </a>
+        </div>
+
+        <div style="max-width: 600px; margin: 0 auto; border: 1px solid rgba(212, 175, 55, 0.2); padding: 20px; border-radius: 15px;">
+            <p style="font-size: 0.9rem; color: #D4AF37;">Verified Business on Google</p>
+            <p style="font-size: 0.8rem; color: #666;">Check reviews and location on our profile.</p>
+        </div>
     </section>
 
     <footer>
@@ -107,12 +118,9 @@
     <!-- Scripts -->
     <script src="https://unpkg.com"></script>
     <script>
-        // Initialize Animations
         AOS.init({ duration: 1200, once: true });
-
         function playVoice() { document.getElementById('voiceTag').play(); }
         
-        // Premium Dust Particles
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         document.getElementById('dust-canvas').appendChild(canvas);

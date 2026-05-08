@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KME Luxury Designs | Official Portfolio</title>
+    <!-- අයිකන් පේන්න මේ ලින්ක් එක අනිවාර්යයි -->
     <link rel="stylesheet" href="https://cloudflare.com">
     
     <style>
@@ -19,18 +20,15 @@
             text-align: center;
             margin: 0;
             overflow-x: hidden;
-            /* අකුරු අතර ඉඩ ප්‍රමාණය නිවැරදි කිරීම (Word Spacing Fix) */
-            word-spacing: normal; 
-            letter-spacing: normal;
         }
 
-        #dust-overlay {
+        /* 1. Golden Dust සඳහා Canvas එක */
+        #dust-canvas {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://transparenttextures.com');
-            opacity: 0.3; pointer-events: none; z-index: -1;
+            z-index: -1; pointer-events: none;
         }
 
-        section, .about-box, .project-card {
+        section, h1, .about-box, .project-card, .logo-ring {
             opacity: 0;
         }
 
@@ -43,7 +41,7 @@
             animation: fadeInUp 1.2s ease-out forwards;
         }
 
-        /* 1. ලෝගෝ එක සහ රවුම නිවැරදි කිරීම (Logo Display Fix) */
+        /* 2. Logo Display Fix & Animation */
         .logo-ring {
             width: 150px; height: 150px;
             border: 2px solid var(--gold); border-radius: 50%;
@@ -52,20 +50,22 @@
             position: relative;
             background: rgba(212, 175, 55, 0.05);
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-            overflow: hidden; /* රවුමෙන් පිටතට යන දේවල් කපා දැමීමට */
+            animation: float 3s ease-in-out infinite;
         }
 
-        /* Animated Logo එක රවුම ඇතුළට හරියටම පෙන්වීමට */
         .logo-ring img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* පින්තූරය නොකැපී රවුම ඇතුළත පෙන්වීමට */
-            padding: 10px;
+            width: 80%; height: 80%;
+            object-fit: contain;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
         .brand-name {
-            font-size: 3rem; font-weight: 300; color: var(--gold);
-            letter-spacing: 8px; text-transform: uppercase;
+            font-size: 2.5rem; color: var(--gold);
+            letter-spacing: 6px; text-transform: uppercase;
             margin-top: 10px;
         }
 
@@ -75,8 +75,7 @@
             padding: 12px 30px; font-size: 14px;
             text-transform: uppercase; letter-spacing: 2px;
             text-decoration: none; border-radius: 50px;
-            transition: 0.4s; cursor: pointer;
-            margin: 20px;
+            transition: 0.4s; cursor: pointer; margin: 15px;
         }
 
         .luxury-contact-btn:hover {
@@ -89,32 +88,29 @@
 
         section { padding: 100px 10%; }
         .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .project-card { border: 1px solid var(--gold); border-radius: 10px; overflow: hidden; height: 250px; }
+        .project-card { border: 1px solid var(--gold); border-radius: 15px; overflow: hidden; height: 250px; background: #000; }
         .project-card img { width: 100%; height: 100%; object-fit: cover; }
     </style>
 </head>
 <body>
 
-    <div id="dust-overlay"></div>
+    <canvas id="dust-canvas"></canvas>
 
     <div class="sidebar">
         <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
         <a href="https://wa.me" target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
 
-    <!-- ලෝගෝ එක රවුම ඇතුළත පෙන්වන ආකාරය -->
     <div class="logo-ring">
         <img src="logo-animated.gif.gif" alt="KME Logo">
     </div>
     
-    <!-- 3. Spelling නිවැරදි කිරීම (Gold & Luxury) -->
-    <h1 class="brand-name reveal">KME LUXURY DESIGNS</h1>
-    <p style="letter-spacing: 3px; color: #888;">ELEGANCE IN MINIMALISM</p>
+    <h1 class="brand-name">KME LUXURY DESIGNS</h1>
 
     <section id="about">
         <h2>About Me</h2>
         <div class="about-box" style="max-width: 750px; margin: 0 auto; line-height: 1.8; color: #ccc;">
-            I am <strong style="color: var(--gold);">Kinuri Edirisinghe</strong>, a 14-year-old visionary Graphic Designer. Certified in Canva Design Essentials, I specialize in crafting high-end visual identities that exude <span style="color: var(--gold);">gold</span> standard <span style="color: var(--gold);">luxury</span>.
+            I am <strong style="color: var(--gold);">Kinuri Edirisinghe</strong>, a 14-year-old visionary Graphic Designer. Certified in Canva Design Essentials, I specialize in crafting high-end visual identities that exude **gold** standard **luxury**.
         </div>
     </section>
 
@@ -140,6 +136,7 @@
     </footer>
 
     <script>
+        // Animations පණ ගැන්වීම
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
@@ -148,9 +145,40 @@
             });
         }, { threshold: 0.15 });
 
-        document.querySelectorAll('section, h1, .about-box, .project-card').forEach((el) => {
+        document.querySelectorAll('section, h1, .about-box, .project-card, .logo-ring').forEach((el) => {
             observer.observe(el);
         });
+
+        // Golden Dust පණ ගැන්වීම (JavaScript Animation)
+        const canvas = document.getElementById('dust-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+        for(let i=0; i<100; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2,
+                speed: Math.random() * 0.5,
+                opacity: Math.random()
+            });
+        }
+
+        function animateDust() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                ctx.fillStyle = `rgba(212, 175, 55, ${p.opacity})`;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+                p.y -= p.speed;
+                if(p.y < 0) p.y = canvas.height;
+            });
+            requestAnimationFrame(animateDust);
+        }
+        animateDust();
     </script>
 </body>
 </html>

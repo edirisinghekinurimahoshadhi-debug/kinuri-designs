@@ -4,97 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KME Luxury Designs | Official Portfolio</title>
-    <!-- අයිකන් පේන්න මේ ලින්ක් එක අනිවාර්යයි -->
-    <link rel="stylesheet" href="https://cloudflare.com">
-    <!-- ලෝගෝ එක සහ රවුම වඩාත් පැහැදිලිව පෙන්වීමට -->
-<div class="logo-ring reveal" style="opacity: 1;">
-    <img src="./logo-animated.gif.gif" alt="KME Logo" onerror="this.src='https://placeholder.com'">
-</div>
-
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        :root { 
-            --gold: #D4AF37; 
-            --black: #0a0a0a; 
-        }
+        :root { --gold: #D4AF37; --black: #050505; --dark-grey: #111; }
 
         body { 
-            background-color: var(--black); 
+            background: radial-gradient(circle at center, #111 0%, #000 100%); /* කළු පාටට ගැඹුරක් දුන්නා */
             color: #fff; 
-            font-family: 'Segoe UI', Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            overflow-x: hidden;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            text-align: center; margin: 0; overflow-x: hidden;
         }
 
-        /* 1. Golden Dust සඳහා Canvas එක */
-        #dust-canvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; pointer-events: none;
-        }
+        #dust-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
 
-        section, h1, .about-box, .project-card, .logo-ring {
-            opacity: 0;
-        }
+        /* Smooth Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .reveal {
-            animation: fadeInUp 1.2s ease-out forwards;
-        }
-
-        /* 2. Logo Display Fix & Animation */
+        /* Logo Styling - හිස් බව නැති කරන්න glow එකක් දුන්නා */
         .logo-ring {
-            width: 150px; height: 150px;
-            border: 2px solid var(--gold); border-radius: 50%;
+            width: 140px; height: 140px;
+            border: 1px solid var(--gold); border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            margin: 80px auto 20px auto;
-            position: relative;
-            background: rgba(212, 175, 55, 0.05);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-            animation: float 3s ease-in-out infinite;
+            margin: 60px auto 10px auto; 
+            background: rgba(212, 175, 55, 0.03);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
+        }
+        .logo-ring img { width: 85%; height: 85%; object-fit: contain; }
+
+        .brand-name { 
+            font-size: 2.2rem; color: var(--gold); letter-spacing: 8px; 
+            text-transform: uppercase; margin-bottom: 40px;
+            font-weight: 300;
         }
 
-        .logo-ring img {
-            width: 80%; height: 80%;
-            object-fit: contain;
+        /* Sidebar Update */
+        .sidebar { 
+            position: fixed; left: 0; top: 50%; transform: translateY(-50%);
+            background: rgba(212, 175, 55, 0.05); padding: 15px 8px; 
+            border-radius: 0 15px 15px 0; z-index: 100; border: 1px solid rgba(212, 175, 55, 0.1); 
+            backdrop-filter: blur(10px);
         }
+        .sidebar a { display: block; color: var(--gold); margin: 15px 0; font-size: 20px; transition: 0.3s; }
+        .sidebar a:hover { color: #fff; transform: scale(1.2); }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
+        section { padding: 80px 10%; border-bottom: 1px solid rgba(212, 175, 55, 0.05); }
 
-        .brand-name {
-            font-size: 2.5rem; color: var(--gold);
-            letter-spacing: 6px; text-transform: uppercase;
-            margin-top: 10px;
+        .about-box { 
+            max-width: 700px; margin: 0 auto; line-height: 1.8; color: #aaa; font-size: 1.1rem;
+            border: 1px solid rgba(212, 175, 55, 0.1); padding: 30px; border-radius: 15px;
+            background: rgba(255, 255, 255, 0.02);
         }
 
         .luxury-contact-btn {
-            display: inline-block; background: transparent;
-            color: var(--gold); border: 1px solid var(--gold);
-            padding: 12px 30px; font-size: 14px;
-            text-transform: uppercase; letter-spacing: 2px;
-            text-decoration: none; border-radius: 50px;
-            transition: 0.4s; cursor: pointer; margin: 15px;
+            display: inline-block; background: transparent; color: var(--gold);
+            border: 1px solid var(--gold); padding: 12px 35px; font-size: 13px;
+            text-transform: uppercase; letter-spacing: 2px; text-decoration: none;
+            border-radius: 50px; transition: 0.4s; cursor: pointer; margin: 10px;
         }
+        .luxury-contact-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(212, 175, 55, 0.4); }
 
-        .luxury-contact-btn:hover {
-            background: var(--gold); color: #000;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-        }
-
-        .sidebar { position: fixed; left: 0; top: 30%; background: rgba(212, 175, 55, 0.1); padding: 20px 10px; border-radius: 0 10px 10px 0; z-index: 100; border: 1px solid rgba(212, 175, 55, 0.2); }
-        .sidebar a { display: block; color: var(--gold); margin: 20px 0; font-size: 24px; text-decoration: none; }
-
-        section { padding: 100px 10%; }
-        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .project-card { border: 1px solid var(--gold); border-radius: 15px; overflow: hidden; height: 250px; background: #000; }
-        .project-card img { width: 100%; height: 100%; object-fit: cover; }
+        footer { padding: 40px; color: #444; font-size: 11px; letter-spacing: 1px; }
     </style>
 </head>
 <body>
@@ -102,84 +74,61 @@
     <canvas id="dust-canvas"></canvas>
 
     <div class="sidebar">
-        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="https://wa.me" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.linkedin.com/in/kinuri-mahoshadhi-edirisinghe-9b4921405" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://wa.me/94774799172" target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
 
-    <div class="logo-ring">
-        <img src="logo-animated.gif.gif" alt="KME Logo">
+    <div class="logo-ring reveal">
+        <img src="./logo-animated.gif.gif" alt="KME Logo">
     </div>
     
-    <h1 class="brand-name">KME LUXURY DESIGNS</h1>
+    <h1 class="brand-name reveal">KME LUXURY DESIGNS</h1>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <div class="about-box" style="max-width: 750px; margin: 0 auto; line-height: 1.8; color: #ccc;">
-            I am <strong style="color: var(--gold);">Kinuri Edirisinghe</strong>, a 14-year-old visionary Graphic Designer. Certified in Canva Design Essentials, I specialize in crafting high-end visual identities that exude **gold** standard **luxury**.
+    <section id="about" class="reveal">
+        <h2 style="color: var(--gold); font-weight: 400; letter-spacing: 3px;">DESIGNER PROFILE</h2>
+        <div class="about-box">
+            I am <strong style="color: var(--gold);">Kinuri Edirisinghe</strong>, a 14-year-old visionary Graphic Designer. Certified in Canva Design Essentials, I specialize in crafting high-end visual identities that exude <span style="color: var(--gold);">gold standard luxury</span>.
         </div>
     </section>
 
-    <section id="projects">
-        <h2>Portfolio Highlights</h2>
-        <div class="portfolio-grid">
-            <div class="project-card"><img src="1.jpg.png"></div>
-            <div class="project-card"><img src="2.png"></div>
-            <div class="project-card"><img src="3.png"></div>
-        </div>
-        <br>
-        <a href="https://canva.com" target="_blank" class="luxury-contact-btn">View Full Portfolio</a>
-    </section>
-
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <a href="https://wa.me" target="_blank" class="luxury-contact-btn">WhatsApp Me</a>
+    <section id="contact" class="reveal">
+        <h2 style="color: var(--gold); font-weight: 400; letter-spacing: 3px;">CONSULTATION</h2>
+        <p style="color: #666; margin-bottom: 30px;">Let's bring your luxury vision to life.</p>
+        <a href="https://wa.me/94774799172" target="_blank" class="luxury-contact-btn">WhatsApp Me</a>
         <a href="https://share.google" target="_blank" class="luxury-contact-btn">Business Profile</a>
     </section>
 
-    <footer style="padding: 50px; border-top: 1px solid rgba(212,175,55,0.1); font-size: 12px; color: #666;">
-        &copy; 2024 KME LUXURY DESIGNS. All Rights Reserved.
+    <footer>
+        &copy; 2026 KME LUXURY DESIGNS | CERTIFIED DESIGNER | AGE: 14
     </footer>
 
     <script>
-        // Animations පණ ගැන්වීම
+        // Reveal Logic Fix
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal');
+                    entry.target.classList.add('active');
                 }
             });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('section, h1, .about-box, .project-card, .logo-ring').forEach((el) => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
-        // Golden Dust පණ ගැන්වීම (JavaScript Animation)
+        // Golden Dust Script
         const canvas = document.getElementById('dust-canvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize); resize();
 
         let particles = [];
-        for(let i=0; i<100; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                size: Math.random() * 2,
-                speed: Math.random() * 0.5,
-                opacity: Math.random()
-            });
-        }
-
+        for(let i=0; i<80; i++) particles.push({x: Math.random()*canvas.width, y: Math.random()*canvas.height, size: Math.random()*1.5, speed: Math.random()*0.4, opacity: Math.random()});
+        
         function animateDust() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.forEach(p => {
                 ctx.fillStyle = `rgba(212, 175, 55, ${p.opacity})`;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fill();
-                p.y -= p.speed;
-                if(p.y < 0) p.y = canvas.height;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+                p.y -= p.speed; if(p.y < 0) p.y = canvas.height;
             });
             requestAnimationFrame(animateDust);
         }

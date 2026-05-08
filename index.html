@@ -88,7 +88,8 @@
         <a href="https://wa.me/94774799172" target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
 
-    <div class="logo-ring reveal">
+    <div class="logo-container reveal">
+        <div class="logo-glow"></div>
         <img src="./logo-animated.gif.gif" alt="KME Logo">
     </div>
     
@@ -117,11 +118,14 @@
         </div>
     </section>
 
-    <!-- 3. FEEDBACK SECTION -->
-    <section id="feedback" class="reveal">
-        <h2 style="color: var(--gold); font-weight: 400; letter-spacing: 3px;">INTERACTIVE FEEDBACK</h2>
-        <div style="max-width: 900px; margin: 0 auto; border-radius: 15px; overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.1);">
-            <iframe src="<iframe style="max-width:100%" src="https://wordwall.net/embed/5af524a9128b40058377b3b2829a3bf1?themeId=49&templateId=25&fontStackId=0" width="500" height="380" frameborder="0" allowfullscreen></iframe>" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+  <section id="feedback" class="reveal">
+        <h2 style="color: var(--gold); font-weight: 300; letter-spacing: 4px;">CLIENT FEEDBACK</h2>
+        <div class="content-box">
+            <div class="feedback-container">
+                <input type="text" id="clientName" class="feedback-input" placeholder="Your Name">
+                <textarea id="clientMsg" class="feedback-input" rows="4" placeholder="Your Message or Project Idea"></textarea>
+                <center><button class="luxury-btn" onclick="sendFeedback()">Send Feedback</button></center>
+            </div>
         </div>
     </section>
 

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KME Luxury Designs | Official Portfolio</title>
     
-    <!-- External Styles (Animations & Icons සඳහා) -->
+    <!-- External Styles (නිවැරදි කරන ලද ලින්ක්) -->
     <link rel="stylesheet" href="https://cloudflare.com">
     <link href="https://unpkg.com" rel="stylesheet">
     
@@ -52,17 +52,14 @@
 </head>
 <body>
 
-    <!-- Golden Dust Canvas -->
     <div id="dust-canvas"></div>
 
-    <!-- Sidebar -->
     <div class="sidebar">
         <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
         <a href="https://share.google" target="_blank"><i class="fas fa-briefcase"></i></a>
         <a href="https://wa.me" target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
 
-    <!-- Header Section -->
     <header>
         <img src="logo-animated.gif.gif" alt="KME Logo" class="logo" onclick="playVoice()" data-aos="zoom-in">
         <h1 data-aos="fade-down" data-aos-delay="300">KME LUXURY DESIGNS</h1>
@@ -73,7 +70,6 @@
         <audio id="voiceTag" src="mp3-output-ttsfree(dot)com.mp3"></audio>
     </header>
 
-    <!-- About Me Section with Correct Spelling -->
     <section id="about" data-aos="fade-up">
         <h2>About Me</h2>
         <div class="about-box">
@@ -82,7 +78,6 @@
         </div>
     </section>
 
-    <!-- Portfolio Section -->
     <section id="projects">
         <h2 data-aos="fade-up">Portfolio Highlights</h2>
         <div class="portfolio-grid">
@@ -96,7 +91,6 @@
         </div>
     </section>
 
-    <!-- Contact & Business Section -->
     <section id="contact" data-aos="zoom-in">
         <h2>Consultation</h2>
         <div style="margin-bottom: 40px;">
@@ -114,14 +108,13 @@
         <p><a href="https://wordwall.net" target="_blank" class="interest-link">Explore Interactive Interests &gt;</a></p>
     </footer>
 
-    <!-- Scripts (Animations & Effects සඳහා) -->
+    <!-- Scripts (නිවැරදි කරන ලද ලින්ක්) -->
     <script src="https://unpkg.com"></script>
     <script>
         AOS.init({ duration: 1200, once: true });
 
         function playVoice() { document.getElementById('voiceTag').play(); }
         
-        // Golden Dust Particles Logic
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         document.getElementById('dust-canvas').appendChild(canvas);

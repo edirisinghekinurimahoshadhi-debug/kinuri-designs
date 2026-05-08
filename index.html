@@ -4,67 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KME Luxury Designs | Official Portfolio</title>
+    <!-- අයිකන්ස් පේන්න මේ ලින්ක් එක අනිවාර්යයි -->
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
-        /* LUXURY DARK THEME & GOLDEN DUST */
-        body {
-            margin: 0; padding: 0;
-            background: #000;
-            color: #D4AF37;
-            font-family: 'Segoe UI', sans-serif;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        #dust-canvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; pointer-events: none;
-            background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
-        }
-
-        /* NAVIGATION & SIDEBAR */
-        .sidebar {
-            position: fixed; left: 0; top: 25%;
-            background: rgba(212, 175, 55, 0.1);
-            backdrop-filter: blur(5px);
-            border-radius: 0 10px 10px 0;
-            padding: 20px 10px;
-            z-index: 1000;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
-        .sidebar a { display: block; color: #D4AF37; margin: 20px 0; font-size: 24px; transition: 0.3s; }
+        body { margin: 0; padding: 0; background: #000; color: #D4AF37; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+        #dust-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; background: radial-gradient(circle, #1a1a1a 0%, #000 100%); }
+        
+        .sidebar { position: fixed; left: 0; top: 25%; background: rgba(212, 175, 55, 0.1); backdrop-filter: blur(5px); border-radius: 0 10px 10px 0; padding: 20px 10px; z-index: 1000; border: 1px solid rgba(212, 175, 55, 0.3); }
+        .sidebar a { display: block; color: #D4AF37; margin: 20px 0; font-size: 24px; transition: 0.3s; text-decoration: none; }
         .sidebar a:hover { transform: scale(1.2); text-shadow: 0 0 10px gold; }
 
-        /* HERO SECTION & VOICE TAG */
         header { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
         .logo { width: 150px; cursor: pointer; transition: 0.5s; }
-        .logo:hover { filter: drop-shadow(0 0 20px gold); }
-        
-        .voice-btn {
-            background: none; border: 1px solid #D4AF37; color: #D4AF37;
-            padding: 10px 20px; border-radius: 30px; cursor: pointer; margin-top: 20px;
-            font-weight: bold; transition: 0.3s;
-        }
-        .voice-btn:hover { background: #D4AF37; color: #000; }
+        .voice-btn { background: none; border: 1px solid #D4AF37; color: #D4AF37; padding: 12px 25px; border-radius: 30px; cursor: pointer; margin-top: 20px; font-weight: bold; transition: 0.3s; text-decoration: none; display: inline-block; }
+        .voice-btn:hover { background: #D4AF37; color: #000; box-shadow: 0 0 15px gold; }
 
-        /* SECTIONS */
-        section { padding: 80px 10%; }
-        h2 { text-align: center; font-size: 2.5rem; text-transform: uppercase; letter-spacing: 5px; margin-bottom: 50px; }
+        section { padding: 80px 10%; text-align: center; }
+        h2 { font-size: 2.5rem; text-transform: uppercase; letter-spacing: 5px; margin-bottom: 50px; }
 
-        /* PORTFOLIO GRID */
         .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .project-card { border: 1px solid #D4AF37; overflow: hidden; position: relative; border-radius: 10px; }
-        .project-card img { width: 100%; transition: 0.5s; }
-        .project-card:hover img { transform: scale(1.1); filter: brightness(50%); }
+        .project-card { border: 1px solid #D4AF37; overflow: hidden; border-radius: 10px; height: 250px; }
+        .project-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .project-card:hover img { transform: scale(1.1); filter: brightness(70%); }
 
-        /* PRICING */
-        .pricing-table { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
-        .price-box { border: 1px solid #D4AF37; padding: 40px; border-radius: 15px; width: 250px; text-align: center; transition: 0.3s; }
-        .price-box:hover { background: rgba(212, 175, 55, 0.1); transform: translateY(-10px); }
-
-        /* LICENSE FRAME */
-        .license-frame { border: 10px solid #D4AF37; border-image: linear-gradient(gold, #8a6d3b) 1; padding: 10px; max-width: 600px; margin: 0 auto; }
-        .license-frame img { width: 100%; }
+        .license-frame { border: 8px solid #D4AF37; padding: 5px; max-width: 500px; margin: 0 auto; box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+        .license-frame img { width: 100%; display: block; }
 
         footer { text-align: center; padding: 40px; font-size: 0.8rem; border-top: 1px solid rgba(212, 175, 55, 0.3); }
     </style>
@@ -73,55 +37,52 @@
 
     <div id="dust-canvas"></div>
 
-    <!-- SIDEBAR -->
     <div class="sidebar">
         <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="https://share.google/X6qC3ZzuKh7dXcvNC" target="_blank" title="Business Profile"><i class="fas fa-briefcase"></i></a>
-        <a href="https://wa.me" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://share.google" target="_blank"><i class="fas fa-briefcase"></i></a>
     </div>
 
-    <!-- HERO SECTION -->
     <header>
         <img src="logo-animated.gif.gif" alt="KME Logo" class="logo" onclick="playVoice()">
-        <h1>KME LUXURY DESIGNS</h1>
+        <h1 style="letter-spacing: 8px;">KME LUXURY DESIGNS</h1>
         <p>Minimalist Identity • Elegant Branding</p>
         <button class="voice-btn" onclick="playVoice()"><i class="fas fa-play"></i> PLAY VOICE TAG</button>
         <audio id="voiceTag" src="mp3-output-ttsfree(dot)com.mp3"></audio>
     </header>
 
-    <!-- ABOUT & LICENSE -->
     <section id="about">
         <h2>About Me & License</h2>
         <div class="license-frame">
             <img src="kinuri-edirisinghe-graphic-design-essentials-ce..." alt="License">
         </div>
-        <p style="text-align:center; margin-top:30px;">Certified Canva Designer | 14 Years Old Professional</p>
+        <p style="margin-top:20px;">Certified Canva Designer | 14 Years Old</p>
     </section>
 
-    <!-- PORTFOLIO -->
     <section id="projects">
-        <h2>Projects</h2>
+        <h2>Portfolio</h2>
         <div class="portfolio-grid">
             <div class="project-card"><img src="1.jpg.png"></div>
             <div class="project-card"><img src="2.png"></div>
             <div class="project-card"><img src="3.png"></div>
+            <div class="project-card"><img src="LIFE BLOOD NATURE.png"></div>
         </div>
+        <br>
+        <a href="https://canva.link/xawfs47c04lmskd" target="_blank" class="voice-btn">VIEW FULL CANVA PORTFOLIO</a>
     </section>
 
-    <!-- PRICING -->
-    <section id="pricing">
-        <h2>Pricing List</h2>
-        <div class="pricing-table">
-            <div class="price-box"><h3>ESSENTIAL</h3><p>$25+</p></div>
-            <div class="price-box" style="background: rgba(212, 175, 55, 0.1);"><h3>PREMIUM</h3><p>$50+</p></div>
-            <div class="price-box"><h3>LUXURY</h3><p>$75+</p></div>
-        </div>
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>Let's create something luxury together.</p>
+        <!-- WhatsApp අංකය නිවැරදි කළා -->
+        <a href="https://wa.me" target="_blank" class="voice-btn" style="background:#25D366; border:none; color:white;">
+            <i class="fab fa-whatsapp"></i> WHATSAPP ME
+        </a>
     </section>
 
-    <!-- FEEDBACK (Wordwall) -->
     <section id="feedback">
         <h2>Interactive Feedback</h2>
-        <iframe src="ඔයාගේ_wordwall_embed_link_මෙතනට" width="100%" height="500" frameborder="0"></iframe>
+        <!-- Wordwall Embed ලින්ක් එක නිවැරදි කළා -->
+        <iframe src="https://wordwall.net" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
     </section>
 
     <footer>
@@ -131,16 +92,15 @@
     <script>
         function playVoice() { document.getElementById('voiceTag').play(); }
         
-        // Simple Dust Particles Effect
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         document.getElementById('dust-canvas').appendChild(canvas);
         canvas.width = window.innerWidth; canvas.height = window.innerHeight;
         let particles = [];
-        for(let i=0; i<100; i++) particles.push({x: Math.random()*canvas.width, y: Math.random()*canvas.height, size: Math.random()*2, speed: Math.random()*0.5});
+        for(let i=0; i<80; i++) particles.push({x: Math.random()*canvas.width, y: Math.random()*canvas.height, size: Math.random()*1.5, speed: Math.random()*0.3});
         function animate() {
             ctx.clearRect(0,0,canvas.width, canvas.height);
-            ctx.fillStyle = "rgba(212, 175, 55, 0.3)";
+            ctx.fillStyle = "rgba(212, 175, 55, 0.4)";
             particles.forEach(p => {
                 ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
                 p.y -= p.speed; if(p.y < 0) p.y = canvas.height;

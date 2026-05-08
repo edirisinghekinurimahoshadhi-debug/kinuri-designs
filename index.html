@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME Luxury Designs | Official Website</title>
+    <title>KME Luxury Designs | Official Portfolio</title>
     
-    <!-- External Styles -->
+    <!-- External Styles (Animations & Icons සඳහා) -->
     <link rel="stylesheet" href="https://cloudflare.com">
     <link href="https://unpkg.com" rel="stylesheet">
     
@@ -16,15 +16,15 @@
         
         #dust-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
 
-        /* NAVIGATION & SIDEBAR */
+        /* SIDEBAR */
         .sidebar { position: fixed; left: 0; top: 30%; background: rgba(212, 175, 55, 0.1); backdrop-filter: blur(8px); border-radius: 0 12px 12px 0; padding: 25px 12px; z-index: 1000; border: 1px solid rgba(212, 175, 55, 0.2); }
         .sidebar a { display: block; color: var(--gold); margin: 25px 0; font-size: 26px; transition: 0.4s; text-decoration: none; }
         .sidebar a:hover { transform: scale(1.3) translateX(5px); text-shadow: 0 0 15px gold; }
 
         /* HEADER */
-        header { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: radial-gradient(circle, #1a1a1a 0%, #000 100%); }
-        .logo { width: 160px; cursor: pointer; transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .logo:hover { transform: rotate(5deg) scale(1.1); filter: drop-shadow(0 0 30px gold); }
+        header { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+        .logo { width: 160px; cursor: pointer; transition: 0.6s; }
+        .logo:hover { transform: scale(1.1); filter: drop-shadow(0 0 30px gold); }
         h1 { font-size: 3rem; letter-spacing: 10px; margin: 20px 0 10px; font-weight: 300; }
 
         /* BUTTONS */
@@ -38,28 +38,31 @@
 
         /* PORTFOLIO GRID */
         .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
-        .project-card { border: 1px solid rgba(212, 175, 55, 0.3); overflow: hidden; border-radius: 15px; height: 250px; position: relative; background: #080808; }
+        .project-card { border: 1px solid rgba(212, 175, 55, 0.3); overflow: hidden; border-radius: 15px; height: 250px; background: #080808; }
         .project-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.7s; opacity: 0.8; }
-        .project-card:hover img { transform: scale(1.15); opacity: 1; filter: contrast(110%); }
+        .project-card:hover img { transform: scale(1.1); opacity: 1; }
 
         /* ABOUT BOX */
         .about-box { max-width: 850px; margin: 0 auto; background: rgba(212, 175, 55, 0.03); padding: 50px; border-radius: 25px; border: 1px solid rgba(212, 175, 55, 0.1); line-height: 1.8; }
 
-        footer { text-align: center; padding: 60px; font-size: 0.9rem; border-top: 1px solid rgba(212, 175, 55, 0.1); background: #050505; }
+        footer { text-align: center; padding: 60px; font-size: 0.9rem; border-top: 1px solid rgba(212, 175, 55, 0.1); }
         .interest-link { color: #888; text-decoration: none; font-style: italic; transition: 0.3s; }
         .interest-link:hover { color: var(--gold); }
     </style>
 </head>
 <body>
 
+    <!-- Golden Dust Canvas -->
     <div id="dust-canvas"></div>
 
+    <!-- Sidebar -->
     <div class="sidebar">
         <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
         <a href="https://share.google" target="_blank"><i class="fas fa-briefcase"></i></a>
         <a href="https://wa.me" target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
 
+    <!-- Header Section -->
     <header>
         <img src="logo-animated.gif.gif" alt="KME Logo" class="logo" onclick="playVoice()" data-aos="zoom-in">
         <h1 data-aos="fade-down" data-aos-delay="300">KME LUXURY DESIGNS</h1>
@@ -70,6 +73,7 @@
         <audio id="voiceTag" src="mp3-output-ttsfree(dot)com.mp3"></audio>
     </header>
 
+    <!-- About Me Section with Correct Spelling -->
     <section id="about" data-aos="fade-up">
         <h2>About Me</h2>
         <div class="about-box">
@@ -78,6 +82,7 @@
         </div>
     </section>
 
+    <!-- Portfolio Section -->
     <section id="projects">
         <h2 data-aos="fade-up">Portfolio Highlights</h2>
         <div class="portfolio-grid">
@@ -91,22 +96,16 @@
         </div>
     </section>
 
+    <!-- Contact & Business Section -->
     <section id="contact" data-aos="zoom-in">
         <h2>Consultation</h2>
-        <p style="color: #888; margin-bottom: 30px;">Let’s elevate your brand to its luxury potential.</p>
-        
         <div style="margin-bottom: 40px;">
             <a href="https://wa.me" target="_blank" class="voice-btn" style="background:rgba(212,175,55,0.1); margin-right: 15px;">
-                <i class="fab fa-whatsapp"></i> INQUIRE VIA WHATSAPP
+                <i class="fab fa-whatsapp"></i> WHATSAPP ME
             </a>
             <a href="https://share.google" target="_blank" class="voice-btn">
-                <i class="fab fa-google"></i> VIEW BUSINESS PROFILE
+                <i class="fab fa-google"></i> BUSINESS PROFILE
             </a>
-        </div>
-
-        <div style="max-width: 600px; margin: 0 auto; border: 1px solid rgba(212, 175, 55, 0.2); padding: 20px; border-radius: 15px;">
-            <p style="font-size: 0.9rem; color: #D4AF37;">Verified Business on Google</p>
-            <p style="font-size: 0.8rem; color: #666;">Check reviews and location on our profile.</p>
         </div>
     </section>
 
@@ -115,12 +114,14 @@
         <p><a href="https://wordwall.net" target="_blank" class="interest-link">Explore Interactive Interests &gt;</a></p>
     </footer>
 
-    <!-- Scripts -->
+    <!-- Scripts (Animations & Effects සඳහා) -->
     <script src="https://unpkg.com"></script>
     <script>
         AOS.init({ duration: 1200, once: true });
+
         function playVoice() { document.getElementById('voiceTag').play(); }
         
+        // Golden Dust Particles Logic
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         document.getElementById('dust-canvas').appendChild(canvas);

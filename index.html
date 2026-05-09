@@ -233,4 +233,11 @@
         function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener('resize', resize); resize();
         let particles = [];
-        for(let i=0; i<60; i++) particles.push({x: Math.random()*canvas.width,
+        for(let i=0; i<60; i++) particles.push({x: Math.random()*canvas.width,// මේකෙන් වෙන්නේ පේජ් එක ලෝඩ් වෙද්දීම සේරම Sections පෙන්වන එක
+document.addEventListener("DOMContentLoaded", function() {
+    const reveals = document.querySelectorAll('.reveal');
+    reveals.forEach(el => {
+        el.classList.add('active'); // පේජ් එක ලෝඩ් වෙද්දීම active කරනවා
+    });
+});
+                                                

@@ -44,7 +44,6 @@
             text-transform: uppercase; margin-bottom: 40px; font-weight: 300;
         }
 
-        /* Sidebar Social Icons */
         .sidebar { 
             position: fixed; left: 0; top: 50%; transform: translateY(-50%);
             background: rgba(212, 175, 55, 0.05); padding: 15px 8px; 
@@ -70,7 +69,7 @@
         }
         .luxury-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(212, 175, 55, 0.4); }
 
-        /* Floating Magic Toolbar (Fixing the visibility) */
+        /* Floating Magic Toolbar */
         .magic-toolbar {
             position: fixed;
             right: 20px;
@@ -97,8 +96,6 @@
             backdrop-filter: blur(5px);
             box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
         }
-
-        .tool-icon:hover { background: var(--gold); color: #000; }
 
         .tool-panel {
             position: fixed;
@@ -155,7 +152,7 @@
 
     <div id="signup-panel" class="tool-panel">
         <h4 style="color:var(--gold)">VIP SIGN UP</h4>
-        <input type="text" placeholder="Name" style="width:90%; margin-bottom:10px; background:none; border:1px solid #333; color:#fff; padding:8px;">
+        <input type="text" placeholder="Name" id="vip-name" style="width:90%; margin-bottom:10px; background:none; border:1px solid #333; color:#fff; padding:8px;">
         <button class="luxury-btn" style="width:100%" onclick="alert('Signed Up!')">Register</button>
     </div>
 
@@ -188,56 +185,9 @@
     <section id="mini-game" class="reveal">
         <h3 style="color: var(--gold);">GOLDEN LEAF CATCHER</h3>
         <div id="game-canvas" style="width: 100%; height: 300px; background: #0a0a0a; border: 1px solid rgba(212,175,55,0.2); position: relative; overflow: hidden; border-radius: 15px;">
-            <div id="score" style="position: absolute; top: 10px; left: 10px; color: var(--gold);">Score: 0</div>
+            <div id="score-display" style="position: absolute; top: 10px; left: 10px; color: var(--gold);">Score: 0</div>
         </div>
-        <button class="luxury-btn" onclick="startCatchGame()" style="margin-top: 20px;">Play Now</button>
-    </section>
-
-    <footer>
-        &copy; 2026 KME LUXURY DESIGNS | CERTIFIED DESIGNER
-    </footer>
-
-    <script>
-        // Reveal Logic
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) { entry.target.classList.add('active'); }
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-
-        // Toolbar Logic
-        function togglePanel(panelId) {
-            document.querySelectorAll('.tool-panel').forEach(p => {
-                if(p.id !== panelId) p.classList.remove('panel-active');
-            });
-            document.getElementById(panelId).classList.toggle('panel-active');
-        }
-
-        function askSideAI() {
-            let q = document.getElementById('side-ask').value;
-            let c = document.getElementById('side-chat');
-            c.innerHTML += `<p style="color:var(--gold)">You: ${q}</p><p>AI: Processing luxury request...</p>`;
-            document.getElementById('side-ask').value = "";
-            c.scrollTop = c.scrollHeight;
-        }
-
-        function sideTranslate() {
-            let l = document.getElementById('side-lang').value;
-            alert("Switching language to: " + l);
-        }
-
-        // Particle System
-        const canvas = document.getElementById('dust-canvas');
-        const ctx = canvas.getContext('2d');
-        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        window.addEventListener('resize', resize); resize();
-        let particles = [];
-        for(let i=0; i<60; i++) particles.push({x: Math.random()*canvas.width,// මේකෙන් වෙන්නේ පේජ් එක ලෝඩ් වෙද්දීම සේරම Sections පෙන්වන එක
-document.addEventListener("DOMContentLoaded", function() {
-    const reveals = document.querySelectorAll('.reveal');
-    reveals.forEach(el => {
-        el.classList.add('active'); // පේජ් එක ලෝඩ් වෙද්දීම active කරනවා
-    });
-});
-                                                
+        <button class="luxury-btn" onclick="alert('Game logic would go here!')" style="margin-top: 20px;">Play Now</button>
+        </body>
+    </html>
+    

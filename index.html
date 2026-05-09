@@ -179,6 +179,14 @@
         <button class="luxury-btn" onclick="startQuiz()">Start the Quest</button>
     </div>
 </section>
+    <section id="mini-game" class="reveal" style="text-align: center; padding: 40px 10%;">
+    <h3 style="color: var(--gold); font-weight: 300;">GOLDEN LEAF CATCHER</h3>
+    <p style="color: #666; font-size: 13px;">Catch 10 Golden Leaves to unlock a surprise!</p>
+    <div id="game-canvas" style="width: 100%; height: 300px; background: #0a0a0a; border: 1px solid rgba(212,175,55,0.2); position: relative; overflow: hidden; border-radius: 15px; cursor: crosshair;">
+        <div id="score" style="position: absolute; top: 10px; left: 10px; color: var(--gold);">Score: 0</div>
+    </div>
+    <button class="luxury-btn" onclick="startCatchGame()" style="margin-top: 20px;">Play Now</button>
+</section>
 
     <section id="contact" class="reveal">
         <h2 style="color: var(--gold); font-weight: 300; letter-spacing: 4px;">CONSULTATION</h2>
@@ -270,6 +278,50 @@ function revealPrize(prize) {
         `;
         container.style.opacity = 1;
     }, 300);
+}
+        let score = 0;
+let gameActive = false;
+
+function startCatchGame() {
+    if(gameActive) return;
+    gameActive = true;
+    score = 0;
+    document.getElementById('score').innerText = "Score: 0";
+    
+    let gameInterval = setInterval(() => {
+        if(score >= 10) {
+            clearInterval(gameInterval);
+            gameActive = false;
+            alert("Amazing! You caught 10 Golden Leaves. Use code: GOLDENKME for 15% off!");
+            return;
+        }
+        createLeaf();
+    }, 800);
+}
+
+function createLeaf() {
+    const canvas = document.getElementById('game-canvas');
+    const leaf = document.createElement('div');
+    leaf.innerHTML = "🍃";
+    leaf.style.position = "absolute";
+    leaf.style.left = Math.random() * (canvas.offsetWidth - 30) + "px";
+    leaf.style.top = "-30px";
+    leaf.style.fontSize = "25px";
+    leaf.style.cursor = "pointer";
+    leaf.style.transition = "top 3s linear";
+    leaf.style.filter = "sepia(1) saturate(5) hue-rotate(10deg)"; // රත්තරන් පාට ගතියක් ගන්න
+    
+    canvas.appendChild(leaf);
+
+    setTimeout(() => { leaf.style.top = "330px"; }, 100);
+
+    leaf.onclick = () => {
+        score++;
+        document.getElementById('score').innerText = "Score: " + score;
+        leaf.remove();
+    };
+
+    setTimeout(() => { if(leaf) leaf.remove(); }, 3100);
 }
     </script>
 </body>

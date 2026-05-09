@@ -133,6 +133,45 @@
             }, 800);
             setTimeout(() => clearInterval(game), 15000);
         }
+        <div class="box">
+    <h4><i class="fas fa-coins"></i> PRO GAME: Gold Rush</h4>
+    <p style="font-size: 11px; color: #888;">Collect 50 gold coins in 30 seconds!</p>
+    <div id="gold-rush-board" style="height: 150px; background: #000; position: relative; overflow: hidden; border: 1px solid var(--gold); border-radius: 10px;">
+        <div id="gold-score" style="position:absolute; top:5px; left:5px; color:gold;">Gold: 0</div>
+    </div>
+    <button class="luxury-btn" style="font-size: 10px;" onclick="startGoldRush()">Start Rush</button>
+</div>
+
+<div class="box">
+    <h4><i class="fas fa-brain"></i> PRO GAME: Luxury Logic</h4>
+    <p style="font-size: 11px; color: #888;">Solve the puzzle to unlock design secrets.</p>
+    <div id="logic-box" style="padding: 10px; background: rgba(212,175,55,0.1); border-radius: 10px; margin-bottom:10px;">
+        <p id="logic-question" style="font-size: 14px; color: gold;">What is 12 x 12?</p>
+        <input type="number" id="logic-answer" placeholder="?" style="width: 40%; padding: 5px; background:none; border:1px solid var(--gold); color:white;">
+    </div>
+    <button class="luxury-btn" style="font-size: 10px;" onclick="checkLogic()">Check</button>
+</div>
+        let goldCount = 0;
+function startGoldRush() {
+    goldCount = 0;
+    document.getElementById('gold-score').innerText = "Gold: 0";
+    let rushInterval = setInterval(() => {
+        const board = document.getElementById('gold-rush-board');
+        const coin = document.createElement('div');
+        coin.innerHTML = "💰";
+        coin.style.cssText = `position:absolute; left:${Math.random()*90}%; top:${Math.random()*70}%; cursor:pointer; font-size:20px; transition: 0.3s;`;
+        board.appendChild(coin);
+        coin.onclick = () => { goldCount += 5; document.getElementById('gold-score').innerText = "Gold: " + goldCount; coin.remove(); };
+        setTimeout(() => coin.remove(), 1000);
+    }, 600);
+    setTimeout(() => { clearInterval(rushInterval); alert("👑 Game Over! Score: " + goldCount); }, 30000);
+}
+
+function checkLogic() {
+    const val = document.getElementById('logic-answer').value;
+    if(val == "144") { alert("✨ Brilliant! Logic Unlocked."); }
+    else { alert("❌ Try again, Master."); }
+}
     </script>
 </body>
 </html>

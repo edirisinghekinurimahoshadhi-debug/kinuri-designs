@@ -188,6 +188,77 @@
             <div id="score-display" style="position: absolute; top: 10px; left: 10px; color: var(--gold);">Score: 0</div>
         </div>
         <button class="luxury-btn" onclick="alert('Game logic would go here!')" style="margin-top: 20px;">Play Now</button>
-        </body>
-    </html>
-    
+    </section>
+
+    <footer>
+        &copy; 2026 KME LUXURY DESIGNS | CERTIFIED DESIGNER
+    </footer>
+
+    <script>
+        // 1. Page Load Logic (Fixing the black screen)
+        document.addEventListener("DOMContentLoaded", function() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                el.classList.add('active');
+            });
+        });
+
+        // 2. Toolbar Panel Toggle
+        function togglePanel(panelId) {
+            document.querySelectorAll('.tool-panel').forEach(p => {
+                if(p.id !== panelId) p.classList.remove('panel-active');
+            });
+            document.getElementById(panelId).classList.toggle('panel-active');
+        }
+
+        // 3. AI Side Helper
+        function askSideAI() {
+            let q = document.getElementById('side-ask').value;
+            let c = document.getElementById('side-chat');
+            if(!q) return;
+            c.innerHTML += `<p style="color:var(--gold)">You: ${q}</p><p>AI: Processing your luxury design request...</p>`;
+            document.getElementById('side-ask').value = "";
+            c.scrollTop = c.scrollHeight;
+        }
+
+        // 4. Translator alert
+        function sideTranslate() {
+            let l = document.getElementById('side-lang').value;
+            alert("Switching language to: " + l);
+        }
+
+        // 5. Dust/Particle System
+        const canvas = document.getElementById('dust-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        resize();
+
+        for(let i=0; i<60; i++) {
+            particles.push({
+                x: Math.random()*canvas.width,
+                y: Math.random()*canvas.height,
+                size: Math.random()*1.5,
+                speed: Math.random()*0.4,
+                opacity: Math.random()
+            });
+        }
+
+        function animateDust() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                ctx.fillStyle = `rgba(212, 175, 55, ${p.opacity})`;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+                ctx.fill();
+                p.y -= p.speed;
+                if(p.y < 0) p.y = canvas.height;
+            });
+            requestAnimationFrame(animateDust);
+        }
+        animateDust();
+    </script>
+</body>
+</html>

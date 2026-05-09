@@ -279,7 +279,8 @@ function revealPrize(prize) {
         container.style.opacity = 1;
     }, 300);
 }
-        let score = 0;
+        // --- LUXURY LEAF CATCHER (EASY VERSION) ---
+let score = 0;
 let gameActive = false;
 
 function startCatchGame() {
@@ -292,11 +293,12 @@ function startCatchGame() {
         if(score >= 10) {
             clearInterval(gameInterval);
             gameActive = false;
-            alert("Amazing! You caught 10 Golden Leaves. Use code: GOLDENKME for 15% off!");
+            // දිනුවාම එන මැසේජ් එක ලස්සනට පෙන්වන්න
+            revealGameSuccess();
             return;
         }
         createLeaf();
-    }, 800);
+    }, 1000); // තත්පරයකට එක කොළයක් බැගින් (හිමින්)
 }
 
 function createLeaf() {
@@ -304,24 +306,39 @@ function createLeaf() {
     const leaf = document.createElement('div');
     leaf.innerHTML = "🍃";
     leaf.style.position = "absolute";
-    leaf.style.left = Math.random() * (canvas.offsetWidth - 30) + "px";
-    leaf.style.top = "-30px";
-    leaf.style.fontSize = "25px";
+    leaf.style.left = Math.random() * (canvas.offsetWidth - 40) + "px";
+    leaf.style.top = "-50px";
+    leaf.style.fontSize = "35px"; // කොළය ලොකු කළා (අල්ලන්න ලේසියි)
     leaf.style.cursor = "pointer";
-    leaf.style.transition = "top 3s linear";
-    leaf.style.filter = "sepia(1) saturate(5) hue-rotate(10deg)"; // රත්තරන් පාට ගතියක් ගන්න
+    leaf.style.transition = "top 4s ease-in"; // වැටෙන වේගය තවත් අඩු කළා
+    leaf.style.filter = "drop-shadow(0 0 5px rgba(212,175,55,0.5)) sepia(1) saturate(3)"; 
     
     canvas.appendChild(leaf);
 
-    setTimeout(() => { leaf.style.top = "330px"; }, 100);
+    // වැටෙන්න පටන් ගන්න
+    setTimeout(() => { leaf.style.top = (canvas.offsetHeight + 50) + "px"; }, 100);
 
     leaf.onclick = () => {
         score++;
         document.getElementById('score').innerText = "Score: " + score;
-        leaf.remove();
+        leaf.style.transform = "scale(1.5)"; // ක්ලික් කළාම පොඩ්ඩක් ලොකු වෙන්න
+        leaf.style.opacity = "0";
+        setTimeout(() => { leaf.remove(); }, 200);
     };
 
-    setTimeout(() => { if(leaf) leaf.remove(); }, 3100);
+    // කොළය අහුවුණේ නැත්නම් අයින් කරන්න
+    setTimeout(() => { if(leaf.parentNode) leaf.remove(); }, 4500);
+}
+
+function revealGameSuccess() {
+    const canvas = document.getElementById('game-canvas');
+    canvas.innerHTML = `
+        <div style="margin-top: 100px; color: var(--gold); font-family: serif;">
+            <h3>MASTER CATCHER!</h3>
+            <p>You’ve unlocked 15% Off!</p>
+            <p style="font-size: 20px; letter-spacing: 2px;">CODE: <strong>GOLDENKME</strong></p>
+        </div>
+    `;
 }
     </script>
 </body>

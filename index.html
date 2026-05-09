@@ -170,6 +170,15 @@
             <button class="luxury-btn" onclick="sendFeedback()">Send via WhatsApp</button>
         </div>
     </section>
+    <section id="game-zone" class="reveal" style="background: rgba(212, 175, 175, 0.03); padding: 60px 10%; margin-top: 50px; border-top: 1px solid rgba(212, 175, 55, 0.1);">
+    <h2 style="color: var(--gold); font-weight: 300; letter-spacing: 4px;">THE LUXURY QUEST</h2>
+    <p style="color: #666; font-size: 14px; margin-bottom: 30px;">Discover your brand's true nature and win an exclusive reward.</p>
+    
+    <div id="game-container" class="content-box" style="min-height: 250px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <p id="game-text" style="color: #aaa; margin-bottom: 25px;">Are you ready to redefine your brand's future?</p>
+        <button class="luxury-btn" onclick="startQuiz()">Start the Quest</button>
+    </div>
+</section>
 
     <section id="contact" class="reveal">
         <h2 style="color: var(--gold); font-weight: 300; letter-spacing: 4px;">CONSULTATION</h2>
@@ -216,6 +225,52 @@
             requestAnimationFrame(animateDust);
         }
         animateDust();
+        // --- LUXURY QUEST GAME LOGIC ---
+
+function startQuiz() {
+    let container = document.getElementById('game-container');
+    container.style.opacity = 0;
+    setTimeout(() => {
+        container.innerHTML = `
+            <p style="color: var(--gold); margin-bottom: 20px;">1. Which aesthetic defines your vision?</p>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+                <button class="luxury-btn" onclick="showStep2('Royal Gold')">Royal Gold & Bold</button>
+                <button class="luxury-btn" onclick="showStep2('Minimal Silver')">Minimal & Silver</button>
+            </div>
+        `;
+        container.style.opacity = 1;
+    }, 300);
+}
+
+function showStep2(choice) {
+    let container = document.getElementById('game-container');
+    container.style.opacity = 0;
+    setTimeout(() => {
+        container.innerHTML = `
+            <p style="color: #aaa; margin-bottom: 20px;">Fascinating! A <strong>${choice}</strong> soul. Now, choose a Jackfruit leaf to reveal your surprise reward:</p>
+            <div style="display: flex; justify-content: center; gap: 30px; font-size: 50px;">
+                <span onclick="revealPrize('10% Off on Design')" style="cursor:pointer; filter: drop-shadow(0 0 10px rgba(212,175,55,0.3)); transition: 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">🍃</span>
+                <span onclick="revealPrize('Free Brand Audit')" style="cursor:pointer; filter: drop-shadow(0 0 10px rgba(212,175,55,0.3)); transition: 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">🍃</span>
+                <span onclick="revealPrize('Express Delivery')" style="cursor:pointer; filter: drop-shadow(0 0 10px rgba(212,175,55,0.3)); transition: 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">🍃</span>
+            </div>
+        `;
+        container.style.opacity = 1;
+    }, 300);
+}
+
+function revealPrize(prize) {
+    let container = document.getElementById('game-container');
+    container.style.opacity = 0;
+    setTimeout(() => {
+        container.innerHTML = `
+            <h3 style="color: var(--gold); margin-bottom: 10px;">DESTINY REVEALED!</h3>
+            <p style="color: #fff; margin-bottom: 20px;">You've unlocked: <span style="color: var(--gold);">${prize}</span></p>
+            <p style="font-size: 12px; margin-bottom: 20px;">Screenshot this and send to claim your reward.</p>
+            <a href="https://wa.me/94774799172?text=Hi Kinuri, I played the Luxury Quest and won ${prize}!" target="_blank" class="luxury-btn">Claim Reward via WhatsApp</a>
+        `;
+        container.style.opacity = 1;
+    }, 300);
+}
     </script>
 </body>
 </html>

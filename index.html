@@ -187,6 +187,13 @@
     </div>
     <button class="luxury-btn" onclick="startCatchGame()" style="margin-top: 20px;">Play Now</button>
 </section>
+    <div id="quick-key-area" style="text-align: center; margin-top: 25px;">
+    <p style="color: #444; font-size: 11px; margin-bottom: 5px;">Already have a Key?</p>
+    <div onclick="askForMoreGames()" style="font-size: 40px; cursor: pointer; display: inline-block; filter: drop-shadow(0 0 10px gold); transition: 0.3s;" onmouseover="this.style.transform='scale(1.2) rotate(-10deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'">
+        🔑
+    </div>
+    <p style="color: var(--gold); font-size: 12px; cursor: pointer;" onclick="askForMoreGames()">Unlock Pro Access</p>
+</div>
 
     <section id="contact" class="reveal">
         <h2 style="color: var(--gold); font-weight: 300; letter-spacing: 4px;">CONSULTATION</h2>
@@ -376,6 +383,49 @@
         function redirectToSubscription() {
             window.location.href = "subscription.html"; 
         }
+        // --- GOLDEN KEY & PRO LOGIC ---
+
+function askForMoreGames() {
+    // ගේම් එක ප්ලේ වෙමින් තිබුණොත් ඒක නවත්වනවා
+    if (typeof gameActive !== 'undefined') gameActive = false; 
+
+    const canvas = document.getElementById('game-canvas');
+    if (!canvas) return; // Canvas එක නැත්නම් error එකක් එන එක වළක්වන්න
+
+    canvas.style.opacity = 0;
+    setTimeout(() => {
+        canvas.innerHTML = `
+            <div style="margin-top: 80px; text-align: center; animation: fadeIn 0.8s;">
+                <h3 style="color: #fff; font-family: serif; letter-spacing: 2px;">THE LUXURY VAULT</h3>
+                <p style="color: #aaa; font-size: 14px; margin-bottom: 25px;">Do you want more interactive games & exclusive content?</p>
+                <div style="display: flex; justify-content: center; gap: 20px;">
+                    <button class="luxury-btn" onclick="redirectToSubscription()">YES</button>
+                    <button class="luxury-btn" style="background: transparent; border: 1px solid #444;" onclick="location.reload()">NO</button>
+                </div>
+            </div>
+        `;
+        canvas.style.opacity = 1;
+    }, 300);
+}
+
+function revealProKey() {
+    const canvas = document.getElementById('game-canvas');
+    if (!canvas) return;
+
+    canvas.innerHTML = `
+        <div style="margin-top: 80px; color: gold; text-align: center; animation: fadeIn 1.1s;">
+            <h2 style="letter-spacing: 3px;">QUEST COMPLETE!</h2>
+            <p style="color:#fff;">You earned the Golden Key.</p>
+            <div onclick="askForMoreGames()" style="font-size: 60px; cursor: pointer; filter: drop-shadow(0 0 15px gold); margin: 15px 0;">🔑</div>
+            <p style="font-size: 10px; color: gold;">Click the key to unlock the Pro Vault</p>
+        </div>
+    `;
+}
+
+function redirectToSubscription() {
+    // subscription.html පේජ් එකට යොමු කරනවා
+    window.location.href = "subscription.html"; 
+}
     </script>
 </body>
 </html>

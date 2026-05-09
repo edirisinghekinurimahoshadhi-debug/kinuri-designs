@@ -3,96 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME Pro Vault | Exclusive Access</title>
+    <title>KME Elite Fairy World | Pro Access</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #D4AF37; --black: #050505; }
+        :root { --gold: #D4AF37; --magic: #ff00ff; }
         
         body {
-            background: radial-gradient(circle at center, #1a1508 0%, #050505 70%, #000 100%);
+            background: #000;
             color: #fff;
             font-family: 'Segoe UI', sans-serif;
-            text-align: center;
             margin: 0;
-            padding: 40px 0; /* දිග පේජ් එකක් නිසා padding ටිකක් දැම්මා */
+            overflow-x: hidden;
+            transition: background 2s;
         }
 
-        .vault-container {
-            padding: 40px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(10px);
-            max-width: 600px;
-            margin: 0 auto 40px auto;
-            animation: fadeIn 1s ease-out;
+        /* Magic Intro Overlay */
+        #magic-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, #1a1508, #000);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            z-index: 100; transition: 1.5s;
         }
 
-        .portfolio-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-            gap: 20px; 
-            margin-top: 30px; 
+        /* Fairy World Container */
+        #fairy-world {
+            display: none;
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #2b002b 0%, #050505 70%);
+            padding: 40px 20px;
+            animation: fadeInWorld 3s ease-in;
         }
 
-        .content-box { 
-            border: 1px solid var(--gold); 
-            padding: 20px; 
-            border-radius: 15px; 
-            background: rgba(255,255,255,0.05); 
+        @keyframes fadeInWorld {
+            from { opacity: 0; filter: blur(20px); }
+            to { opacity: 1; filter: blur(0); }
         }
 
-        h1, h2 { color: var(--gold); letter-spacing: 5px; font-weight: 300; }
-        
         .luxury-btn {
-            display: inline-block;
-            background: var(--gold);
-            color: #000;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 12px;
-            letter-spacing: 2px;
-            transition: 0.4s;
-            margin: 10px;
-            cursor: pointer;
-            border: none;
+            background: transparent; color: var(--gold);
+            border: 2px solid var(--gold); padding: 15px 40px;
+            border-radius: 50px; cursor: pointer; font-weight: bold;
+            text-transform: uppercase; letter-spacing: 3px;
+            transition: 0.5s; position: relative; overflow: hidden;
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .luxury-btn:hover {
+            box-shadow: 0 0 30px var(--gold);
+            transform: scale(1.1);
+        }
+
+        /* Sparkling Dust Animation */
+        .sparkle {
+            position: absolute; background: white; border-radius: 50%;
+            pointer-events: none; animation: fly 3s linear forwards;
+        }
+
+        @keyframes fly {
+            to { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px; padding: 20px;
+            backdrop-filter: blur(10px); width: 280px;
+            transition: 0.4s;
+        }
+
+        .game-card:hover { border-color: var(--gold); transform: translateY(-10px); }
+
+        #memory-board {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 10px; max-width: 400px; margin: 20px auto;
+        }
+
+        .card {
+            aspect-ratio: 1/1; background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold); border-radius: 10px;
+            cursor: pointer; display: flex; align-items: center;
+            justify-content: center; font-size: 25px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="vault-container">
-        <div style="font-size: 50px; margin-bottom: 20px;">💎</div>
-        <h1>PRO VAULT ACCESS</h1>
-        <p>You have successfully unlocked the Elite Vault.</p>
-        
-        <h2 style="font-size: 1.2rem; margin-top: 40px;">EXCLUSIVE PRO FEATURES</h2>
-        
-        <div class="portfolio-grid">
-            <div class="content-box">
-                <h4>PRO GAME: Memory Match</h4>
-                <p style="font-size: 11px; color: #aaa;">Test your designer eye by matching luxury patterns.</p>
-                <button class="luxury-btn" style="font-size: 10px;" onclick="alert('Coming Soon!')">Play Now</button>
-            </div>
+    <div id="magic-overlay">
+        <h1 style="color: var(--gold); letter-spacing: 10px; text-shadow: 0 0 20px var(--gold);">THE PRO PORTAL</h1>
+        <p style="color: #666; margin-bottom: 30px;">Step into the world of magic and design.</p>
+        <button class="luxury-btn" onclick="enterFairyWorld()">Enter Fairy World ✨</button>
+    </div>
+
+    <div id="fairy-world">
+        <h1 style="color: var(--gold); font-weight: 300;">✨ ELITE FAIRY KINGDOM ✨</h1>
+        <p style="color: #ccc; margin-bottom: 50px;">Choose your quest, Master Designer.</p>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
             
-            <div class="content-box">
-                <h4>EXPORT SECRETS</h4>
-                <p style="font-size: 11px; color: #aaa;">Download our premium quality guide.</p>
-                <button class="luxury-btn" style="font-size: 10px;" onclick="alert('Downloading...')">Catalog</button>
+            <div class="game-card">
+                <div style="font-size: 40px; margin-bottom: 10px;">💎</div>
+                <h3>LUXURY MEMORY</h3>
+                <p style="font-size: 12px; color: #888;">Match the royal artifacts.</p>
+                <div id="memory-board"></div>
+                <button class="luxury-btn" style="font-size: 10px; padding: 8px 20px;" onclick="resetMemoryGame()">Reset</button>
             </div>
+
+            <div class="game-card">
+                <div style="font-size: 40px; margin-bottom: 10px;">🌟</div>
+                <h3>MAGIC RAIN</h3>
+                <p style="font-size: 12px; color: #888;">Catch the falling stars.</p>
+                <div style="height: 100px; display: flex; align-items: center; justify-content: center; color: var(--gold);">
+                    <p>Coming Soon...</p>
+                </div>
+            </div>
+
         </div>
 
-        <div style="margin-top: 40px;">
-            <a href="https://wa.me/94774799172?text=I am a Pro Member!" class="luxury-btn">Chat with Kinuri (VIP)</a>
-            <br>
-            <a href="index.html" style="color: #666; font-size: 11px; text-decoration: none;">Return to Home</a>
+        <div style="margin-top: 60px;">
+            <a href="index.html" style="color: var(--gold); text-decoration: none; font-size: 12px;">← Return to Mortal World</a>
         </div>
     </div>
 
+    <script>
+        // Enter World Transition
+        function enterFairyWorld() {
+            createSparkles();
+            const overlay = document.getElementById('magic-overlay');
+            overlay.style.opacity = '0';
+            overlay.style.transform = 'scale(2)';
+            
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                const world = document.getElementById('fairy-world');
+                world.style.display = 'block';
+                resetMemoryGame();
+            }, 1500);
+        }
+
+        // Particle Effect
+        function createSparkles() {
+            for(let i=0; i<100; i++) {
+                let s = document.createElement('div');
+                s.className = 'sparkle';
+                s.style.left = Math.random() * 100 + 'vw';
+                s.style.top = Math.random() * 100 + 'vh';
+                s.style.width = s.style.height = Math.random() * 5 + 'px';
+                s.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
+                s.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(s);
+            }
+        }
+
+        // Memory Game Logic
+        const icons = ['💎', '👑', '✨', '🏆', '💍', '💰', '💼', '⭐'];
+        let cards = [...icons, ...icons];
+        let flipped = [];
+        let matched = 0;
+
+        function resetMemoryGame() {
+            const board = document.getElementById('memory-board');
+            board.innerHTML = '';
+            matched = 0;
+            cards.sort(() => Math.random() - 0.5);
+            cards.forEach((icon, i) => {
+                const c = document.createElement('div');
+                c.className = 'card';
+                c.dataset.icon = icon;
+                c.onclick = () => {
+                    if (flipped.length < 2 && !c.innerText) {
+                        c.innerText = icon;
+                        c.style.background = 'rgba(212,175,55,0.4)';
+                        flipped.push(c);
+                        if (flipped.length === 2) checkMatch();
+                    }
+                };
+                board.appendChild(c);
+            });
+        }
+
+        function checkMatch() {
+            const [c1, c2] = flipped;
+            if (c1.dataset.icon === c2.dataset.icon) {
+                c1.style.borderColor = '#0f0';
+                c2.style.borderColor = '#0f0';
+                matched++;
+                flipped = [];
+                if (matched === icons.length) alert("✨ MAGIC MASTERED!");
+            } else {
+                setTimeout(() => {
+                    c1.innerText = ''; c2.innerText = '';
+                    c1.style.background = c2.style.background = 'rgba(212,175,55,0.1)';
+                    flipped = [];
+                }, 800);
+            }
+        }
+    </script>
 </body>
 </html>

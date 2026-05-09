@@ -3,119 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME Luxury Designs | Official Portfolio</title>
-    
+    <title>KME Luxury Designs</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <style>
         :root { --gold: #D4AF37; --black: #050505; }
-
         body { 
             background: radial-gradient(circle at center, #1a1508 0%, #050505 70%, #000 100%);
-            color: #fff; 
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            text-align: center; margin: 0; overflow-x: hidden;
+            color: #fff; font-family: 'Segoe UI', sans-serif; text-align: center; margin: 0; overflow-x: hidden;
         }
-
         #dust-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s ease-out; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s; }
         .reveal.active { opacity: 1; transform: translateY(0); }
-
-        .logo-container { margin: 80px auto 10px auto; position: relative; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; }
-        .logo-container img { width: 85%; z-index: 2; filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4)); animation: float 4s ease-in-out infinite; }
-        .logo-glow-main { position: absolute; width: 150%; height: 150%; background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 60%); z-index: 1; animation: pulseGlow 6s infinite alternate; }
-
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-        @keyframes pulseGlow { 0% { transform: scale(0.8); opacity: 0.5; } 100% { transform: scale(1.2); opacity: 1; } }
-
-        .brand-name { font-size: 2.2rem; color: var(--gold); letter-spacing: 8px; text-transform: uppercase; margin-bottom: 40px; font-weight: 300; }
-
-        .sidebar { position: fixed; left: 0; top: 50%; transform: translateY(-50%); background: rgba(212, 175, 55, 0.05); padding: 15px 8px; border-radius: 0 15px 15px 0; z-index: 100; border: 1px solid rgba(212, 175, 55, 0.1); backdrop-filter: blur(10px); }
-        .sidebar a { display: block; color: var(--gold); margin: 15px 0; font-size: 20px; text-decoration: none; transition: 0.3s; }
-        .sidebar a:hover { color: #fff; transform: scale(1.2); }
-
-        section { padding: 80px 10%; border-bottom: 1px solid rgba(212, 175, 55, 0.05); }
-
-        .content-box { max-width: 700px; margin: 0 auto; line-height: 1.8; color: #aaa; border: 1px solid rgba(212, 175, 55, 0.1); padding: 35px; border-radius: 20px; background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(5px); transition: 0.5s; }
-
-        .feedback-input { width: 100%; padding: 12px; margin-bottom: 15px; background: #0c0c0c; border: 1px solid rgba(212, 175, 55, 0.2); color: #fff; border-radius: 10px; outline: none; box-sizing: border-box; }
-        
-        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; }
-        .project-card { border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 15px; overflow: hidden; height: 220px; background: #000; position: relative; }
-        .project-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; opacity: 0.7; }
-        .project-card:hover img { transform: scale(1.1); opacity: 1; }
-
-        .luxury-btn { display: inline-block; background: transparent; color: var(--gold); border: 1px solid var(--gold); padding: 12px 35px; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; border-radius: 50px; transition: 0.4s; cursor: pointer; margin: 10px; }
-        .luxury-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(212, 175, 55, 0.4); }
-
-        footer { padding: 40px; color: #444; font-size: 11px; letter-spacing: 1px; }
+        .logo-container { margin: 50px auto; width: 150px; }
+        .logo-container img { width: 100%; filter: drop-shadow(0 0 15px var(--gold)); }
+        .brand-name { font-size: 1.8rem; color: var(--gold); letter-spacing: 5px; }
+        section { padding: 50px 10%; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
+        .content-box { max-width: 600px; margin: 0 auto; border: 1px solid var(--gold); padding: 25px; border-radius: 15px; background: rgba(0,0,0,0.3); }
+        .luxury-btn { display: inline-block; border: 1px solid var(--gold); color: var(--gold); padding: 10px 25px; text-decoration: none; border-radius: 25px; cursor: pointer; margin: 10px; background: transparent; transition: 0.3s; }
+        .luxury-btn:hover { background: var(--gold); color: #000; }
+        #game-canvas { width: 100%; height: 300px; background: #0a0a0a; border: 1px solid var(--gold); position: relative; overflow: hidden; border-radius: 10px; margin-top: 20px; }
     </style>
 </head>
 <body>
-
     <canvas id="dust-canvas"></canvas>
-
-    <div class="sidebar">
-        <a href="https://www.linkedin.com/in/kinuri-mahoshadhi-edirisinghe-9b4921405" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="https://wa.me/94774799172" target="_blank"><i class="fab fa-whatsapp"></i></a>
-    </div>
-
-    <div class="logo-container reveal">
-        <div class="logo-glow-main"></div>
-        <img src="./logo-animated.gif.gif" alt="KME Logo">
-    </div>
     
-    <h1 class="brand-name reveal">KME LUXURY DESIGNS</h1>
+    <div class="logo-container reveal active">
+        <img src="logo-animated.gif" alt="KME Logo">
+    </div>
+    <h1 class="brand-name reveal active">KME LUXURY DESIGNS</h1>
 
-    <section id="about" class="reveal">
-        <h2 style="color: var(--gold); font-weight: 300; letter-spacing: 4px;">DESIGNER PROFILE</h2>
-        <div class="content-box">
-            I am <strong style="color: var(--gold);">Kinuri Edirisinghe</strong>, a 14-year-old visionary Graphic Designer. Certified in Canva Design Essentials, I specialize in crafting high-end visual identities that exude gold standard luxury.
-        </div>
-    </section>
-
-    <section id="projects" class="reveal">
-        <h2 style="color: var(--gold); font-weight: 300; letter-spacing: 4px;">SELECTED PROJECTS</h2>
-        <div class="portfolio-grid">
-            <div class="project-card"><img src="1.jpg.png" alt="P1"></div>
-            <div class="project-card"><img src="2.png" alt="P2"></div>
-            <div class="project-card"><img src="3.png" alt="P3"></div>
-            <div class="project-card"><img src="LIFE BLOOD NATURE.png" alt="P4"></div>
-        </div>
-        <div style="margin-top: 40px;">
-            <a href="https://canva.link/xawfs47c04lmskd" target="_blank" class="luxury-btn">Explore Full Portfolio</a>
-        </div>
-    </section>
-
-    <section id="exports" class="reveal">
-        <h2 style="color: var(--gold); font-weight: 300; letter-spacing: 4px;">OUR EXPORT VENTURES</h2>
-        <div class="portfolio-grid">
-            <div class="project-card">
-                <img src="Gemini_Generated_Image_zc8ozgzc8ozgzc8o.png" alt="Ceylon AquaLeaf">
-                <div style="position: absolute; bottom: 0; background: rgba(0,0,0,0.8); width: 100%; padding: 10px; font-size: 12px; color: var(--gold);">CEYLON AQUALEAF (JACKFRUIT LEAVES)</div>
-            </div>
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1599940859674-a7fef05b94ae?auto=format&fit=crop&q=80&w=500" alt="Ceylon Spices">
-                <div style="position: absolute; bottom: 0; background: rgba(0,0,0,0.8); width: 100%; padding: 10px; font-size: 12px; color: var(--gold);">PREMIUM CEYLON SPICES</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="game-zone" class="reveal">
-        <h2 style="color: var(--gold); font-weight: 300; letter-spacing: 4px;">THE LUXURY QUEST</h2>
+    <section id="game-zone" class="reveal active">
+        <h2 style="color: var(--gold);">THE LUXURY QUEST</h2>
         <div id="game-container" class="content-box">
-            <p id="game-text">Are you ready to redefine your brand's future?</p>
-            <button class="luxury-btn" onclick="startQuiz()">Start the Quest</button>
+            <p>Ready to discover your brand's future?</p>
+            <button class="luxury-btn" onclick="startQuiz()">Start Quiz</button>
         </div>
     </section>
 
-    <section id="mini-game" class="reveal">
-        <h3 style="color: var(--gold); font-weight: 300;">GOLDEN LEAF CATCHER</h3>
-        <div id="game-canvas" style="width: 100%; height: 350px; background: #0a0a0a; border: 1px solid rgba(212,175,55,0.2); position: relative; overflow: hidden; border-radius: 15px; cursor: crosshair;">
-            <div id="score" style="position: absolute; top: 10px; left: 10px; color: var(--gold); z-index: 20;">Level: 1 | Score: 0/10</div>
+    <section id="mini-game" class="reveal active">
+        <h3 style="color: var(--gold);">GOLDEN LEAF CATCHER</h3>
+        <div id="game-canvas">
+            <div id="score" style="position: absolute; top: 10px; left: 10px; color: var(--gold); z-index: 5;">Level: 1 | Score: 0/10</div>
         </div>
         <button class="luxury-btn" onclick="startCatchGame()">Play Now</button>
-        
-        <div id="quick-key-area" style="text-align: center; margin-top: 20px;">
-            <p style="color:
+        <div onclick="askForMoreGames()" style="cursor:pointer; margin-top:15px;">🔑 <span style="color:var(--gold); font-size:12px;">Unlock Pro</span></div>
+    </section>
+
+    <script>
+        // Particle Background
+        const canvasD = document.getElementById('dust-canvas');
+        const ctxD = canvasD.getContext('2d');
+        function res() { canvasD.width = window.innerWidth; canvasD.height = window.innerHeight; }
+        window.onresize = res; res();
+        let pts = [];
+        for(let i=0; i<50; i++) pts.push({x:Math.random()*canvasD.width, y:Math.random()*canvasD.height, s:Math.random()*1, sp:Math.random()*0.5});
+        function anim() {
+            ctxD.clearRect(0,0,canvasD.width,canvasD.height);
+            pts.forEach(p => {
+                ctxD.fillStyle = "rgba(212,175,55,0.3)";
+                ctxD.beginPath(); ctxD.arc(p.x, p.y, p.s, 0, 7); ctxD.fill();
+                p.y -= p.sp; if(p.y<0) p.y=canvasD.height;
+            });
+            requestAnimationFrame(anim);
+        }
+        anim();
+
+        // Quiz
+        function startQuiz() {
+            document.getElementById('game-container').innerHTML = `
+                <p>Pick your Style:</p>
+                <button class="luxury-btn" onclick="revealP('10% Off')">Gold</button>
+                <button class="luxury-btn" onclick="revealP('Free Audit')">Silver</button>`;
+        }
+        function revealP(p) {
+            document.getElementById('game-container').innerHTML = `<h3 style="color:gold">${p} Won!</h3>`;
+        }
+
+        // Game Catch
+        let score = 0; let gActive = false; let lvl = 1;
+        function startCatchGame() {
+            if(gActive) return; gActive = true; score = 0; lvl = 1;
+            runLoop();
+        }
+        function runLoop() {
+            let loop = setInterval(() => {
+                if(!gActive) { clearInterval(loop); return; }
+                if(score>=10) { 
+                    if(lvl<3) { lvl++; score=0; alert("Level Up!"); }
+                    else { gActive=false; revealKey(); clearInterval(loop); return; }
+                }
+                createL();
+            }, 1000);
+        }
+        function createL() {
+            const cvs = document.getElementById('game-canvas');
+            const leaf = document.createElement('div');
+            const bad = Math.random() < 0.2;
+            leaf.innerHTML = bad ? "🍂" : "🍃";
+            leaf.style.cssText = `position:absolute; left:${Math.random()*(cvs.offsetWidth-40)}px; top:-40px; font-size:40px; cursor:pointer; transition:top 3s linear;`;
+            if(bad) leaf.style.filter = "sepia(1) saturate(5) hue-rotate(-50deg)";
+            cvs.appendChild(leaf);
+            setTimeout(() => leaf.style.top = "310px", 50);
+            leaf.onclick = () => { if(bad) score-=2; else score++; document.getElementById('score').innerText = `Level: ${lvl} | Score: ${score}/10`; leaf.remove(); };
+            setTimeout(() => { if(leaf.parentNode) leaf.remove(); }, 3000);
+        }
+        function revealKey() {
+            document.getElementById('game-canvas').innerHTML = `<div style="margin-top:100px; color:gold;" onclick="askForMoreGames()"><h2>DONE!</h2><div style="font-size:50px; cursor:pointer;">🔑</div></div>`;
+        }
+        function askForMoreGames() {
+            document.getElementById('game-canvas').innerHTML = `<div style="margin-top:80px;"><h3>Go Pro?</h3><button class="luxury-btn" onclick="window.location.href='subscription.html'">YES</button><button class="luxury-btn" onclick="location.reload()">NO</button></div>`;
+        }
+    </script>
+</body>
+</html>

@@ -390,6 +390,54 @@ function redirectToSubscription() {
     // දැනට මම හදපු අලුත් පේජ් එකට (subscription.html) යන්න ලින්ක් එක දානවා
     window.location.href = "subscription.html"; 
 }
+        function createProLeaf() {
+    const canvas = document.getElementById('game-canvas');
+    const leafContainer = document.createElement('div'); // අලුත් Container එකක්
+    
+    const isBad = Math.random() < 0.25;
+    
+    // මේක තමයි රහස: පේන කොළයට වඩා ලොකු නොපෙනෙන box එකක් හදනවා
+    leafContainer.style.width = "60px"; 
+    leafContainer.style.height = "60px";
+    leafContainer.style.display = "flex";
+    leafContainer.style.justifyContent = "center";
+    leafContainer.style.alignItems = "center";
+    leafContainer.style.position = "absolute";
+    leafContainer.style.cursor = "pointer";
+    leafContainer.style.zIndex = "10";
+    
+    // කොළයේ පෙනුම
+    const leafIcon = document.createElement('span');
+    leafIcon.innerHTML = isBad ? "🍂" : "🍃";
+    leafIcon.style.fontSize = "40px"; // කොළය පොඩ්ඩක් ලොකු කළා
+    leafIcon.style.filter = isBad ? "drop-shadow(0 0 10px red)" : "drop-shadow(0 0 10px gold)";
+    leafContainer.appendChild(leafIcon);
+
+    leafContainer.style.left = Math.random() * (canvas.offsetWidth - 60) + "px";
+    leafContainer.style.top = "-60px";
+    leafContainer.style.transition = `top ${leafSpeed/1000}s linear`;
+    
+    canvas.appendChild(leafContainer);
+    setTimeout(() => { leafContainer.style.top = "350px"; }, 100);
+
+    // දැන් Container එක එබුවම කොළය මැද හරියටම නැතත් අහුවෙනවා
+    leafContainer.onclick = (e) => {
+        e.stopPropagation(); // එකම වෙලාවේ දෙපාරක් ක්ලික් වීම වැළැක්වීමට
+        if(isBad) {
+            score = Math.max(0, score - 2);
+            updateStatus();
+            leafIcon.style.transform = "scale(1.5)";
+        } else {
+            score++;
+            updateStatus();
+        }
+        leafContainer.style.pointerEvents = "none"; // ආයෙ ක්ලික් කරන්න බැරි වෙන්න
+        leafIcon.style.transform = "scale(0)";
+        setTimeout(() => { leafContainer.remove(); }, 200);
+    };
+
+    setTimeout(() => { if(leafContainer.parentNode) leafContainer.remove(); }, leafSpeed + 500);
+}
     </script>
 </body>
 </html>

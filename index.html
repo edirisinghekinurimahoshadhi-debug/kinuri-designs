@@ -358,13 +358,7 @@
             setTimeout(() => { if(leafContainer.parentNode) leafContainer.remove(); }, leafSpeed + 500);
         }
 
-        <div id="quick-key-area" style="text-align: center; margin-top: 25px;">
-    <p style="color: #444; font-size: 11px;">Already have a Key?</p>
-    <div onclick="askForMoreGames()" style="font-size: 40px; cursor: pointer; display: inline-block; filter: drop-shadow(0 0 10px gold); transition: 0.3s;" onmouseover="this.style.transform='scale(1.2) rotate(-10deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'">
-        🔑
-    </div>
-    <p style="color: var(--gold); font-size: 12px; cursor: pointer;" onclick="askForMoreGames()">Unlock Pro Access</p>
-</div>
+       
         function askForMoreGames() {
             gameActive = false;
             const canvas = document.getElementById('game-canvas');

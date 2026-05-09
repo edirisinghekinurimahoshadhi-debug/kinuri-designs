@@ -279,26 +279,53 @@ function revealPrize(prize) {
         container.style.opacity = 1;
     }, 300);
 }
-        // --- LUXURY LEAF CATCHER (EASY VERSION) ---
-let score = 0;
+      let score = 0;
 let gameActive = false;
+let currentLevel = 1;
+let leafSpeed = 4000; // ආරම්භක වේගය (4s)
+let spawnRate = 1000; // කොළ වැටෙන පරතරය
 
 function startCatchGame() {
     if(gameActive) return;
     gameActive = true;
     score = 0;
-    document.getElementById('score').innerText = "Score: 0";
-    
+    currentLevel = 1;
+    leafSpeed = 4000;
+    spawnRate = 1000;
+    updateStatus();
+    runGameLoop();
+}
+
+function updateStatus() {
+    document.getElementById('score').innerHTML = `Level: ${currentLevel} | Score: ${score}/10`;
+}
+
+function runGameLoop() {
     let gameInterval = setInterval(() => {
-        if(score >= 10) {
+        if (!gameActive) {
             clearInterval(gameInterval);
+            return;
+        }
+
+        // Level Up Logic
+        if (score >= 10 && currentLevel < 3) {
+            currentLevel++;
+            score = 0;
+            leafSpeed -= 1000; // වේගය වැඩි කරනවා
+            spawnRate -= 200;  // කොළ එන පරතරය අඩු කරනවා
+            alert("LEVEL UP! Get ready for Level " + currentLevel);
+            updateStatus();
+            clearInterval(gameInterval);
+            runGameLoop(); // අලුත් වේගයෙන් ලූප් එක පටන් ගන්නවා
+        } else if (score >= 10 && currentLevel === 3) {
             gameActive = false;
-            // දිනුවාම එන මැසේජ් එක ලස්සනට පෙන්වන්න
+            clearInterval(gameInterval);
             revealGameSuccess();
             return;
         }
+
         createLeaf();
-    }, 1000); // තත්පරයකට එක කොළයක් බැගින් (හිමින්)
+    }, spawnRate);
 }
 
 function createLeaf() {
@@ -308,35 +335,33 @@ function createLeaf() {
     leaf.style.position = "absolute";
     leaf.style.left = Math.random() * (canvas.offsetWidth - 40) + "px";
     leaf.style.top = "-50px";
-    leaf.style.fontSize = "35px"; // කොළය ලොකු කළා (අල්ලන්න ලේසියි)
+    leaf.style.fontSize = (40 - currentLevel * 5) + "px"; // ලෙවල් එක වැඩි වෙද්දී කොළ පොඩි වෙනවා
     leaf.style.cursor = "pointer";
-    leaf.style.transition = "top 4s ease-in"; // වැටෙන වේගය තවත් අඩු කළා
-    leaf.style.filter = "drop-shadow(0 0 5px rgba(212,175,55,0.5)) sepia(1) saturate(3)"; 
+    leaf.style.transition = `top ${leafSpeed/1000}s linear`; 
+    leaf.style.filter = "drop-shadow(0 0 10px rgba(212,175,55,0.4)) sepia(1) saturate(3)";
     
     canvas.appendChild(leaf);
 
-    // වැටෙන්න පටන් ගන්න
-    setTimeout(() => { leaf.style.top = (canvas.offsetHeight + 50) + "px"; }, 100);
+    setTimeout(() => { leaf.style.top = "350px"; }, 100);
 
     leaf.onclick = () => {
         score++;
-        document.getElementById('score').innerText = "Score: " + score;
-        leaf.style.transform = "scale(1.5)"; // ක්ලික් කළාම පොඩ්ඩක් ලොකු වෙන්න
-        leaf.style.opacity = "0";
+        updateStatus();
+        leaf.style.transform = "scale(0)";
         setTimeout(() => { leaf.remove(); }, 200);
     };
 
-    // කොළය අහුවුණේ නැත්නම් අයින් කරන්න
-    setTimeout(() => { if(leaf.parentNode) leaf.remove(); }, 4500);
+    setTimeout(() => { if(leaf.parentNode) leaf.remove(); }, leafSpeed + 500);
 }
 
 function revealGameSuccess() {
     const canvas = document.getElementById('game-canvas');
     canvas.innerHTML = `
-        <div style="margin-top: 100px; color: var(--gold); font-family: serif;">
-            <h3>MASTER CATCHER!</h3>
-            <p>You’ve unlocked 15% Off!</p>
-            <p style="font-size: 20px; letter-spacing: 2px;">CODE: <strong>GOLDENKME</strong></p>
+        <div style="margin-top: 80px; color: var(--gold); animation: fadeIn 1s;">
+            <h2 style="letter-spacing: 5px;">GRAND MASTER</h2>
+            <p>You conquered all levels!</p>
+            <p style="font-size: 22px; border: 1px dashed var(--gold); padding: 10px; display: inline-block;">CODE: <strong>LUXURYKME</strong></p>
+            <p style="font-size: 12px; margin-top: 10px;">Send this code to WhatsApp for a 20% Surprise.</p>
         </div>
     `;
 }

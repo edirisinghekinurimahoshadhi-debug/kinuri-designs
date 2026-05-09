@@ -32,8 +32,7 @@
         .box { background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.2); padding: 25px; border-radius: 15px; backdrop-filter: blur(10px); }
         input, select { background: transparent; border: 1px solid var(--gold); color: white; padding: 10px; border-radius: 5px; width: 80%; margin: 5px; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        /* Game Canvas */
-        #rain-canvas { width: 100%; height: 200px; background: rgba(0,0,0,0.5); border-radius: 10px; position: relative; overflow: hidden; border: 1px dashed var(--gold); }
+        #rain-canvas, #gold-rush-board { width: 100%; height: 200px; background: rgba(0,0,0,0.5); border-radius: 10px; position: relative; overflow: hidden; border: 1px dashed var(--gold); }
     </style>
 </head>
 <body>
@@ -49,7 +48,6 @@
         <div class="grid">
             <div class="box">
                 <h4><i class="fas fa-gem"></i> PRO GAME: Diamond Rain</h4>
-                <p style="font-size: 11px; color: #888;">Catch the falling diamonds!</p>
                 <div id="rain-canvas">
                     <div id="rain-score" style="position:absolute; top:5px; left:5px; font-size:12px; color:var(--gold);">Score: 0</div>
                 </div>
@@ -57,29 +55,27 @@
             </div>
 
             <div class="box">
-                <h4><i class="fas fa-robot"></i> KME AI HELPER</h4>
-                <div id="chat" style="height:100px; overflow-y:auto; font-size:11px; text-align:left; background:#000; padding:10px; margin-bottom:10px;">
-                    AI: Welcome! Ask me about design or exports.
+                <h4><i class="fas fa-coins"></i> PRO GAME: Gold Rush</h4>
+                <div id="gold-rush-board">
+                    <div id="gold-score" style="position:absolute; top:5px; left:5px; color:gold;">Gold: 0</div>
                 </div>
+                <button class="luxury-btn" style="font-size: 10px;" onclick="startGoldRush()">Start Rush</button>
+            </div>
+
+            <div class="box">
+                <h4><i class="fas fa-brain"></i> PRO GAME: Luxury Logic</h4>
+                <div id="logic-box" style="padding: 10px; background: rgba(212,175,55,0.1); border-radius: 10px; margin-bottom:10px;">
+                    <p id="logic-question" style="font-size: 14px; color: gold;">What is 12 x 12?</p>
+                    <input type="number" id="logic-answer" placeholder="?">
+                </div>
+                <button class="luxury-btn" style="font-size: 10px;" onclick="checkLogic()">Check</button>
+            </div>
+
+            <div class="box">
+                <h4><i class="fas fa-robot"></i> KME AI HELPER</h4>
+                <div id="chat" style="height:100px; overflow-y:auto; font-size:11px; text-align:left; background:#000; padding:10px; margin-bottom:10px;">AI: Welcome!</div>
                 <input type="text" id="ask" placeholder="Type here...">
                 <button class="luxury-btn" style="font-size: 10px;" onclick="askAI()">Ask</button>
-            </div>
-
-            <div class="box">
-                <h4><i class="fas fa-language"></i> TRANSLATOR</h4>
-                <select id="lang" onchange="translateSite()">
-                    <option value="en">English</option>
-                    <option value="si">Sinhala</option>
-                    <option value="fr">French</option>
-                </select>
-                <p id="t-status" style="font-size: 11px; margin-top: 10px;">Select Language</p>
-            </div>
-
-            <div class="box">
-                <h4><i class="fas fa-user-plus"></i> JOIN THE VAULT</h4>
-                <input type="text" placeholder="Your Name">
-                <input type="email" placeholder="Your Email">
-                <button class="luxury-btn" onclick="alert('Welcome to the Elite List!')">Sign Up</button>
             </div>
         </div>
 
@@ -95,28 +91,16 @@
             }, 1000);
         }
 
-        // AI Helper Logic
         function askAI() {
             let q = document.getElementById('ask').value.toLowerCase();
             let c = document.getElementById('chat');
-            let a = "AI: I can help you with branding. Contact Kinuri for more.";
+            let a = "AI: I can help you with branding.";
             if(q.includes("hi")) a = "AI: Hello Master Designer!";
-            if(q.includes("export")) a = "AI: We export premium Jackfruit leaves & Pepper.";
             c.innerHTML += `<p style="color:var(--gold)">Me: ${q}</p><p>${a}</p>`;
             document.getElementById('ask').value = "";
             c.scrollTop = c.scrollHeight;
         }
 
-        // Translator Logic
-        function translateSite() {
-            let l = document.getElementById('lang').value;
-            let s = document.getElementById('t-status');
-            if(l === 'si') s.innerText = "දැන් පවතින්නේ සිංහල භාෂාවෙන්";
-            else if(l === 'fr') s.innerText = "Maintenant en Français";
-            else s.innerText = "Now in English";
-        }
-
-        // DIAMOND RAIN GAME
         let rScore = 0;
         function startRain() {
             rScore = 0;
@@ -131,47 +115,30 @@
                 gem.onclick = () => { rScore++; document.getElementById('rain-score').innerText = "Score: " + rScore; gem.remove(); };
                 setTimeout(() => gem.remove(), 2000);
             }, 800);
-            setTimeout(() => clearInterval(game), 15000);
+            setTimeout(() => { clearInterval(game); alert("Done! Score: " + rScore); }, 15000);
         }
-        <div class="box">
-    <h4><i class="fas fa-coins"></i> PRO GAME: Gold Rush</h4>
-    <p style="font-size: 11px; color: #888;">Collect 50 gold coins in 30 seconds!</p>
-    <div id="gold-rush-board" style="height: 150px; background: #000; position: relative; overflow: hidden; border: 1px solid var(--gold); border-radius: 10px;">
-        <div id="gold-score" style="position:absolute; top:5px; left:5px; color:gold;">Gold: 0</div>
-    </div>
-    <button class="luxury-btn" style="font-size: 10px;" onclick="startGoldRush()">Start Rush</button>
-</div>
 
-<div class="box">
-    <h4><i class="fas fa-brain"></i> PRO GAME: Luxury Logic</h4>
-    <p style="font-size: 11px; color: #888;">Solve the puzzle to unlock design secrets.</p>
-    <div id="logic-box" style="padding: 10px; background: rgba(212,175,55,0.1); border-radius: 10px; margin-bottom:10px;">
-        <p id="logic-question" style="font-size: 14px; color: gold;">What is 12 x 12?</p>
-        <input type="number" id="logic-answer" placeholder="?" style="width: 40%; padding: 5px; background:none; border:1px solid var(--gold); color:white;">
-    </div>
-    <button class="luxury-btn" style="font-size: 10px;" onclick="checkLogic()">Check</button>
-</div>
         let goldCount = 0;
-function startGoldRush() {
-    goldCount = 0;
-    document.getElementById('gold-score').innerText = "Gold: 0";
-    let rushInterval = setInterval(() => {
-        const board = document.getElementById('gold-rush-board');
-        const coin = document.createElement('div');
-        coin.innerHTML = "💰";
-        coin.style.cssText = `position:absolute; left:${Math.random()*90}%; top:${Math.random()*70}%; cursor:pointer; font-size:20px; transition: 0.3s;`;
-        board.appendChild(coin);
-        coin.onclick = () => { goldCount += 5; document.getElementById('gold-score').innerText = "Gold: " + goldCount; coin.remove(); };
-        setTimeout(() => coin.remove(), 1000);
-    }, 600);
-    setTimeout(() => { clearInterval(rushInterval); alert("👑 Game Over! Score: " + goldCount); }, 30000);
-}
+        function startGoldRush() {
+            goldCount = 0;
+            document.getElementById('gold-score').innerText = "Gold: 0";
+            let rushInterval = setInterval(() => {
+                const board = document.getElementById('gold-rush-board');
+                const coin = document.createElement('div');
+                coin.innerHTML = "💰";
+                coin.style.cssText = `position:absolute; left:${Math.random()*90}%; top:${Math.random()*70}%; cursor:pointer; font-size:20px; transition: 0.3s;`;
+                board.appendChild(coin);
+                coin.onclick = () => { goldCount += 5; document.getElementById('gold-score').innerText = "Gold: " + goldCount; coin.remove(); };
+                setTimeout(() => coin.remove(), 1000);
+            }, 600);
+            setTimeout(() => { clearInterval(rushInterval); alert("👑 Rush Over! Gold: " + goldCount); }, 15000);
+        }
 
-function checkLogic() {
-    const val = document.getElementById('logic-answer').value;
-    if(val == "144") { alert("✨ Brilliant! Logic Unlocked."); }
-    else { alert("❌ Try again, Master."); }
-}
+        function checkLogic() {
+            const val = document.getElementById('logic-answer').value;
+            if(val == "144") { alert("✨ Brilliant! Logic Unlocked."); }
+            else { alert("❌ Try again, Master."); }
+        }
     </script>
 </body>
 </html>

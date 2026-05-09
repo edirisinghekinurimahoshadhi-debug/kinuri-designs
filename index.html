@@ -360,16 +360,35 @@ function createProLeaf() {
 
 function revealProUnlock() {
     const canvas = document.getElementById('game-canvas');
+    // ගේම් එක ඉවර වුණාම රන්වන් යතුර පෙන්වීම
     canvas.innerHTML = `
-        <div style="margin-top: 50px; color: gold; animation: pulse 2s infinite;">
-            <h2>PRO STATUS UNLOCKED! 💎</h2>
-            <p>You have mastered the nature quest.</p>
-            <div style="background: rgba(255,215,0,0.1); border: 1px solid gold; padding: 15px; margin: 10px;">
-                <p style="font-size: 12px; color: #fff;">Coming Soon: The KME Vault</p>
-                <button class="luxury-btn" style="font-size: 10px;">Apply for Pro Subscription</button>
+        <div id="pro-step-1" style="margin-top: 50px; animation: fadeIn 1s;">
+            <h2 style="color: gold;">QUEST COMPLETE!</h2>
+            <p style="color: #fff;">You've earned the Golden Key.</p>
+            <div onclick="askForMoreGames()" style="font-size: 60px; cursor: pointer; filter: drop-shadow(0 0 15px gold);" title="Click to claim">🔑</div>
+            <p style="font-size: 10px; color: gold; margin-top: 10px;">Click the key to proceed</p>
+        </div>
+    `;
+}
+
+function askForMoreGames() {
+    const canvas = document.getElementById('game-canvas');
+    // යතුර ක්ලික් කළාම එන ප්‍රශ්නය
+    canvas.innerHTML = `
+        <div id="pro-step-2" style="margin-top: 60px; animation: slideIn 0.5s;">
+            <h3 style="color: #fff;">Do you want more games & exclusive content?</h3>
+            <div style="margin-top: 25px; display: flex; justify-content: center; gap: 20px;">
+                <button class="luxury-btn" onclick="redirectToSubscription()">YES</button>
+                <button class="luxury-btn" style="background: transparent; border: 1px solid #444;" onclick="location.reload()">NO</button>
             </div>
         </div>
     `;
+}
+
+function redirectToSubscription() {
+    // මෙතනින් තමයි Subscription පේජ් එකට යවන්නේ
+    // දැනට මම හදපු අලුත් පේජ් එකට (subscription.html) යන්න ලින්ක් එක දානවා
+    window.location.href = "subscription.html"; 
 }
     </script>
 </body>

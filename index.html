@@ -279,11 +279,10 @@ function revealPrize(prize) {
         container.style.opacity = 1;
     }, 300);
 }
-      let score = 0;
+     let score = 0;
 let gameActive = false;
 let currentLevel = 1;
-let leafSpeed = 4000; // ආරම්භක වේගය (4s)
-let spawnRate = 1000; // කොළ වැටෙන පරතරය
+let leafSpeed = 4000;
 
 function startCatchGame() {
     if(gameActive) return;
@@ -291,7 +290,6 @@ function startCatchGame() {
     score = 0;
     currentLevel = 1;
     leafSpeed = 4000;
-    spawnRate = 1000;
     updateStatus();
     runGameLoop();
 }
@@ -307,61 +305,69 @@ function runGameLoop() {
             return;
         }
 
-        // Level Up Logic
         if (score >= 10 && currentLevel < 3) {
             currentLevel++;
             score = 0;
-            leafSpeed -= 1000; // වේගය වැඩි කරනවා
-            spawnRate -= 200;  // කොළ එන පරතරය අඩු කරනවා
-            alert("LEVEL UP! Get ready for Level " + currentLevel);
+            leafSpeed -= 1000;
+            alert("PRO LEVEL UP! Ready for Level " + currentLevel + "?");
             updateStatus();
             clearInterval(gameInterval);
-            runGameLoop(); // අලුත් වේගයෙන් ලූප් එක පටන් ගන්නවා
+            runGameLoop();
         } else if (score >= 10 && currentLevel === 3) {
             gameActive = false;
             clearInterval(gameInterval);
-            revealGameSuccess();
+            revealProUnlock(); // මෙතන තමයි Pro Section එක පෙන්වන්නේ
             return;
         }
-
-        createLeaf();
-    }, spawnRate);
+        createProLeaf();
+    }, 900);
 }
 
-function createLeaf() {
+function createProLeaf() {
     const canvas = document.getElementById('game-canvas');
     const leaf = document.createElement('div');
-    leaf.innerHTML = "🍃";
+    
+    // 25% Chance for a "Bad Leaf" (🍂) - මේක ඇල්ලුවොත් ලකුණු අඩු වෙනවා
+    const isBad = Math.random() < 0.25;
+    leaf.innerHTML = isBad ? "🍂" : "🍃";
+    
+    leaf.className = "leaf-pro";
     leaf.style.position = "absolute";
     leaf.style.left = Math.random() * (canvas.offsetWidth - 40) + "px";
     leaf.style.top = "-50px";
-    leaf.style.fontSize = (40 - currentLevel * 5) + "px"; // ලෙවල් එක වැඩි වෙද්දී කොළ පොඩි වෙනවා
+    leaf.style.fontSize = "35px";
     leaf.style.cursor = "pointer";
-    leaf.style.transition = `top ${leafSpeed/1000}s linear`; 
-    leaf.style.filter = "drop-shadow(0 0 10px rgba(212,175,55,0.4)) sepia(1) saturate(3)";
+    leaf.style.transition = `top ${leafSpeed/1000}s linear`;
+    leaf.style.filter = isBad ? "drop-shadow(0 0 10px red)" : "drop-shadow(0 0 10px gold)";
     
     canvas.appendChild(leaf);
-
     setTimeout(() => { leaf.style.top = "350px"; }, 100);
 
     leaf.onclick = () => {
-        score++;
-        updateStatus();
+        if(isBad) {
+            score = Math.max(0, score - 2); // ලකුණු 2ක් අඩු වෙනවා
+            updateStatus();
+            leaf.style.background = "red";
+        } else {
+            score++;
+            updateStatus();
+        }
         leaf.style.transform = "scale(0)";
         setTimeout(() => { leaf.remove(); }, 200);
     };
-
     setTimeout(() => { if(leaf.parentNode) leaf.remove(); }, leafSpeed + 500);
 }
 
-function revealGameSuccess() {
+function revealProUnlock() {
     const canvas = document.getElementById('game-canvas');
     canvas.innerHTML = `
-        <div style="margin-top: 80px; color: var(--gold); animation: fadeIn 1s;">
-            <h2 style="letter-spacing: 5px;">GRAND MASTER</h2>
-            <p>You conquered all levels!</p>
-            <p style="font-size: 22px; border: 1px dashed var(--gold); padding: 10px; display: inline-block;">CODE: <strong>LUXURYKME</strong></p>
-            <p style="font-size: 12px; margin-top: 10px;">Send this code to WhatsApp for a 20% Surprise.</p>
+        <div style="margin-top: 50px; color: gold; animation: pulse 2s infinite;">
+            <h2>PRO STATUS UNLOCKED! 💎</h2>
+            <p>You have mastered the nature quest.</p>
+            <div style="background: rgba(255,215,0,0.1); border: 1px solid gold; padding: 15px; margin: 10px;">
+                <p style="font-size: 12px; color: #fff;">Coming Soon: The KME Vault</p>
+                <button class="luxury-btn" style="font-size: 10px;">Apply for Pro Subscription</button>
+            </div>
         </div>
     `;
 }

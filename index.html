@@ -358,17 +358,13 @@ function createProLeaf() {
     setTimeout(() => { if(leaf.parentNode) leaf.remove(); }, leafSpeed + 500);
 }
 
-function revealProUnlock() {
-    const canvas = document.getElementById('game-canvas');
-    // ගේම් එක ඉවර වුණාම රන්වන් යතුර පෙන්වීම
-    canvas.innerHTML = `
-        <div id="pro-step-1" style="margin-top: 50px; animation: fadeIn 1s;">
-            <h2 style="color: gold;">QUEST COMPLETE!</h2>
-            <p style="color: #fff;">You've earned the Golden Key.</p>
-            <div onclick="askForMoreGames()" style="font-size: 60px; cursor: pointer; filter: drop-shadow(0 0 15px gold);" title="Click to claim">🔑</div>
-            <p style="font-size: 10px; color: gold; margin-top: 10px;">Click the key to proceed</p>
-        </div>
-    `;
+<div id="quick-key-area" style="text-align: center; margin-top: 20px;">
+    <p style="color: #666; font-size: 11px; margin-bottom: 5px;">Already have a Key?</p>
+    <div onclick="askForMoreGames()" style="font-size: 40px; cursor: pointer; display: inline-block; filter: drop-shadow(0 0 10px gold); transition: 0.3s;" onmouseover="this.style.transform='scale(1.2) rotate(-15deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'">
+        🔑
+    </div>
+    <p style="color: var(--gold); font-size: 12px; cursor: pointer;" onclick="askForMoreGames()">Unlock Pro Access</p>
+</div>
 }
 
 function askForMoreGames() {

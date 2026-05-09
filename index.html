@@ -385,69 +385,8 @@
         }
 
         function redirectToSubscription() {
-            window.location.href = "subscription.html";
-            
-        }
-        ...
-    </div> <div id="quick-key-area" style="text-align: center; margin-top: 20px;">
-        <p style="color: #666; font-size: 11px; margin-bottom: 5px;">Already have a Key?</p>
-        <div onclick="askForMoreGames()" style="font-size: 40px; cursor: pointer; display: inline-block; filter: drop-shadow(0 0 10px gold); transition: 0.3s;" onmouseover="this.style.transform='scale(1.2) rotate(-15deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'">
-            🔑
-        </div>
-        <p style="color: var(--gold); font-size: 12px; cursor: pointer; margin-top: 5px;" onclick="askForMoreGames()">Unlock Pro Access</p>
-    </div>
-    
-</section> ```
-
----
-
-### 2. JavaScript කොටස (වැඩ කරන විදිහ)
-
-දැන් ඔයාගේ code එකේ අන්තිම හරියට යන්න. එතන **`</script>`** කියලා tag එකක් ඇති. අන්න ඒ **`</script>` එකට හරියටම උඩින්** මේ functions ටික පේස්ට් කරන්න.
-
-**මෙන්න මේ විදිහට:**
-```javascript
-        ... පරණ functions ...
-
-        // --- මෙතනට පල්ලෙහා code එක පේස්ට් කරන්න ---
-
-        function askForMoreGames() {
-            gameActive = false; 
-            const canvas = document.getElementById('game-canvas');
-            canvas.style.opacity = 0;
-            setTimeout(() => {
-                canvas.innerHTML = `
-                    <div id="pro-step-2" style="margin-top: 70px; animation: fadeIn 0.8s; text-align: center;">
-                        <h3 style="color: #fff; font-family: serif; letter-spacing: 2px;">THE LUXURY VAULT</h3>
-                        <p style="color: #aaa; font-size: 14px; margin-bottom: 25px;">Do you want more interactive games & exclusive content?</p>
-                        <div style="margin-top: 25px; display: flex; justify-content: center; gap: 20px;">
-                            <button class="luxury-btn" onclick="redirectToSubscription()">YES</button>
-                            <button class="luxury-btn" style="background: transparent; border: 1px solid #444;" onclick="location.reload()">NO</button>
-                        </div>
-                    </div>
-                `;
-                canvas.style.opacity = 1;
-            }, 300);
-        }
-
-        function revealProKey() {
-            const canvas = document.getElementById('game-canvas');
-            canvas.innerHTML = `
-                <div style="margin-top: 80px; color: gold; animation: fadeIn 1s; text-align: center;">
-                    <h2>QUEST COMPLETE!</h2>
-                    <p style="color:#fff;">You've earned the Golden Key.</p>
-                    <div onclick="askForMoreGames()" style="font-size: 60px; cursor: pointer; filter: drop-shadow(0 0 15px gold); margin: 20px 0;">🔑</div>
-                    <p style="font-size: 10px; color: gold;">Click the key to unlock the Pro Vault</p>
-                </div>
-            `;
-        }
-
-        function redirectToSubscription() {
             window.location.href = "subscription.html"; 
         }
-
-    </script> ```
-
-
+    </script>
 </body>
 </html>

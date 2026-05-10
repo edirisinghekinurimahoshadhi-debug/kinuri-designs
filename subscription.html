@@ -3,256 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME Fairy World | Level Up Games</title>
+    <title>KME Fairy World | Triple Experience</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #D4AF37; --magic: #4b0082; }
+        :root { --gold: #D4AF37; --blood: #800000; --fairy: #ffb6c1; }
         body { background: #000; color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; }
 
-        /* ROAD ANIMATION */
+        /* PORTAL & CHOICE */
         #portal-stage {
             height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background: linear-gradient(to bottom, #000, #1a0033); position: relative;
+            background: radial-gradient(circle, #1a0033, #000); position: relative; transition: 1s;
         }
         .road {
             width: 200px; height: 100%; background: linear-gradient(to top, var(--gold) 0%, transparent 100%);
             position: absolute; bottom: 0; clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
-            opacity: 0.3; animation: flow 2s linear infinite;
+            opacity: 0.2; animation: flow 2s linear infinite;
         }
         @keyframes flow { from { transform: translateY(0); } to { transform: translateY(20px); } }
 
-        #fairy-world { display: none; padding: 40px 5%; animation: fadeIn 2.5s; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        .box { background: rgba(255,255,255,0.03); border: 1.5px solid var(--gold); padding: 25px; border-radius: 20px; box-shadow: 0 0 15px rgba(212, 175, 55, 0.1); margin-bottom: 20px; }
-        
-        .candy-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 220px; margin: 15px auto; }
-        .candy { width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 24px; background: rgba(255,255,255,0.05); border-radius: 10px; cursor: pointer; transition: 0.2s; }
-        .candy:hover { transform: scale(1.1); background: rgba(212, 175, 55, 0.2); }
+        #fairy-world { display: none; padding: 40px 5%; animation: fadeIn 2s; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px; }
+        .box { background: rgba(255,255,255,0.03); border: 1.5px solid var(--gold); padding: 25px; border-radius: 20px; }
 
-        .luxury-btn { background: transparent; color: var(--gold); border: 1px solid var(--gold); padding: 12px 25px; border-radius: 50px; cursor: pointer; text-transform: uppercase; margin-top: 15px; font-size: 11px; letter-spacing: 1px; }
+        /* GRANNY REMAKE STYLE */
+        #granny-zone { width: 100%; height: 300px; background: #050000; position: relative; overflow: hidden; border-radius: 10px; border: 1px solid #500; cursor: crosshair; }
+        #light-overlay { position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.98); pointer-events: none; z-index: 10; }
+
+        .luxury-btn { 
+            background: transparent; color: var(--gold); border: 1px solid var(--gold); 
+            padding: 12px 25px; border-radius: 50px; cursor: pointer; text-transform: uppercase; 
+            margin: 10px; font-size: 11px; transition: 0.4s;
+        }
         .luxury-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px var(--gold); }
         
-        .level-tag { background: var(--gold); color: #000; padding: 2px 10px; border-radius: 5px; font-size: 10px; font-weight: bold; margin-bottom: 10px; display: inline-block; }
-
-        @keyframes fadeIn { from { opacity: 0; filter: blur(10px); } to { opacity: 1; filter: blur(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
     <div id="portal-stage">
         <div class="road"></div>
-        <h1 style="color: var(--gold); letter-spacing: 12px; z-index: 1; text-shadow: 0 0 20px var(--gold);">FAIRY WORLD</h1>
-        <p style="z-index: 1; color: #888; font-style: italic;">The journey to the elite kingdom begins...</p>
-        <button class="luxury-btn" onclick="enterKingdom()" style="z-index: 1;">Step Into Magic ✨</button>
+        <h1 style="color: var(--gold); letter-spacing: 10px; z-index: 1;">ELITE KINGDOM</h1>
+        <p style="z-index: 1; color: #888; font-style: italic; margin-bottom: 30px;">What is your dream game world?</p>
+        
+        <div style="z-index: 1; display: flex; flex-direction: column; gap: 10px; width: 250px;">
+            <button class="luxury-btn" onclick="setWorld('fairy')">✨ Fairy World</button>
+            <button class="luxury-btn" onclick="setWorld('horror')" style="border-color: #800; color: #ff4d4d;">🏚️ Horror World</button>
+            <button class="luxury-btn" onclick="setWorld('luxury')" style="border-color: #D4AF37;">💎 Luxury World</button>
+        </div>
     </div>
 
     <div id="fairy-world">
-        <div class="box" style="border-style: double; max-width: 600px; margin: 0 auto 40px auto;">
-            <h4 style="color: var(--gold);"><i class="fas fa-lightbulb"></i> DAILY LUXURY TIP</h4>
-            <p id="daily-tip" style="font-size: 13px; font-style: italic; color: #fff;">Loading magic tip...</p>
-        </div>
-
-        <h1 style="color: var(--gold); font-weight: 300; letter-spacing: 5px; margin-bottom: 40px;">✨ THE ELITE GAME ZONE ✨</h1>
-        
-        <div class="grid">
-            <div class="box">
-                <span class="level-tag" id="candy-level">Level 1</span>
-                <h4>🍭 CANDY TAP CHALLENGE</h4>
-                <div class="candy-grid" id="candy-board"></div>
-                <div id="candy-score" style="color: var(--gold); font-weight: bold; font-size: 18px;">Score: 0</div>
-                <button class="luxury-btn" onclick="initCandy()">Restart</button>
-            </div>
-
-            <div class="box">
-                <span class="level-tag" id="leaf-level">Level 1</span>
-                <h4>🍃 GOLDEN LEAF SPEED</h4>
-                <div id="leaf-zone" style="height: 200px; background: #000; position: relative; overflow: hidden; border: 1px dashed #333; margin: 15px 0;">
-                    <div id="leaf-score" style="position:absolute; top:10px; left:10px; color:gold; font-weight:bold;">0/15</div>
-                </div>
-                <button class="luxury-btn" onclick="startLeafGame()">Start Quest</button>
-            </div>
-
-            <div class="box" id="granny-box" style="border: 2px solid #500; background: #050000;">
-    <span class="level-tag" style="background: #800; color: #fff;">Horror Remake</span>
-    <h4 style="color: #ff4d4d;"><i class="fas fa-ghost"></i> GRANNY: THE ELITE ESCAPE</h4>
-    
-    <div id="granny-zone" style="width: 100%; height: 300px; background: #000; position: relative; overflow: hidden; border-radius: 10px;">
-        <div id="light-overlay" style="position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.98); pointer-events: none; z-index: 10;"></div>
-        
-        <img id="granny-sprite" src="https://i.imgur.com/vHInXF6.png" style="position: absolute; width: 180px; bottom: -250px; left: 50%; transform: translateX(-50%); transition: bottom 0.2s ease-in; z-index: 5;">
-        
-        <p id="horror-status" style="position: absolute; bottom: 10px; width: 100%; color: #800; font-size: 12px; z-index: 15; font-weight: bold;">Room 101: Stay quiet...</p>
-    </div>
-
-    <div style="margin-top: 15px; display: flex; justify-content: center; gap: 10px;">
-        <button class="luxury-btn" style="border-color: #800; color: #ff4d4d; font-size: 10px;" onclick="searchRoom()">Search Room 🔍</button>
-        <button class="luxury-btn" style="border-color: #800; color: #ff4d4d; font-size: 10px;" onclick="hideUnderBed()">Hide 🛏️</button>
-    </div>
-</div>
-            </div>
-        </div>
-
-        <div style="margin-top: 60px; padding-bottom: 40px;">
-            <a href="index.html" style="color: #444; text-decoration: none; font-size: 12px; letter-spacing: 2px;">← EXIT FAIRY WORLD</a>
-        </div>
+        <h1 id="world-title" style="letter-spacing: 5px;">WELCOME</h1>
+        <div id="dynamic-content" class="grid"></div>
+        <br><br>
+        <button class="luxury-btn" onclick="location.reload()">← Back to Selection</button>
     </div>
 
     <script>
-        // 1. NAVIGATION
-        function enterKingdom() {
-            document.getElementById('portal-stage').style.opacity = '0';
+        function setWorld(choice) {
+            const portal = document.getElementById('portal-stage');
+            const world = document.getElementById('fairy-world');
+            const title = document.getElementById('world-title');
+            const content = document.getElementById('dynamic-content');
+
+            portal.style.opacity = '0';
+            
             setTimeout(() => {
-                document.getElementById('portal-stage').style.display = 'none';
-                document.getElementById('fairy-world').style.display = 'block';
-                initCandy();
-                drawMaze();
-                showDailyTip();
-            }, 1000);
-        }
-
-        // 2. DAILY TIPS
-        const tips = [
-            "Tip 1: Use 'Golden Ratio' for perfect logo balance.",
-            "Tip 2: High-end brands love negative space.",
-            "Tip 3: Pair Serif fonts with Sans-Serif for luxury.",
-            "Tip 4: Use 'Deep Black' (#050505) for a richer feel.",
-            "Tip 5: Minimalist icons work best for luxury apps."
-        ];
-
-        function showDailyTip() {
-            const dayOfYear = Math.floor(new Date() / 8.64e7);
-            const tipIndex = dayOfYear % tips.length;
-            document.getElementById('daily-tip').innerText = tips[tipIndex];
-        }
-
-        // 3. MAZE LOGIC
-        let playerPos = { x: 0, y: 0 };
-        const mazeLayout = [
-            [0, 1, 0, 0, 0],
-            [0, 1, 0, 1, 0],
-            [0, 0, 0, 1, 0],
-            [1, 1, 0, 1, 0],
-            [0, 0, 0, 0, 2]
-        ];
-
-        function drawMaze() {
-            const container = document.getElementById('maze-container');
-            container.innerHTML = '';
-            for (let y = 0; y < 5; y++) {
-                for (let x = 0; x < 5; x++) {
-                    const cell = document.createElement('div');
-                    cell.style.display = "flex";
-                    cell.style.alignItems = "center";
-                    cell.style.justifyContent = "center";
-                    if (mazeLayout[y][x] === 1) cell.style.background = "#222";
-                    else if (mazeLayout[y][x] === 2) cell.innerHTML = "🏁";
-                    if (x === playerPos.x && y === playerPos.y) cell.innerHTML = "💎";
-                    container.appendChild(cell);
+                portal.style.display = 'none';
+                world.style.display = 'block';
+                
+                if (choice === 'fairy') {
+                    title.innerText = "✨ MAGIC FAIRY LAND";
+                    title.style.color = "#ffb6c1";
+                    content.innerHTML = `
+                        <div class="box">
+                            <h4>🍭 CANDY TAP</h4>
+                            <div id="c-score" style="color:var(--fairy)">Score: 0</div>
+                            <div id="candy-board" style="display:grid; grid-template-columns:repeat(4,1fr); gap:5px; width:180px; margin:15px auto;"></div>
+                            <button class="luxury-btn" onclick="initCandy()">Play</button>
+                        </div>
+                        <div class="box"><h4>🧚 FAIRY DUST</h4><p>Collect magic particles coming soon!</p></div>
+                    `;
+                    initCandy();
+                } 
+                else if (choice === 'horror') {
+                    title.innerText = "🏚️ THE HORROR MANSION";
+                    title.style.color = "#ff4d4d";
+                    content.innerHTML = `
+                        <div class="box" style="border-color:#500;">
+                            <h4>👵 GRANNY: THE ESCAPE</h4>
+                            <div id="granny-zone">
+                                <div id="light-overlay"></div>
+                                <img id="g-img" src="https://i.imgur.com/vHInXF6.png" style="position:absolute; width:150px; bottom:-250px; left:50%; transform:translateX(-50%); transition:0.2s;">
+                                <p id="h-status" style="position:absolute; bottom:5px; width:100%; color:#600; font-size:10px; z-index:15;">Shhh... search for the key.</p>
+                            </div>
+                            <button class="luxury-btn" onclick="searchRoom()">Search 🔍</button>
+                            <button class="luxury-btn" onclick="hideMe()">Hide 🛏️</button>
+                        </div>
+                    `;
+                    initHorror();
+                } 
+                else if (choice === 'luxury') {
+                    title.innerText = "💎 THE GOLDEN VAULT";
+                    title.style.color = "#D4AF37";
+                    content.innerHTML = `
+                        <div class="box"><h4>🏆 ELITE QUIZ</h4><p>Master the art of Luxury Design.</p><button class="luxury-btn">Start Quiz</button></div>
+                        <div class="box"><h4>💰 GOLD RUSH</h4><p>Falling gold bars challenge coming soon!</p></div>
+                    `;
                 }
-            }
+            }, 800);
         }
 
-        function movePlayer(dir) {
-            let nX = playerPos.x, nY = playerPos.y;
-            if (dir === 'up') nY--; if (dir === 'down') nY++;
-            if (dir === 'left') nX--; if (dir === 'right') nX++;
+        // --- GAME LOGICS ---
 
-            if (nX >= 0 && nX < 5 && nY >= 0 && nY < 5 && mazeLayout[nY][nX] !== 1) {
-                playerPos.x = nX; playerPos.y = nY;
-                drawMaze();
-                if (mazeLayout[nY][nX] === 2) {
-                    alert("🏆 MAZE MASTER! \n\nSecret Tip: Search 'brand:BAAMZ648-D4' in Canva!");
-                    playerPos = { x: 0, y: 0 };
-                    drawMaze();
-                }
-            }
-        }
-
-        // 4. CANDY GAME
-        let cScore = 0;
+        // 1. CANDY GAME
+        let score = 0;
         function initCandy() {
             const board = document.getElementById('candy-board');
-            board.innerHTML = '';
-            for(let i=0; i<16; i++) {
-                const c = document.createElement('div');
-                c.className = 'candy';
-                c.innerHTML = ['🍭', '🍬', '🍩', '🍎'][Math.floor(Math.random()*4)];
-                c.onclick = () => {
-                    cScore++;
-                    document.getElementById('candy-score').innerText = "Score: " + cScore;
-                    c.innerHTML = ['🍭', '🍬', '🍩', '🍎'][Math.floor(Math.random()*4)];
-                };
+            if(!board) return;
+            board.innerHTML = ''; score = 0;
+            for(let i=0; i<12; i++) {
+                let c = document.createElement('div');
+                c.innerHTML = "🍭"; c.style.cursor="pointer";
+                c.onclick = () => { score++; document.getElementById('c-score').innerText = "Score: "+score; c.innerHTML="✨"; };
                 board.appendChild(c);
             }
         }
 
-        // 5. LEAF GAME
-        let lScore = 0;
-        function startLeafGame() {
-            lScore = 0;
-            const zone = document.getElementById('leaf-zone');
-            let game = setInterval(() => {
-                const leaf = document.createElement('div');
-                leaf.innerHTML = "🍃";
-                leaf.style.cssText = `position:absolute; left:${Math.random()*90}%; top:-20px; transition: 2s linear; cursor:pointer; font-size:20px;`;
-                zone.appendChild(leaf);
-                setTimeout(() => leaf.style.top = "200px", 50);
-                leaf.onclick = () => { lScore++; document.getElementById('leaf-score').innerText = lScore + "/15"; leaf.remove(); };
-                setTimeout(() => { if(leaf.parentNode) leaf.remove(); }, 2000);
-            }, 800);
-            setTimeout(() => { clearInterval(game); alert("Quest Ended! Score: " + lScore); }, 15000);
+        // 2. HORROR GAME
+        let isHiding = false;
+        function initHorror() {
+            const zone = document.getElementById('granny-zone');
+            zone.onmousemove = (e) => {
+                if(isHiding) return;
+                let r = zone.getBoundingClientRect();
+                let x = e.clientX - r.left; let y = e.clientY - r.top;
+                document.getElementById('light-overlay').style.background = `radial-gradient(circle at ${x}px ${y}px, transparent 8%, rgba(0,0,0,0.99) 25%)`;
+            };
         }
-        // 1. Flashlight Effect එක සඳහා CSS එකට මේක එකතු කරන්න (Style එක ඇතුළේ)
-// #maze-container { cursor: none; } 
 
-function drawMaze() {
-    const container = document.getElementById('maze-container');
-    container.innerHTML = '';
-    
-    // Maze එක අඳිනවා
-    for (let y = 0; y < 5; y++) {
-        for (let x = 0; x < 5; x++) {
-            const cell = document.createElement('div');
-            cell.style.display = "flex";
-            cell.style.alignItems = "center";
-            cell.style.justifyContent = "center";
-            
-            // Granny ගේ රූපය අහඹු ලෙස පෙන්වීම (Scary Moment)
-            if (Math.random() > 0.9) { 
-                cell.innerHTML = "👵"; // Granny icon එක
-                cell.style.opacity = "0.2";
-            }
-
-            if (mazeLayout[y][x] === 1) cell.style.background = "#050505"; // අඳුරු බිත්ති
-            else if (mazeLayout[y][x] === 2) cell.innerHTML = "🚪"; // පිටවීමේ දොර
-            
-            if (x === playerPos.x && y === playerPos.y) cell.innerHTML = "💎";
-            container.appendChild(cell);
-        }
-    }
-}
-
-// 2. වැරදි පාරක ගියොත් හෝ Granny ට අහු වුණොත් එන Alert එක
-function movePlayer(dir) {
-    let nX = playerPos.x, nY = playerPos.y;
-    if (dir === 'up') nY--; if (dir === 'down') nY++;
-    if (dir === 'left') nX--; if (dir === 'right') nX++;
-
-    if (nX >= 0 && nX < 5 && nY >= 0 && nY < 5) {
-        if (mazeLayout[nY][nX] === 1) {
-            // බිත්තියක වැදුණොත් බය හිතෙන මැසේජ් එකක්
-            alert("👵: I SEE YOU! \n(Don't hit the walls!)");
-            playerPos = { x: 0, y: 0 }; // මුලට යනවා
-        } else {
-            playerPos.x = nX; playerPos.y = nY;
-            if (mazeLayout[nY][nX] === 2) {
-                alert("😱 YOU ESCAPED FROM GRANNY!");
-                playerPos = { x: 0, y: 0 };
+        function searchRoom() {
+            if(isHiding) return;
+            if(Math.random() > 0.8) alert("🔑 Key Found! You Escaped!");
+            else if(Math.random() < 0.3) {
+                document.getElementById('g-img').style.bottom = "0";
+                setTimeout(() => { 
+                    if(!isHiding) { alert("👵: I SEE YOU!"); location.reload(); }
+                    else document.getElementById('g-img').style.bottom = "-250px";
+                }, 600);
             }
         }
-        drawMaze();
-    }
-}
+
+        function hideMe() {
+            isHiding = true;
+            document.getElementById('light-overlay').style.background = "#000";
+            setTimeout(() => { 
+                isHiding = false; 
+                document.getElementById('light-overlay').style.background = "rgba(0,0,0,0.98)";
+            }, 3000);
+        }
     </script>
 </body>
 </html>

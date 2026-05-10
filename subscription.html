@@ -46,6 +46,10 @@
         <p style="z-index: 1; color: #888; font-style: italic;">The journey to the elite kingdom begins...</p>
         <button class="luxury-btn" onclick="enterKingdom()" style="z-index: 1;">Step Into Magic ✨</button>
     </div>
+    <div class="box" style="border-style: double;">
+    <h4 style="color: var(--gold);"><i class="fas fa-lightbulb"></i> DAILY LUXURY TIP</h4>
+    <p id="daily-tip" style="font-size: 13px; font-style: italic; color: #fff;">Loading magic tip...</p>
+</div>
 
     <div id="fairy-world">
         <h1 style="color: var(--gold); font-weight: 300; letter-spacing: 5px; margin-bottom: 40px;">✨ THE ELITE GAME ZONE ✨</h1>
@@ -100,25 +104,19 @@
     </div>
 
     <script>
-        // FAIRY WORLD LOCK LOGIC
-function enterKingdom() {
-    // පළමුව කෝඩ් එක ඉල්ලනවා
-    let accessCode = prompt("💎 ENTER VIP ACCESS CODE:\n(Contact Kinuri to purchase your code)");
-
-    if (accessCode === "KME_VIP_77") { // ඔයාට කැමති රහස් කෝඩ් එකක් මෙතනට දාන්න
-        alert("✨ ACCESS GRANTED! Welcome to the Elite Kingdom.");
+    function enterKingdom() {
+    // දැන් කෝඩ් එකක් ඉල්ලන්නේ නැහැ, කෙළින්ම Animation එක වෙනවා
+    document.getElementById('portal-stage').style.opacity = '0';
+    setTimeout(() => {
+        document.getElementById('portal-stage').style.display = 'none';
+        document.getElementById('fairy-world').style.display = 'block';
         
-        // පේජ් එක මාරු කරන Animation එක
-        document.getElementById('portal-stage').style.opacity = '0';
-        setTimeout(() => {
-            document.getElementById('portal-stage').style.display = 'none';
-            document.getElementById('fairy-world').style.display = 'block';
-            if(typeof initCandy === 'function') initCandy(); // Candy game එක load කරනවා
-        }, 1000);
-    } else {
-        alert("❌ INVALID CODE. Please purchase a valid VIP code via WhatsApp.");
-        window.location.href = "https://wa.me/94774799172?text=I want to buy the Fairy World Access Code";
-    }
+        // ගේම්ස් ටික ලෝඩ් කරනවා
+        if(typeof initCandy === 'function') initCandy();
+        if(typeof drawMaze === 'function') drawMaze();
+        if(typeof showDailyTip === 'function') showDailyTip();
+    }, 1000);
+}
     // --- LUXURY MAZE GAME LOGIC ---
 let playerPos = { x: 0, y: 0 };
 const mazeLayout = [
@@ -171,17 +169,33 @@ function movePlayer(dir) {
         playerPos.y = newY;
         drawMaze();
         
-        if (mazeLayout[newY][newX] === 2) {
-            alert("✨ MAZE CLEARED! You found the Luxury Exit.");
-            playerPos = { x: 0, y: 0 }; // ආයේ මුලට යනවා
-            drawMaze();
-        }
+       if (mazeLayout[newY][newX] === 2) {
+    // මෙතන තමයි රහස පෙන්වන්නේ
+    alert("🏆 MAZE MASTER! \n\nSecret Canva Tip: Type 'brand:BAAMZ648-D4' in Canva elements to find Luxury Gold Borders!");
+    playerPos = { x: 0, y: 0 };
+    drawMaze();
+}
     }
 }
 
 // පේජ් එක ලෝඩ් වුණ ගමන් Maze එක අඳින්න
 document.addEventListener("DOMContentLoaded", drawMaze);
 }
+        const tips = [
+    "Tip 1: Use 'Golden Ratio' for perfect logo balance.",
+    "Tip 2: High-end brands love negative space. Don't crowd your design!",
+    "Tip 3: Pair Serif fonts with Sans-Serif for a modern luxury look.",
+    "Tip 4: Use 'Deep Black' (#050505) instead of pure black for a richer feel.",
+    "Tip 5: Minimalist icons work best for luxury mobile apps."
+];
+
+function showDailyTip() {
+    // දවසේ දිනය අනුව ටිප් එක තෝරනවා
+    const dayOfYear = Math.floor(new Date() / 8.64e7);
+    const tipIndex = dayOfYear % tips.length;
+    document.getElementById('daily-tip').innerText = tips[tipIndex];
+}
+showDailyTip(); // මේක run කරන්න
     </script>
 </body>
 </html>

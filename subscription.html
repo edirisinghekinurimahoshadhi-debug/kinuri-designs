@@ -2,193 +2,115 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>KME Kingdom | Ultimate Experience</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KME Elite Kingdom | Premium Experience</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #D4AF37; --blood: #800000; --fairy: #ffb6c1; }
-        body { background: #000; color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; overflow: hidden; touch-action: manipulation; }
-
-        /* PORTAL & CHOICE */
-        #portal-stage {
-            height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background: radial-gradient(circle, #1a0033, #000); position: relative; transition: 1s; z-index: 100;
+        :root { --gold: #D4AF37; --deep: #050505; }
+        body { 
+            background: radial-gradient(circle at center, #1a1508 0%, #050505 70%, #000 100%);
+            color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden;
         }
-        .road {
-            width: 200px; height: 100%; background: linear-gradient(to top, var(--gold) 0%, transparent 100%);
-            position: absolute; bottom: 0; clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
-            opacity: 0.2; animation: flow 2s linear infinite;
+
+        /* LUXURY LAYOUT */
+        .container { padding: 80px 10%; text-align: center; animation: fadeIn 2s; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
+        
+        .box { 
+            background: rgba(255, 255, 255, 0.02); 
+            border: 1px solid rgba(212, 175, 55, 0.2); 
+            padding: 40px; border-radius: 15px; backdrop-filter: blur(10px);
+            transition: 0.5s;
         }
-        @keyframes flow { from { transform: translateY(0); } to { transform: translateY(20px); } }
-
-        #main-world { display: none; padding: 40px 5%; height: 100vh; overflow-y: auto; text-align: center; box-sizing: border-box; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
-        .box { background: rgba(255,255,255,0.03); border: 1.5px solid var(--gold); padding: 20px; border-radius: 20px; }
-
-        /* HORROR ZONE */
-        #granny-zone { width: 100%; height: 300px; background: #050000; position: relative; overflow: hidden; border-radius: 15px; border: 1px solid #500; cursor: crosshair; touch-action: none; }
-        #light-overlay { position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.99); pointer-events: none; z-index: 10; }
-
-        /* LUXURY GOLD RUSH */
-        #gold-zone { width: 100%; height: 250px; background: #111; position: relative; overflow: hidden; border-radius: 15px; border: 1px solid var(--gold); }
+        .box:hover { border-color: var(--gold); transform: translateY(-10px); box-shadow: 0 0 30px rgba(212, 175, 55, 0.1); }
 
         .luxury-btn { 
             background: transparent; color: var(--gold); border: 1px solid var(--gold); 
-            padding: 12px 25px; border-radius: 50px; cursor: pointer; text-transform: uppercase; 
-            margin: 5px; font-size: 11px; transition: 0.4s;
+            padding: 12px 30px; border-radius: 50px; cursor: pointer; 
+            text-transform: uppercase; letter-spacing: 2px; font-size: 11px; transition: 0.4s;
+            text-decoration: none; display: inline-block; margin-top: 20px;
         }
         .luxury-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px var(--gold); }
+
+        .title { font-size: 2.5rem; color: var(--gold); letter-spacing: 8px; font-weight: 300; text-transform: uppercase; }
         
-        .candy-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; width: 180px; margin: 15px auto; }
-        .candy { width: 40px; height: 40px; background: #111; display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 8px; }
+        /* HIDDEN GAMES (Only for the brave) */
+        #secret-zone { display: none; margin-top: 50px; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
-    <div id="portal-stage">
-        <div class="road"></div>
-        <h1 style="color: var(--gold); letter-spacing: 8px; z-index: 1;">ELITE KINGDOM</h1>
-        <p style="z-index: 1; color: #888; font-style: italic; margin-bottom: 30px;">What is your dream game world?</p>
-        <div style="z-index: 1; display: flex; flex-direction: column; gap: 10px; width: 220px;">
-            <button class="luxury-btn" onclick="setWorld('fairy')">✨ Fairy World</button>
-            <button class="luxury-btn" onclick="setWorld('horror')" style="border-color: #800; color: #ff4d4d;">🏚️ Horror World</button>
-            <button class="luxury-btn" onclick="setWorld('luxury')" style="border-color: var(--gold);">💎 Luxury World</button>
-        </div>
-    </div>
+    <div class="container">
+        <h1 class="title">Elite Kingdom</h1>
+        <p style="color: #888; font-style: italic; letter-spacing: 2px;">Exclusive Services & Experiences</p>
 
-    <div id="main-world">
-        <h1 id="world-title" style="letter-spacing: 5px; margin-bottom: 10px;">WELCOME</h1>
-        <div id="dynamic-content" class="grid"></div>
-        <br><button class="luxury-btn" onclick="location.reload()" style="opacity: 0.5;">← Change World</button>
+        <div class="grid">
+            <div class="box">
+                <h3 style="color: var(--gold);"><i class="fas fa-pen-nib"></i> ELITE STUDIO</h3>
+                <p style="font-size: 13px; color: #aaa; line-height: 1.8;">High-end Logo Design, Premium Branding & Social Media Management for luxury brands.</p>
+                <a href="https://wa.me/94774799172" class="luxury-btn">Inquire Now</a>
+            </div>
+
+            <div class="box">
+                <h3 style="color: var(--gold);"><i class="fas fa-vault"></i> KME VAULT</h3>
+                <p style="font-size: 13px; color: #aaa; line-height: 1.8;">Exclusive Canva Templates, Premium Art Assets, and Designer Guides for the Elite.</p>
+                <a href="https://wa.me/94774799172" class="luxury-btn">Access Vault</a>
+            </div>
+
+            <div class="box" style="border-style: dashed;">
+                <h3 style="color: var(--gold);"><i class="fas fa-ghost"></i> HORROR MODE</h3>
+                <p style="font-size: 13px; color: #aaa; line-height: 1.8;">Are you brave enough to enter the Granny's Mansion? A hidden elite challenge.</p>
+                <button class="luxury-btn" onclick="toggleHorror()">Enter Mansion</button>
+            </div>
+        </div>
+
+        <div id="secret-zone">
+            <div class="box" style="border-color: #500; background: #000;">
+                <h4 style="color: #ff4d4d;">🏚️ THE GRANNY ESCAPE</h4>
+                <p id="h-status" style="color: #600; font-size: 12px;">Search for the Master Key... don't let her see you.</p>
+                <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
+                    <button class="luxury-btn" style="border-color: #500;" onclick="luxurySearch()">Search Room</button>
+                    <button class="luxury-btn" style="border-color: #500;" onclick="luxuryHide()">Hide Now</button>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 100px;">
+            <a href="index.html" style="color: #444; text-decoration: none; font-size: 12px; letter-spacing: 3px;">← BACK TO PORTFOLIO</a>
+        </div>
     </div>
 
     <script>
         let isHiding = false;
-        let score = 0;
 
-        function setWorld(choice) {
-            document.getElementById('portal-stage').style.display = 'none';
-            const world = document.getElementById('main-world');
-            const title = document.getElementById('world-title');
-            const content = document.getElementById('dynamic-content');
-            world.style.display = 'block';
-            
-           
-        else if (choice === 'horror') {
-    title.innerText = "🏚️ THE HORROR MANSION";
-    title.style.color = "#ff4d4d";
-    content.innerHTML = `
-        <div class="box" style="border-color:#500; position:relative;">
-            <div id="horror-scene" style="width:100%; height:300px; background:url('https://i.imgur.com/8X1698E.jpeg') center/cover; position:relative; border-radius:15px; border:2px solid #300;">
-                
-                <div onclick="checkObject('Bed')" style="position:absolute; bottom:20px; left:20%; width:100px; height:60px; cursor:pointer;" title="Check under bed"></div>
-                <div onclick="checkObject('Cupboard')" style="position:absolute; top:50px; right:15%; width:80px; height:150px; cursor:pointer;" title="Open Cupboard"></div>
-                <div onclick="checkObject('Door')" style="position:absolute; top:100px; left:40%; width:60px; height:120px; cursor:pointer;" title="Try Door"></div>
-
-                <img id="granny-scare" src="https://i.imgur.com/vHInXF6.png" style="display:none; position:absolute; width:180px; bottom:0; left:50%; transform:translateX(-50%); z-index:100;">
-            </div>
-            <p id="horror-hint" style="margin-top:10px; color:#aaa; font-size:12px;">Tap on objects in the room to search...</p>
-        </div>
-    `;
-}
-                initCandy();
-            } 
-            else if (choice === 'horror') {
-                title.innerText = "🏚️ THE HORROR MANSION"; title.style.color = "#ff4d4d";
-                content.innerHTML = `
-                    <div class="box" style="border-color:#500;"><h4>👵 GRANNY: THE ESCAPE</h4>
-                        <div id="granny-zone"><div id="light-overlay"></div><img id="g-img" src="https://i.imgur.com/vHInXF6.png" style="position:absolute; width:150px; bottom:-250px; left:50%; transform:translateX(-50%); transition:0.2s;"></div>
-                        <button class="luxury-btn" onclick="searchRoom()">Search 🔍</button><button class="luxury-btn" onclick="hideMe()">Hide 🛏️</button>
-                    </div>
-                `;
-          function initHorror() {
-    const zone = document.getElementById('granny-zone');
-    const light = document.getElementById('light-overlay');
-
-    if (!zone || !light) return; // ID වැරදි නම් වැඩේ නවත්වනවා
-
-    // Flashlight එකේ පිහිටීම හදන function එක
-    const moveFlashlight = (x, y) => {
-        if (isHiding) return;
-        light.style.background = `radial-gradient(circle at ${x}px ${y}px, transparent 10%, rgba(0,0,0,0.99) 30%)`;
-    };
-
-    // කම්පියුටර් එකට (Mouse)
-    zone.addEventListener('mousemove', (e) => {
-        const r = zone.getBoundingClientRect();
-        moveFlashlight(e.clientX - r.left, e.clientY - r.top);
-    });
-
-    // ෆෝන් එකට (Touch) - මේක තමයි ඔයාට ඕනේ කරන්නේ
-    zone.addEventListener('touchmove', (e) => {
-        const r = zone.getBoundingClientRect();
-        const touch = e.touches[0];
-        moveFlashlight(touch.clientX - r.left, touch.clientY - r.top);
-        e.preventDefault(); // පේජ් එක scroll වෙන එක නවත්වනවා
-    }, { passive: false });
-
-    zone.addEventListener('touchstart', (e) => {
-        const r = zone.getBoundingClientRect();
-        const touch = e.touches[0];
-        moveFlashlight(touch.clientX - r.left, touch.clientY - r.top);
-    }, { passive: false });
-}
-            }
+        function toggleHorror() {
+            const zone = document.getElementById('secret-zone');
+            zone.style.display = zone.style.display === 'block' ? 'none' : 'block';
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         }
 
-        // --- GAME FUNCTIONS ---
-        function initCandy() {
-            const board = document.getElementById('candy-board'); score = 0; board.innerHTML = '';
-            for(let i=0; i<12; i++) {
-                let c = document.createElement('div'); c.className = 'candy'; c.innerHTML = "🍭";
-                c.onclick = () => { score++; document.getElementById('c-score').innerText = "Score: "+score; c.innerHTML="✨"; };
-                board.appendChild(c);
-            }
-        }
-
-        function initHorror() {
-            const zone = document.getElementById('granny-zone');
-            const light = document.getElementById('light-overlay');
-            const moveHandler = (e) => {
-                if(isHiding) return;
-                let r = zone.getBoundingClientRect();
-                let x = (e.clientX || e.touches[0].clientX) - r.left;
-                let y = (e.clientY || e.touches[0].clientY) - r.top;
-                light.style.background = `radial-gradient(circle at ${x}px ${y}px, transparent 10%, rgba(0,0,0,0.99) 30%)`;
-            };
-            zone.onmousemove = moveHandler; zone.ontouchmove = (e) => { moveHandler(e); e.preventDefault(); };
-        }
-
-        function searchRoom() {
+        function luxurySearch() {
             if(isHiding) return;
-            if(Math.random() > 0.85) alert("🔑 YOU FOUND THE MASTER KEY!");
-            else if(Math.random() < 0.3) {
-                document.getElementById('g-img').style.bottom = "0";
-                setTimeout(() => { if(!isHiding) { alert("👵: I SEE YOU!"); location.reload(); } else document.getElementById('g-img').style.bottom = "-250px"; }, 600);
+            let chance = Math.random();
+            if(chance > 0.9) {
+                alert("🔑 EXCELLENT! You found the Master Key and Escaped!");
+            } else if(chance < 0.25) {
+                alert("👵: I SEE YOU! \nYou failed to escape.");
+                location.reload();
+            } else {
+                document.getElementById('h-status').innerText = "Nothing found... Shhh!";
             }
         }
 
-        function hideMe() {
-            isHiding = true; document.getElementById('light-overlay').style.background = "#000";
-            setTimeout(() => { isHiding = false; document.getElementById('light-overlay').style.background = "rgba(0,0,0,0.98)"; }, 3000);
-        }
-
-        function startGold() {
-            const zone = document.getElementById('gold-zone'); let gScore = 0;
-            let game = setInterval(() => {
-                let g = document.createElement('div'); g.innerHTML = "💰"; g.style.cssText = `position:absolute; left:${Math.random()*90}%; top:0; cursor:pointer; transition:1.5s linear;`;
-                zone.appendChild(g); setTimeout(() => g.style.top = "250px", 50);
-                g.onclick = () => { gScore++; document.getElementById('g-score').innerText = "Score: "+gScore; g.remove(); };
-            }, 800);
-            setTimeout(() => clearInterval(game), 10000);
-        }
-
-        function startDust() {
-            const zone = document.getElementById('dust-zone');
-            for(let i=0; i<10; i++) {
-                let s = document.createElement('div'); s.innerHTML = "⭐"; s.style.cssText = `position:absolute; left:${Math.random()*90}%; top:${Math.random()*90}%; cursor:pointer; font-size:10px;`;
-                s.onclick = () => s.innerHTML = "✨"; zone.appendChild(s);
-            }
+        function luxuryHide() {
+            isHiding = true;
+            document.getElementById('h-status').innerText = "You are currently hidden...";
+            setTimeout(() => {
+                isHiding = false;
+                document.getElementById('h-status').innerText = "Safe to search again.";
+            }, 3000);
         }
     </script>
 </body>

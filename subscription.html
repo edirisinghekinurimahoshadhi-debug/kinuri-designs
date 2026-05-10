@@ -23,9 +23,8 @@
 
         #fairy-world { display: none; padding: 40px 5%; animation: fadeIn 2.5s; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        .box { background: rgba(255,255,255,0.03); border: 1.5px solid var(--gold); padding: 25px; border-radius: 20px; box-shadow: 0 0 15px rgba(212, 175, 55, 0.1); }
+        .box { background: rgba(255,255,255,0.03); border: 1.5px solid var(--gold); padding: 25px; border-radius: 20px; box-shadow: 0 0 15px rgba(212, 175, 55, 0.1); margin-bottom: 20px; }
         
-        /* Candy Game Grid */
         .candy-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 220px; margin: 15px auto; }
         .candy { width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 24px; background: rgba(255,255,255,0.05); border-radius: 10px; cursor: pointer; transition: 0.2s; }
         .candy:hover { transform: scale(1.1); background: rgba(212, 175, 55, 0.2); }
@@ -46,19 +45,19 @@
         <p style="z-index: 1; color: #888; font-style: italic;">The journey to the elite kingdom begins...</p>
         <button class="luxury-btn" onclick="enterKingdom()" style="z-index: 1;">Step Into Magic ✨</button>
     </div>
-    <div class="box" style="border-style: double;">
-    <h4 style="color: var(--gold);"><i class="fas fa-lightbulb"></i> DAILY LUXURY TIP</h4>
-    <p id="daily-tip" style="font-size: 13px; font-style: italic; color: #fff;">Loading magic tip...</p>
-</div>
 
     <div id="fairy-world">
+        <div class="box" style="border-style: double; max-width: 600px; margin: 0 auto 40px auto;">
+            <h4 style="color: var(--gold);"><i class="fas fa-lightbulb"></i> DAILY LUXURY TIP</h4>
+            <p id="daily-tip" style="font-size: 13px; font-style: italic; color: #fff;">Loading magic tip...</p>
+        </div>
+
         <h1 style="color: var(--gold); font-weight: 300; letter-spacing: 5px; margin-bottom: 40px;">✨ THE ELITE GAME ZONE ✨</h1>
         
         <div class="grid">
             <div class="box">
                 <span class="level-tag" id="candy-level">Level 1</span>
                 <h4>🍭 CANDY TAP CHALLENGE</h4>
-                <p style="font-size: 11px; color: #888;">Tap 20 candies to level up!</p>
                 <div class="candy-grid" id="candy-board"></div>
                 <div id="candy-score" style="color: var(--gold); font-weight: bold; font-size: 18px;">Score: 0</div>
                 <button class="luxury-btn" onclick="initCandy()">Restart</button>
@@ -67,7 +66,6 @@
             <div class="box">
                 <span class="level-tag" id="leaf-level">Level 1</span>
                 <h4>🍃 GOLDEN LEAF SPEED</h4>
-                <p style="font-size: 11px; color: #888;">Catch leaves as they fall faster!</p>
                 <div id="leaf-zone" style="height: 200px; background: #000; position: relative; overflow: hidden; border: 1px dashed #333; margin: 15px 0;">
                     <div id="leaf-score" style="position:absolute; top:10px; left:10px; color:gold; font-weight:bold;">0/15</div>
                 </div>
@@ -75,28 +73,17 @@
             </div>
 
             <div class="box">
-                <span class="level-tag">Brain Quest</span>
-                <h4>🧩 LUXURY WORD SCRAMBLE</h4>
-                <p style="font-size: 11px; color: #888;">Unscramble the design word:</p>
-                <h2 id="scrambled-word" style="letter-spacing: 5px; color: var(--gold);">?????</h2>
-                <input type="text" id="word-input" placeholder="Your Answer" style="background:transparent; border:1px solid var(--gold); color:white; padding:8px; width:70%; margin-bottom:10px;">
-                <br>
-                <button class="luxury-btn" style="font-size: 10px;" onclick="checkWord()">Check Answer</button>
+                <span class="level-tag">Puzzle Mode</span>
+                <h4>🏰 THE LUXURY MAZE</h4>
+                <div id="maze-container" style="width: 200px; height: 200px; background: #111; margin: 10px auto; position: relative; border: 2px solid var(--gold); display: grid; grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(5, 1fr);"></div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); width: 120px; margin: 0 auto; gap: 5px;">
+                    <button class="luxury-btn" style="grid-column: 2; padding: 5px;" onclick="movePlayer('up')">▲</button>
+                    <button class="luxury-btn" style="padding: 5px;" onclick="movePlayer('left')">◀</button>
+                    <button class="luxury-btn" style="padding: 5px;" onclick="movePlayer('down')">▼</button>
+                    <button class="luxury-btn" style="padding: 5px;" onclick="movePlayer('right')">▶</button>
+                </div>
             </div>
         </div>
-        <div class="box">
-    <span class="level-tag">Puzzle Mode</span>
-    <h4>🏰 THE LUXURY MAZE</h4>
-    <p style="font-size: 11px; color: #888;">Guide the 💎 to the exit using buttons!</p>
-    <div id="maze-container" style="width: 200px; height: 200px; background: #111; margin: 10px auto; position: relative; border: 2px solid var(--gold); display: grid; grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(5, 1fr);">
-        </div>
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); width: 120px; margin: 0 auto; gap: 5px;">
-        <button class="luxury-btn" style="grid-column: 2; padding: 5px;" onclick="movePlayer('up')">▲</button>
-        <button class="luxury-btn" style="padding: 5px;" onclick="movePlayer('left')">◀</button>
-        <button class="luxury-btn" style="padding: 5px;" onclick="movePlayer('down')">▼</button>
-        <button class="luxury-btn" style="padding: 5px;" onclick="movePlayer('right')">▶</button>
-    </div>
-</div>
 
         <div style="margin-top: 60px; padding-bottom: 40px;">
             <a href="index.html" style="color: #444; text-decoration: none; font-size: 12px; letter-spacing: 2px;">← EXIT FAIRY WORLD</a>
@@ -104,98 +91,110 @@
     </div>
 
     <script>
-    function enterKingdom() {
-    // දැන් කෝඩ් එකක් ඉල්ලන්නේ නැහැ, කෙළින්ම Animation එක වෙනවා
-    document.getElementById('portal-stage').style.opacity = '0';
-    setTimeout(() => {
-        document.getElementById('portal-stage').style.display = 'none';
-        document.getElementById('fairy-world').style.display = 'block';
-        
-        // ගේම්ස් ටික ලෝඩ් කරනවා
-        if(typeof initCandy === 'function') initCandy();
-        if(typeof drawMaze === 'function') drawMaze();
-        if(typeof showDailyTip === 'function') showDailyTip();
-    }, 1000);
-}
-    // --- LUXURY MAZE GAME LOGIC ---
-let playerPos = { x: 0, y: 0 };
-const mazeLayout = [
-    [0, 1, 0, 0, 0],
-    [0, 1, 0, 1, 0],
-    [0, 0, 0, 1, 0],
-    [1, 1, 0, 1, 0],
-    [0, 0, 0, 0, 2] // 2 කියන්නේ Exit එක (🏁)
-];
-
-function drawMaze() {
-    const container = document.getElementById('maze-container');
-    if(!container) return; // container එක නැත්නම් error එකක් එන එක වළක්වනවා
-    
-    container.innerHTML = '';
-    for (let y = 0; y < 5; y++) {
-        for (let x = 0; x < 5; x++) {
-            const cell = document.createElement('div');
-            cell.style.display = "flex";
-            cell.style.alignItems = "center";
-            cell.style.justifyContent = "center";
-            cell.style.fontSize = "18px";
-            
-            if (mazeLayout[y][x] === 1) {
-                cell.style.background = "#222"; // තාප්පය
-            } else if (mazeLayout[y][x] === 2) {
-                cell.innerHTML = "🏁";
-            }
-            
-            if (x === playerPos.x && y === playerPos.y) {
-                cell.innerHTML = "💎";
-            }
-            container.appendChild(cell);
+        // 1. NAVIGATION
+        function enterKingdom() {
+            document.getElementById('portal-stage').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('portal-stage').style.display = 'none';
+                document.getElementById('fairy-world').style.display = 'block';
+                initCandy();
+                drawMaze();
+                showDailyTip();
+            }, 1000);
         }
-    }
-}
 
-function movePlayer(dir) {
-    let newX = playerPos.x;
-    let newY = playerPos.y;
-    
-    if (dir === 'up') newY--;
-    if (dir === 'down') newY++;
-    if (dir === 'left') newX--;
-    if (dir === 'right') newX++;
-
-    // පාර ඇතුළේද සහ තාප්පයක වදිනවාද කියලා බලනවා
-    if (newX >= 0 && newX < 5 && newY >= 0 && newY < 5 && mazeLayout[newY][newX] !== 1) {
-        playerPos.x = newX;
-        playerPos.y = newY;
-        drawMaze();
-        
-       if (mazeLayout[newY][newX] === 2) {
-    // මෙතන තමයි රහස පෙන්වන්නේ
-    alert("🏆 MAZE MASTER! \n\nSecret Canva Tip: Type 'brand:BAAMZ648-D4' in Canva elements to find Luxury Gold Borders!");
-    playerPos = { x: 0, y: 0 };
-    drawMaze();
-}
-    }
-}
-
-// පේජ් එක ලෝඩ් වුණ ගමන් Maze එක අඳින්න
-document.addEventListener("DOMContentLoaded", drawMaze);
-}
+        // 2. DAILY TIPS
         const tips = [
-    "Tip 1: Use 'Golden Ratio' for perfect logo balance.",
-    "Tip 2: High-end brands love negative space. Don't crowd your design!",
-    "Tip 3: Pair Serif fonts with Sans-Serif for a modern luxury look.",
-    "Tip 4: Use 'Deep Black' (#050505) instead of pure black for a richer feel.",
-    "Tip 5: Minimalist icons work best for luxury mobile apps."
-];
+            "Tip 1: Use 'Golden Ratio' for perfect logo balance.",
+            "Tip 2: High-end brands love negative space.",
+            "Tip 3: Pair Serif fonts with Sans-Serif for luxury.",
+            "Tip 4: Use 'Deep Black' (#050505) for a richer feel.",
+            "Tip 5: Minimalist icons work best for luxury apps."
+        ];
 
-function showDailyTip() {
-    // දවසේ දිනය අනුව ටිප් එක තෝරනවා
-    const dayOfYear = Math.floor(new Date() / 8.64e7);
-    const tipIndex = dayOfYear % tips.length;
-    document.getElementById('daily-tip').innerText = tips[tipIndex];
-}
-showDailyTip(); // මේක run කරන්න
+        function showDailyTip() {
+            const dayOfYear = Math.floor(new Date() / 8.64e7);
+            const tipIndex = dayOfYear % tips.length;
+            document.getElementById('daily-tip').innerText = tips[tipIndex];
+        }
+
+        // 3. MAZE LOGIC
+        let playerPos = { x: 0, y: 0 };
+        const mazeLayout = [
+            [0, 1, 0, 0, 0],
+            [0, 1, 0, 1, 0],
+            [0, 0, 0, 1, 0],
+            [1, 1, 0, 1, 0],
+            [0, 0, 0, 0, 2]
+        ];
+
+        function drawMaze() {
+            const container = document.getElementById('maze-container');
+            container.innerHTML = '';
+            for (let y = 0; y < 5; y++) {
+                for (let x = 0; x < 5; x++) {
+                    const cell = document.createElement('div');
+                    cell.style.display = "flex";
+                    cell.style.alignItems = "center";
+                    cell.style.justifyContent = "center";
+                    if (mazeLayout[y][x] === 1) cell.style.background = "#222";
+                    else if (mazeLayout[y][x] === 2) cell.innerHTML = "🏁";
+                    if (x === playerPos.x && y === playerPos.y) cell.innerHTML = "💎";
+                    container.appendChild(cell);
+                }
+            }
+        }
+
+        function movePlayer(dir) {
+            let nX = playerPos.x, nY = playerPos.y;
+            if (dir === 'up') nY--; if (dir === 'down') nY++;
+            if (dir === 'left') nX--; if (dir === 'right') nX++;
+
+            if (nX >= 0 && nX < 5 && nY >= 0 && nY < 5 && mazeLayout[nY][nX] !== 1) {
+                playerPos.x = nX; playerPos.y = nY;
+                drawMaze();
+                if (mazeLayout[nY][nX] === 2) {
+                    alert("🏆 MAZE MASTER! \n\nSecret Tip: Search 'brand:BAAMZ648-D4' in Canva!");
+                    playerPos = { x: 0, y: 0 };
+                    drawMaze();
+                }
+            }
+        }
+
+        // 4. CANDY GAME
+        let cScore = 0;
+        function initCandy() {
+            const board = document.getElementById('candy-board');
+            board.innerHTML = '';
+            for(let i=0; i<16; i++) {
+                const c = document.createElement('div');
+                c.className = 'candy';
+                c.innerHTML = ['🍭', '🍬', '🍩', '🍎'][Math.floor(Math.random()*4)];
+                c.onclick = () => {
+                    cScore++;
+                    document.getElementById('candy-score').innerText = "Score: " + cScore;
+                    c.innerHTML = ['🍭', '🍬', '🍩', '🍎'][Math.floor(Math.random()*4)];
+                };
+                board.appendChild(c);
+            }
+        }
+
+        // 5. LEAF GAME
+        let lScore = 0;
+        function startLeafGame() {
+            lScore = 0;
+            const zone = document.getElementById('leaf-zone');
+            let game = setInterval(() => {
+                const leaf = document.createElement('div');
+                leaf.innerHTML = "🍃";
+                leaf.style.cssText = `position:absolute; left:${Math.random()*90}%; top:-20px; transition: 2s linear; cursor:pointer; font-size:20px;`;
+                zone.appendChild(leaf);
+                setTimeout(() => leaf.style.top = "200px", 50);
+                leaf.onclick = () => { lScore++; document.getElementById('leaf-score').innerText = lScore + "/15"; leaf.remove(); };
+                setTimeout(() => { if(leaf.parentNode) leaf.remove(); }, 2000);
+            }, 800);
+            setTimeout(() => { clearInterval(game); alert("Quest Ended! Score: " + lScore); }, 15000);
+        }
     </script>
 </body>
 </html>

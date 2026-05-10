@@ -195,6 +195,57 @@
             }, 800);
             setTimeout(() => { clearInterval(game); alert("Quest Ended! Score: " + lScore); }, 15000);
         }
+        // 1. Flashlight Effect එක සඳහා CSS එකට මේක එකතු කරන්න (Style එක ඇතුළේ)
+// #maze-container { cursor: none; } 
+
+function drawMaze() {
+    const container = document.getElementById('maze-container');
+    container.innerHTML = '';
+    
+    // Maze එක අඳිනවා
+    for (let y = 0; y < 5; y++) {
+        for (let x = 0; x < 5; x++) {
+            const cell = document.createElement('div');
+            cell.style.display = "flex";
+            cell.style.alignItems = "center";
+            cell.style.justifyContent = "center";
+            
+            // Granny ගේ රූපය අහඹු ලෙස පෙන්වීම (Scary Moment)
+            if (Math.random() > 0.9) { 
+                cell.innerHTML = "👵"; // Granny icon එක
+                cell.style.opacity = "0.2";
+            }
+
+            if (mazeLayout[y][x] === 1) cell.style.background = "#050505"; // අඳුරු බිත්ති
+            else if (mazeLayout[y][x] === 2) cell.innerHTML = "🚪"; // පිටවීමේ දොර
+            
+            if (x === playerPos.x && y === playerPos.y) cell.innerHTML = "💎";
+            container.appendChild(cell);
+        }
+    }
+}
+
+// 2. වැරදි පාරක ගියොත් හෝ Granny ට අහු වුණොත් එන Alert එක
+function movePlayer(dir) {
+    let nX = playerPos.x, nY = playerPos.y;
+    if (dir === 'up') nY--; if (dir === 'down') nY++;
+    if (dir === 'left') nX--; if (dir === 'right') nX++;
+
+    if (nX >= 0 && nX < 5 && nY >= 0 && nY < 5) {
+        if (mazeLayout[nY][nX] === 1) {
+            // බිත්තියක වැදුණොත් බය හිතෙන මැසේජ් එකක්
+            alert("👵: I SEE YOU! \n(Don't hit the walls!)");
+            playerPos = { x: 0, y: 0 }; // මුලට යනවා
+        } else {
+            playerPos.x = nX; playerPos.y = nY;
+            if (mazeLayout[nY][nX] === 2) {
+                alert("😱 YOU ESCAPED FROM GRANNY!");
+                playerPos = { x: 0, y: 0 };
+            }
+        }
+        drawMaze();
+    }
+}
     </script>
 </body>
 </html>

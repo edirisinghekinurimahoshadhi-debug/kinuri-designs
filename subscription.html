@@ -80,6 +80,19 @@
                 <button class="luxury-btn" style="font-size: 10px;" onclick="checkWord()">Check Answer</button>
             </div>
         </div>
+        <div class="box">
+    <span class="level-tag">Puzzle Mode</span>
+    <h4>🏰 THE LUXURY MAZE</h4>
+    <p style="font-size: 11px; color: #888;">Guide the 💎 to the exit using buttons!</p>
+    <div id="maze-container" style="width: 200px; height: 200px; background: #111; margin: 10px auto; position: relative; border: 2px solid var(--gold); display: grid; grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(5, 1fr);">
+        </div>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); width: 120px; margin: 0 auto; gap: 5px;">
+        <button class="luxury-btn" style="grid-column: 2; padding: 5px;" onclick="movePlayer('up')">▲</button>
+        <button class="luxury-btn" style="padding: 5px;" onclick="movePlayer('left')">◀</button>
+        <button class="luxury-btn" style="padding: 5px;" onclick="movePlayer('down')">▼</button>
+        <button class="luxury-btn" style="padding: 5px;" onclick="movePlayer('right')">▶</button>
+    </div>
+</div>
 
         <div style="margin-top: 60px; padding-bottom: 40px;">
             <a href="index.html" style="color: #444; text-decoration: none; font-size: 12px; letter-spacing: 2px;">← EXIT FAIRY WORLD</a>

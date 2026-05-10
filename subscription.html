@@ -89,14 +89,38 @@
                         <button class="luxury-btn" onclick="searchRoom()">Search 🔍</button><button class="luxury-btn" onclick="hideMe()">Hide 🛏️</button>
                     </div>
                 `;
-                initHorror();
-            } 
-            else if (choice === 'luxury') {
-                title.innerText = "💎 THE GOLDEN VAULT"; title.style.color = "var(--gold)";
-                content.innerHTML = `
-                    <div class="box"><h4>💰 GOLD RUSH</h4><div id="g-score">Score: 0</div><div id="gold-zone"></div><button class="luxury-btn" onclick="startGold()">Start Collecting</button></div>
-                    <div class="box"><h4>🏆 ELITE QUIZ</h4><p>Identify the Luxury Color:</p><div style="width:50px; height:50px; background:#D4AF37; margin:10px auto; border-radius:50%;"></div><button class="luxury-btn" onclick="alert('Correct! That is Metallic Gold.')">Identify</button></div>
-                `;
+          function initHorror() {
+    const zone = document.getElementById('granny-zone');
+    const light = document.getElementById('light-overlay');
+
+    if (!zone || !light) return; // ID වැරදි නම් වැඩේ නවත්වනවා
+
+    // Flashlight එකේ පිහිටීම හදන function එක
+    const moveFlashlight = (x, y) => {
+        if (isHiding) return;
+        light.style.background = `radial-gradient(circle at ${x}px ${y}px, transparent 10%, rgba(0,0,0,0.99) 30%)`;
+    };
+
+    // කම්පියුටර් එකට (Mouse)
+    zone.addEventListener('mousemove', (e) => {
+        const r = zone.getBoundingClientRect();
+        moveFlashlight(e.clientX - r.left, e.clientY - r.top);
+    });
+
+    // ෆෝන් එකට (Touch) - මේක තමයි ඔයාට ඕනේ කරන්නේ
+    zone.addEventListener('touchmove', (e) => {
+        const r = zone.getBoundingClientRect();
+        const touch = e.touches[0];
+        moveFlashlight(touch.clientX - r.left, touch.clientY - r.top);
+        e.preventDefault(); // පේජ් එක scroll වෙන එක නවත්වනවා
+    }, { passive: false });
+
+    zone.addEventListener('touchstart', (e) => {
+        const r = zone.getBoundingClientRect();
+        const touch = e.touches[0];
+        moveFlashlight(touch.clientX - r.left, touch.clientY - r.top);
+    }, { passive: false });
+}
             }
         }
 

@@ -114,42 +114,70 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+        <script>
+    // 1. Page Load Animations
+    document.addEventListener("DOMContentLoaded", function() {
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach(el => {
+            el.classList.add('active');
         });
+    });
 
-        function start3DShowroom() {
-            const sceneDiv = document.createElement('div');
-            sceneDiv.id = 'three-d-overlay';
-            sceneDiv.style = "position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:3000; background:#000;";
+    // 2. NEW 3D ENGINE WITH LOADING UI
+    function start3DShowroom() {
+        const sceneDiv = document.createElement('div');
+        sceneDiv.id = 'three-d-overlay';
+        sceneDiv.style = "position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:3000; background:#000; display:flex; align-items:center; justify-content:center; flex-direction:column;";
+        
+        sceneDiv.innerHTML = `
+            <div id="loader-ui" style="text-align:center; transition: 0.5s;">
+                <h2 style="color:#D4AF37; letter-spacing:5px; font-family: sans-serif; font-weight:300; animation: pulse 1.5s infinite;">LOADING ELITE KINGDOM...</h2>
+                <p style="color:#444; font-size:10px; letter-spacing:2px;">PREPARING 3D ASSETS</p>
+            </div>
             
-            sceneDiv.innerHTML = `
-                <div style="position:absolute; top:20px; right:20px; z-index:3001;">
-                    <button onclick="document.getElementById('three-d-overlay').remove()" class="luxury-btn" style="background:rgba(0,0,0,0.7)">Exit 3D</button>
-                </div>
-                <iframe src="https://my.spline.design/luxurygoldencitycopy-4f364e2621946d8929e7a9e03d9859f1/" frameborder="0" width="100%" height="100%"></iframe>
-            `;
-            document.body.appendChild(sceneDiv);
-        }
+            <div style="position:absolute; top:20px; right:20px; z-index:3001;">
+                <button onclick="document.getElementById('three-d-overlay').remove()" class="luxury-btn" style="background:rgba(0,0,0,0.8); border:1px solid #D4AF37; color:#D4AF37; padding:10px 20px; border-radius:50px; cursor:pointer;">EXIT 3D</button>
+            </div>
 
-        const canvas = document.createElement('canvas');
-        Object.assign(canvas.style, {position:'fixed', top:0, left:0, width:'100%', height:'100%', zIndex:'-1', pointerEvents:'none'});
-        document.body.appendChild(canvas);
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        window.addEventListener('resize', resize); resize();
-        for(let i=0; i<50; i++) particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, size:Math.random()*1.5, speed:Math.random()*0.5, opacity:Math.random()});
-        function animate() {
-            ctx.clearRect(0,0,canvas.width,canvas.height);
-            particles.forEach(p => {
-                ctx.fillStyle = `rgba(212,175,55,${p.opacity})`;
-                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
-                p.y -= p.speed; if(p.y < 0) p.y = canvas.height;
-            });
-            requestAnimationFrame(animate);
-        }
-        animate();
+            <iframe id="3d-frame" src="https://my.spline.design/luxurygoldencitycopy-4f364e2621946d8929e7a9e03d9859f1/" 
+                    frameborder="0" width="100%" height="100%" style="display:none; border:none;" 
+                    onload="showGame()"></iframe>
+            
+            <style>
+                @keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
+            </style>
+        `;
+        document.body.appendChild(sceneDiv);
+    }
+
+    // Loader එක අයින් කරලා Game එක පෙන්වන Function එක
+    function showGame() {
+        const loader = document.getElementById('loader-ui');
+        const frame = document.getElementById('3d-frame');
+        if(loader) loader.style.display = 'none';
+        if(frame) frame.style.display = 'block';
+    }
+
+    // 3. Gold Dust Particles Background
+    const canvas = document.createElement('canvas');
+    Object.assign(canvas.style, {position:'fixed', top:0, left:0, width:'100%', height:'100%', zIndex:'-1', pointerEvents:'none'});
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resize); resize();
+    for(let i=0; i<50; i++) particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, size:Math.random()*1.5, speed:Math.random()*0.5, opacity:Math.random()});
+    function animate() {
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        particles.forEach(p => {
+            ctx.fillStyle = `rgba(212,175,55,${p.opacity})`;
+            ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+            p.y -= p.speed; if(p.y < 0) p.y = canvas.height;
+        });
+        requestAnimationFrame(animate);
+    }
+    animate();
+</script>
     </script>
 </body>
 </html>

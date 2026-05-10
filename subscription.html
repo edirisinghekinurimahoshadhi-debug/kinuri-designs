@@ -3,115 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME Elite Kingdom | Premium Experience</title>
+    <title>KME Elite Kingdom | Business & Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #D4AF37; --deep: #050505; }
+        :root { --gold: #D4AF37; --deep-bg: #050505; }
+        
         body { 
             background: radial-gradient(circle at center, #1a1508 0%, #050505 70%, #000 100%);
             color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden;
         }
 
-        /* LUXURY LAYOUT */
-        .container { padding: 80px 10%; text-align: center; animation: fadeIn 2s; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
+        .container { padding: 60px 8%; text-align: center; animation: fadeIn 1.5s ease-in; }
         
-        .box { 
+        /* HEADER */
+        .header-title { font-size: 2.8rem; color: var(--gold); letter-spacing: 10px; text-transform: uppercase; font-weight: 300; margin-bottom: 10px; }
+        .sub-text { color: #888; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 50px; }
+
+        /* ELITE SERVICES GRID */
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 20px; }
+        
+        .premium-box { 
             background: rgba(255, 255, 255, 0.02); 
-            border: 1px solid rgba(212, 175, 55, 0.2); 
-            padding: 40px; border-radius: 15px; backdrop-filter: blur(10px);
-            transition: 0.5s;
+            border: 1px solid rgba(212, 175, 55, 0.15); 
+            padding: 45px 30px; border-radius: 20px; backdrop-filter: blur(12px);
+            transition: 0.4s all ease; position: relative; overflow: hidden;
         }
-        .box:hover { border-color: var(--gold); transform: translateY(-10px); box-shadow: 0 0 30px rgba(212, 175, 55, 0.1); }
+        .premium-box:hover { border-color: var(--gold); transform: translateY(-8px); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+        .premium-box i { color: var(--gold); font-size: 30px; margin-bottom: 20px; }
+
+        /* AQUA LEAF SPECIAL SECTION */
+        .special-project { 
+            margin-top: 60px; border: 1px solid var(--gold); border-radius: 25px; 
+            padding: 40px; background: rgba(212, 175, 55, 0.03); display: flex; 
+            flex-wrap: wrap; align-items: center; justify-content: center; gap: 30px;
+        }
+        .project-img { width: 100%; max-width: 400px; border-radius: 15px; box-shadow: 0 0 30px rgba(212, 175, 55, 0.2); }
+        .project-info { flex: 1; min-width: 300px; text-align: left; }
 
         .luxury-btn { 
-            background: transparent; color: var(--gold); border: 1px solid var(--gold); 
-            padding: 12px 30px; border-radius: 50px; cursor: pointer; 
-            text-transform: uppercase; letter-spacing: 2px; font-size: 11px; transition: 0.4s;
-            text-decoration: none; display: inline-block; margin-top: 20px;
+            display: inline-block; background: transparent; color: var(--gold); 
+            border: 1px solid var(--gold); padding: 14px 35px; border-radius: 50px; 
+            text-transform: uppercase; letter-spacing: 2px; font-size: 11px; 
+            text-decoration: none; transition: 0.4s; cursor: pointer; margin-top: 25px;
         }
         .luxury-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px var(--gold); }
 
-        .title { font-size: 2.5rem; color: var(--gold); letter-spacing: 8px; font-weight: 300; text-transform: uppercase; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* HIDDEN GAMES (Only for the brave) */
-        #secret-zone { display: none; margin-top: 50px; }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        footer { margin-top: 80px; padding-bottom: 40px; color: #444; font-size: 12px; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1 class="title">Elite Kingdom</h1>
-        <p style="color: #888; font-style: italic; letter-spacing: 2px;">Exclusive Services & Experiences</p>
+        <h1 class="header-title">Elite Kingdom</h1>
+        <p class="sub-text">Premier Design Studio & Digital Assets</p>
 
-        <div class="grid">
-            <div class="box">
-                <h3 style="color: var(--gold);"><i class="fas fa-pen-nib"></i> ELITE STUDIO</h3>
-                <p style="font-size: 13px; color: #aaa; line-height: 1.8;">High-end Logo Design, Premium Branding & Social Media Management for luxury brands.</p>
-                <a href="https://wa.me/94774799172" class="luxury-btn">Inquire Now</a>
+        <div class="service-grid">
+            <div class="premium-box">
+                <i class="fas fa-crown"></i>
+                <h3 style="color: var(--gold); letter-spacing: 2px;">ELITE STUDIO</h3>
+                <p style="color: #aaa; font-size: 14px; line-height: 1.8;">Bespoke branding and visual identity systems. We transform concepts into global luxury standards.</p>
+                <a href="https://wa.me/94774799172?text=I want to inquire about Elite Studio services" class="luxury-btn">Order Branding</a>
             </div>
 
-            <div class="box">
-                <h3 style="color: var(--gold);"><i class="fas fa-vault"></i> KME VAULT</h3>
-                <p style="font-size: 13px; color: #aaa; line-height: 1.8;">Exclusive Canva Templates, Premium Art Assets, and Designer Guides for the Elite.</p>
-                <a href="https://wa.me/94774799172" class="luxury-btn">Access Vault</a>
-            </div>
-
-            <div class="box" style="border-style: dashed;">
-                <h3 style="color: var(--gold);"><i class="fas fa-ghost"></i> HORROR MODE</h3>
-                <p style="font-size: 13px; color: #aaa; line-height: 1.8;">Are you brave enough to enter the Granny's Mansion? A hidden elite challenge.</p>
-                <button class="luxury-btn" onclick="toggleHorror()">Enter Mansion</button>
+            <div class="premium-box">
+                <i class="fas fa-gem"></i>
+                <h3 style="color: var(--gold); letter-spacing: 2px;">KME VAULT</h3>
+                <p style="color: #aaa; font-size: 14px; line-height: 1.8;">Access a curated collection of premium Canva templates and high-resolution design assets.</p>
+                <a href="https://wa.me/94774799172?text=I want to access KME Vault products" class="luxury-btn">Get Assets</a>
             </div>
         </div>
 
-        <div id="secret-zone">
-            <div class="box" style="border-color: #500; background: #000;">
-                <h4 style="color: #ff4d4d;">🏚️ THE GRANNY ESCAPE</h4>
-                <p id="h-status" style="color: #600; font-size: 12px;">Search for the Master Key... don't let her see you.</p>
-                <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
-                    <button class="luxury-btn" style="border-color: #500;" onclick="luxurySearch()">Search Room</button>
-                    <button class="luxury-btn" style="border-color: #500;" onclick="luxuryHide()">Hide Now</button>
-                </div>
+        <div class="special-project">
+            <img src="Gemini_Generated_Image_zc8ozgzc8ozgzc8o.png" class="project-img" alt="Aqua Leaf">
+            <div class="project-info">
+                <span style="color: var(--gold); font-size: 12px; letter-spacing: 4px;">FEATURED PROJECT</span>
+                <h2 style="color: #fff; margin: 10px 0; letter-spacing: 2px;">CEYLON AQUALEAF</h2>
+                <p style="color: #bbb; line-height: 1.8; font-size: 14px;">
+                    A masterpiece in luxury botanical design. Our "Jackfruit Leaf" series represents the pinnacle of 
+                    premium Ceylon exports combined with high-end visual aesthetics.
+                </p>
+                <a href="https://wa.me/94774799172?text=Tell me more about Ceylon Aqualeaf" class="luxury-btn">Project Details</a>
             </div>
         </div>
 
-        <div style="margin-top: 100px;">
-            <a href="index.html" style="color: #444; text-decoration: none; font-size: 12px; letter-spacing: 3px;">← BACK TO PORTFOLIO</a>
+        <div style="margin-top: 60px;">
+            <a href="index.html" style="color: #555; text-decoration: none; font-size: 11px; letter-spacing: 4px;">← RETURN TO PORTFOLIO</a>
         </div>
+
+        <footer>
+            &copy; 2026 KME LUXURY DESIGNS | OFFICIAL BUSINESS PAGE
+        </footer>
     </div>
 
-    <script>
-        let isHiding = false;
-
-        function toggleHorror() {
-            const zone = document.getElementById('secret-zone');
-            zone.style.display = zone.style.display === 'block' ? 'none' : 'block';
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-        }
-
-        function luxurySearch() {
-            if(isHiding) return;
-            let chance = Math.random();
-            if(chance > 0.9) {
-                alert("🔑 EXCELLENT! You found the Master Key and Escaped!");
-            } else if(chance < 0.25) {
-                alert("👵: I SEE YOU! \nYou failed to escape.");
-                location.reload();
-            } else {
-                document.getElementById('h-status').innerText = "Nothing found... Shhh!";
-            }
-        }
-
-        function luxuryHide() {
-            isHiding = true;
-            document.getElementById('h-status').innerText = "You are currently hidden...";
-            setTimeout(() => {
-                isHiding = false;
-                document.getElementById('h-status').innerText = "Safe to search again.";
-            }, 3000);
-        }
-    </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME Elite Kingdom | Business & Services</title>
+    <title>KME Elite Kingdom | Premium Services & 3D</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --gold: #D4AF37; --deep-bg: #050505; }
@@ -15,85 +15,86 @@
 
         .container { padding: 60px 8%; text-align: center; animation: fadeIn 1.5s ease-in; }
         
-        /* HEADER */
         .header-title { font-size: 2.8rem; color: var(--gold); letter-spacing: 10px; text-transform: uppercase; font-weight: 300; margin-bottom: 10px; }
         .sub-text { color: #888; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 50px; }
 
-        /* ELITE SERVICES GRID */
-        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 20px; }
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 20px; }
         
         .premium-box { 
             background: rgba(255, 255, 255, 0.02); 
             border: 1px solid rgba(212, 175, 55, 0.15); 
-            padding: 45px 30px; border-radius: 20px; backdrop-filter: blur(12px);
-            transition: 0.4s all ease; position: relative; overflow: hidden;
+            padding: 40px 25px; border-radius: 20px; backdrop-filter: blur(12px);
+            transition: 0.4s all ease; position: relative;
         }
-        .premium-box:hover { border-color: var(--gold); transform: translateY(-8px); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
-        .premium-box i { color: var(--gold); font-size: 30px; margin-bottom: 20px; }
-
-        /* AQUA LEAF SPECIAL SECTION */
-        .special-project { 
-            margin-top: 60px; border: 1px solid var(--gold); border-radius: 25px; 
-            padding: 40px; background: rgba(212, 175, 55, 0.03); display: flex; 
-            flex-wrap: wrap; align-items: center; justify-content: center; gap: 30px;
-        }
-        .project-img { width: 100%; max-width: 400px; border-radius: 15px; box-shadow: 0 0 30px rgba(212, 175, 55, 0.2); }
-        .project-info { flex: 1; min-width: 300px; text-align: left; }
+        .premium-box:hover { border-color: var(--gold); transform: translateY(-8px); box-shadow: 0 10px 40px rgba(212, 175, 55, 0.15); }
 
         .luxury-btn { 
             display: inline-block; background: transparent; color: var(--gold); 
-            border: 1px solid var(--gold); padding: 14px 35px; border-radius: 50px; 
-            text-transform: uppercase; letter-spacing: 2px; font-size: 11px; 
-            text-decoration: none; transition: 0.4s; cursor: pointer; margin-top: 25px;
+            border: 1px solid var(--gold); padding: 12px 30px; border-radius: 50px; 
+            text-transform: uppercase; letter-spacing: 2px; font-size: 10px; 
+            text-decoration: none; transition: 0.4s; cursor: pointer; margin-top: 15px;
         }
         .luxury-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px var(--gold); }
 
+        /* 3D EXPERIENCE SECTION */
+        .experience-title { margin-top: 80px; color: var(--gold); letter-spacing: 5px; font-weight: 300; text-transform: uppercase; }
+
+        .preview-img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; margin: 15px 0; border: 1px solid #222; }
+
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
-        footer { margin-top: 80px; padding-bottom: 40px; color: #444; font-size: 12px; letter-spacing: 2px; }
+        footer { margin-top: 80px; padding-bottom: 40px; color: #444; font-size: 11px; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
     <div class="container">
         <h1 class="header-title">Elite Kingdom</h1>
-        <p class="sub-text">Premier Design Studio & Digital Assets</p>
+        <p class="sub-text">Premier Design Studio & Virtual Experiences</p>
 
         <div class="service-grid">
             <div class="premium-box">
-                <i class="fas fa-crown"></i>
+                <i class="fas fa-crown" style="color:var(--gold); font-size: 25px;"></i>
                 <h3 style="color: var(--gold); letter-spacing: 2px;">ELITE STUDIO</h3>
-                <p style="color: #aaa; font-size: 14px; line-height: 1.8;">Bespoke branding and visual identity systems. We transform concepts into global luxury standards.</p>
+                <p style="color: #aaa; font-size: 13px; line-height: 1.6;">High-end visual identity and branding systems for the global elite.</p>
                 <a href="https://wa.me/94774799172?text=I want to inquire about Elite Studio services" class="luxury-btn">Order Branding</a>
             </div>
 
             <div class="premium-box">
-                <i class="fas fa-gem"></i>
+                <i class="fas fa-gem" style="color:var(--gold); font-size: 25px;"></i>
                 <h3 style="color: var(--gold); letter-spacing: 2px;">KME VAULT</h3>
-                <p style="color: #aaa; font-size: 14px; line-height: 1.8;">Access a curated collection of premium Canva templates and high-resolution design assets.</p>
+                <p style="color: #aaa; font-size: 13px; line-height: 1.6;">Premium Canva templates and high-resolution design assets.</p>
                 <a href="https://wa.me/94774799172?text=I want to access KME Vault products" class="luxury-btn">Get Assets</a>
             </div>
         </div>
 
-        <div class="special-project">
-            <img src="Gemini_Generated_Image_zc8ozgzc8ozgzc8o.png" class="project-img" alt="Aqua Leaf">
-            <div class="project-info">
-                <span style="color: var(--gold); font-size: 12px; letter-spacing: 4px;">FEATURED PROJECT</span>
-                <h2 style="color: #fff; margin: 10px 0; letter-spacing: 2px;">CEYLON AQUALEAF</h2>
-                <p style="color: #bbb; line-height: 1.8; font-size: 14px;">
-                    A masterpiece in luxury botanical design. Our "Jackfruit Leaf" series represents the pinnacle of 
-                    premium Ceylon exports combined with high-end visual aesthetics.
-                </p>
-                <a href="https://wa.me/94774799172?text=Tell me more about Ceylon Aqualeaf" class="luxury-btn">Project Details</a>
+        <h2 class="experience-title">Elite Virtual Experiences</h2>
+        <p style="color: #666; font-size: 12px; letter-spacing: 2px; margin-bottom: 40px;">Interactive 3D Environments & Premium Challenges</p>
+
+        <div class="service-grid">
+            <div class="premium-box" style="border-color: rgba(212,175,55,0.1);">
+                <h4 style="color: var(--gold); margin-bottom: 5px;">THE GOLDEN SHOWROOM</h4>
+                <p style="font-size: 11px; color: #777;">Virtual 3D Gallery Exploration</p>
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=400" class="preview-img">
+                <span style="font-size: 10px; color: #555; display: block;">STATUS: FREE ACCESS</span>
+                <a href="#" class="luxury-btn" style="padding: 10px 20px;">Explore Free</a>
+            </div>
+
+            <div class="premium-box" style="border: 1px solid var(--gold); background: rgba(212,175,55,0.03);">
+                <h4 style="color: var(--gold); margin-bottom: 5px;">GRANNY 3D: LUXURY REMAKE</h4>
+                <p style="font-size: 11px; color: #777;">High-Fidelity 3D Survival Challenge</p>
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=400" class="preview-img" style="filter: contrast(120%) grayscale(50%);">
+                <p style="color: #fff; font-weight: bold; margin: 10px 0;">LKR 2,500.00</p>
+                <a href="https://wa.me/94774799172?text=I want to buy Granny 3D Premium Access" class="luxury-btn" style="background: var(--gold); color: #000;">Buy Premium Key</a>
             </div>
         </div>
 
-        <div style="margin-top: 60px;">
+        <div style="margin-top: 80px;">
             <a href="index.html" style="color: #555; text-decoration: none; font-size: 11px; letter-spacing: 4px;">← RETURN TO PORTFOLIO</a>
         </div>
 
         <footer>
-            &copy; 2026 KME LUXURY DESIGNS | OFFICIAL BUSINESS PAGE
+            &copy; 2026 KME LUXURY DESIGNS | EXCLUSIVE DIGITAL EXPERIENCE
         </footer>
     </div>
 

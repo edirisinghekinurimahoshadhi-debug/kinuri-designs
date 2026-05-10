@@ -131,15 +131,30 @@
             }
         }
 
-        // 2. HORROR GAME
+       // 2. HORROR GAME (FIXED VERSION)
         let isHiding = false;
         function initHorror() {
             const zone = document.getElementById('granny-zone');
+            const light = document.getElementById('light-overlay');
+
+            // Mouse එකෙන් කරන අයට
             zone.onmousemove = (e) => {
                 if(isHiding) return;
                 let r = zone.getBoundingClientRect();
-                let x = e.clientX - r.left; let y = e.clientY - r.top;
-                document.getElementById('light-overlay').style.background = `radial-gradient(circle at ${x}px ${y}px, transparent 8%, rgba(0,0,0,0.99) 25%)`;
+                let x = e.clientX - r.left; 
+                let y = e.clientY - r.top;
+                light.style.background = `radial-gradient(circle at ${x}px ${y}px, transparent 10%, rgba(0,0,0,0.99) 30%)`;
+            };
+
+            // ෆෝන් එකෙන් Touch කරන අයට
+            zone.ontouchmove = (e) => {
+                if(isHiding) return;
+                let r = zone.getBoundingClientRect();
+                let touch = e.touches[0];
+                let x = touch.clientX - r.left; 
+                let y = touch.clientY - r.top;
+                light.style.background = `radial-gradient(circle at ${x}px ${y}px, transparent 10%, rgba(0,0,0,0.99) 30%)`;
+                e.preventDefault(); // Screen එක scroll වෙන එක නවත්තනවා ප්ලේ කරන අතරතුර
             };
         }
 

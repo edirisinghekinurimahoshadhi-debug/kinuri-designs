@@ -118,6 +118,25 @@
                         <div class="premium-box"><h4>UI KITS</h4><p style="font-size:10px;">Rs. 1500/=</p></div>
                         <div class="premium-box" onclick="window.location.href='https://wa.me/94774799172'"><h4>BUY NOW</h4></div>
                     </div>
+                    } else if(type === 'vault') {
+        content.innerHTML = `
+            <h2 style="color:var(--gold); letter-spacing:5px; margin-bottom:5px;">VAULT HUB</h2>
+            <p style="color:#555; font-size:10px; margin-bottom:30px;">PREMIUM DIGITAL ASSETS</p>
+            
+            <div class="hub-grid">
+                <div class="premium-box" onclick="window.location.href='https://wa.me/94774799172?text=Hello Kinuri, I want to buy the Elite Template 01'">
+                    <img src="https://i.ibb.co/wrLBb0tv/Screenshot-2026-05-10-190318.png" 
+                         style="width:100%; height:150px; object-fit:cover; border-radius:10px; border:1px solid rgba(212,175,55,0.3);">
+                    <h4 style="color:var(--gold); margin-top:15px; font-size:12px;">ELITE TEMPLATE 01</h4>
+                    <p style="color:#888; font-size:10px;">Price: Rs. 500/=</p>
+                    <button class="luxury-btn" style="padding:5px 15px; font-size:8px; margin-top:10px;">BUY NOW</button>
+                </div>
+
+                <div class="premium-box" style="display:flex; align-items:center; justify-content:center; border:1px dashed #333;">
+                    <p style="color:#444; font-size:10px;">MORE ASSETS COMING SOON</p>
+                </div>
+            </div>
+        `;
                 `;
             } else if(type === 'game') {
                 content.innerHTML = `

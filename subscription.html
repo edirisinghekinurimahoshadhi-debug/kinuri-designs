@@ -119,6 +119,68 @@ function enterKingdom() {
         alert("❌ INVALID CODE. Please purchase a valid VIP code via WhatsApp.");
         window.location.href = "https://wa.me/94774799172?text=I want to buy the Fairy World Access Code";
     }
+    // --- LUXURY MAZE GAME LOGIC ---
+let playerPos = { x: 0, y: 0 };
+const mazeLayout = [
+    [0, 1, 0, 0, 0],
+    [0, 1, 0, 1, 0],
+    [0, 0, 0, 1, 0],
+    [1, 1, 0, 1, 0],
+    [0, 0, 0, 0, 2] // 2 කියන්නේ Exit එක (🏁)
+];
+
+function drawMaze() {
+    const container = document.getElementById('maze-container');
+    if(!container) return; // container එක නැත්නම් error එකක් එන එක වළක්වනවා
+    
+    container.innerHTML = '';
+    for (let y = 0; y < 5; y++) {
+        for (let x = 0; x < 5; x++) {
+            const cell = document.createElement('div');
+            cell.style.display = "flex";
+            cell.style.alignItems = "center";
+            cell.style.justifyContent = "center";
+            cell.style.fontSize = "18px";
+            
+            if (mazeLayout[y][x] === 1) {
+                cell.style.background = "#222"; // තාප්පය
+            } else if (mazeLayout[y][x] === 2) {
+                cell.innerHTML = "🏁";
+            }
+            
+            if (x === playerPos.x && y === playerPos.y) {
+                cell.innerHTML = "💎";
+            }
+            container.appendChild(cell);
+        }
+    }
+}
+
+function movePlayer(dir) {
+    let newX = playerPos.x;
+    let newY = playerPos.y;
+    
+    if (dir === 'up') newY--;
+    if (dir === 'down') newY++;
+    if (dir === 'left') newX--;
+    if (dir === 'right') newX++;
+
+    // පාර ඇතුළේද සහ තාප්පයක වදිනවාද කියලා බලනවා
+    if (newX >= 0 && newX < 5 && newY >= 0 && newY < 5 && mazeLayout[newY][newX] !== 1) {
+        playerPos.x = newX;
+        playerPos.y = newY;
+        drawMaze();
+        
+        if (mazeLayout[newY][newX] === 2) {
+            alert("✨ MAZE CLEARED! You found the Luxury Exit.");
+            playerPos = { x: 0, y: 0 }; // ආයේ මුලට යනවා
+            drawMaze();
+        }
+    }
+}
+
+// පේජ් එක ලෝඩ් වුණ ගමන් Maze එක අඳින්න
+document.addEventListener("DOMContentLoaded", drawMaze);
 }
     </script>
 </body>

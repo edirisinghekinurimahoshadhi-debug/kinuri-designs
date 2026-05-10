@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME Fairy World | Luxury Games</title>
+    <title>KME Fairy World | Level Up Games</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --gold: #D4AF37; --magic: #4b0082; }
@@ -21,54 +21,69 @@
         }
         @keyframes flow { from { transform: translateY(0); } to { transform: translateY(20px); } }
 
-        #fairy-world { display: none; padding: 40px 5%; animation: fadeIn 2s; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .box { background: rgba(255,255,255,0.03); border: 1px solid var(--gold); padding: 20px; border-radius: 15px; }
+        #fairy-world { display: none; padding: 40px 5%; animation: fadeIn 2.5s; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        .box { background: rgba(255,255,255,0.03); border: 1.5px solid var(--gold); padding: 25px; border-radius: 20px; box-shadow: 0 0 15px rgba(212, 175, 55, 0.1); }
         
         /* Candy Game Grid */
-        .candy-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; width: 200px; margin: 10px auto; }
-        .candy { width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; font-size: 20px; background: #111; border-radius: 5px; cursor: pointer; }
+        .candy-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 220px; margin: 15px auto; }
+        .candy { width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 24px; background: rgba(255,255,255,0.05); border-radius: 10px; cursor: pointer; transition: 0.2s; }
+        .candy:hover { transform: scale(1.1); background: rgba(212, 175, 55, 0.2); }
 
-        .luxury-btn { background: transparent; color: var(--gold); border: 1px solid var(--gold); padding: 10px 20px; border-radius: 50px; cursor: pointer; text-transform: uppercase; margin-top: 10px; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .luxury-btn { background: transparent; color: var(--gold); border: 1px solid var(--gold); padding: 12px 25px; border-radius: 50px; cursor: pointer; text-transform: uppercase; margin-top: 15px; font-size: 11px; letter-spacing: 1px; }
+        .luxury-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px var(--gold); }
+        
+        .level-tag { background: var(--gold); color: #000; padding: 2px 10px; border-radius: 5px; font-size: 10px; font-weight: bold; margin-bottom: 10px; display: inline-block; }
+
+        @keyframes fadeIn { from { opacity: 0; filter: blur(10px); } to { opacity: 1; filter: blur(0); } }
     </style>
 </head>
 <body>
 
     <div id="portal-stage">
         <div class="road"></div>
-        <h1 style="color: var(--gold); letter-spacing: 10px; z-index: 1;">FAIRY WORLD</h1>
-        <p style="z-index: 1; color: #888;">Walking down the magic path...</p>
-        <button class="luxury-btn" onclick="enterKingdom()" style="z-index: 1;">Step In ✨</button>
+        <h1 style="color: var(--gold); letter-spacing: 12px; z-index: 1; text-shadow: 0 0 20px var(--gold);">FAIRY WORLD</h1>
+        <p style="z-index: 1; color: #888; font-style: italic;">The journey to the elite kingdom begins...</p>
+        <button class="luxury-btn" onclick="enterKingdom()" style="z-index: 1;">Step Into Magic ✨</button>
     </div>
 
     <div id="fairy-world">
-        <h1 style="color: var(--gold); font-weight: 300;">✨ THE GAME KINGDOM ✨</h1>
+        <h1 style="color: var(--gold); font-weight: 300; letter-spacing: 5px; margin-bottom: 40px;">✨ THE ELITE GAME ZONE ✨</h1>
         
         <div class="grid">
             <div class="box">
-                <h4>🍭 CANDY CRUSH MINI</h4>
-                <p style="font-size: 11px;">Tap candies to score!</p>
+                <span class="level-tag" id="candy-level">Level 1</span>
+                <h4>🍭 CANDY TAP CHALLENGE</h4>
+                <p style="font-size: 11px; color: #888;">Tap 20 candies to level up!</p>
                 <div class="candy-grid" id="candy-board"></div>
-                <div id="candy-score" style="color: var(--gold);">Score: 0</div>
-                <button class="luxury-btn" style="font-size: 10px;" onclick="initCandy()">Reset</button>
+                <div id="candy-score" style="color: var(--gold); font-weight: bold; font-size: 18px;">Score: 0</div>
+                <button class="luxury-btn" onclick="initCandy()">Restart</button>
             </div>
 
             <div class="box">
-                <h4>🍃 GOLDEN LEAF CATCHER</h4>
-                <div id="leaf-zone" style="height: 150px; background: #000; position: relative; overflow: hidden; border: 1px solid #333;">
-                    <div id="leaf-score" style="position:absolute; top:5px; left:5px; color:gold; font-size:12px;">Score: 0</div>
+                <span class="level-tag" id="leaf-level">Level 1</span>
+                <h4>🍃 GOLDEN LEAF SPEED</h4>
+                <p style="font-size: 11px; color: #888;">Catch leaves as they fall faster!</p>
+                <div id="leaf-zone" style="height: 200px; background: #000; position: relative; overflow: hidden; border: 1px dashed #333; margin: 15px 0;">
+                    <div id="leaf-score" style="position:absolute; top:10px; left:10px; color:gold; font-weight:bold;">0/15</div>
                 </div>
-                <button class="luxury-btn" style="font-size: 10px;" onclick="startLeafGame()">Start Catching</button>
+                <button class="luxury-btn" onclick="startLeafGame()">Start Quest</button>
             </div>
 
             <div class="box">
-                <h4>💎 DIAMOND RAIN</h4>
-                <button class="luxury-btn" onclick="alert('Starting Diamond Rain...')">Play Diamond Rain</button>
+                <span class="level-tag">Brain Quest</span>
+                <h4>🧩 LUXURY WORD SCRAMBLE</h4>
+                <p style="font-size: 11px; color: #888;">Unscramble the design word:</p>
+                <h2 id="scrambled-word" style="letter-spacing: 5px; color: var(--gold);">?????</h2>
+                <input type="text" id="word-input" placeholder="Your Answer" style="background:transparent; border:1px solid var(--gold); color:white; padding:8px; width:70%; margin-bottom:10px;">
+                <br>
+                <button class="luxury-btn" style="font-size: 10px;" onclick="checkWord()">Check Answer</button>
             </div>
         </div>
 
-        <a href="index.html" style="display:block; margin-top:40px; color:#444; text-decoration:none;">← Return Home</a>
+        <div style="margin-top: 60px; padding-bottom: 40px;">
+            <a href="index.html" style="color: #444; text-decoration: none; font-size: 12px; letter-spacing: 2px;">← EXIT FAIRY WORLD</a>
+        </div>
     </div>
 
     <script>
@@ -78,39 +93,98 @@
                 document.getElementById('portal-stage').style.display = 'none';
                 document.getElementById('fairy-world').style.display = 'block';
                 initCandy();
+                initWordGame();
             }, 1000);
         }
 
-        // CANDY MINI GAME
+        // --- CANDY CHALLENGE LOGIC ---
         let cScore = 0;
-        const candies = ['🍎', '🍬', '🍭', '🍩', '🍇'];
+        let cLevel = 1;
+        const candyIcons = ['🍎', '🍬', '🍭', '🍩', '🍇', '🍒'];
+        
         function initCandy() {
             const board = document.getElementById('candy-board');
             board.innerHTML = '';
             for(let i=0; i<16; i++) {
                 const c = document.createElement('div');
                 c.className = 'candy';
-                c.innerHTML = candies[Math.floor(Math.random()*candies.length)];
-                c.onclick = () => { cScore += 10; document.getElementById('candy-score').innerText = "Score: " + cScore; c.innerHTML = candies[Math.floor(Math.random()*candies.length)]; };
+                c.innerHTML = candyIcons[Math.floor(Math.random()*candyIcons.length)];
+                c.onclick = () => {
+                    cScore++;
+                    document.getElementById('candy-score').innerText = "Score: " + cScore;
+                    c.style.transform = "scale(0.8)";
+                    setTimeout(() => {
+                        c.innerHTML = candyIcons[Math.floor(Math.random()*candyIcons.length)];
+                        c.style.transform = "scale(1)";
+                    }, 100);
+                    
+                    if(cScore >= 20 && cLevel === 1) {
+                        cLevel = 2;
+                        document.getElementById('candy-level').innerText = "Level 2 (Pro)";
+                        alert("🍭 Level Up! You're getting faster!");
+                    }
+                };
                 board.appendChild(c);
             }
         }
 
-        // LEAF CATCHER LOGIC
+        // --- LEAF CATCHER LOGIC ---
         let lScore = 0;
+        let lLevel = 1;
+        let leafSpeed = 2000;
+
         function startLeafGame() {
-            lScore = 0;
+            lScore = 0; lLevel = 1; leafSpeed = 2000;
             const zone = document.getElementById('leaf-zone');
-            let game = setInterval(() => {
+            document.getElementById('leaf-score').innerText = "0/15";
+            
+            let gameInterval = setInterval(() => {
                 const leaf = document.createElement('div');
                 leaf.innerHTML = "🍃";
-                leaf.style.cssText = `position:absolute; left:${Math.random()*90}%; top:-20px; transition: 2s linear; cursor:pointer;`;
+                leaf.style.cssText = `position:absolute; left:${Math.random()*90}%; top:-30px; transition: ${leafSpeed/1000}s linear; cursor:pointer; font-size:25px;`;
                 zone.appendChild(leaf);
-                setTimeout(() => leaf.style.top = "150px", 50);
-                leaf.onclick = () => { lScore++; document.getElementById('leaf-score').innerText = "Score: " + lScore; leaf.remove(); };
-                setTimeout(() => leaf.remove(), 2000);
+                
+                setTimeout(() => leaf.style.top = "200px", 50);
+                
+                leaf.onclick = () => {
+                    lScore++;
+                    document.getElementById('leaf-score').innerText = lScore + "/15";
+                    leaf.remove();
+                    
+                    if(lScore === 15) {
+                        lLevel++;
+                        lScore = 0;
+                        leafSpeed -= 500; // Speeding up
+                        document.getElementById('leaf-level').innerText = "Level " + lLevel;
+                        document.getElementById('leaf-score').innerText = "0/15";
+                        alert("🍃 Level " + lLevel + "! The wind is getting stronger!");
+                    }
+                };
+                setTimeout(() => { if(leaf.parentNode) leaf.remove(); }, leafSpeed + 100);
             }, 800);
-            setTimeout(() => clearInterval(game), 15000);
+            
+            setTimeout(() => clearInterval(gameInterval), 30000); // Game lasts 30s per session
+        }
+
+        // --- WORD SCRAMBLE LOGIC ---
+        const words = ["LUXURY", "GOLDEN", "DESIGN", "KINURI", "CANVA", "ELITE"];
+        let currentWord = "";
+        
+        function initWordGame() {
+            currentWord = words[Math.floor(Math.random()*words.length)];
+            let scrambled = currentWord.split('').sort(() => Math.random() - 0.5).join('');
+            document.getElementById('scrambled-word').innerText = scrambled;
+        }
+
+        function checkWord() {
+            const input = document.getElementById('word-input').value.toUpperCase();
+            if(input === currentWord) {
+                alert("🧩 Amazing! You're a Design Genius.");
+                document.getElementById('word-input').value = "";
+                initWordGame();
+            } else {
+                alert("❌ Not quite. Try again!");
+            }
         }
     </script>
 </body>

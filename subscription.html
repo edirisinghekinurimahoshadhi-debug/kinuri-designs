@@ -21,7 +21,7 @@
             border-radius: 10px; 
         }
 
-        .container { padding: 60px 8%; text-align: center; animation: fadeIn 1.5s ease-in; }
+        .container { padding: 60px 8%; text-align: center; }
         
         .header-title { font-size: 2.8rem; color: var(--gold); letter-spacing: 10px; text-transform: uppercase; font-weight: 300; margin-bottom: 10px; }
         .sub-text { color: #888; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 50px; }
@@ -47,8 +47,10 @@
             text-transform: uppercase; letter-spacing: 2px; font-size: 10px; 
             text-decoration: none; transition: 0.4s; cursor: pointer; margin-top: 15px;
         }
+
         .luxury-btn:hover { 
-            background: var(--gold); color: #000; 
+            background: var(--gold); 
+            color: #000; 
             box-shadow: 0 0 25px rgba(212, 175, 55, 0.6); 
             transform: scale(1.05);
         }
@@ -58,8 +60,6 @@
         .reveal { opacity: 0; transform: translateY(20px); transition: 1s all ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        
         footer { margin-top: 80px; padding-bottom: 40px; color: #444; font-size: 11px; letter-spacing: 2px; }
     </style>
 </head>
@@ -87,116 +87,69 @@
 
         <div class="reveal" style="margin-top: 80px; padding: 40px; border: 1px solid rgba(212, 175, 55, 0.1); border-radius: 30px; background: rgba(255,255,255,0.01);">
             <h2 style="color: var(--gold); letter-spacing: 5px; font-weight: 300; text-transform: uppercase; margin-bottom: 10px;">Other Elite Projects</h2>
-            <p style="color: #666; font-size: 12px; letter-spacing: 2px; margin-bottom: 40px;">Interactive Virtual Assets & Experiences</p>
-
             <div class="service-grid">
                 <div class="premium-box">
                     <h4 style="color: var(--gold); margin-bottom: 5px;">THE GOLDEN SHOWROOM</h4>
                     <p style="font-size: 11px; color: #777;">Virtual Portfolio Tour</p>
                     <div class="project-img-box" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=400');"></div>
-                    <button onclick="start3DShowroom()" class="luxury-btn" style="padding: 10px 20px; font-size: 9px;">Explore Free</button>
+                    <button onclick="start3DShowroom()" class="luxury-btn">Explore Free</button>
                 </div>
 
                 <div class="premium-box" style="border: 1px dashed var(--gold);">
                     <h4 style="color: var(--gold); margin-bottom: 5px;">GRANNY 3D: REMAKE</h4>
                     <p style="font-size: 11px; color: #777;">Survival Challenge</p>
                     <div class="project-img-box" style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=400'); filter: grayscale(100%);"></div>
-                    <a href="https://wa.me/94774799172?text=Hello%20Kinuri,%20I%20am%20interested%20in%20purchasing%20the%20Granny%203D%20Premium%20Key." class="luxury-btn" style="padding: 10px 20px; font-size: 9px;">Buy Premium Key</a>
+                    <a href="https://wa.me/94774799172?text=Hello%20Kinuri,%20I%20am%20interested%20in%20purchasing%20the%20Granny%203D%20Premium%20Key." class="luxury-btn">Buy Premium Key</a>
                 </div>
 
                 <div class="premium-box">
                     <h4 style="color: var(--gold); margin-bottom: 5px;">CEYLON AQUALEAF</h4>
-                    <p style="font-size: 11px; color: #777;">Botanical Series</p>
                     <div class="project-img-box" style="background-image: url('Gemini_Generated_Image_zc8ozgzc8ozgzc8o.png');"></div>
-                    <a href="#" class="luxury-btn" style="padding: 10px 20px; font-size: 9px;">View Project</a>
+                    <a href="#" class="luxury-btn">View Project</a>
                 </div>
             </div>
         </div>
 
-        <div style="margin-top: 60px;">
-            <a href="index.html" style="color: #555; text-decoration: none; font-size: 11px; letter-spacing: 4px;">← RETURN TO PORTFOLIO</a>
-        </div>
-
-        <footer>
-            &copy; 2026 KME LUXURY DESIGNS | OFFICIAL BUSINESS PAGE
-        </footer>
+        <footer>&copy; 2026 KME LUXURY DESIGNS</footer>
     </div>
 
     <script>
-        // 1. Page Load Logic
         document.addEventListener("DOMContentLoaded", function() {
-            const reveals = document.querySelectorAll('.reveal');
-            reveals.forEach(el => {
-                el.classList.add('active');
-            });
+            document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
         });
 
-        // 2. 3D Showroom Logic
         function start3DShowroom() {
             const sceneDiv = document.createElement('div');
             sceneDiv.id = 'three-d-overlay';
-            sceneDiv.style.position = 'fixed';
-            sceneDiv.style.top = '0';
-            sceneDiv.style.left = '0';
-            sceneDiv.style.width = '100vw';
-            sceneDiv.style.height = '100vh';
-            sceneDiv.style.zIndex = '3000';
-            sceneDiv.style.background = '#000';
+            sceneDiv.style = "position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:3000; background:#000;";
             
             sceneDiv.innerHTML = `
                 <div style="position:absolute; top:20px; right:20px; z-index:3001;">
                     <button onclick="document.getElementById('three-d-overlay').remove()" class="luxury-btn" style="background:rgba(0,0,0,0.7)">Exit 3D</button>
                 </div>
-                <div style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); color:#D4AF37; font-size:12px; z-index:3001; text-shadow: 0 0 10px #000;">
-                    DRAG TO ROTATE | SCROLL TO ZOOM
-                </div>
-                <iframe src="https://my.spline.design/luxurygoldencitycopy-4f364e2621946d8929e7a9e03d9859f1/" 
-                        frameborder="0" width="100%" height="100%" allowfullscreen></iframe>
+                <iframe src="https://my.spline.design/luxurygoldencitycopy-4f364e2621946d8929e7a9e03d9859f1/" frameborder="0" width="100%" height="100%"></iframe>
             `;
             document.body.appendChild(sceneDiv);
         }
 
-        // 3. Dust Particles
         const canvas = document.createElement('canvas');
-        canvas.style.position = 'fixed';
-        canvas.style.top = '0';
-        canvas.style.left = '0';
-        canvas.style.width = '100%';
-        canvas.style.height = '100%';
-        canvas.style.zIndex = '-1';
-        canvas.style.pointerEvents = 'none';
+        Object.assign(canvas.style, {position:'fixed', top:0, left:0, width:'100%', height:'100%', zIndex:'-1', pointerEvents:'none'});
         document.body.appendChild(canvas);
-
         const ctx = canvas.getContext('2d');
         let particles = [];
-
         function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        window.addEventListener('resize', resize);
-        resize();
-
-        for(let i=0; i<50; i++) {
-            particles.push({
-                x: Math.random()*canvas.width,
-                y: Math.random()*canvas.height,
-                size: Math.random()*1.5,
-                speed: Math.random()*0.5,
-                opacity: Math.random()
-            });
-        }
-
-        function animateDust() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        window.addEventListener('resize', resize); resize();
+        for(let i=0; i<50; i++) particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, size:Math.random()*1.5, speed:Math.random()*0.5, opacity:Math.random()});
+        function animate() {
+            ctx.clearRect(0,0,canvas.width,canvas.height);
             particles.forEach(p => {
-                ctx.fillStyle = `rgba(212, 175, 55, ${p.opacity})`;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
-                ctx.fill();
-                p.y -= p.speed;
-                if(p.y < 0) p.y = canvas.height;
+                ctx.fillStyle = `rgba(212,175,55,${p.opacity})`;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+                p.y -= p.speed; if(p.y < 0) p.y = canvas.height;
             });
-            requestAnimationFrame(animateDust);
+            requestAnimationFrame(animate);
         }
-        animateDust();
+        animate();
     </script>
 </body>
 </html>

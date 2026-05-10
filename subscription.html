@@ -49,8 +49,7 @@
         }
 
         .luxury-btn:hover { 
-            background: var(--gold); 
-            color: #000; 
+            background: var(--gold); color: #000; 
             box-shadow: 0 0 25px rgba(212, 175, 55, 0.6); 
             transform: scale(1.05);
         }
@@ -59,6 +58,11 @@
 
         .reveal { opacity: 0; transform: translateY(20px); transition: 1s all ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Game Hub Menu Styles */
+        .hub-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; width: 90%; max-width: 600px; margin-top: 20px; }
+        .game-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.2); padding: 20px; border-radius: 15px; transition: 0.3s; cursor: pointer; }
+        .game-card:hover { border-color: var(--gold); background: rgba(212,175,55,0.1); transform: scale(1.05); }
 
         footer { margin-top: 80px; padding-bottom: 40px; color: #444; font-size: 11px; letter-spacing: 2px; }
     </style>
@@ -76,8 +80,115 @@
                 <p style="color: #aaa; font-size: 13px; line-height: 1.6;">Luxury branding systems and professional visual identities.</p>
                 <a href="https://wa.me/94774799172?text=Hello%20Kinuri,%20I%20want%20to%20inquire%20about%20Elite%20Studio%20services." class="luxury-btn">Order Branding</a>
             </div>
-`
+
             <div class="premium-box">
                 <i class="fas fa-gem" style="color:var(--gold); font-size: 25px; margin-bottom: 15px;"></i>
                 <h3 style="color: var(--gold); letter-spacing: 2px;">KME VAULT</h3>
-                <p style="color: #aaa; font-size: 13px; line-height: 1.6;">
+                <p style="color: #aaa; font-size: 13px; line-height: 1.6;">Curated Canva templates and premium designer resources.</p>
+                <a href="https://wa.me/94774799172?text=Hello%20Kinuri,%20I%20want%20to%20access%20KME%20Vault%20products." class="luxury-btn">Get Assets</a>
+            </div>
+        </div>
+
+        <div class="reveal" style="margin-top: 80px; padding: 40px; border: 1px solid rgba(212, 175, 55, 0.1); border-radius: 30px; background: rgba(255,255,255,0.01);">
+            <h2 style="color: var(--gold); letter-spacing: 5px; font-weight: 300; text-transform: uppercase; margin-bottom: 10px;">Other Elite Projects</h2>
+            <div class="service-grid">
+                
+                <div class="premium-box">
+                    <h4 style="color: var(--gold); margin-bottom: 5px;">THE GOLDEN SHOWROOM</h4>
+                    <p style="font-size: 11px; color: #777;">Virtual Portfolio Tour</p>
+                    <div class="project-img-box" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=400');"></div>
+                    <button onclick="start3DExperience('showroom')" class="luxury-btn">Explore Free</button>
+                </div>
+
+                <div class="premium-box" style="border: 1px dashed var(--gold);">
+                    <h4 style="color: var(--gold); margin-bottom: 5px;">ELITE GAMING HUB</h4>
+                    <p style="font-size: 11px; color: #777;">Multi-Game Collection</p>
+                    <div class="project-img-box" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=400'); filter: sepia(100%);"></div>
+                    <button onclick="start3DExperience('hub')" class="luxury-btn">Play Premium</button>
+                </div>
+
+                <div class="premium-box">
+                    <h4 style="color: var(--gold); margin-bottom: 5px;">CEYLON AQUALEAF</h4>
+                    <div class="project-img-box" style="background-image: url('Gemini_Generated_Image_zc8ozgzc8ozgzc8o.png');"></div>
+                    <a href="https://wa.me/94774799172?text=Tell me more about Ceylon Aqualeaf" class="luxury-btn">View Project</a>
+                </div>
+            </div>
+        </div>
+
+        <footer>&copy; 2026 KME LUXURY DESIGNS | POWERED BY ELITE KINGDOM</footer>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+        });
+
+        function start3DExperience(type) {
+            const sceneDiv = document.createElement('div');
+            sceneDiv.id = 'three-d-overlay';
+            sceneDiv.style = "position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:3000; background:rgba(0,0,0,0.98); display:flex; align-items:center; justify-content:center; flex-direction:column; backdrop-filter:blur(15px);";
+            
+            if(type === 'showroom') {
+                openGameFrame("https://my.spline.design/luxurygoldencitycopy-4f364e2621946d8929e7a9e03d9859f1/", "LOADING GOLDEN SHOWROOM...", sceneDiv);
+            } else {
+                sceneDiv.innerHTML = `
+                    <div style="position:absolute; top:20px; right:20px; z-index:3005;">
+                        <button onclick="document.getElementById('three-d-overlay').remove()" class="luxury-btn">CLOSE HUB</button>
+                    </div>
+                    <h2 style="color:#D4AF37; letter-spacing:8px; margin-bottom:10px; font-weight:300;">ELITE GAMING HUB</h2>
+                    <p style="color:#555; font-size:10px; margin-bottom:40px; letter-spacing:2px;">SELECT YOUR EXPERIENCE</p>
+                    
+                    <div class="hub-menu">
+                        <div class="game-card" onclick="openGameFrame('https://v6p9d9t4.ssl.hwcdn.net/html/1454652/index.html', 'STARTING SURVIVAL...', document.getElementById('three-d-overlay'))">
+                            <i class="fas fa-skull-crossbones" style="color:#D4AF37; font-size:24px;"></i>
+                            <p style="font-size:10px; margin-top:15px; letter-spacing:1px;">SURVIVAL 3D</p>
+                        </div>
+                        <div class="game-card" onclick="openGameFrame('https://www.retrogames.cc/embed/40238-super-mario-64-usa.html', 'STARTING ADVENTURE...', document.getElementById('three-d-overlay'))">
+                            <i class="fas fa-crown" style="color:#D4AF37; font-size:24px;"></i>
+                            <p style="font-size:10px; margin-top:15px; letter-spacing:1px;">ADVENTURE 3D</p>
+                        </div>
+                        <div class="game-card" onclick="openGameFrame('https://www.google.com/logos/2010/pacman10-i.html', 'STARTING CLASSIC...', document.getElementById('three-d-overlay'))">
+                            <i class="fas fa-ghost" style="color:#D4AF37; font-size:24px;"></i>
+                            <p style="font-size:10px; margin-top:15px; letter-spacing:1px;">CLASSIC GOLD</p>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(sceneDiv);
+            }
+        }
+
+        function openGameFrame(url, loadingText, container) {
+            container.innerHTML = `
+                <div id="loader-ui" style="text-align:center;">
+                    <h2 style="color:#D4AF37; letter-spacing:5px; font-weight:300; animation: pulse 1.5s infinite;">${loadingText}</h2>
+                </div>
+                <div style="position:absolute; top:20px; right:20px; z-index:3006;">
+                    <button onclick="document.getElementById('three-d-overlay').remove()" class="luxury-btn" style="background:rgba(0,0,0,0.8)">EXIT</button>
+                </div>
+                <iframe id="3d-frame" src="${url}" frameborder="0" width="100%" height="100%" style="display:none; border:none;" onload="document.getElementById('loader-ui').style.display='none'; this.style.display='block';"></iframe>
+                <style> @keyframes pulse { 0% { opacity:0.2; } 50% { opacity:1; } 100% { opacity:0.2; } } </style>
+            `;
+        }
+
+        // Background Particles
+        const canvas = document.createElement('canvas');
+        Object.assign(canvas.style, {position:'fixed', top:0, left:0, width:'100%', height:'100%', zIndex:'-1', pointerEvents:'none'});
+        document.body.appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize); resize();
+        for(let i=0; i<40; i++) particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, size:Math.random()*1.5, speed:Math.random()*0.4, opacity:Math.random()});
+        function animate() {
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            particles.forEach(p => {
+                ctx.fillStyle = `rgba(212,175,55,${p.opacity})`;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+                p.y -= p.speed; if(p.y < 0) p.y = canvas.height;
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>

@@ -185,6 +185,25 @@
             } else {
                 alert("❌ Not quite. Try again!");
             }
+            <div class="box">
+    <span class="level-tag" id="ttt-level">Level 1 (Easy)</span>
+    <h4>❌ TIC TAC TOE ⭕</h4>
+    <p style="font-size: 11px; color: #888;">Win 3 times to reach Pro Level!</p>
+    
+    <div id="ttt-board" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; width: 180px; margin: 15px auto;">
+        <div class="cell" onclick="playerMove(0)" style="width:55px; height:55px; background:rgba(255,255,255,0.05); border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer;"></div>
+        <div class="cell" onclick="playerMove(1)" style="width:55px; height:55px; background:rgba(255,255,255,0.05); border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer;"></div>
+        <div class="cell" onclick="playerMove(2)" style="width:55px; height:55px; background:rgba(255,255,255,0.05); border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer;"></div>
+        <div class="cell" onclick="playerMove(3)" style="width:55px; height:55px; background:rgba(255,255,255,0.05); border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer;"></div>
+        <div class="cell" onclick="playerMove(4)" style="width:55px; height:55px; background:rgba(255,255,255,0.05); border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer;"></div>
+        <div class="cell" onclick="playerMove(5)" style="width:55px; height:55px; background:rgba(255,255,255,0.05); border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer;"></div>
+        <div class="cell" onclick="playerMove(6)" style="width:55px; height:55px; background:rgba(255,255,255,0.05); border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer;"></div>
+        <div class="cell" onclick="playerMove(7)" style="width:55px; height:55px; background:rgba(255,255,255,0.05); border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer;"></div>
+        <div class="cell" onclick="playerMove(8)" style="width:55px; height:55px; background:rgba(255,255,255,0.05); border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer;"></div>
+    </div>
+    
+    <button class="luxury-btn" onclick="resetTTT()" style="font-size: 10px;">Reset Board</button>
+</div>
         }
     </script>
 </body>

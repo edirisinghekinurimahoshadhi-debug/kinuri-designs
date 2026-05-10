@@ -87,124 +87,26 @@
     </div>
 
     <script>
-        function enterKingdom() {
-            document.getElementById('portal-stage').style.opacity = '0';
-            setTimeout(() => {
-                document.getElementById('portal-stage').style.display = 'none';
-                document.getElementById('fairy-world').style.display = 'block';
-                initCandy();
-                initWordGame();
-            }, 1000);
-        }
+        // FAIRY WORLD LOCK LOGIC
+function enterKingdom() {
+    // පළමුව කෝඩ් එක ඉල්ලනවා
+    let accessCode = prompt("💎 ENTER VIP ACCESS CODE:\n(Contact Kinuri to purchase your code)");
 
-        // --- CANDY CHALLENGE LOGIC ---
-        let cScore = 0;
-        let cLevel = 1;
-        const candyIcons = ['🍎', '🍬', '🍭', '🍩', '🍇', '🍒'];
+    if (accessCode === "KME_VIP_77") { // ඔයාට කැමති රහස් කෝඩ් එකක් මෙතනට දාන්න
+        alert("✨ ACCESS GRANTED! Welcome to the Elite Kingdom.");
         
-        function initCandy() {
-            const board = document.getElementById('candy-board');
-            board.innerHTML = '';
-            for(let i=0; i<16; i++) {
-                const c = document.createElement('div');
-                c.className = 'candy';
-                c.innerHTML = candyIcons[Math.floor(Math.random()*candyIcons.length)];
-                c.onclick = () => {
-                    cScore++;
-                    document.getElementById('candy-score').innerText = "Score: " + cScore;
-                    c.style.transform = "scale(0.8)";
-                    setTimeout(() => {
-                        c.innerHTML = candyIcons[Math.floor(Math.random()*candyIcons.length)];
-                        c.style.transform = "scale(1)";
-                    }, 100);
-                    
-                    if(cScore >= 20 && cLevel === 1) {
-                        cLevel = 2;
-                        document.getElementById('candy-level').innerText = "Level 2 (Pro)";
-                        alert("🍭 Level Up! You're getting faster!");
-                    }
-                };
-                board.appendChild(c);
-            }
-        }
-
-        // --- LEAF CATCHER LOGIC ---
-        let lScore = 0;
-        let lLevel = 1;
-        let leafSpeed = 2000;
-
-        function startLeafGame() {
-            lScore = 0; lLevel = 1; leafSpeed = 2000;
-            const zone = document.getElementById('leaf-zone');
-            document.getElementById('leaf-score').innerText = "0/15";
-            
-            let gameInterval = setInterval(() => {
-                const leaf = document.createElement('div');
-                leaf.innerHTML = "🍃";
-                leaf.style.cssText = `position:absolute; left:${Math.random()*90}%; top:-30px; transition: ${leafSpeed/1000}s linear; cursor:pointer; font-size:25px;`;
-                zone.appendChild(leaf);
-                
-                setTimeout(() => leaf.style.top = "200px", 50);
-                
-                leaf.onclick = () => {
-                    lScore++;
-                    document.getElementById('leaf-score').innerText = lScore + "/15";
-                    leaf.remove();
-                    
-                    if(lScore === 15) {
-                        lLevel++;
-                        lScore = 0;
-                        leafSpeed -= 500; // Speeding up
-                        document.getElementById('leaf-level').innerText = "Level " + lLevel;
-                        document.getElementById('leaf-score').innerText = "0/15";
-                        alert("🍃 Level " + lLevel + "! The wind is getting stronger!");
-                    }
-                };
-                setTimeout(() => { if(leaf.parentNode) leaf.remove(); }, leafSpeed + 100);
-            }, 800);
-            
-            setTimeout(() => clearInterval(gameInterval), 30000); // Game lasts 30s per session
-        }
-
-        // --- WORD SCRAMBLE LOGIC ---
-        const words = ["LUXURY", "GOLDEN", "DESIGN", "KINURI", "CANVA", "ELITE"];
-        let currentWord = "";
-        
-        function initWordGame() {
-            currentWord = words[Math.floor(Math.random()*words.length)];
-            let scrambled = currentWord.split('').sort(() => Math.random() - 0.5).join('');
-            document.getElementById('scrambled-word').innerText = scrambled;
-        }
-
-        function checkWord() {
-            const input = document.getElementById('word-input').value.toUpperCase();
-            if(input === currentWord) {
-                alert("🧩 Amazing! You're a Design Genius.");
-                document.getElementById('word-input').value = "";
-                initWordGame();
-            } else {
-                alert("❌ Not quite. Try again!");
-            }
-            <div class="box">
-    <span class="level-tag" id="ttt-level">Level 1 (Easy)</span>
-    <h4>❌ TIC TAC TOE ⭕</h4>
-    <p style="font-size: 11px; color: #888;">Win 3 times to reach Pro Level!</p>
-    
-    <div id="ttt-board" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; width: 180px; margin: 15px auto;">
-        <div class="cell" onclick="playerMove(0)" style="width:55px; height:55px; background:rgba(255,255,255,0.05); border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer;"></div>
-        <div class="cell" onclick="playerMove(1)" style="width:55px; height:55px; background:rgba(255,255,255,0.05); border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer;"></div>
-        <div class="cell" onclick="playerMove(2)" style="width:55px; height:55px; background:rgba(255,255,255,0.05); border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer;"></div>
-        <div class="cell" onclick="playerMove(3)" style="width:55px; height:55px; background:rgba(255,255,255,0.05); border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer;"></div>
-        <div class="cell" onclick="playerMove(4)" style="width:55px; height:55px; background:rgba(255,255,255,0.05); border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer;"></div>
-        <div class="cell" onclick="playerMove(5)" style="width:55px; height:55px; background:rgba(255,255,255,0.05); border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer;"></div>
-        <div class="cell" onclick="playerMove(6)" style="width:55px; height:55px; background:rgba(255,255,255,0.05); border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer;"></div>
-        <div class="cell" onclick="playerMove(7)" style="width:55px; height:55px; background:rgba(255,255,255,0.05); border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer;"></div>
-        <div class="cell" onclick="playerMove(8)" style="width:55px; height:55px; background:rgba(255,255,255,0.05); border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer;"></div>
-    </div>
-    
-    <button class="luxury-btn" onclick="resetTTT()" style="font-size: 10px;">Reset Board</button>
-</div>
-        }
+        // පේජ් එක මාරු කරන Animation එක
+        document.getElementById('portal-stage').style.opacity = '0';
+        setTimeout(() => {
+            document.getElementById('portal-stage').style.display = 'none';
+            document.getElementById('fairy-world').style.display = 'block';
+            if(typeof initCandy === 'function') initCandy(); // Candy game එක load කරනවා
+        }, 1000);
+    } else {
+        alert("❌ INVALID CODE. Please purchase a valid VIP code via WhatsApp.");
+        window.location.href = "https://wa.me/94774799172?text=I want to buy the Fairy World Access Code";
+    }
+}
     </script>
 </body>
 </html>

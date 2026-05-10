@@ -73,12 +73,24 @@
             const content = document.getElementById('dynamic-content');
             world.style.display = 'block';
             
-            if (choice === 'fairy') {
-                title.innerText = "✨ MAGIC FAIRY LAND"; title.style.color = "#ffb6c1";
-                content.innerHTML = `
-                    <div class="box"><h4>🍭 CANDY TAP</h4><div id="c-score">Score: 0</div><div id="candy-board" class="candy-grid"></div><button class="luxury-btn" onclick="initCandy()">Reset</button></div>
-                    <div class="box"><h4>🧚 MAGIC DUST</h4><p>Catch falling stars!</p><div id="dust-zone" style="height:150px; background:#000; position:relative; overflow:hidden; border:1px dashed #ffb6c1;"></div><button class="luxury-btn" onclick="startDust()">Start</button></div>
-                `;
+           
+        else if (choice === 'horror') {
+    title.innerText = "🏚️ THE HORROR MANSION";
+    title.style.color = "#ff4d4d";
+    content.innerHTML = `
+        <div class="box" style="border-color:#500; position:relative;">
+            <div id="horror-scene" style="width:100%; height:300px; background:url('https://i.imgur.com/8X1698E.jpeg') center/cover; position:relative; border-radius:15px; border:2px solid #300;">
+                
+                <div onclick="checkObject('Bed')" style="position:absolute; bottom:20px; left:20%; width:100px; height:60px; cursor:pointer;" title="Check under bed"></div>
+                <div onclick="checkObject('Cupboard')" style="position:absolute; top:50px; right:15%; width:80px; height:150px; cursor:pointer;" title="Open Cupboard"></div>
+                <div onclick="checkObject('Door')" style="position:absolute; top:100px; left:40%; width:60px; height:120px; cursor:pointer;" title="Try Door"></div>
+
+                <img id="granny-scare" src="https://i.imgur.com/vHInXF6.png" style="display:none; position:absolute; width:180px; bottom:0; left:50%; transform:translateX(-50%); z-index:100;">
+            </div>
+            <p id="horror-hint" style="margin-top:10px; color:#aaa; font-size:12px;">Tap on objects in the room to search...</p>
+        </div>
+    `;
+}
                 initCandy();
             } 
             else if (choice === 'horror') {

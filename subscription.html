@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME Elite Kingdom | Premium Services & 3D</title>
+    <title>KME Elite Kingdom | Business & 3D Experiences</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --gold: #D4AF37; --deep-bg: #050505; }
@@ -11,6 +11,14 @@
         body { 
             background: radial-gradient(circle at center, #1a1508 0%, #050505 70%, #000 100%);
             color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden;
+        }
+
+        /* 1. LUXURY GOLD SCROLLBAR */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(to bottom, #1a1508, var(--gold), #1a1508); 
+            border-radius: 10px; 
         }
 
         .container { padding: 60px 8%; text-align: center; animation: fadeIn 1.5s ease-in; }
@@ -23,10 +31,16 @@
         .premium-box { 
             background: rgba(255, 255, 255, 0.02); 
             border: 1px solid rgba(212, 175, 55, 0.15); 
-            padding: 40px 25px; border-radius: 20px; backdrop-filter: blur(12px);
+            padding: 35px 25px; border-radius: 20px; backdrop-filter: blur(12px);
             transition: 0.4s all ease; position: relative;
         }
-        .premium-box:hover { border-color: var(--gold); transform: translateY(-8px); box-shadow: 0 10px 40px rgba(212, 175, 55, 0.15); }
+
+        /* 2. GLOW HOVER EFFECT */
+        .premium-box:hover { 
+            border-color: var(--gold); 
+            transform: translateY(-8px); 
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.15); 
+        }
 
         .luxury-btn { 
             display: inline-block; background: transparent; color: var(--gold); 
@@ -34,74 +48,75 @@
             text-transform: uppercase; letter-spacing: 2px; font-size: 10px; 
             text-decoration: none; transition: 0.4s; cursor: pointer; margin-top: 15px;
         }
-        .luxury-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px var(--gold); }
+        .luxury-btn:hover { 
+            background: var(--gold); color: #000; 
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.6); 
+            transform: scale(1.05);
+        }
 
-        /* 3D EXPERIENCE SECTION */
-        .experience-title { margin-top: 80px; color: var(--gold); letter-spacing: 5px; font-weight: 300; text-transform: uppercase; }
-
-        .preview-img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; margin: 15px 0; border: 1px solid #222; }
+        .project-img-box { height: 120px; border-radius: 10px; margin: 15px 0; border: 1px solid #222; opacity: 0.8; background-size: cover; background-position: center; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
-        footer { margin-top: 80px; padding-bottom: 40px; color: #444; font-size: 11px; letter-spacing: 2px; }/* Custom Luxury Scrollbar */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #050505; }
-::-webkit-scrollbar-thumb { 
-    background: linear-gradient(to bottom, #1a1508, var(--gold), #1a1508); 
-    border-radius: 10px; 
-}
-        
+        footer { margin-top: 80px; padding-bottom: 40px; color: #444; font-size: 11px; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
     <div class="container">
         <h1 class="header-title">Elite Kingdom</h1>
-        <p class="sub-text">Premier Design Studio & Virtual Experiences</p>
+        <p class="sub-text">Premier Design Studio & Digital Assets</p>
 
         <div class="service-grid">
             <div class="premium-box">
-                <i class="fas fa-crown" style="color:var(--gold); font-size: 25px;"></i>
+                <i class="fas fa-crown" style="color:var(--gold); font-size: 25px; margin-bottom: 15px;"></i>
                 <h3 style="color: var(--gold); letter-spacing: 2px;">ELITE STUDIO</h3>
-                <p style="color: #aaa; font-size: 13px; line-height: 1.6;">High-end visual identity and branding systems for the global elite.</p>
-                <a href="https://wa.me/94774799172?text=I want to inquire about Elite Studio services" class="luxury-btn">Order Branding</a>
+                <p style="color: #aaa; font-size: 13px; line-height: 1.6;">Luxury branding systems and professional visual identities.</p>
+                <a href="https://wa.me/94774799172?text=Hello%20Kinuri,%20I%20want%20to%20inquire%20about%20Elite%20Studio%20services." class="luxury-btn">Order Branding</a>
             </div>
 
             <div class="premium-box">
-                <i class="fas fa-gem" style="color:var(--gold); font-size: 25px;"></i>
+                <i class="fas fa-gem" style="color:var(--gold); font-size: 25px; margin-bottom: 15px;"></i>
                 <h3 style="color: var(--gold); letter-spacing: 2px;">KME VAULT</h3>
-                <p style="color: #aaa; font-size: 13px; line-height: 1.6;">Premium Canva templates and high-resolution design assets.</p>
-                <a href="https://wa.me/94774799172?text=I want to access KME Vault products" class="luxury-btn">Get Assets</a>
+                <p style="color: #aaa; font-size: 13px; line-height: 1.6;">Curated Canva templates and premium designer resources.</p>
+                <a href="https://wa.me/94774799172?text=Hello%20Kinuri,%20I%20want%20to%20access%20KME%20Vault%20products." class="luxury-btn">Get Assets</a>
             </div>
         </div>
 
-        <h2 class="experience-title">Elite Virtual Experiences</h2>
-        <p style="color: #666; font-size: 12px; letter-spacing: 2px; margin-bottom: 40px;">Interactive 3D Environments & Premium Challenges</p>
+        <div style="margin-top: 80px; padding: 40px; border: 1px solid rgba(212, 175, 55, 0.1); border-radius: 30px; background: rgba(255,255,255,0.01);">
+            <h2 style="color: var(--gold); letter-spacing: 5px; font-weight: 300; text-transform: uppercase; margin-bottom: 10px;">Other Elite Projects</h2>
+            <p style="color: #666; font-size: 12px; letter-spacing: 2px; margin-bottom: 40px;">Interactive Virtual Assets & Experiences</p>
 
-        <div class="service-grid">
-            <div class="premium-box" style="border-color: rgba(212,175,55,0.1);">
-                <h4 style="color: var(--gold); margin-bottom: 5px;">THE GOLDEN SHOWROOM</h4>
-                <p style="font-size: 11px; color: #777;">Virtual 3D Gallery Exploration</p>
-                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=400" class="preview-img">
-                <span style="font-size: 10px; color: #555; display: block;">STATUS: FREE ACCESS</span>
-                <a href="#" class="luxury-btn" style="padding: 10px 20px;">Explore Free</a>
-            </div>
+            <div class="service-grid">
+                <div class="premium-box">
+                    <h4 style="color: var(--gold); margin-bottom: 5px;">THE GOLDEN SHOWROOM</h4>
+                    <p style="font-size: 11px; color: #777;">Virtual Portfolio Tour</p>
+                    <div class="project-img-box" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=400');"></div>
+                    <a href="#" class="luxury-btn" style="padding: 10px 20px; font-size: 9px;">Explore Free</a>
+                </div>
 
-            <div class="premium-box" style="border: 1px solid var(--gold); background: rgba(212,175,55,0.03);">
-                <h4 style="color: var(--gold); margin-bottom: 5px;">GRANNY 3D: LUXURY REMAKE</h4>
-                <p style="font-size: 11px; color: #777;">High-Fidelity 3D Survival Challenge</p>
-                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=400" class="preview-img" style="filter: contrast(120%) grayscale(50%);">
-                <p style="color: #fff; font-weight: bold; margin: 10px 0;">LKR 2,500.00</p>
-                <a href="https://wa.me/94774799172?text=I want to buy Granny 3D Premium Access" class="luxury-btn" style="background: var(--gold); color: #000;">Buy Premium Key</a>
+                <div class="premium-box" style="border: 1px dashed var(--gold);">
+                    <h4 style="color: var(--gold); margin-bottom: 5px;">GRANNY 3D: REMAKE</h4>
+                    <p style="font-size: 11px; color: #777;">Survival Challenge</p>
+                    <div class="project-img-box" style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=400'); filter: grayscale(100%);"></div>
+                    <a href="https://wa.me/94774799172?text=Hello%20Kinuri,%20I%20am%20interested%20in%20purchasing%20the%20Granny%203D%20Premium%20Key." class="luxury-btn" style="padding: 10px 20px; font-size: 9px;">Buy Premium Key</a>
+                </div>
+
+                <div class="premium-box">
+                    <h4 style="color: var(--gold); margin-bottom: 5px;">CEYLON AQUALEAF</h4>
+                    <p style="font-size: 11px; color: #777;">Botanical Series</p>
+                    <div class="project-img-box" style="background-image: url('Gemini_Generated_Image_zc8ozgzc8ozgzc8o.png');"></div>
+                    <a href="#" class="luxury-btn" style="padding: 10px 20px; font-size: 9px;">View Project</a>
+                </div>
             </div>
         </div>
 
-        <div style="margin-top: 80px;">
+        <div style="margin-top: 60px;">
             <a href="index.html" style="color: #555; text-decoration: none; font-size: 11px; letter-spacing: 4px;">← RETURN TO PORTFOLIO</a>
         </div>
 
         <footer>
-            &copy; 2026 KME LUXURY DESIGNS | EXCLUSIVE DIGITAL EXPERIENCE
+            &copy; 2026 KME LUXURY DESIGNS | OFFICIAL BUSINESS PAGE
         </footer>
     </div>
 

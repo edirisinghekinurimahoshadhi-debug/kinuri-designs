@@ -88,24 +88,25 @@
         <div class="reveal" style="margin-top: 80px; padding: 40px; border: 1px solid rgba(212, 175, 55, 0.1); border-radius: 30px; background: rgba(255,255,255,0.01);">
             <h2 style="color: var(--gold); letter-spacing: 5px; font-weight: 300; text-transform: uppercase; margin-bottom: 10px;">Other Elite Projects</h2>
             <div class="service-grid">
+                
                 <div class="premium-box">
                     <h4 style="color: var(--gold); margin-bottom: 5px;">THE GOLDEN SHOWROOM</h4>
                     <p style="font-size: 11px; color: #777;">Virtual Portfolio Tour</p>
                     <div class="project-img-box" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=400');"></div>
-                    <button onclick="start3DShowroom()" class="luxury-btn">Explore Free</button>
+                    <button onclick="start3DExperience('showroom')" class="luxury-btn">Explore Free</button>
                 </div>
 
                 <div class="premium-box" style="border: 1px dashed var(--gold);">
                     <h4 style="color: var(--gold); margin-bottom: 5px;">GRANNY 3D: REMAKE</h4>
                     <p style="font-size: 11px; color: #777;">Survival Challenge</p>
                     <div class="project-img-box" style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=400'); filter: grayscale(100%);"></div>
-                    <a href="https://wa.me/94774799172?text=Hello%20Kinuri,%20I%20am%20interested%20in%20purchasing%20the%20Granny%203D%20Premium%20Key." class="luxury-btn">Buy Premium Key</a>
+                    <button onclick="start3DExperience('game')" class="luxury-btn">Play Premium</button>
                 </div>
 
                 <div class="premium-box">
                     <h4 style="color: var(--gold); margin-bottom: 5px;">CEYLON AQUALEAF</h4>
                     <div class="project-img-box" style="background-image: url('Gemini_Generated_Image_zc8ozgzc8ozgzc8o.png');"></div>
-                    <a href="#" class="luxury-btn">View Project</a>
+                    <a href="https://wa.me/94774799172?text=Tell me more about Ceylon Aqualeaf" class="luxury-btn">View Project</a>
                 </div>
             </div>
         </div>
@@ -114,70 +115,65 @@
     </div>
 
     <script>
-        <script>
-    // 1. Page Load Animations
-    document.addEventListener("DOMContentLoaded", function() {
-        const reveals = document.querySelectorAll('.reveal');
-        reveals.forEach(el => {
-            el.classList.add('active');
+        // 1. පේජ් එක ලෝඩ් වන විට ඇනිමේෂන් වැඩ කිරීමට
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
         });
-    });
 
-    // 2. NEW 3D ENGINE WITH LOADING UI
-    function start3DShowroom() {
-        const sceneDiv = document.createElement('div');
-        sceneDiv.id = 'three-d-overlay';
-        sceneDiv.style = "position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:3000; background:#000; display:flex; align-items:center; justify-content:center; flex-direction:column;";
-        
-        sceneDiv.innerHTML = `
-            <div id="loader-ui" style="text-align:center; transition: 0.5s;">
-                <h2 style="color:#D4AF37; letter-spacing:5px; font-family: sans-serif; font-weight:300; animation: pulse 1.5s infinite;">LOADING ELITE KINGDOM...</h2>
-                <p style="color:#444; font-size:10px; letter-spacing:2px;">PREPARING 3D ASSETS</p>
-            </div>
+        // 2. 3D EXPERIENCE ENGINE (SHOWROOM & GAME)
+        function start3DExperience(type) {
+            const sceneDiv = document.createElement('div');
+            sceneDiv.id = 'three-d-overlay';
+            sceneDiv.style = "position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:3000; background:#000; display:flex; align-items:center; justify-content:center; flex-direction:column;";
             
-            <div style="position:absolute; top:20px; right:20px; z-index:3001;">
-                <button onclick="document.getElementById('three-d-overlay').remove()" class="luxury-btn" style="background:rgba(0,0,0,0.8); border:1px solid #D4AF37; color:#D4AF37; padding:10px 20px; border-radius:50px; cursor:pointer;">EXIT 3D</button>
-            </div>
+            let sourceUrl = "";
+            let loadingText = "";
 
-            <iframe id="3d-frame" src="https://my.spline.design/luxurygoldencitycopy-4f364e2621946d8929e7a9e03d9859f1/" 
-                    frameborder="0" width="100%" height="100%" style="display:none; border:none;" 
-                    onload="showGame()"></iframe>
-            
-            <style>
-                @keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
-            </style>
-        `;
-        document.body.appendChild(sceneDiv);
-    }
+            if(type === 'showroom') {
+                sourceUrl = "https://my.spline.design/luxurygoldencitycopy-4f364e2621946d8929e7a9e03d9859f1/";
+                loadingText = "LOADING GOLDEN SHOWROOM...";
+            } else {
+                sourceUrl = "https://play.unity.com/webgl/86407077-d640-4e31-8919-6938a9d18e8d?screenshot=false&embed=true";
+                loadingText = "INITIALIZING SURVIVAL ENGINE...";
+            }
 
-    // Loader එක අයින් කරලා Game එක පෙන්වන Function එක
-    function showGame() {
-        const loader = document.getElementById('loader-ui');
-        const frame = document.getElementById('3d-frame');
-        if(loader) loader.style.display = 'none';
-        if(frame) frame.style.display = 'block';
-    }
+            sceneDiv.innerHTML = `
+                <div id="loader-ui" style="text-align:center;">
+                    <h2 style="color:#D4AF37; letter-spacing:5px; font-weight:300; animation: pulse 1.5s infinite;">${loadingText}</h2>
+                </div>
+                <div style="position:absolute; top:20px; right:20px; z-index:3001;">
+                    <button onclick="document.getElementById('three-d-overlay').remove()" class="luxury-btn" style="background:rgba(0,0,0,0.8); border:1px solid #D4AF37;">EXIT EXIT</button>
+                </div>
+                <iframe id="3d-frame" src="${sourceUrl}" frameborder="0" width="100%" height="100%" style="display:none; border:none;" onload="showContent()"></iframe>
+                <style> @keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } } </style>
+            `;
+            document.body.appendChild(sceneDiv);
+        }
 
-    // 3. Gold Dust Particles Background
-    const canvas = document.createElement('canvas');
-    Object.assign(canvas.style, {position:'fixed', top:0, left:0, width:'100%', height:'100%', zIndex:'-1', pointerEvents:'none'});
-    document.body.appendChild(canvas);
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-    window.addEventListener('resize', resize); resize();
-    for(let i=0; i<50; i++) particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, size:Math.random()*1.5, speed:Math.random()*0.5, opacity:Math.random()});
-    function animate() {
-        ctx.clearRect(0,0,canvas.width,canvas.height);
-        particles.forEach(p => {
-            ctx.fillStyle = `rgba(212,175,55,${p.opacity})`;
-            ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
-            p.y -= p.speed; if(p.y < 0) p.y = canvas.height;
-        });
-        requestAnimationFrame(animate);
-    }
-    animate();
-</script>
+        function showContent() {
+            document.getElementById('loader-ui').style.display = 'none';
+            document.getElementById('3d-frame').style.display = 'block';
+        }
+
+        // 3. GOLD DUST BACKGROUND
+        const canvas = document.createElement('canvas');
+        Object.assign(canvas.style, {position:'fixed', top:0, left:0, width:'100%', height:'100%', zIndex:'-1', pointerEvents:'none'});
+        document.body.appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize); resize();
+        for(let i=0; i<50; i++) particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, size:Math.random()*1.5, speed:Math.random()*0.5, opacity:Math.random()});
+        function animate() {
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            particles.forEach(p => {
+                ctx.fillStyle = `rgba(212,175,55,${p.opacity})`;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+                p.y -= p.speed; if(p.y < 0) p.y = canvas.height;
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
     </script>
 </body>
 </html>

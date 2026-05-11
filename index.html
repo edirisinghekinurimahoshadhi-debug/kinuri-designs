@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME Luxury Designs | Certified Portfolio</title>
+    <title>KME Elite Kingdom | Luxury Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #D4AF37; --black: #050505; --purple: #a855f7; }
+        :root { --gold: #D4AF37; --silver: #C0C0C0; --diamond: #b9f2ff; --black: #050505; }
 
         body { 
             background: radial-gradient(circle at center, #1a1508 0%, #050505 70%, #000 100%);
@@ -15,142 +15,167 @@
 
         #dust-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
 
-        /* Custom Gold Scrollbar */
+        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #050505; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #1a1508, var(--gold), #1a1508); border-radius: 10px; }
 
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s ease-out; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        .logo-container { margin: 80px auto 20px auto; width: 180px; height: 180px; }
+        /* TOOLBAR STYLES */
+        .right-toolbar { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); z-index: 2000; display: flex; flex-direction: column; gap: 15px; }
+        .tool-icon { width: 50px; height: 50px; background: rgba(10, 10, 10, 0.9); border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); cursor: pointer; transition: 0.3s; box-shadow: 0 0 10px rgba(212,175,55,0.2); }
+        .tool-icon:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px var(--gold); }
+        
+        /* Translate Google Dropdown hidden hack */
+        #google_translate_element { display: none; }
+        .skiptranslate iframe { display: none !important; }
+        body { top: 0px !important; }
+
+        /* PACKAGES GRID */
+        .package-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 0 10%; margin-top: 30px; }
+        .pkg-card { padding: 30px; border-radius: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); transition: 0.4s; }
+        .pkg-silver { border-color: var(--silver); } .pkg-silver:hover { box-shadow: 0 0 30px rgba(192,192,192,0.3); transform: translateY(-10px); }
+        .pkg-gold { border-color: var(--gold); } .pkg-gold:hover { box-shadow: 0 0 30px rgba(212,175,55,0.3); transform: translateY(-10px); }
+        .pkg-diamond { border-color: var(--diamond); } .pkg-diamond:hover { box-shadow: 0 0 30px rgba(185,242,255,0.3); transform: translateY(-10px); }
+
+        /* LOGO & BUTTONS */
+        .logo-container { margin: 60px auto 20px auto; width: 180px; height: 180px; }
         .logo-container img { width: 100%; filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4)); animation: float 4s ease-in-out infinite; }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
-        .brand-name { font-size: 2.2rem; color: var(--gold); letter-spacing: 8px; text-transform: uppercase; margin-bottom: 40px; font-weight: 300; }
+        .luxury-btn { display: inline-block; background: transparent; color: var(--gold); border: 1px solid var(--gold); padding: 10px 30px; border-radius: 50px; text-decoration: none; transition: 0.4s; cursor: pointer; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; }
+        .luxury-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px var(--gold); }
 
-        section { padding: 60px 10%; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
-
-        .content-box { 
-            max-width: 800px; margin: 0 auto; line-height: 1.8; color: #aaa;
-            border: 1px solid rgba(212, 175, 55, 0.1); padding: 35px; border-radius: 20px;
-            background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(5px);
-        }
-
-        .luxury-btn {
-            display: inline-block; background: transparent; color: var(--gold);
-            border: 1px solid var(--gold); padding: 12px 35px; font-size: 11px;
-            text-transform: uppercase; letter-spacing: 2px; text-decoration: none;
-            border-radius: 50px; transition: 0.4s; cursor: pointer; margin: 10px;
-        }
-        .luxury-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(212, 175, 55, 0.6); transform: scale(1.05); }
-
-        /* MISSION GLOW BOX */
-        .mission-box {
-            border: 2px solid var(--gold); padding: 40px; border-radius: 30px;
-            background: rgba(212, 175, 55, 0.03); cursor: pointer; transition: 0.5s;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.1); margin-top: 40px;
-        }
-        .mission-box:hover { box-shadow: 0 0 50px rgba(212, 175, 55, 0.3); transform: scale(1.02); background: rgba(212, 175, 55, 0.08); }
-
-        /* TOOLBARS */
-        .side-tool { position: fixed; top: 50%; transform: translateY(-50%); z-index: 2000; display: flex; flex-direction: column; gap: 15px; }
-        .left-tool { left: 20px; }
-        .right-tool { right: 20px; }
-        .tool-icon { width: 50px; height: 50px; background: rgba(10, 10, 10, 0.9); border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); cursor: pointer; transition: 0.3s; }
-        .tool-icon:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px var(--gold); }
-
-        /* OVERLAY */
+        /* HUB OVERLAY */
         .hub-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 3000; background: rgba(0,0,0,0.98); display: none; align-items: center; justify-content: center; flex-direction: column; backdrop-filter: blur(15px); }
-        .hub-content { width: 90%; max-width: 900px; text-align: center; }
-        .hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px; }
+        .hub-content { width: 90%; max-width: 1000px; }
+        .glow-box { border: 1px solid var(--gold); padding: 25px; border-radius: 15px; background: rgba(212,175,55,0.02); cursor: pointer; transition: 0.3s; margin: 10px; }
+        .glow-box:hover { background: rgba(212,175,55,0.1); box-shadow: 0 0 30px var(--gold); }
 
-        footer { padding: 60px; color: #666; font-size: 12px; letter-spacing: 2px; }
+        footer { padding: 60px; color: #444; font-size: 11px; }
     </style>
 </head>
 <body>
 
     <canvas id="dust-canvas"></canvas>
 
-    <div class="side-tool left-tool">
-        <div class="tool-icon" onclick="alert('KME AI: How can I assist with your design today?')"><i class="fas fa-robot"></i></div>
+    <div class="right-toolbar">
+        <div class="tool-icon" onclick="alert('KME AI: Ready to assist!')"><i class="fas fa-robot"></i></div>
+        <div class="tool-icon" onclick="triggerGoogleTranslate()"><i class="fas fa-language"></i></div>
     </div>
-
-    <div class="side-tool right-tool">
-        <div class="tool-icon" onclick="alert('Translate Mode: Select Language (English / Sinhala)')"><i class="fas fa-language"></i></div>
-    </div>
+    <div id="google_translate_element"></div>
 
     <div class="logo-container reveal">
         <img src="./logo-animated.gif.gif" alt="KME Logo">
     </div>
     
-    <h1 class="brand-name reveal">KME Luxury Designs</h1>
+    <h1 style="color:var(--gold); letter-spacing: 8px; font-weight: 300;" class="reveal">KME LUXURY DESIGNS</h1>
 
-    <section id="about" class="reveal">
-        <h2 style="color:var(--gold); font-weight: 300; letter-spacing: 4px;">CERTIFIED DESIGNER</h2>
-        <div class="content-box">
-            <p>I am <strong>Kinuri Edirisinghe</strong>, a 14-year-old Canva Certified Designer.</p>
-            <div style="margin: 20px 0; border: 1px dashed var(--gold); padding: 20px; border-radius: 15px;">
-                <p style="color:var(--gold);"><i class="fas fa-certificate"></i> OFFICIAL CERTIFICATION VIEW</p>
-                <p style="font-size: 12px;">Verification ID: KME-2026-ELITE</p>
+    <section class="reveal" style="padding: 60px 10%; border-bottom: 1px solid rgba(212,175,55,0.1);">
+        <h2 style="color:var(--gold); letter-spacing: 3px;">CERTIFIED DESIGNER</h2>
+        <div style="max-width: 700px; margin: 0 auto; line-height: 1.8; color: #aaa;">
+            <p>I am <strong>Kinuri Edirisinghe</strong>, a 14-year-old Canva Certified Designer specializing in high-end branding.</p>
+            <a href="https://canva.link/xawfs47c04lmskd" target="_blank" class="luxury-btn">View My Full Portfolio</a>
+        </div>
+    </section>
+
+    <section class="reveal" style="padding: 60px 5%;">
+        <h2 style="color:var(--gold); letter-spacing: 4px; margin-bottom: 40px;">ELITE DESIGN PACKAGES</h2>
+        <div class="package-grid">
+            <div class="pkg-card pkg-silver">
+                <h3 style="color:var(--silver);">SILVER</h3>
+                <p style="font-size: 12px; color: #777;">Basic Luxury Branding</p>
+                <p style="font-size: 20px; font-weight: bold;">LKR 1,500</p>
+                <ul style="list-style:none; padding:0; font-size: 11px; color: #aaa; line-height: 2;">
+                    <li>1 Logo Concept</li>
+                    <li>Social Media Post</li>
+                    <li>Standard Delivery</li>
+                </ul>
+                <a href="https://wa.me/94774799172?text=I want to order Silver Package" class="luxury-btn" style="border-color:var(--silver); color:var(--silver);">Order Now</a>
+            </div>
+            <div class="pkg-card pkg-gold">
+                <h3 style="color:var(--gold);">GOLDEN</h3>
+                <p style="font-size: 12px; color: #777;">Premium Brand Identity</p>
+                <p style="font-size: 20px; font-weight: bold;">LKR 5,000</p>
+                <ul style="list-style:none; padding:0; font-size: 11px; color: #aaa; line-height: 2;">
+                    <li>3 Premium Logo Concepts</li>
+                    <li>Full Branding Kit</li>
+                    <li>Priority Support</li>
+                </ul>
+                <a href="https://wa.me/94774799172?text=I want to order Golden Package" class="luxury-btn">Order Now</a>
+            </div>
+            <div class="pkg-card pkg-diamond">
+                <h3 style="color:var(--diamond);">DIAMOND</h3>
+                <p style="font-size: 12px; color: #777;">The Ultimate VIP Design</p>
+                <p style="font-size: 20px; font-weight: bold;">LKR 10,000+</p>
+                <ul style="list-style:none; padding:0; font-size: 11px; color: #aaa; line-height: 2;">
+                    <li>All Premium Hub Access</li>
+                    <li>Custom 3D Animations</li>
+                    <li>Lifetime Consulting</li>
+                </ul>
+                <a href="https://wa.me/94774799172?text=I want to order Diamond Package" class="luxury-btn" style="border-color:var(--diamond); color:var(--diamond);">Go Diamond</a>
             </div>
         </div>
     </section>
 
-    <section id="portfolio" class="reveal">
-        <h2 style="color:var(--gold); font-weight: 300;">PACKAGES & PORTFOLIO</h2>
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px;">
-            <div class="content-box" style="padding:20px;"><h4>BASIC</h4><p>LKR 1,500</p></div>
-            <div class="content-box" style="padding:20px;"><h4>ELITE</h4><p>LKR 5,000</p></div>
-        </div>
-        <a href="https://canva.link/xawfs47c04lmskd" target="_blank" class="luxury-btn">View My Canva Portfolio</a>
-    </section>
-
-    <section id="kingdom" class="reveal">
-        <h2 style="color:var(--gold); letter-spacing: 5px;">KME ELITE KINGDOM</h2>
-        <div class="mission-box" onclick="openHub('main')">
-            <h3 style="color:var(--gold); margin-bottom: 20px; letter-spacing: 3px;">OUR MISSIONS</h3>
-            <p style="color:#fff; font-size: 16px;">"To turn ordinary ideas into extraordinary luxury experiences through gold-standard visual storytelling."</p>
-            <p style="font-size: 12px; color: var(--gold); margin-top: 20px;">( CLICK TO ENTER THE ECOSYSTEM )</p>
+    <section class="reveal" style="padding: 80px 10%;">
+        <div class="glow-box" onclick="openHub()" style="padding: 40px;">
+            <h3 style="color:var(--gold); letter-spacing: 5px;">OUR MISSIONS</h3>
+            <p style="font-style: italic; color: #fff;">"Turning ordinary ideas into extraordinary luxury experiences."</p>
+            <p style="font-size: 10px; color: var(--gold); margin-top: 20px;">CLICK TO ENTER ELITE KINGDOM</p>
         </div>
     </section>
 
     <div id="hub-overlay" class="hub-overlay">
-        <div style="position:absolute; top:20px; right:20px;">
-            <button onclick="closeHub()" class="luxury-btn">EXIT KINGDOM</button>
-        </div>
-        <div id="hub-dynamic-content" class="hub-content">
-            <h2 style="color:var(--gold); letter-spacing:5px;">ELITE KINGDOM HUBS</h2>
-            <div class="hub-grid">
-                <div class="premium-box" onclick="alert('KME DESIGN STUDIO Loading...')"><h4>KME DESIGN STUDIO</h4><p style="font-size:10px;">Games & 3D Experiences</p></div>
-                <div class="premium-box" onclick="alert('DIGITAL STORE Loading...')"><h4>DIGITAL STORE</h4><p style="font-size:10px;">Canva Pro Templates</p></div>
-                <div class="premium-box" onclick="alert('MULTIVERSE Hub Loading...')"><h4>ELITE MULTIVERSE</h4><p style="font-size:10px;">Fan Edits & Theories</p></div>
-                <div class="premium-box" onclick="alert('AQUA LEAF Case Study Loading...')"><h4>PROJECT: AQUA LEAF</h4></div>
+        <button onclick="closeHub()" class="luxury-btn" style="position:absolute; top:20px; right:20px;">CLOSE</button>
+        <div class="hub-content">
+            <h2 style="color:var(--gold); letter-spacing: 10px; margin-bottom: 40px;">THE ECOSYSTEM</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                <div class="glow-box"><h4>KME DESIGN STUDIO</h4></div>
+                <div class="glow-box"><h4>DIGITAL STORE</h4></div>
+                <div class="glow-box"><h4>MULTIVERSE HUB</h4></div>
+                <div class="glow-box"><h4>AQUA LEAF PROJECT</h4></div>
             </div>
         </div>
     </div>
 
     <footer class="reveal">
-        <a href="https://wa.me/94774799172" target="_blank" class="luxury-btn" style="padding: 15px 50px; font-size: 14px;">CONTACT ME</a>
-        <h3 style="color:var(--gold); margin-top: 30px; letter-spacing: 3px;">Kinuri Edirisinghe</h3>
-        <p style="letter-spacing: 2px;">Certified Graphic Designer</p>
+        <a href="https://wa.me/94774799172" target="_blank" class="luxury-btn" style="padding: 15px 50px;">CONTACT ME</a>
+        <h3 style="color:var(--gold); margin-top: 30px; letter-spacing: 3px;">KINURI EDIRISINGHE</h3>
+        <p>Certified Graphic Designer</p>
     </footer>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+        function triggerGoogleTranslate() {
+            var el = document.querySelector('.goog-te-combo');
+            if (el) {
+                alert("Please use the language selector at the top or bottom of the page (Google Translate activated).");
+            } else {
+                alert("Translator Initializing... Select your language from the Google bar.");
+            }
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
         });
-
-        function openHub(type) { document.getElementById('hub-overlay').style.display = 'flex'; }
+        function openHub() { document.getElementById('hub-overlay').style.display = 'flex'; }
         function closeHub() { document.getElementById('hub-overlay').style.display = 'none'; }
 
-        // GOLDEN DUST ANIMATION
+        // GOLD DUST
         const canvas = document.getElementById('dust-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
         function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener('resize', resize); resize();
-        for(let i=0; i<50; i++) particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, size:Math.random()*1.5, speed:Math.random()*0.4, opacity:Math.random()});
+        for(let i=0; i<50; i++) particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, size:Math.random()*1.5, speed:Math.random()*0.3, opacity:Math.random()});
         function animate() {
             ctx.clearRect(0,0,canvas.width,canvas.height);
             particles.forEach(p => {

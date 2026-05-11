@@ -6,7 +6,7 @@
     <title>KME Luxury Designs | Certified Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #D4AF37; --silver: #C0C0C0; --diamond: #b9f2ff; --black: #050505; }
+        :root { --gold: #D4AF37; --silver: #C0C0C0; --diamond: #b9f2ff; --black: #050505; --purple: #a855f7; }
 
         body { 
             background: radial-gradient(circle at center, #1a1508 0%, #050505 70%, #000 100%);
@@ -31,7 +31,7 @@
 
         /* PACKAGE CARDS */
         .package-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; padding: 0 8%; margin-top: 40px; }
-        .pkg-card { padding: 35px 25px; border-radius: 25px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); transition: 0.4s; text-align: left; }
+        .pkg-card { padding: 35px 25px; border-radius: 25px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); transition: 0.4s; text-align: left; position: relative; }
         .pkg-card h3 { letter-spacing: 3px; margin-top: 0; }
         .pkg-card ul { padding: 0; list-style: none; font-size: 13px; color: #aaa; line-height: 1.8; margin: 20px 0; }
         .pkg-card li::before { content: "✓ "; color: var(--gold); margin-right: 5px; }
@@ -123,6 +123,47 @@
                     <li>VIP Priority Support (24/7)</li>
                 </ul>
                 <a href="https://wa.me/94774799172?text=Inquiry: Diamond Package Custom" class="luxury-btn">Request Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="reveal" id="membership" style="background: rgba(212,175,55,0.02);">
+        <h2 style="color:var(--gold); letter-spacing: 5px;">ELITE MEMBERSHIP</h2>
+        <p style="color: #666; font-size: 13px; margin-bottom: 30px;">SECURE YOUR ACCESS TO THE KINGDOM</p>
+        
+        <div class="package-grid">
+            <div class="pkg-card" style="border: 1px solid var(--silver);">
+                <h3 style="color:var(--silver); font-size: 18px;">SILVER PASS</h3>
+                <p style="font-size: 24px; font-weight: bold; color: #fff;">$2.99 <span style="font-size:12px; color:#555;">/MO</span></p>
+                <ul style="font-size: 12px;">
+                    <li>5 Premium Canva Templates</li>
+                    <li>Basic 3D Studio Games</li>
+                    <li>Standard Email Support</li>
+                </ul>
+                <a href="https://wa.me/94774799172?text=I want the Silver Pass" class="luxury-btn" style="border-color:var(--silver); color:var(--silver);">JOIN SILVER</a>
+            </div>
+
+            <div class="pkg-card" style="border: 2px solid var(--gold); transform: scale(1.05); background: rgba(212,175,55,0.05);">
+                <div style="background: var(--gold); color: #000; font-size: 9px; font-weight: bold; padding: 2px 10px; border-radius: 10px; display: inline-block; margin-bottom: 10px;">MOST POPULAR</div>
+                <h3 style="color:var(--gold); font-size: 18px;">GOLDEN PASS</h3>
+                <p style="font-size: 24px; font-weight: bold; color: #fff;">$5.99 <span style="font-size:12px; color:#555;">/MO</span></p>
+                <ul style="font-size: 12px; color: #ccc;">
+                    <li>UNLIMITED Store Access</li>
+                    <li>All Multiverse Exclusives</li>
+                    <li>20% Off Design Commissions</li>
+                </ul>
+                <a href="https://www.paypal.com/paypalme/YOUR_ID" class="luxury-btn" style="background:var(--gold); color:#000;">GET GOLD PASS</a>
+            </div>
+
+            <div class="pkg-card" style="border: 1px solid var(--diamond);">
+                <h3 style="color:var(--diamond); font-size: 18px;">DIAMOND PASS</h3>
+                <p style="font-size: 24px; font-weight: bold; color: #fff;">$14.99 <span style="font-size:12px; color:#555;">/MO</span></p>
+                <ul style="font-size: 12px;">
+                    <li>1 Free Custom Design Monthly</li>
+                    <li>24/7 Priority VIP Concierge</li>
+                    <li>Early Access to New Hubs</li>
+                </ul>
+                <a href="https://wa.me/94774799172?text=I want the Diamond VIP Pass" class="luxury-btn" style="border-color:var(--diamond); color:var(--diamond);">GO DIAMOND</a>
             </div>
         </div>
     </section>

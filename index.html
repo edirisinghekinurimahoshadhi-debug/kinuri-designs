@@ -1,182 +1,341 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME Luxury Designs | Official Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root { --gold: #D4AF37; --black: #050505; }
-        body { 
-            background: radial-gradient(circle at center, #1a1508 0%, #050505 70%, #000 100%);
-            color: #fff; font-family: 'Segoe UI', sans-serif; text-align: center; margin: 0; overflow-x: hidden;
-        }
-        #dust-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KME Luxury Designs | Official Portfolio</title>
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="apple-touch-icon" href="./logo-animated.gif.gif">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <style>
+        :root { --gold: #D4AF37; --black: #050505; }
 
-        /* LOGO & BRANDING */
-        .logo-container { margin: 80px auto 10px auto; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; }
-        .logo-container img { width: 85%; filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4)); animation: float 4s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-        .brand-name { font-size: 2.2rem; color: var(--gold); letter-spacing: 8px; text-transform: uppercase; margin-bottom: 40px; font-weight: 300; }
+        body { 
+            background: radial-gradient(circle at center, #1a1508 0%, #050505 70%, #000 100%);
+            color: #fff; 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            text-align: center; margin: 0; overflow-x: hidden;
+        }
 
-        /* GRID SYSTEM */
-        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; padding: 0 10%; margin-top: 30px; }
-        .premium-box { 
-            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(212, 175, 55, 0.15); 
-            padding: 30px 20px; border-radius: 20px; backdrop-filter: blur(12px); transition: 0.4s; cursor: pointer;
-        }
-        .premium-box:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 10px 40px rgba(212, 175, 55, 0.1); }
+        #dust-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
 
-        .luxury-btn {
-            display: inline-block; background: transparent; color: var(--gold);
-            border: 1px solid var(--gold); padding: 10px 25px; font-size: 11px;
-            text-transform: uppercase; letter-spacing: 2px; text-decoration: none;
-            border-radius: 50px; transition: 0.4s; cursor: pointer; margin-top: 15px;
-        }
-        .luxury-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* HUB OVERLAY */
-        .hub-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 3000; background: rgba(0,0,0,0.98); display: none; align-items: center; justify-content: center; flex-direction: column; backdrop-filter: blur(15px); }
-        .hub-content { width: 90%; max-width: 900px; text-align: center; }
-        .hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; margin-top: 30px; }
+        .logo-container {
+            margin: 80px auto 10px auto;
+            position: relative;
+            width: 200px; height: 200px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .logo-container img { 
+            width: 85%; z-index: 2; 
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
+            animation: float 4s ease-in-out infinite;
+        }
 
-        footer { padding: 40px; color: #444; font-size: 11px; letter-spacing: 2px; }
-    </style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .brand-name { 
+            font-size: 2.2rem; color: var(--gold); letter-spacing: 8px; 
+            text-transform: uppercase; margin-bottom: 40px; font-weight: 300;
+        }
+
+        .sidebar { 
+            position: fixed; left: 0; top: 50%; transform: translateY(-50%);
+            background: rgba(212, 175, 55, 0.05); padding: 15px 8px; 
+            border-radius: 0 15px 15px 0; z-index: 100; border: 1px solid rgba(212, 175, 55, 0.1); 
+            backdrop-filter: blur(10px);
+        }
+        .sidebar a { display: block; color: var(--gold); margin: 15px 0; font-size: 20px; text-decoration: none; transition: 0.3s; }
+        .sidebar a:hover { color: #fff; transform: scale(1.2); }
+
+        section { padding: 80px 10%; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
+
+        .content-box { 
+            max-width: 700px; margin: 0 auto; line-height: 1.8; color: #aaa;
+            border: 1px solid rgba(212, 175, 55, 0.1); padding: 35px; border-radius: 20px;
+            background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(5px);
+        }
+
+        .luxury-btn {
+            display: inline-block; background: transparent; color: var(--gold);
+            border: 1px solid var(--gold); padding: 12px 35px; font-size: 13px;
+            text-transform: uppercase; letter-spacing: 2px; text-decoration: none;
+            border-radius: 50px; transition: 0.4s; cursor: pointer; margin: 10px;
+            .luxury-btn:hover { 
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6); 
+    transform: scale(1.05);
+}
+        }
+        .luxury-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(212, 175, 55, 0.4); }
+
+        .magic-toolbar {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .tool-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(10, 10, 10, 0.9);
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            cursor: pointer;
+            transition: 0.3s;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .tool-panel {
+            position: fixed;
+            right: 85px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 280px;
+            background: rgba(10, 10, 10, 0.98);
+            border: 1px solid var(--gold);
+            border-radius: 15px;
+            padding: 20px;
+            display: none;
+            z-index: 1999;
+            box-shadow: 0 0 30px rgba(0,0,0,0.9);
+        }
+
+        .panel-active { display: block !important; animation: slideIn 0.3s ease-out; }
+
+        @keyframes slideIn { from { opacity: 0; transform: translateY(-50%) translateX(20px); } }
+
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; }
+        .project-card { border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 15px; overflow: hidden; height: 220px; background: #000; position: relative; }
+        .project-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+        
+        footer { padding: 40px; color: #444; font-size: 11px; }
+        /* Custom Luxury Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { 
+    background: linear-gradient(to bottom, #1a1508, var(--gold), #1a1508); 
+    border-radius: 10px; 
+}
+    </style>
 </head>
 <body>
 
-    <canvas id="dust-canvas"></canvas>
+    <canvas id="dust-canvas"></canvas>
 
-    <div class="logo-container reveal">
-        <img src="./logo-animated.gif.gif" alt="KME Logo">
-    </div>
-    
-    <h1 class="brand-name reveal">KME LUXURY DESIGNS</h1>
+    <div class="magic-toolbar">
+        <div class="tool-icon" onclick="togglePanel('ai-panel')" title="AI Helper"><i class="fas fa-robot"></i></div>
+        <div class="tool-icon" onclick="togglePanel('trans-panel')" title="Translate"><i class="fas fa-language"></i></div>
+        <div class="tool-icon" onclick="togglePanel('signup-panel')" title="Join VIP"><i class="fas fa-user-plus"></i></div>
+    </div>
 
-    <div class="service-grid reveal">
-        <div class="premium-box" onclick="openHub('studio')">
-            <i class="fas fa-crown" style="color:var(--gold); font-size: 25px; margin-bottom: 10px;"></i>
-            <h3>STUDIO</h3>
-            <button class="luxury-btn">Portfolio</button>
-        </div>
+    <div id="ai-panel" class="tool-panel">
+        <h4 style="color:var(--gold)">KME AI HELPER</h4>
+        <div id="side-chat" style="height:120px; overflow-y:auto; font-size:11px; background:#000; padding:10px; margin-bottom:10px; border: 1px solid #222;">AI: How can I help?</div>
+        <input type="text" id="side-ask" placeholder="Ask..." style="width:70%; background:none; border:1px solid var(--gold); color:#fff; padding:5px;">
+        <button class="luxury-btn" style="padding:5px 10px; font-size:10px;" onclick="askSideAI()">Ask</button>
+    </div>
 
-        <div class="premium-box" onclick="openHub('vault')">
-            <i class="fas fa-gem" style="color:var(--gold); font-size: 25px; margin-bottom: 10px;"></i>
-            <h3>VAULT</h3>
-            <button class="luxury-btn">Templates</button>
-        </div>
+    <div id="trans-panel" class="tool-panel">
+        <h4 style="color:var(--gold)">TRANSLATOR</h4>
+        <select id="side-lang" onchange="sideTranslate()" style="width:100%; background:#111; color:var(--gold); border:1px solid var(--gold); padding:5px;">
+            <option value="en">English</option>
+            <option value="si">Sinhala</option>
+            <option value="fr">French</option>
+        </select>
+    </div>
 
-        <div class="premium-box" onclick="openHub('game')">
-            <i class="fas fa-gamepad" style="color:var(--gold); font-size: 25px; margin-bottom: 10px;"></i>
-            <h3>GAMES</h3>
-            <button class="luxury-btn">Play</button>
-        </div>
+    <div id="signup-panel" class="tool-panel">
+        <h4 style="color:var(--gold)">VIP SIGN UP</h4>
+        <input type="text" placeholder="Name" id="vip-name" style="width:90%; margin-bottom:10px; background:none; border:1px solid #333; color:#fff; padding:8px;">
+        <button class="luxury-btn" style="width:100%" onclick="alert('Signed Up!')">Register</button>
+    </div>
 
-        <div class="premium-box" onclick="openHub('multiverse')" style="border: 1px solid #7000ff33;">
-            <i class="fas fa-bolt" style="color:#7000ff; font-size: 25px; margin-bottom: 10px;"></i>
-            <h3 style="color:#7000ff;">MULTIVERSE</h3>
-            <button class="luxury-btn" style="border-color:#7000ff; color:#7000ff;">Explore</button>
-        </div>
-    </div>
+    <div class="sidebar">
+        <a href="https://www.linkedin.com/in/kinuri-mahoshadhi-edirisinghe-9b4921405" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://wa.me/94774799172" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
 
-    <div id="hub-overlay" class="hub-overlay">
-        <div style="position:absolute; top:20px; right:20px;">
-            <button onclick="closeHub()" class="luxury-btn">CLOSE HUB</button>
-        </div>
-        <div id="hub-dynamic-content" class="hub-content"></div>
-    </div>
+    <div class="logo-container reveal">
+        <img src="./logo-animated.gif.gif" alt="KME Logo">
+    </div>
+    
+    <h1 class="brand-name reveal">KME LUXURY DESIGNS</h1>
 
-    <section id="contact" class="reveal" style="margin-top: 50px;">
-        <a href="https://wa.me/94774799172" target="_blank" class="luxury-btn">Contact Kinuri</a>
-    </section>
+    <section id="about" class="reveal">
+        <h2 style="color: var(--gold); font-weight: 300; letter-spacing: 4px;">DESIGNER PROFILE</h2>
+        <div class="content-box">
+            <p style="font-size: 16px; line-height: 1.8;">
+                I am <strong style="color: var(--gold);">Kinuri Edirisinghe</strong>, a 14-year-old 
+                <span style="color: var(--gold); border-bottom: 1px solid var(--gold);">Canva Certified Creative Designer</span>. 
+                I specialize in high-end visual storytelling and gold-standard branding. My mission is to turn 
+                ordinary ideas into extraordinary luxury experiences.
+            </p>
+            
+            <div style="margin-top: 30px;">
+                <a href="https://canva.link/xawfs47c04lmskd" target="_blank" class="luxury-btn" style="border-color: #00c4cc; color: #00c4cc;">
+                    <i class="fas fa-palette"></i> View Canva Portfolio
+                </a>
+            </div>
+        </div>
+    </section>
 
-    <footer>&copy; 2026 KME ELITE KINGDOM | CERTIFIED DESIGNER</footer>
+    <section id="projects" class="reveal">
+        <h2 style="color: var(--gold); font-weight: 300;">SELECTED PROJECTS</h2>
+        <div class="portfolio-grid">
+            <div class="project-card"><img src="1.jpg.png" alt="P1"></div>
+            <div class="project-card"><img src="2.png" alt="P2"></div>
+        </div>
+    </section>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
-        });
+    <section id="store" class="reveal">
+        <h2 style="color: var(--gold); font-weight: 300; letter-spacing: 4px;">KME LUXURY STORE</h2>
+        <p style="color: #666; font-size: 13px; margin-bottom: 30px;">Premium Digital Assets & Design Services</p>
+        
+        <div class="portfolio-grid">
+            <div class="content-box" style="border: 1px solid var(--gold); background: rgba(212,175,55,0.02);">
+                <h4 style="color: var(--gold);">Canva Luxury Templates</h4>
+                <p style="font-size: 11px;">Instagram & Presentation Packs</p>
+                <p style="color: #fff; font-weight: bold;">LKR 1,500.00</p>
+                <a href="https://wa.me/94774799172?text=I'm interested in the Luxury Templates" target="_blank" class="luxury-btn" style="font-size: 10px;">Buy Now</a>
+            </div>
 
-        function openHub(type) {
-            const overlay = document.getElementById('hub-overlay');
-            const content = document.getElementById('hub-dynamic-content');
-            overlay.style.display = 'flex';
-            
-            if(type === 'studio') {
-                content.innerHTML = `
-                    <h2 style="color:var(--gold); letter-spacing:5px;">STUDIO HUB</h2>
-                    <div class="hub-grid">
-                        <div class="premium-box"><h4>LOGOS</h4><p style="font-size:10px;">Portfolio Updating...</p></div>
-                        <div class="premium-box" onclick="window.location.href='https://wa.me/94774799172'"><h4>ORDER CUSTOM</h4></div>
-                    </div>`;
-            } else if(type === 'vault') {
-                content.innerHTML = `
-                    <h2 style="color:var(--gold); letter-spacing:5px;">VAULT HUB</h2>
-                    <div class="hub-grid">
-                        <div class="premium-box" onclick="window.location.href='https://wa.me/94774799172?text=I want to buy Elite Template 01'">
-                            <img src="https://i.ibb.co/wrLBb0tv/Screenshot-2026-05-10-190318.png" style="width:100%; border-radius:10px;">
-                            <h4 style="font-size:12px; margin-top:10px;">ELITE TEMPLATE 01</h4>
-                            <p style="font-size:10px;">Rs. 500/=</p>
-                        </div>
-                    </div>`;
-            } else if(type === 'game') {
-                content.innerHTML = `
-                    <h2 style="color:var(--gold); letter-spacing:5px;">GAMING HUB</h2>
-                    <div class="hub-grid">
-                        <div class="premium-box" onclick="loadFrame('https://www.google.com/logos/2010/pacman10-i.html')"><h4>PACMAN</h4></div>
-                        <div class="premium-box" onclick="loadFrame('https://www.retrogames.cc/embed/40238-super-mario-64-usa.html')"><h4>MARIO 3D</h4></div>
-                    </div>`;
-            } else if(type === 'multiverse') {
-                content.innerHTML = `
-                    <h2 style="color:#7000ff; letter-spacing:5px;">ELITE MULTIVERSE</h2>
-                    <p style="color:#444; font-size:12px;">FAN EDITS, ARTICLES & THEORIES</p>
-                    <div class="hub-grid">
-                        <div class="premium-box">
-                            <i class="fab fa-marvel" style="font-size:30px; color:#e62429;"></i>
-                            <h4>MARVEL EDITS</h4>
-                            <p style="font-size:9px;">Coming Soon</p>
-                        </div>
-                        <div class="premium-box">
-                            <i class="fas fa-hat-wizard" style="font-size:30px; color:#d4af37;"></i>
-                            <h4>WIZARDING WORLD</h4>
-                            <p style="font-size:9px;">Pottermore Edits</p>
-                        </div>
-                        <div class="premium-box">
-                            <i class="fas fa-magnifying-glass" style="font-size:30px; color:#fff;"></i>
-                            <h4>221B BAKER ST.</h4>
-                            <p style="font-size:9px;">Holmes Theories</p>
-                        </div>
-                    </div>`;
-            }
-        }
+            <div class="content-box" style="border: 1px solid var(--gold); background: rgba(212,175,55,0.02);">
+                <h4 style="color: var(--gold);">Custom Logo Design</h4>
+                <p style="font-size: 11px;">Gold Standard Visual Identity</p>
+                <p style="color: #fff; font-weight: bold;">Starting LKR 5,000</p>
+                <a href="https://wa.me/94774799172?text=I want to order a Custom Logo" target="_blank" class="luxury-btn" style="font-size: 10px;">Order Now</a>
+            </div>
 
-        function loadFrame(url) {
-            document.getElementById('hub-dynamic-content').innerHTML = `
-                <iframe src="${url}" frameborder="0" width="100%" height="75vh" style="border-radius:20px; border:1px solid var(--gold);"></iframe>
-                <button onclick="closeHub()" class="luxury-btn" style="margin-top:15px;">BACK</button>`;
-        }
+            <div class="content-box" style="border: 1px solid var(--gold); background: rgba(212,175,55,0.02);">
+                <h4 style="color: var(--gold);">Stock Illustrations</h4>
+                <p style="font-size: 11px;">High-Res Jackfruit Leaf Art</p>
+                <p style="color: #fff; font-weight: bold;">LKR 500.00</p>
+                <a href="https://wa.me/94774799172?text=I want to purchase Stock Illustrations" target="_blank" class="luxury-btn" style="font-size: 10px;">Get Access</a>
+            </div>
+        </div>
+    </section>
 
-        function closeHub() { document.getElementById('hub-overlay').style.display = 'none'; }
+    <section id="exports" class="reveal">
+    <h2 style="color: var(--gold); font-weight: 300; letter-spacing: 4px;">OTHER ELITE PROJECTS</h2>
+    <div class="portfolio-grid">
+        <div class="project-card">
+            <img src="Gemini_Generated_Image_zc8ozgzc8ozgzc8o.png" alt="Aqua Leaf">
+            <div class="project-overlay">CEYLON AQUALEAF SERIES</div>
+        </div>
 
-        // DUST ANIMATION
-        const canvas = document.getElementById('dust-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        window.addEventListener('resize', resize); resize();
-        for(let i=0; i<50; i++) particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, size:Math.random()*1.5, speed:Math.random()*0.4, opacity:Math.random()});
-        function animate() {
-            ctx.clearRect(0,0,canvas.width,canvas.height);
-            particles.forEach(p => {
-                ctx.fillStyle = `rgba(212,175,55,${p.opacity})`;
-                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
-                p.y -= p.speed; if(p.y < 0) p.y = canvas.height;
-            });
-            requestAnimationFrame(animate);
-        }
-        animate();
-    </script>
+        <div class="project-card" style="border: 1px dashed var(--gold);">
+            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=500" alt="Granny 3D">
+            <div class="project-overlay">GRANNY 3D: LUXURY REMAKE 🕹️</div>
+            <a href="subscription.html" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:5;"></a>
+        </div>
+
+        <div class="project-card">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=500" alt="Showroom">
+            <div class="project-overlay">GOLDEN VIRTUAL SHOWROOM ✨</div>
+            <a href="subscription.html" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:5;"></a>
+        </div>
+
+        <div class="project-card">
+            <img src="https://images.unsplash.com/photo-1599940859674-a7fef05b94ae?auto=format&fit=crop&q=80&w=500" alt="Spices">
+            <div class="project-overlay">PREMIUM CEYLON SPICES</div>
+        </div>
+    </div>
+</section>
+
+    <section id="contact" class="reveal">
+        <h2 style="color: var(--gold); font-weight: 300; letter-spacing: 4px;">GET IN TOUCH</h2>
+        <div class="content-box">
+            <p style="color: #fff; font-size: 18px; margin-bottom: 20px;">Kinuri Mahoshadhi Edirisinghe</p>
+            <div style="display: flex; flex-direction: column; gap: 15px; align-items: center; margin-bottom: 30px;">
+                <a href="tel:+94774799172" style="color: var(--gold); text-decoration: none;"><i class="fas fa-phone"></i> +94 77 479 9172</a>
+                <a href="https://share.google/X2t9KjKYvAhbeFuDW" target="_blank" style="color: var(--gold); text-decoration: none;"><i class="fas fa-briefcase"></i> View Business Profile</a>
+            </div>
+            <a href="https://wa.me/94774799172" target="_blank" class="luxury-btn">WhatsApp Me</a>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 KME LUXURY DESIGNS | CERTIFIED DESIGNER
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                el.classList.add('active');
+            });
+        });
+
+        function togglePanel(panelId) {
+            document.querySelectorAll('.tool-panel').forEach(p => {
+                if(p.id !== panelId) p.classList.remove('panel-active');
+            });
+            document.getElementById(panelId).classList.toggle('panel-active');
+        }
+
+        function askSideAI() {
+            let q = document.getElementById('side-ask').value;
+            let c = document.getElementById('side-chat');
+            if(!q) return;
+            c.innerHTML += `<p style="color:var(--gold)">You: ${q}</p><p>AI: Processing your luxury design request...</p>`;
+            document.getElementById('side-ask').value = "";
+            c.scrollTop = c.scrollHeight;
+        }
+
+        function sideTranslate() {
+            let l = document.getElementById('side-lang').value;
+            alert("Switching language to: " + l);
+        }
+
+        const canvas = document.getElementById('dust-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        resize();
+
+        for(let i=0; i<60; i++) {
+            particles.push({
+                x: Math.random()*canvas.width,
+                y: Math.random()*canvas.height,
+                size: Math.random()*1.5,
+                speed: Math.random()*0.4,
+                opacity: Math.random()
+            });
+        }
+
+        function animateDust() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                ctx.fillStyle = `rgba(212, 175, 55, ${p.opacity})`;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+                ctx.fill();
+                p.y -= p.speed;
+                if(p.y < 0) p.y = canvas.height;
+            });
+            requestAnimationFrame(animateDust);
+        }
+        animateDust();
+    </script>
 </body>
-</html>
+</html> 

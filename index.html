@@ -18,91 +18,88 @@
         .reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* ELITE TITLE DESIGN */
-        .elite-header { padding: 100px 10% 50px 10%; }
-        .elite-title { font-size: 3.5rem; letter-spacing: 20px; font-weight: 100; color: #fff; text-shadow: 0 0 20px rgba(212,175,55,0.5); margin: 0; }
-        .elite-sub { font-size: 1rem; letter-spacing: 10px; color: var(--gold); margin-top: -10px; font-weight: 300; }
+        /* LOGO & HEADER */
+        .logo-container { margin: 60px auto 20px; width: 150px; animation: float 4s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
-        /* PROJECT HUB CARDS */
-        .hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 0 8%; margin-top: 50px; }
+        .brand-title { font-size: 3rem; letter-spacing: 15px; font-weight: 100; color: #fff; text-shadow: 0 0 20px rgba(212,175,55,0.4); margin: 0; }
         
-        .hub-card { 
-            position: relative; height: 400px; border-radius: 30px; overflow: hidden; 
-            border: 1px solid rgba(255,255,255,0.1); transition: 0.6s cubic-bezier(0.17, 0.67, 0.83, 0.67);
-            cursor: pointer; background-size: cover; background-position: center;
-        }
+        /* MAGIC TOOLBAR */
+        .magic-toolbar { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); z-index: 9999; display: flex; flex-direction: column; gap: 15px; }
+        .tool-icon { width: 45px; height: 45px; background: rgba(10,10,10,0.9); border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); cursor: pointer; transition: 0.3s; box-shadow: 0 0 15px rgba(212,175,55,0.2); }
+        .tool-icon:hover { background: var(--gold); color: #000; transform: scale(1.1); }
 
-        .hub-card:hover { transform: scale(1.02); border-color: var(--gold); box-shadow: 0 0 50px rgba(212,175,55,0.2); }
+        /* HUB CARDS */
+        .hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 0 8%; margin-top: 50px; }
+        .hub-card { position: relative; height: 350px; border-radius: 25px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: 0.5s; cursor: pointer; background-size: cover; background-position: center; }
+        .hub-card:hover { border-color: var(--gold); box-shadow: 0 0 40px rgba(212,175,55,0.2); transform: translateY(-10px); }
+        .hub-overlay { position: absolute; bottom: 0; width: 100%; padding: 30px 10px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); }
 
-        .hub-overlay { 
-            position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px 20px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9)); text-align: center;
-        }
-
-        .hub-card h3 { letter-spacing: 5px; font-weight: 300; margin: 0; font-size: 1.5rem; }
-        .hub-card p { font-size: 11px; color: #aaa; letter-spacing: 2px; text-transform: uppercase; margin-top: 10px; }
-
-        /* SPECIAL EFFECTS */
-        .effect-layer { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 10000; display: none; }
-
-        .luxury-btn {
-            display: inline-block; background: transparent; color: var(--gold);
-            border: 1px solid var(--gold); padding: 12px 35px; font-size: 11px;
-            text-transform: uppercase; letter-spacing: 3px; text-decoration: none;
-            border-radius: 50px; transition: 0.4s; cursor: pointer; margin-top: 20px;
-        }
+        /* BUTTONS */
+        .luxury-btn { display: inline-block; background: transparent; color: var(--gold); border: 1px solid var(--gold); padding: 12px 30px; border-radius: 50px; text-decoration: none; transition: 0.4s; letter-spacing: 2px; font-size: 11px; margin: 10px; cursor: pointer; }
         .luxury-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px var(--gold); }
 
-        footer { padding: 60px; color: #444; font-size: 11px; letter-spacing: 2px; }
+        /* ABOUT SECTION */
+        .glass-box { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 30px; max-width: 800px; margin: 50px auto; backdrop-filter: blur(10px); }
 
+        footer { padding: 80px 20px; border-top: 1px solid rgba(212,175,55,0.1); color: #444; font-size: 11px; }
     </style>
 </head>
 <body>
 
     <canvas id="dust-canvas"></canvas>
-    <div id="magic-effect" class="effect-layer"></div>
 
-    <header class="elite-header reveal">
-        <h1 class="elite-title">ELITE</h1>
-        <h2 class="elite-sub">KINGDOM</h2>
-        <div style="width:60px; height:2px; background:var(--gold); margin: 30px auto;"></div>
-    </header>
+    <div class="magic-toolbar">
+        <div class="tool-icon" onclick="alert('KME AI: Virtual Assistant Active!')"><i class="fas fa-robot"></i></div>
+        <div class="tool-icon" onclick="location.href='mailto:your-email@gmail.com'"><i class="fas fa-envelope"></i></div>
+        <div class="tool-icon" onclick="window.open('https://www.linkedin.com/in/kinuri-mahoshadhi-edirisinghe-9b4921405')"><i class="fab fa-linkedin"></i></div>
+        <div class="tool-icon" onclick="window.open('https://wa.me/94774799172')"><i class="fab fa-whatsapp"></i></div>
+    </div>
+
+    <div class="logo-container reveal">
+        <img src="./logo-animated.gif.gif" alt="Logo" style="width: 100%;">
+    </div>
+    <h1 class="brand-title reveal">ELITE KINGDOM</h1>
+    <p class="reveal" style="color:var(--gold); letter-spacing:5px;">PREMIUM DESIGN ECOSYSTEM</p>
+
+    <section class="reveal">
+        <div class="glass-box">
+            <h2 style="color:var(--gold); letter-spacing:3px;">THE DESIGNER</h2>
+            <p style="color:#aaa; line-height:1.8;">I am <strong>Kinuri Edirisinghe</strong>, a 14-year-old Canva Certified Designer. I blend cinematic storytelling with luxury branding to create extraordinary digital legacies.</p>
+            <a href="https://canva.link/xawfs47c04lmskd" target="_blank" class="luxury-btn">VIEW CANVA PORTFOLIO</a>
+        </div>
+    </section>
 
     <section class="reveal">
         <div class="hub-grid">
             <div class="hub-card" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=800');" onclick="triggerMagic('gaming')">
                 <div class="hub-overlay">
-                    <h3 style="color: var(--purple);">GAMING HUB</h3>
-                    <p>Enter the Arcade Multiverse</p>
-                    <button class="luxury-btn">Launch Hub</button>
+                    <h3 style="color:var(--purple);">GAMING HUB</h3>
+                    <p>ARCADE MULTIVERSE</p>
+                    <button class="luxury-btn">PLAY NOW</button>
                 </div>
             </div>
-
-            <div class="hub-card" style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=800');" onclick="triggerMagic('fantasy')">
-                <div class="hub-overlay">
-                    <h3 style="color: var(--gold);">FANTASY WORLD</h3>
-                    <p>Cinematic Design Storytelling</p>
-                    <button class="luxury-btn">Explore</button>
-                </div>
-            </div>
-
             <div class="hub-card" style="background-image: url('Gemini_Generated_Image_zc8ozgzc8ozgzc8o.png');" onclick="triggerMagic('aqua')">
                 <div class="hub-overlay">
-                    <h3 style="color: var(--aqua);">AQUA LEAF</h3>
-                    <p>Luxury Organic Branding</p>
-                    <button class="luxury-btn">View Assets</button>
+                    <h3 style="color:var(--aqua);">AQUA LEAF</h3>
+                    <p>ORGANIC LUXURY</p>
+                    <button class="luxury-btn">VIEW ASSETS</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="reveal">
-        <p>KINURI EDIRISINGHE | CERTIFIED DESIGNER</p>
-        <div style="margin-top: 20px;">
-            <a href="https://wa.me/94774799172" style="color:var(--gold); text-decoration:none; margin:0 15px;">WHATSAPP</a>
-            <a href="https://whatsapp.com/channel/0029VbAND0eFi8xmLegMVO2j" style="color:var(--gold); text-decoration:none; margin:0 15px;">CHANNEL</a>
+    <section class="reveal">
+        <div class="glass-box" style="border-color:var(--gold);">
+            <h2 style="color:var(--gold);">CLIENT FEEDBACK</h2>
+            <p style="font-size:12px; color:#555;">Share your elite experience with us.</p>
+            <a href="https://wa.me/94774799172?text=Feedback: " class="luxury-btn">SEND FEEDBACK</a>
         </div>
-        <p style="margin-top:40px; opacity:0.3;">© 2026 KME ELITE KINGDOM</p>
+    </section>
+
+    <footer>
+        <p>ELITE KINGDOM © 2026 | KINURI EDIRISINGHE</p>
+        <p style="margin-top:10px;">CERTIFIED CANVA CREATIVE</p>
     </footer>
 
     <script>
@@ -110,52 +107,25 @@
             document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
         });
 
-        // MAGIC DUST TRIGGER FOR HUB CLICK
         function triggerMagic(type) {
-            const effect = document.getElementById('magic-effect');
-            effect.style.display = 'block';
-            
-            let color = type === 'gaming' ? '#a855f7' : (type === 'aqua' ? '#00ff88' : '#D4AF37');
-            
-            // Create particles
-            for(let i=0; i<50; i++) {
+            let color = type === 'gaming' ? '#a855f7' : '#00ff88';
+            // Simple Dust Burst Effect
+            for(let i=0; i<30; i++) {
                 let p = document.createElement('div');
-                p.style.position = 'fixed';
-                p.style.left = '50%';
-                p.style.top = '50%';
-                p.style.width = '4px';
-                p.style.height = '4px';
-                p.style.background = color;
-                p.style.borderRadius = '50%';
-                p.style.boxShadow = `0 0 15px ${color}`;
-                p.style.zIndex = '10001';
-                
-                let angle = Math.random() * Math.PI * 2;
-                let velocity = 5 + Math.random() * 10;
-                let dx = Math.cos(angle) * velocity;
-                let dy = Math.sin(angle) * velocity;
-                
+                p.style.position = 'fixed'; p.style.left = '50%'; p.style.top = '50%';
+                p.style.width = '5px'; p.style.height = '5px'; p.style.background = color;
+                p.style.borderRadius = '50%'; p.style.zIndex = '10000';
+                p.style.transition = '2s';
                 document.body.appendChild(p);
-                
-                let op = 1;
-                let anim = setInterval(() => {
-                    p.style.left = (parseFloat(p.style.left) + dx) + 'px';
-                    p.style.top = (parseFloat(p.style.top) + dy) + 'px';
-                    op -= 0.02;
-                    p.style.opacity = op;
-                    if(op <= 0) {
-                        clearInterval(anim);
-                        p.remove();
-                    }
-                }, 16);
+                setTimeout(() => {
+                    p.style.transform = `translate(${(Math.random()-0.5)*500}px, ${(Math.random()-0.5)*500}px)`;
+                    p.style.opacity = '0';
+                }, 10);
+                setTimeout(() => p.remove(), 2000);
             }
-
-            setTimeout(() => {
-                window.location.href = "subscription.html"; 
-            }, 1000);
+            setTimeout(() => { window.location.href = "subscription.html"; }, 1000);
         }
 
-        // BACKGROUND DUST
         const canvas = document.getElementById('dust-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -163,7 +133,7 @@
         window.addEventListener('resize', resize); resize();
         for(let i=0; i<60; i++) particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, size:Math.random()*1.5, speed:Math.random()*0.4, opacity:Math.random()});
         function animateDust() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0,0,canvas.width,canvas.height);
             particles.forEach(p => {
                 ctx.fillStyle = `rgba(212, 175, 55, ${p.opacity})`;
                 ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();

@@ -3,264 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME Luxury Designs | Certified Portfolio</title>
+    <title>KME Elite Kingdom | Premium Digital Ecosystem</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #D4AF37; --silver: #C0C0C0; --diamond: #b9f2ff; --black: #050505; --purple: #a855f7; }
-
+        :root { --gold: #D4AF37; --black: #050505; --diamond: #b9f2ff; --royal: #7209b7; }
+        
         body { 
             background: radial-gradient(circle at center, #1a1508 0%, #050505 70%, #000 100%);
-            color: #fff; font-family: 'Segoe UI', sans-serif; text-align: center; margin: 0; overflow-x: hidden;
+            color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden;
         }
 
-        #dust-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #1a1508, var(--gold), #1a1508); border-radius: 10px; }
-
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+        /* High-End Animations */
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1.2s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* TOOLBAR (RIGHT SIDE) */
-        .right-toolbar { position: fixed; right: 15px; top: 50%; transform: translateY(-50%); z-index: 2000; display: flex; flex-direction: column; gap: 15px; }
-        .tool-icon { width: 45px; height: 45px; background: rgba(10,10,10,0.9); border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); cursor: pointer; transition: 0.3s; }
-        .tool-icon:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px var(--gold); }
-        #google_translate_element { display: none; }
+        /* Luxury Elements */
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(212, 175, 55, 0.1);
+            backdrop-filter: blur(15px); border-radius: 25px; padding: 40px; transition: 0.5s;
+        }
+        .glass-card:hover { border-color: var(--gold); box-shadow: 0 0 50px rgba(212, 175, 55, 0.15); transform: translateY(-10px); }
 
-        /* PACKAGE CARDS */
-        .package-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; padding: 0 8%; margin-top: 40px; }
-        .pkg-card { padding: 35px 25px; border-radius: 25px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); transition: 0.4s; text-align: left; position: relative; }
-        .pkg-card h3 { letter-spacing: 3px; margin-top: 0; }
-        .pkg-card ul { padding: 0; list-style: none; font-size: 13px; color: #aaa; line-height: 1.8; margin: 20px 0; }
-        .pkg-card li::before { content: "✓ "; color: var(--gold); margin-right: 5px; }
-        
-        .pkg-silver:hover { border-color: var(--silver); box-shadow: 0 0 30px rgba(192,192,192,0.2); transform: translateY(-10px); }
-        .pkg-gold:hover { border-color: var(--gold); box-shadow: 0 0 30px rgba(212,175,55,0.2); transform: translateY(-10px); }
-        .pkg-diamond:hover { border-color: var(--diamond); box-shadow: 0 0 30px rgba(185,242,255,0.2); transform: translateY(-10px); }
+        .luxury-btn { 
+            background: transparent; color: var(--gold); border: 1px solid var(--gold);
+            padding: 15px 40px; border-radius: 50px; text-transform: uppercase;
+            letter-spacing: 3px; font-size: 11px; cursor: pointer; transition: 0.4s;
+            text-decoration: none; display: inline-block;
+        }
+        .luxury-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 30px var(--gold); }
 
-        .luxury-btn { display: inline-block; background: transparent; color: var(--gold); border: 1px solid var(--gold); padding: 12px 30px; border-radius: 50px; text-decoration: none; transition: 0.4s; cursor: pointer; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; }
-        .luxury-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px var(--gold); }
-
-        /* MISSION & HUB SYSTEM */
-        .mission-glow { border: 1px solid var(--gold); padding: 50px; border-radius: 30px; background: rgba(212,175,55,0.03); cursor: pointer; transition: 0.5s; box-shadow: 0 0 15px rgba(212,175,55,0.1); }
-        .mission-glow:hover { box-shadow: 0 0 40px rgba(212,175,55,0.4); background: rgba(212,175,55,0.08); }
-
-        .hub-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 3000; background: rgba(0,0,0,0.98); display: none; align-items: center; justify-content: center; flex-direction: column; backdrop-filter: blur(15px); }
-        .hub-content { width: 90%; max-width: 1000px; max-height: 85vh; overflow-y: auto; padding: 20px; }
-        .glow-box { border: 1px solid var(--gold); padding: 25px; border-radius: 15px; background: rgba(255,255,255,0.02); cursor: pointer; transition: 0.3s; margin: 10px; }
-        .glow-box:hover { background: rgba(212,175,55,0.1); box-shadow: 0 0 25px var(--gold); }
-
-        /* RESPONSIVE FIX */
-        @media (max-width: 768px) {
-            .brand-name { font-size: 1.5rem; }
-            section { padding: 40px 5%; }
-            .right-toolbar { right: 10px; }
+        /* Hub Overlay */
+        .hub-overlay { 
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 5000;
+            background: rgba(0,0,0,0.98); display: none; align-items: center; justify-content: center;
+            backdrop-filter: blur(20px);
         }
 
-        footer { padding: 80px 20px; color: #444; font-size: 12px; }
+        .hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; width: 85%; }
+        
+        iframe { border: 1px solid var(--gold); border-radius: 20px; width: 90%; height: 80vh; }
+
+        footer { padding: 100px 20px; border-top: 1px solid rgba(212,175,55,0.1); margin-top: 100px; color: #444; }
     </style>
 </head>
 <body>
 
-    <canvas id="dust-canvas"></canvas>
+    <canvas id="dust-canvas" style="position:fixed; top:0; z-index:-1;"></canvas>
 
-    <div class="right-toolbar">
-        <div class="tool-icon" onclick="alert('KME AI: Virtual Assistant Active for Launch!')"><i class="fas fa-robot"></i></div>
-        <div class="tool-icon" onclick="triggerTranslate()"><i class="fas fa-language"></i></div>
+    <div style="padding: 100px 10%; text-align: center;">
+        <img src="https://i.ibb.co/wrLBb0tv/Screenshot-2026-05-10-190318.png" style="width:120px; border-radius:50%; border:2px solid var(--gold); margin-bottom:30px;" class="reveal">
+        <h1 class="reveal" style="letter-spacing:15px; font-weight:200; font-size:3rem;">ELITE KINGDOM</h1>
+        <p class="reveal" style="color:var(--gold); letter-spacing:5px;">BY KINURI EDIRISINGHE</p>
     </div>
-    <div id="google_translate_element"></div>
 
-    <div class="logo-container reveal" style="margin-top: 80px;">
-        <img src="./logo-animated.gif.gif" alt="KME Logo" style="width: 180px; animation: float 4s ease-in-out infinite;">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:30px; padding:0 10%;">
+        <div class="glass-card reveal" onclick="openHub('studio')">
+            <i class="fas fa-palette" style="color:var(--gold); font-size:30px;"></i>
+            <h3>STUDIO HUB</h3>
+            <p style="font-size:12px; color:#666;">Luxury Branding & High-End Edits</p>
+        </div>
+        <div class="glass-card reveal" onclick="openHub('vault')">
+            <i class="fas fa-vault" style="color:var(--gold); font-size:30px;"></i>
+            <h3>ELITE VAULT</h3>
+            <p style="font-size:12px; color:#666;">Premium Assets & Certified Templates</p>
+        </div>
+        <div class="glass-card reveal" onclick="openHub('gaming')">
+            <i class="fas fa-gamepad" style="color:var(--gold); font-size:30px;"></i>
+            <h3>GAMING HUB</h3>
+            <p style="font-size:12px; color:#666;">3D Survival & Metaverse Classics</p>
+        </div>
     </div>
-    <h1 class="brand-name reveal">KME LUXURY DESIGNS</h1>
 
-    <section class="reveal">
-        <h2 style="color:var(--gold); letter-spacing: 4px;">CERTIFIED DESIGNER</h2>
-        <div style="max-width: 700px; margin: 0 auto; line-height: 1.8; color: #aaa;">
-            <p>I am <strong>Kinuri Edirisinghe</strong>, a 14-year-old Canva Certified Designer. I bridge the gap between creative storytelling and luxury branding.</p>
-            <div style="border: 1px dashed var(--gold); padding: 15px; border-radius: 10px; margin: 20px 0; color: var(--gold);">
-                <i class="fas fa-certificate"></i> VERIFIED BY CANVA CREATIVE HUB
-            </div>
-            <a href="https://canva.link/xawfs47c04lmskd" target="_blank" class="luxury-btn">View My Portfolio</a>
-        </div>
-    </section>
-
-    <section class="reveal">
-        <h2 style="color:var(--gold); letter-spacing: 3px;">DESIGN PACKAGES</h2>
-        <div class="package-grid">
-            <div class="pkg-card pkg-silver">
-                <h3 style="color:var(--silver);">SILVER</h3>
-                <p style="font-weight: bold; color: #fff;">LKR 1,500</p>
-                <ul>
-                    <li>1 Professional Logo Concept</li>
-                    <li>2 Major Revisions</li>
-                    <li>High-Res PNG & JPG</li>
-                    <li>Standard 3-Day Delivery</li>
+    <div id="pricing" style="padding:100px 10%; text-align:center;">
+        <h2 class="reveal" style="letter-spacing:10px;">SUBSCRIPTIONS</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:30px; margin-top:50px;">
+            <div class="glass-card reveal">
+                <h4 style="color:var(--gold);">SILVER PASS</h4>
+                <p style="font-size:30px;">$2.99</p>
+                <ul style="list-style:none; padding:0; font-size:12px; color:#777; line-height:2;">
+                    <li>Basic Vault Access</li>
+                    <li>Community Badges</li>
                 </ul>
-                <a href="https://wa.me/94774799172?text=Order: Silver Package" class="luxury-btn">Order Now</a>
+                <a href="https://wa.me/94774799172?text=ElitePlan:Silver" class="luxury-btn">Subscribe</a>
             </div>
-            <div class="pkg-card pkg-gold">
-                <h3 style="color:var(--gold);">GOLDEN</h3>
-                <p style="font-weight: bold; color: #fff;">LKR 5,000</p>
-                <ul>
-                    <li>3 Premium Logo Concepts</li>
-                    <li>Unlimited Revisions</li>
-                    <li>Source Files (Editable Link)</li>
-                    <li>Social Media Kit (Profile/Cover)</li>
+            <div class="glass-card reveal" style="border: 1px solid var(--gold);">
+                <h4 style="color:var(--gold);">GOLDEN PASS</h4>
+                <p style="font-size:30px;">$5.99</p>
+                <ul style="list-style:none; padding:0; font-size:12px; color:#ccc; line-height:2;">
+                    <li>Unlimited Vault Access</li>
+                    <li>All Multiverse Hubs</li>
                 </ul>
-                <a href="https://wa.me/94774799172?text=Order: Golden Package" class="luxury-btn">Order Now</a>
-            </div>
-            <div class="pkg-card pkg-diamond">
-                <h3 style="color:var(--diamond);">DIAMOND</h3>
-                <p style="font-weight: bold; color: #fff;">LKR 10,000+</p>
-                <ul>
-                    <li>Fully Bespoke Branding Kit</li>
-                    <li>Custom 3D Product Mockups</li>
-                    <li>Premium Motion Graphics</li> 
-                    <li>VIP Priority Support (24/7)</li>
-                </ul>
-                <a href="https://wa.me/94774799172?text=Inquiry: Diamond Package Custom" class="luxury-btn">Request Quote</a>
+                <a href="https://wa.me/94774799172?text=ElitePlan:Golden" class="luxury-btn" style="background:var(--gold); color:#000;">Subscribe</a>
             </div>
         </div>
-    </section>
-
-    <section class="reveal" id="membership" style="background: rgba(212,175,55,0.02);">
-        <h2 style="color:var(--gold); letter-spacing: 5px;">ELITE MEMBERSHIP</h2>
-        <p style="color: #666; font-size: 13px; margin-bottom: 30px;">SECURE YOUR ACCESS TO THE KINGDOM</p>
-        
-        <div class="package-grid">
-            <div class="pkg-card" style="border: 1px solid var(--silver);">
-                <h3 style="color:var(--silver); font-size: 18px;">SILVER PASS</h3>
-                <p style="font-size: 24px; font-weight: bold; color: #fff;">$2.99 <span style="font-size:12px; color:#555;">/MO</span></p>
-                <ul style="font-size: 12px;">
-                    <li>5 Premium Canva Templates</li>
-                    <li>Basic 3D Studio Games</li>
-                    <li>Standard Email Support</li>
-                </ul>
-                <a href="https://wa.me/94774799172?text=I want the Silver Pass" class="luxury-btn" style="border-color:var(--silver); color:var(--silver);">JOIN SILVER</a>
-            </div>
-
-            <div class="pkg-card" style="border: 2px solid var(--gold); transform: scale(1.05); background: rgba(212,175,55,0.05);">
-                <div style="background: var(--gold); color: #000; font-size: 9px; font-weight: bold; padding: 2px 10px; border-radius: 10px; display: inline-block; margin-bottom: 10px;">MOST POPULAR</div>
-                <h3 style="color:var(--gold); font-size: 18px;">GOLDEN PASS</h3>
-                <p style="font-size: 24px; font-weight: bold; color: #fff;">$5.99 <span style="font-size:12px; color:#555;">/MO</span></p>
-                <ul style="font-size: 12px; color: #ccc;">
-                    <li>UNLIMITED Store Access</li>
-                    <li>All Multiverse Exclusives</li>
-                    <li>20% Off Design Commissions</li>
-                </ul>
-                <a href="https://www.paypal.com/paypalme/YOUR_ID" class="luxury-btn" style="background:var(--gold); color:#000;">GET GOLD PASS</a>
-            </div>
-
-            <div class="pkg-card" style="border: 1px solid var(--diamond);">
-                <h3 style="color:var(--diamond); font-size: 18px;">DIAMOND PASS</h3>
-                <p style="font-size: 24px; font-weight: bold; color: #fff;">$14.99 <span style="font-size:12px; color:#555;">/MO</span></p>
-                <ul style="font-size: 12px;">
-                    <li>1 Free Custom Design Monthly</li>
-                    <li>24/7 Priority VIP Concierge</li>
-                    <li>Early Access to New Hubs</li>
-                </ul>
-                <a href="https://wa.me/94774799172?text=I want the Diamond VIP Pass" class="luxury-btn" style="border-color:var(--diamond); color:var(--diamond);">GO DIAMOND</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="reveal">
-        <div class="mission-glow" onclick="openHub('main')">
-            <h2 style="color:var(--gold); letter-spacing: 5px;">OUR MISSIONS</h2>
-            <p style="font-style: italic; color: #fff;">"Transforming ordinary visions into extraordinary luxury legacies."</p>
-            <p style="font-size: 11px; color: var(--gold); margin-top: 25px; letter-spacing: 2px;">EXPLORE THE ELITE HUB</p>
-        </div>
-    </section>
+    </div>
 
     <div id="hub-overlay" class="hub-overlay">
-        <button onclick="closeHub()" class="luxury-btn" style="position:absolute; top:20px; right:20px; z-index:4000;">CLOSE</button>
-        <div id="hub-dynamic-content" class="hub-content"></div>
+        <button onclick="closeHub()" class="luxury-btn" style="position:absolute; top:30px; right:30px;">Close</button>
+        <div id="dynamic-content" style="width:100%; display:flex; flex-direction:column; align-items:center;"></div>
     </div>
 
     <footer>
-        <a href="https://wa.me/94774799172" class="luxury-btn" style="padding: 15px 50px;">CONTACT ME</a>
-        <h3 style="color:var(--gold); margin-top: 30px; letter-spacing: 2px;">KINURI EDIRISINGHE</h3>
-        <p style="color: #666;">Certified Graphic Designer | © 2026</p>
+        <p>ELITE KINGDOM © 2026</p>
+        <a href="https://whatsapp.com/channel/0029VbAND0eFi8xmLegMVO2j" style="color:var(--gold); text-decoration:none;">Official Channel</a>
     </footer>
 
-    <script type="text/javascript">
-        function googleTranslateElementInit() { new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element'); }
-        function triggerTranslate() { 
-            var combo = document.querySelector('.goog-te-combo');
-            if(combo) {
-                combo.value = (combo.value === 'si') ? 'en' : 'si';
-                combo.dispatchEvent(new Event('change'));
-            } else { alert("Translator loading..."); }
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+        // Reveal Logic
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.reveal').forEach(el => {
+                if(el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
+            });
         });
+        window.onload = () => document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
 
         function openHub(type) {
             const overlay = document.getElementById('hub-overlay');
-            const content = document.getElementById('hub-dynamic-content');
+            const content = document.getElementById('dynamic-content');
             overlay.style.display = 'flex';
             
-            if(type === 'main') {
+            if(type === 'gaming') {
                 content.innerHTML = `
-                    <h2 style="color:var(--gold); letter-spacing:8px; margin-bottom:30px;">THE ELITE HUB</h2>
-                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
-                        <div class="glow-box" onclick="openHub('studio')"><i class="fas fa-palette"></i><h4>KME DESIGN STUDIO</h4></div>
-                        <div class="glow-box" onclick="openHub('store')"><i class="fas fa-shopping-cart"></i><h4>DIGITAL STORE</h4></div>
-                        <div class="glow-box" onclick="openHub('multiverse')"><i class="fas fa-bolt" style="color:var(--purple);"></i><h4>MULTIVERSE HUB</h4></div>
-                        <div class="glow-box" onclick="openHub('aqua')"><i class="fas fa-leaf" style="color:#00ff88;"></i><h4>AQUA LEAF PROJECT</h4></div>
+                    <h2 style="color:var(--gold); letter-spacing:10px;">GAMING HUB</h2>
+                    <div class="hub-grid">
+                        <div class="glass-card" onclick="loadGame('https://www.google.com/logos/2010/pacman10-i.html')">PACMAN GOLD</div>
+                        <div class="glass-card" onclick="loadGame('https://www.retrogames.cc/embed/40238-super-mario-64-usa.html')">MARIO ELITE</div>
+                        <div class="glass-card" onclick="loadGame('https://archive.org/embed/doom-single-player')">ELITE DOOM</div>
+                        <div class="glass-card" onclick="loadGame('https://v6p9d9t4.ssl.hwcdn.net/html/1454652/index.html')">SURVIVAL 3D</div>
+                    </div>`;
+            } else if(type === 'vault') {
+                content.innerHTML = `
+                    <h2 style="color:var(--gold);">ELITE VAULT</h2>
+                    <div class="hub-grid">
+                        <div class="glass-card"><img src="https://i.ibb.co/wrLBb0tv/Screenshot-2026-05-10-190318.png" style="width:100%; border-radius:10px;"><h4>CANVA PRO PACK</h4><a href="https://wa.me/94774799172" class="luxury-btn">Buy LKR 500</a></div>
+                        <div class="glass-card"><h4>ULTIMATE FONTS</h4><p>Premium Luxury Fonts</p><a href="https://wa.me/94774799172" class="luxury-btn">Buy LKR 300</a></div>
                     </div>`;
             } else if(type === 'studio') {
                 content.innerHTML = `
-                    <h2 style="color:var(--gold);">KME DESIGN STUDIO</h2>
-                    <div class="glow-box" onclick="loadFrame('https://www.google.com/logos/2010/pacman10-i.html')">PLAY PACMAN</div>
-                    <div class="glow-box" onclick="loadFrame('https://www.retrogames.cc/embed/40238-super-mario-64-usa.html')">PLAY MARIO 64</div>
-                    <button class="luxury-btn" onclick="openHub('main')">BACK</button>`;
-            } else if(type === 'store') {
-                content.innerHTML = `
-                    <h2 style="color:var(--gold);">DIGITAL STORE</h2>
-                    <img src="https://i.ibb.co/wrLBb0tv/Screenshot-2026-05-10-190318.png" style="width:100%; max-width:400px; border-radius:15px; margin-bottom:20px;">
-                    <h4>CANVA PREMIUM PACK</h4>
-                    <p>LKR 500/=</p>
-                    <a href="https://wa.me/94774799172" class="luxury-btn">Buy Now</a>
-                    <br><br><button class="luxury-btn" onclick="openHub('main')">BACK</button>`;
-            } else if(type === 'aqua') {
-                content.innerHTML = `
-                    <h2 style="color:#00ff88;">PROJECT AQUA LEAF</h2>
-                    <div class="glow-box"><h4>CASE STUDY: CEYLON SPICES</h4><p style="font-size:12px;">Premium packaging & branding for organic exports.</p></div>
-                    <button class="luxury-btn" onclick="openHub('main')">BACK</button>`;
-            } else if(type === 'multiverse') {
-                content.innerHTML = `
-                    <h2 style="color:var(--purple);">ELITE MULTIVERSE</h2>
-                    <div class="glow-box"><h4>MARVEL EDITS</h4></div>
-                    <div class="glow-box"><h4>POTTERMORE ART</h4></div>
-                    <button class="luxury-btn" onclick="openHub('main')">BACK</button>`;
+                    <h2 style="color:var(--gold);">STUDIO HUB</h2>
+                    <div class="hub-grid">
+                        <div class="glass-card"><h4>LOGOS</h4><p>View Samples</p></div>
+                        <div class="glass-card"><h4>MOTION</h4><p>Premium Graphics</p></div>
+                    </div>`;
             }
         }
 
-        function loadFrame(url) {
-            document.getElementById('hub-dynamic-content').innerHTML = `
-                <iframe src="${url}" width="100%" height="70vh" style="border:1px solid var(--gold); border-radius:15px;"></iframe>
-                <br><button class="luxury-btn" onclick="openHub('studio')" style="margin-top:20px;">BACK TO STUDIO</button>`;
+        function loadGame(url) {
+            document.getElementById('dynamic-content').innerHTML = `<iframe src="${url}"></iframe><br><button class="luxury-btn" onclick="closeHub()">Exit Game</button>`;
         }
 
         function closeHub() { document.getElementById('hub-overlay').style.display = 'none'; }
 
-        // DUST
+        // Dust Background
         const canvas = document.getElementById('dust-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
         function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener('resize', resize); resize();
-        for(let i=0; i<40; i++) particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, size:Math.random()*1.5, speed:Math.random()*0.3, opacity:Math.random()});
+        for(let i=0; i<50; i++) particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, size:Math.random()*1.5, speed:Math.random()*0.4, opacity:Math.random()});
         function animate() {
             ctx.clearRect(0,0,canvas.width,canvas.height);
             particles.forEach(p => {

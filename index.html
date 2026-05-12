@@ -8,6 +8,11 @@
     <style>
         :root { --gold: #D4AF37; --black: #050505; --purple: #a855f7; --aqua: #00ff88; --marvel: #e62429; }
 
+        /* GOLDEN SCROLLBAR */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(var(--black), var(--gold), var(--black)); border-radius: 10px; }
+
         body { 
             background: radial-gradient(circle at center, #1a1508 0%, #050505 70%, #000 100%);
             color: #fff; font-family: 'Segoe UI', sans-serif; text-align: center; margin: 0; overflow-x: hidden;
@@ -18,37 +23,34 @@
         .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* FIXED LOGO SIZE */
         .logo-container { margin: 50px auto 10px; width: 120px; animation: float 4s ease-in-out infinite; filter: drop-shadow(0 0 10px var(--gold)); }
-        .logo-container img { width: 100%; height: auto; }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-        .brand-title { font-size: 2.5rem; letter-spacing: 12px; font-weight: 100; color: #fff; margin: 0; }
+        /* GAMING HUB SPECIFIC OVERLAY */
+        .gaming-bg { 
+            background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=1500') !important;
+            background-size: cover; background-position: center;
+        }
 
-        /* HUB STYLES */
-        .hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; padding: 0 8%; margin: 50px 0; }
-        .hub-card { position: relative; height: 350px; border-radius: 30px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; transition: 0.5s; background-size: cover; background-position: center; }
-        .hub-card:hover { transform: translateY(-10px); border-color: var(--gold); box-shadow: 0 0 30px rgba(212,175,55,0.3); }
+        .hub-inner { 
+            width: 90%; max-width: 900px; padding: 40px; border-radius: 40px; 
+            border: 2px solid var(--gold); position: relative; overflow: hidden;
+        }
 
-        /* THE GAMING FORTRESS (කුළුණ) */
-        .fortress-card { border: 2px solid var(--purple) !important; box-shadow: 0 0 20px rgba(168, 85, 247, 0.2); }
-        .fortress-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; }
+        /* TOOLS PANEL */
+        .magic-toolbar { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); z-index: 9999; display: flex; flex-direction: column; gap: 15px; }
+        .tool-icon { width: 50px; height: 50px; background: rgba(10,10,10,0.9); border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); cursor: pointer; transition: 0.3s; }
+        .tool-icon:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px var(--gold); }
 
-        /* SHOWCASE */
-        .showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 0 8%; margin-top: 30px; }
-        .showcase-item { border-radius: 15px; overflow: hidden; border: 1px solid rgba(212,175,55,0.2); height: 250px; position: relative; }
-        .showcase-item img { width: 100%; height: 100%; object-fit: cover; }
-        .showcase-info { position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.8); color: var(--gold); padding: 8px 0; font-size: 10px; }
-
-        /* MODAL / OVERLAY */
-        .hub-display { position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,0.98); display: none; align-items: center; justify-content: center; backdrop-filter: blur(20px); }
-        .hub-inner { width: 90%; max-width: 800px; background: rgba(20,20,20,0.8); padding: 40px; border-radius: 40px; border: 1px solid var(--gold); overflow-y: auto; max-height: 80vh; }
+        /* SERVICE LIST */
+        .service-card { background: rgba(255,255,255,0.03); padding: 20px; border-radius: 20px; border: 1px solid rgba(212,175,55,0.2); margin: 10px; transition: 0.3s; }
+        .service-card:hover { border-color: var(--gold); transform: scale(1.05); }
 
         .luxury-btn { display: inline-block; background: transparent; color: var(--gold); border: 1px solid var(--gold); padding: 10px 25px; border-radius: 50px; text-decoration: none; transition: 0.3s; font-size: 11px; cursor: pointer; margin: 10px; }
         .luxury-btn:hover { background: var(--gold); color: #000; }
 
-        .secret-path { display: block; background: rgba(168, 85, 247, 0.1); padding: 15px; margin: 10px 0; border-radius: 15px; border: 1px solid var(--purple); color: #fff; text-decoration: none; transition: 0.3s; }
-        .secret-path:hover { background: var(--purple); transform: scale(1.02); }
+        .secret-path { display: block; background: rgba(0,0,0,0.8); padding: 15px; margin: 10px 0; border-radius: 15px; border: 1px solid var(--purple); color: #fff; text-decoration: none; transition: 0.3s; text-align: left; }
+        .secret-path:hover { background: var(--purple); border-color: #fff; }
 
         footer { padding: 40px; color: #444; font-size: 10px; }
     </style>
@@ -57,98 +59,111 @@
 
     <canvas id="dust-canvas"></canvas>
 
+    <div class="magic-toolbar">
+        <div class="tool-icon" title="AI Assistant" onclick="openAI()"><i class="fas fa-robot"></i></div>
+        <div class="tool-icon" title="Global Translate" onclick="openTranslate()"><i class="fas fa-language"></i></div>
+        <div class="tool-icon" title="Elite Services" onclick="openServices()"><i class="fas fa-concierge-bell"></i></div>
+    </div>
+
     <div class="logo-container reveal">
-        <img src="./logo-animated.gif.gif" alt="Logo">
+        <img src="./logo-animated.gif.gif" alt="Logo" style="width:100%">
     </div>
-    <h1 class="brand-title reveal">ELITE KINGDOM</h1>
-    <p class="reveal" style="color:var(--gold); letter-spacing:8px; font-size:14px;">ALL-IN-ONE SERVICE</p>
+    <h1 class="brand-title reveal" style="letter-spacing:15px; font-weight:100">ELITE KINGDOM</h1>
+    <p class="reveal" style="color:var(--gold); letter-spacing:5px;">ALL-IN-ONE SERVICE</p>
 
-    <section class="reveal">
-        <div style="background:rgba(255,255,255,0.02); padding:30px; border-radius:30px; max-width:700px; margin: 20px auto; border: 1px solid rgba(255,255,255,0.05);">
-            <h2 style="color:var(--gold); font-weight: 300;">ABOUT THE FREELANCER</h2>
-            <p style="color:#aaa; font-size:15px; line-height:1.6;">
-                I am <b>Kinuri Edirisinghe</b>, a 14-year-old Canva Certified Freelance Designer. 
-                Crafting luxury branding and digital experiences for the elite.
-            </p>
-            <a href="https://wa.me/94774799172" class="luxury-btn" style="background:var(--gold); color:#000; font-weight:bold;">HIRE ME NOW</a>
-        </div>
-    </section>
-
-    <section class="reveal">
-        <div class="hub-grid">
-            <div class="hub-card" style="background-image: url('https://i.ibb.co/20DbJzpn/Screenshot-2026-05-12-163843.png');" onclick="openHub('marvel')">
-                <div class="fortress-overlay"><h3>MARVELOUS HUB</h3></div>
-            </div>
-
-            <div class="hub-card fortress-card" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800');" onclick="openHub('gaming')">
-                <div class="fortress-overlay">
-                    <h2 style="color:var(--purple); margin:0;">GAMING FORTRESS</h2>
-                    <p style="font-size:10px; letter-spacing:2px;">ENTER THE TOWER</p>
-                </div>
-            </div>
-
-            <div class="hub-card" style="background-image: url('Gemini_Generated_Image_zc8ozgzc8ozgzc8o.png');" onclick="openHub('aqua')">
-                <div class="fortress-overlay"><h3>AQUA LEAF</h3></div>
+    <section class="hub-grid reveal active" style="display:flex; justify-content:center; gap:20px; padding:50px;">
+        <div class="hub-card" style="width:300px; height:400px; background-image:url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500'); border-radius:30px; border:1px solid var(--purple); cursor:pointer; position:relative; overflow:hidden;" onclick="openGamingFortress()">
+            <div style="position:absolute; bottom:0; width:100%; padding:20px; background:linear-gradient(transparent, #000);">
+                <h3 style="color:var(--purple)">GAMING FORTRESS</h3>
+                <p style="font-size:10px">ADVENTURE & BRAIN PATHS</p>
             </div>
         </div>
     </section>
 
-    <section class="reveal">
-        <h2 style="color:var(--gold); letter-spacing:4px;">ELITE SHOWCASE</h2>
-        <div class="showcase-grid">
-            <div class="showcase-item"><img src="https://i.ibb.co/PH91yF9/Screenshot-2026-05-12-163240.png"><div class="showcase-info">POSTER</div></div>
-            <div class="showcase-item"><img src="https://i.ibb.co/W4jV0StW/Screenshot-2026-05-12-163441.png"><div class="showcase-info">ANNIVERSARY</div></div>
-            <div class="showcase-item"><img src="https://i.ibb.co/HDLmFQVc/Screenshot-2026-05-12-163515.png"><div class="showcase-info">BUSINESS</div></div>
-        </div>
-    </section>
-
-    <div id="hub-display" class="hub-display">
-        <div class="hub-inner">
-            <div id="hub-content"></div>
-            <button class="luxury-btn" onclick="closeHub()">LEAVE KINGDOM</button>
+    <div id="main-overlay" style="position:fixed; inset:0; background:rgba(0,0,0,0.98); display:none; z-index:10000; align-items:center; justify-content:center; backdrop-filter:blur(20px);">
+        <div id="overlay-box" class="hub-inner">
+            <div id="overlay-content"></div>
+            <button class="luxury-btn" onclick="closeOverlay()">EXIT AREA</button>
         </div>
     </div>
-
-    <footer>ELITE KINGDOM © 2026 | KINURI EDIRISINGHE</footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
         });
 
-        function openHub(type) {
-            const display = document.getElementById('hub-display');
-            const content = document.getElementById('hub-content');
-            display.style.display = 'flex';
+        function closeOverlay() { document.getElementById('main-overlay').style.display = 'none'; }
 
-            if(type === 'gaming') {
-                content.innerHTML = `
-                    <h2 style="color:var(--purple); letter-spacing:5px;">GAMING FORTRESS</h2>
-                    <p style="color:#888;">Select a secret path to enter the multiverse.</p>
-                    <div style="margin-top:20px;">
-                        <a href="#" class="secret-path" onclick="loadGame('https://www.google.com/logos/2010/pacman10-i.html')">
-                            <i class="fas fa-ghost"></i> PATH 01: PACMAN GOLD (FREE)
-                        </a>
-                        <a href="https://wa.me/94774799172?text=I want to buy the Premium Game Path!" class="secret-path" style="border-color:var(--gold); color:var(--gold);">
-                            <i class="fas fa-lock"></i> PATH 02: PREMIUM ELITE GAMES (LKR 500)
-                        </a>
+        // 1. GAMING FORTRESS
+        function openGamingFortress() {
+            const box = document.getElementById('overlay-box');
+            box.className = 'hub-inner gaming-bg';
+            document.getElementById('main-overlay').style.display = 'flex';
+            document.getElementById('overlay-content').innerHTML = `
+                <h2 style="color:var(--purple); letter-spacing:5px;">GAMING FORTRESS</h2>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                    <div>
+                        <h4 style="color:var(--gold)">ADVENTURE & PUZZLE (FREE)</h4>
+                        <a href="#" class="secret-path" onclick="loadGame('https://www.2048.org/')">🧠 BRAIN: 2048 PUZZLE</a>
+                        <a href="#" class="secret-path" onclick="loadGame('https://marios-infinite-run.netlify.app/')">🏃 ADVENTURE: MARIO RUN</a>
                     </div>
-                    <div id="game-container" style="margin-top:20px;"></div>
-                `;
-            } else if(type === 'marvel') {
-                content.innerHTML = `<h2>MARVELOUS HUB</h2><p>Cinematic Branding Multiverse.</p>`;
-            } else if(type === 'aqua') {
-                content.innerHTML = `<h2>AQUA LEAF</h2><p>Organic Luxury Assets.</p>`;
-            }
+                    <div>
+                        <h4 style="color:var(--purple)">ELITE PATHS (LKR 500)</h4>
+                        <a href="https://wa.me/94774799172?text=I want to unlock Granny Remake" class="secret-path">👻 GRANNY: LUXURY REMAKE</a>
+                        <a href="https://wa.me/94774799172?text=I want to unlock Secret Adventure" class="secret-path">⚔️ ELITE ADVENTURE 3D</a>
+                    </div>
+                </div>
+                <div id="game-viewer" style="margin-top:20px;"></div>
+            `;
         }
 
         function loadGame(url) {
-            document.getElementById('game-container').innerHTML = `<iframe src="${url}" style="width:100%; height:300px; border-radius:20px; border:1px solid var(--purple);"></iframe>`;
+            document.getElementById('game-viewer').innerHTML = `<iframe src="${url}" style="width:100%; height:400px; border-radius:20px; border:2px solid var(--gold);"></iframe>`;
         }
 
-        function closeHub() { document.getElementById('hub-display').style.display = 'none'; }
+        // 2. AI ASSISTANT
+        function openAI() {
+            document.getElementById('main-overlay').style.display = 'flex';
+            document.getElementById('overlay-box').className = 'hub-inner';
+            document.getElementById('overlay-content').innerHTML = `
+                <h2 style="color:var(--gold)">KME ELITE AI</h2>
+                <div style="background:#000; padding:20px; border-radius:20px; text-align:left; border:1px solid #222;">
+                    <p style="color:var(--gold)">AI Assistant: Greetings! I am the Elite Kingdom Guide.</p>
+                    <p>How can I assist your luxury design journey today?</p>
+                </div>
+                <input type="text" placeholder="Ask anything..." style="width:80%; margin-top:20px; padding:10px; background:none; border:1px solid var(--gold); color:#fff; border-radius:10px;">
+            `;
+        }
 
-        // Background Dust
+        // 3. TRANSLATION
+        function openTranslate() {
+            document.getElementById('main-overlay').style.display = 'flex';
+            document.getElementById('overlay-box').className = 'hub-inner';
+            document.getElementById('overlay-content').innerHTML = `
+                <h2 style="color:var(--aqua)">GLOBAL TRANSLATOR</h2>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                    <button class="luxury-btn" onclick="alert('English Active')">🇺🇸 ENGLISH</button>
+                    <button class="luxury-btn" onclick="alert('Sinhala Active')">🇱🇰 SINHALA</button>
+                    <button class="luxury-btn" onclick="alert('French Active')">🇫🇷 FRENCH</button>
+                    <button class="luxury-btn" onclick="alert('Japanese Active')">🇯🇵 JAPANESE</button>
+                </div>
+            `;
+        }
+
+        // 4. SERVICE LIST
+        function openServices() {
+            document.getElementById('main-overlay').style.display = 'flex';
+            document.getElementById('overlay-box').className = 'hub-inner';
+            document.getElementById('overlay-content').innerHTML = `
+                <h2 style="color:var(--gold)">ELITE SERVICES</h2>
+                <div class="service-card">✨ LUXURY BRANDING (GOLD STANDARD)</div>
+                <div class="service-card">🎨 CINEMATIC POSTER DESIGN</div>
+                <div class="service-card">💻 ALL-IN-ONE WEB SOLUTIONS</div>
+                <div class="service-card">🕹️ CUSTOM GAMING INTERFACES</div>
+            `;
+        }
+
+        // Dust Background
         const canvas = document.getElementById('dust-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];

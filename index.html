@@ -231,47 +231,67 @@
         function openHub() { document.getElementById('hub-display').style.display = 'flex'; }
         function closeHub() { document.getElementById('hub-display').style.display = 'none'; }
 
-        function openGaming() {
-            openHub();
-            document.getElementById('hub-content').innerHTML = `
-                <h2 style="color:var(--purple); text-align:center;">GAMING FORTRESS</h2>
-                <div style="text-align:left;">
-                    <p onclick="play('https://www.google.com/logos/2010/pacman10-i.html')" style="cursor:pointer; padding:10px; border-bottom:1px solid #333;"><i class="fas fa-ghost"></i> 1. Pacman Classic (Play)</p>
-                    <p onclick="play('https://play2048.co/')" style="cursor:pointer; padding:10px; border-bottom:1px solid #333;"><i class="fas fa-puzzle-piece"></i> 2. 2048 Puzzle (Play)</p>
-                    <p onclick="play('https://freeinvaders.org/')" style="cursor:pointer; padding:10px; border-bottom:1px solid #333;"><i class="fas fa-rocket"></i> 3. Space Invaders (Play)</p>
-                    <p onclick="window.open('https://wa.me/94774799172?text=I want to unlock Granny Remake')" style="cursor:pointer; padding:10px; color:var(--gold);"><i class="fas fa-lock"></i> 4. Granny Remake (Premium Unlock)</p>
-                </div>
-                <div id="g-cont" style="display:none; margin-top:20px;">
-                    <iframe id="g-frame" src="" style="width:100%; height:400px; border:2px solid var(--gold); border-radius:15px;"></iframe>
-                </div>
-            `;
-        }
+       // 1. GAMING FORTRESS - හරියටම වැඩ කරන Games
+        function openGaming() {
+            openHub();
+            document.getElementById('hub-content').innerHTML = `
+                <h2 style="color:var(--purple); text-align:center;">GAMING FORTRESS</h2>
+                <div style="text-align:left; margin-bottom:20px;">
+                    <p onclick="play('https://v6p9d9t4.ssl.hwcdn.net/html/1951/index.html')" style="cursor:pointer; padding:12px; border-bottom:1px solid #333; color:#fff;"><i class="fas fa-ghost"></i> 1. Pacman Classic (Play Now)</p>
+                    <p onclick="play('https://play2048.co/')" style="cursor:pointer; padding:12px; border-bottom:1px solid #333; color:#fff;"><i class="fas fa-puzzle-piece"></i> 2. 2048 Elite (Play Now)</p>
+                    <p onclick="play('https://hextris.io/')" style="cursor:pointer; padding:12px; border-bottom:1px solid #333; color:#fff;"><i class="fas fa-shapes"></i> 3. Hextris Puzzle (Play Now)</p>
+                    <p onclick="window.open('https://wa.me/94774799172?text=I want to unlock Premium Granny Remake')" style="cursor:pointer; padding:12px; color:var(--gold); font-weight:bold;"><i class="fas fa-lock"></i> 4. Granny Remake (Unlock via WhatsApp)</p>
+                </div>
+                <div id="g-cont" style="display:none; margin-top:20px; position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
+                    <iframe id="g-frame" src="" style="position:absolute; top:0; left:0; width:100%; height:400px; border:2px solid var(--gold); border-radius:15px;" frameborder="0" allowfullscreen></iframe>
+                </div>
+            `;
+        }
 
-        function openMarvel() {
-            openHub();
-            document.getElementById('hub-content').innerHTML = `
-                <h2 style="color:var(--marvel); text-align:center;">MARVELOUS ARTICLES</h2>
-                <div style="text-align:left; color:#ccc;">
-                    <h4 style="color:#fff;">1. The Cinematic Edge in Branding</h4>
-                    <p>Why modern brands are moving towards a dark, mysterious aesthetic to build curiosity and luxury appeal. Learn how contrast creates value.</p>
-                    <hr style="border:0; border-top:1px solid #333; margin:15px 0;">
-                    <h4 style="color:#fff;">2. Visual Psychology: 2026 Trends</h4>
-                    <p>Understanding how shapes and gold accents influence high-ticket client decisions. The science behind Elite Kingdom's design philosophy.</p>
-                </div>
-            `;
-        }
+        // 2. AQUA LEAF - Wholesale & Contact
+        function openAqua() {
+            openHub();
+            document.getElementById('hub-content').innerHTML = `
+                <h2 style="color:var(--aqua); text-align:center;">AQUA LEAF</h2>
+                <div class="glass-box" style="text-align:center;">
+                    <h3 style="color:#fff;">Premium Wholesale Items</h3>
+                    <p style="color:#ccc;">We provide high-quality organic assets and bulk design resources for global brands.</p>
+                    <div style="margin-top:30px;">
+                        <a href="https://wa.me/94774799172?text=I am interested in Aqua Leaf Wholesale Items" target="_blank" class="luxury-btn filled">
+                            <i class="fab fa-whatsapp"></i> CONTACT FOR WHOLESALE
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
 
-        function openAqua() {
-            openHub();
-            document.getElementById('hub-content').innerHTML = `
-                <h2 style="color:var(--aqua); text-align:center;">AQUA LEAF CONCEPT</h2>
-                <div style="text-align:center;">
-                    <p>Aqua Leaf focuses on <b>Sustainable Luxury</b>. We use organic assets, specifically inspired by the <b>Jackfruit Leaf (Kos Kola)</b>, to create identities for eco-friendly premium products.</p>
-                    <p style="color:#888; font-size:14px;">Bridging Sri Lankan roots with international design standards.</p>
-                </div>
-            `;
-        }
+        // 3. AI SERVICE - පෙනුම වැඩි දියුණු කළ AI එක
+        function openAI() {
+            openHub();
+            document.getElementById('hub-content').innerHTML = `
+                <h2 style="color:var(--gold); text-align:center;">ELITE AI ASSISTANT</h2>
+                <div id="ai-chat-box" style="background:rgba(255,255,255,0.05); padding:20px; border-radius:20px; height:250px; overflow-y:auto; text-align:left; border:1px solid var(--border); margin-bottom:15px;">
+                    <p style="color:var(--gold);"><b>AI Guide:</b> Greetings! I am the Elite Kingdom Assistant. How can I help you with your design journey today?</p>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <input type="text" id="ai-input" placeholder="Ask me something..." style="flex:1; padding:12px; border-radius:30px; border:1px solid var(--gold); background:none; color:#fff;">
+                    <button onclick="aiRespond()" class="luxury-btn" style="padding:10px 20px;">Send</button>
+                </div>
+            `;
+        }
 
+        function aiRespond() {
+            const input = document.getElementById('ai-input').value;
+            const chatBox = document.getElementById('ai-chat-box');
+            if(input.trim() !== "") {
+                chatBox.innerHTML += `<p style="color:#fff; text-align:right;"><b>You:</b> ${input}</p>`;
+                setTimeout(() => {
+                    chatBox.innerHTML += `<p style="color:var(--gold);"><b>AI Guide:</b> That's a great question! For specific requests, I recommend contacting the founder, Kinuri, directly via WhatsApp for a personalized elite experience.</p>`;
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }, 1000);
+                document.getElementById('ai-input').value = "";
+            }
+        } 
         function play(url) {
             document.getElementById('g-cont').style.display = 'block';
             document.getElementById('g-frame').src = url;

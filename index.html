@@ -11,6 +11,9 @@
             --black: #050505; 
             --glass: rgba(255, 255, 255, 0.03);
             --border: rgba(212, 175, 55, 0.2);
+            --purple: #a855f7;
+            --marvel: #e62429;
+            --aqua: #00ff88;
         }
 
         /* 1. GOLDEN SCROLLBAR */
@@ -30,7 +33,6 @@
             line-height: 1.6;
         }
 
-        /* 2. ANIMATED GOLD DUST BACKGROUND */
         #dust-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
 
         .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
@@ -55,7 +57,7 @@
         .luxury-btn.filled { background: var(--gold); color: #000; font-weight: bold; }
         .luxury-btn:hover { box-shadow: 0 0 25px var(--gold); transform: scale(1.05); }
 
-        /* SECTION STYLING (White Space Management) */
+        /* SECTION STYLING */
         section { padding: 100px 10%; max-width: 1200px; margin: 0 auto; }
         .section-title { color: var(--gold); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 50px; font-weight: 300; }
 
@@ -76,18 +78,10 @@
             background: linear-gradient(transparent, rgba(0,0,0,0.9)); box-sizing: border-box;
         }
 
-        /* SHOWCASE GRID */
-        .showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .showcase-item { 
-            border-radius: 20px; overflow: hidden; border: 1px solid var(--border); 
-            height: 350px; position: relative; background: #000;
-        }
-        .showcase-item img { width: 100%; height: 100%; object-fit: contain; transition: 0.6s; }
-        .showcase-item:hover img { transform: scale(1.1); }
-        .showcase-tag { 
-            position: absolute; bottom: 0; width: 100%; padding: 15px; 
-            background: rgba(0,0,0,0.8); color: var(--gold); font-size: 11px; letter-spacing: 2px;
-        }
+        /* OVERLAY SYSTEM (FOR GAMES & ARTICLES) */
+        .hub-display { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10001; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; backdrop-filter: blur(20px); }
+        .hub-inner { width: 90%; max-width: 900px; max-height: 85vh; background: var(--black); border: 1px solid var(--gold); border-radius: 35px; padding: 40px; overflow-y: auto; position: relative; }
+        .close-hub { position: absolute; top: 20px; right: 20px; color: var(--gold); font-size: 30px; cursor: pointer; }
 
         /* MAGIC TOOLBAR */
         .magic-toolbar { position: fixed; right: 25px; top: 50%; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 20px; }
@@ -98,15 +92,11 @@
         }
         .tool-icon:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px var(--gold); }
 
-        /* HOW I WORK SECTION */
-        .process-step { margin-bottom: 40px; text-align: left; border-left: 2px solid var(--gold); padding-left: 30px; }
-        .process-step h4 { color: var(--gold); margin: 0; font-size: 1.2rem; }
-        .process-step p { color: #aaa; margin-top: 10px; }
-
+        /* GAME LIST STYLING */
+        .game-item { background: rgba(168, 85, 247, 0.1); border: 1px solid var(--purple); padding: 15px; border-radius: 15px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .game-item.premium { border-color: var(--gold); background: rgba(212, 175, 55, 0.1); }
+        
         footer { padding: 80px 20px; text-align: center; border-top: 1px solid var(--border); }
-        .social-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; }
-        .social-links a { color: #fff; font-size: 24px; transition: 0.3s; }
-        .social-links a:hover { color: var(--gold); transform: translateY(-5px); }
     </style>
 </head>
 <body>
@@ -114,9 +104,16 @@
     <canvas id="dust-canvas"></canvas>
 
     <div class="magic-toolbar">
-        <div class="tool-icon" title="AI Assistant" onclick="alert('Elite AI: Ready to assist your design journey.')"><i class="fas fa-robot"></i></div>
-        <div class="tool-icon" title="Translation" onclick="alert('Translation Service: Globalizing your kingdom...')"><i class="fas fa-language"></i></div>
+        <div class="tool-icon" title="AI Assistant" onclick="openAI()"><i class="fas fa-robot"></i></div>
+        <div class="tool-icon" title="Translation" onclick="openTranslate()"><i class="fas fa-language"></i></div>
         <div class="tool-icon" title="Hire Me" onclick="window.open('https://wa.me/94774799172')"><i class="fas fa-briefcase"></i></div>
+    </div>
+
+    <div id="hub-display" class="hub-display">
+        <div class="hub-inner">
+            <span class="close-hub" onclick="closeHub()">&times;</span>
+            <div id="hub-content"></div>
+        </div>
     </div>
 
     <header class="reveal">
@@ -134,92 +131,101 @@
     </header>
 
     <section class="reveal">
-        <div class="glass-box">
-            <h2 class="section-title" style="margin-top:0;">Founder's Note</h2>
-            <p style="font-size: 1.1rem; font-style: italic; color: #ccc;">
-                "I am Kinuri Edirisinghe, a 14-year-old designer dedicated to merging cinematic mystery with luxury branding. 
-                My mission is to solve complex design puzzles and create visual legacies that stand out globally."
-            </p>
-        </div>
-    </section>
-
-    <section class="reveal">
         <h2 class="section-title">Brand Segments</h2>
         <div class="hub-grid">
-            <div class="hub-card" style="background-image: url('https://i.ibb.co/20DbJzpn/Screenshot-2026-05-12-163843.png');">
+            <div class="hub-card" style="background-image: url('https://i.ibb.co/20DbJzpn/Screenshot-2026-05-12-163843.png');" onclick="openMarvel()">
                 <div class="hub-overlay">
                     <h3 style="color:var(--marvel);">MARVELOUS HUB</h3>
-                    <p style="font-size: 11px; color:#ccc;">CINEMATIC STORYTELLING & POSTERS</p>
+                    <p style="font-size: 11px; color:#ccc;">PREMIUM ARTICLES & CINEMATIC DESIGN</p>
                 </div>
             </div>
-            <div class="hub-card" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600');">
+            <div class="hub-card" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600');" onclick="openGaming()">
                 <div class="hub-overlay">
                     <h3 style="color:var(--purple);">GAMING FORTRESS</h3>
-                    <p style="font-size: 11px; color:#ccc;">GAMING & ENTERTAINMENT ASSETS</p>
+                    <p style="font-size: 11px; color:#ccc;">5+ ELITE GAMES | FREE & PREMIUM</p>
                 </div>
             </div>
-            <div class="hub-card" style="background-image: url('Gemini_Generated_Image_zc8ozgzc8ozgzc8o.png');">
+            <div class="hub-card" style="background-image: url('Gemini_Generated_Image_zc8ozgzc8ozgzc8o.png');" onclick="openAqua()">
                 <div class="hub-overlay">
                     <h3 style="color:var(--aqua);">AQUA LEAF</h3>
-                    <p style="font-size: 11px; color:#ccc;">ORGANIC & SUSTAINABLE BRANDING</p>
+                    <p style="font-size: 11px; color:#ccc;">SUSTAINABLE BRANDING SOLUTIONS</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="reveal">
-        <h2 class="section-title">Elite Showcase</h2>
-        <div class="showcase-grid">
-            <div class="showcase-item">
-                <img src="https://i.ibb.co/PH91yF9/Screenshot-2026-05-12-163240.png" alt="Cinematic Poster">
-                <div class="showcase-tag">CINEMATIC MYSTERY POSTER</div>
-            </div>
-            <div class="showcase-item">
-                <img src="https://i.ibb.co/W4jV0StW/Screenshot-2026-05-12-163441.png" alt="Anniversary Card">
-                <div class="showcase-tag">ANNIVERSARY CARD DESIGN</div>
-            </div>
-            <div class="showcase-item">
-                <img src="https://i.ibb.co/HDLmFQVc/Screenshot-2026-05-12-163515.png" alt="Business Card">
-                <div class="showcase-tag">MODERN MINIMALIST BUSINESS CARD</div>
-            </div>
-            <div class="showcase-item">
-                <img src="https://i.ibb.co/B2Hm3Lwb/Screenshot-2026-05-12-163757.png" alt="Wedding Mockup">
-                <div class="showcase-tag">PREMIUM WEDDING MOCKUP</div>
-            </div>
-            <div class="showcase-item">
-                <img src="https://i.ibb.co/20DbJzpn/Screenshot-2026-05-12-163843.png" alt="Branding">
-                <div class="showcase-tag">BRANDING: LEGAL OBSERVE</div>
-            </div>
-        </div>
-    </section>
+    <script>
+        function openHub() { document.getElementById('hub-display').style.display = 'flex'; }
+        function closeHub() { 
+            document.getElementById('hub-display').style.display = 'none'; 
+            document.getElementById('hub-content').innerHTML = '';
+        }
 
-    <section class="reveal">
-        <h2 class="section-title">How I Work</h2>
-        <div class="glass-box">
-            <div class="process-step">
-                <h4>01. Discovery</h4>
-                <p>Understanding your brand's unique puzzle and setting the creative direction.</p>
-            </div>
-            <div class="process-step">
-                <h4>02. Design Mastery</h4>
-                <p>Applying Canva Certified techniques to craft high-end visuals with precision.</p>
-            </div>
-            <div class="process-step">
-                <h4>03. Elite Delivery</h4>
-                <p>Polishing every detail to ensure your project commands global attention.</p>
-            </div>
-        </div>
-    </section>
+        // 1. GAMING HUB - 5 GAMES
+        function openGaming() {
+            openHub();
+            document.getElementById('hub-content').innerHTML = `
+                <h2 style="color:var(--purple)">GAMING FORTRESS</h2>
+                <p>ප්‍රමුඛ පෙළේ ගේම්ස් 5ක් මෙතැනින් අත්විඳින්න.</p>
+                <div class="game-item"><span>1. Pacman Classic (Free)</span><button onclick="loadGame('https://www.google.com/logos/2010/pacman10-i.html')" class="luxury-btn" style="padding:5px 15px">Play</button></div>
+                <div class="game-item"><span>2. 2048 Elite (Free)</span><button onclick="loadGame('https://play2048.co/')" class="luxury-btn" style="padding:5px 15px">Play</button></div>
+                <div class="game-item"><span>3. Space Invaders (Free)</span><button onclick="loadGame('https://freeinvaders.org/')" class="luxury-btn" style="padding:5px 15px">Play</button></div>
+                <div class="game-item premium"><span>4. Cyber Mystery (Premium)</span><button onclick="window.open('https://wa.me/94774799172?text=I want to buy Cyber Mystery Game')" class="luxury-btn filled" style="padding:5px 15px">Unlock</button></div>
+                <div class="game-item premium"><span>5. Kingdom Quest (Premium)</span><button onclick="window.open('https://wa.me/94774799172?text=I want to buy Kingdom Quest')" class="luxury-btn filled" style="padding:5px 15px">Unlock</button></div>
+                <div id="game-area" style="margin-top:20px; width:100%; height:400px; display:none;"><iframe id="game-frame" src="" style="width:100%; height:100%; border:none; border-radius:15px;"></iframe></div>
+            `;
+        }
+        function loadGame(url) {
+            document.getElementById('game-area').style.display = 'block';
+            document.getElementById('game-frame').src = url;
+        }
 
-    <footer class="reveal">
-        <h2 class="section-title">Connect With Me</h2>
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/kinuri-mahoshadhi-edirisinghe-9b4921405" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://wa.me/94774799172" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a href="mailto:kinuriedirisinghe@gmail.com"><i class="fas fa-envelope"></i></a>
-        </div>
-        <p style="color: #444; font-size: 12px; letter-spacing: 2px;">ELITE KINGDOM © 2026 | KINURI EDIRISINGHE | FREELANCE DESIGNER</p>
-    </footer>
+        // 2. MARVELOUS HUB - ARTICLES
+        function openMarvel() {
+            openHub();
+            document.getElementById('hub-content').innerHTML = `
+                <h2 style="color:var(--marvel)">MARVELOUS HUB ARTICLES</h2>
+                <div class="glass-box" style="margin-bottom:20px; text-align:left;">
+                    <h4>The Power of Cinematic Branding</h4>
+                    <p style="font-size:14px; color:#aaa;">සිනමාත්මක නිර්මාණකරණය මගින් ඔබේ ව්‍යාපාරයට ලැබෙන ප්‍රමිතිය සහ ආකර්ෂණය පිළිබඳ ගැඹුරු විග්‍රහයක්...</p>
+                    <button class="luxury-btn" style="padding:5px 15px">Read More</button>
+                </div>
+                <div class="glass-box" style="text-align:left;">
+                    <h4>Design Psychology in 2026</h4>
+                    <p style="font-size:14px; color:#aaa;">මිනිස් මනස වර්ණ සහ හැඩතල හරහා මෙහෙයවන ආකාරය සහ එය branding සඳහා යොදාගන්නා අයුරු...</p>
+                    <button class="luxury-btn" style="padding:5px 15px">Read More</button>
+                </div>
+            `;
+        }
+
+        // 3. AQUA LEAF - DETAILS
+        function openAqua() {
+            openHub();
+            document.getElementById('hub-content').innerHTML = `
+                <h2 style="color:var(--aqua)">AQUA LEAF PROJECT</h2>
+                <div class="glass-box">
+                    <p>Aqua Leaf යනු තිරසාර නිර්මාණකරණය (Sustainable Design) සඳහා වෙන් වූ අංශයකි.</p>
+                    <ul>
+                        <li>Organic Package Branding</li>
+                        <li>Nature-inspired Visual Arts</li>
+                        <li>Eco-friendly Identity Systems</li>
+                    </ul>
+                    <p>අපි සොබාදහමේ සුන්දරත්වය සහ තාක්ෂණය එකට මුසු කරමු.</p>
+                </div>
+            `;
+        }
+
+        // AI ASSISTANT
+        function openAI() {
+            alert("Elite AI: මම ඔබට උදව් කරන්නේ කෙසේද? \n1. Portfolio බැලීමට \n2. ගාස්තු විමසීමට \n3. නිර්මාණයක් ඇණවුම් කිරීමට මගෙන් විමසන්න.");
+        }
+
+        // TRANSLATION
+        function openTranslate() {
+            let lang = confirm("Switch to Sinhala?");
+            if(lang) alert("පරිවර්තනය වෙමින් පවතී... (Translation Service Active)");
+        }
+    </script>
 
     <script>
         // Reveal on Scroll

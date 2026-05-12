@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KME Elite Kingdom | All-in-one Digital Service</title>
+    <title>KME Elite Kingdom | All-in-one Service</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --gold: #D4AF37; --black: #050505; --purple: #a855f7; --aqua: #00ff88; --marvel: #e62429; }
@@ -18,118 +18,137 @@
         .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Magic Toolbar */
-        .magic-toolbar { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); z-index: 9999; display: flex; flex-direction: column; gap: 15px; }
-        .tool-icon { width: 45px; height: 45px; background: rgba(10,10,10,0.9); border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); cursor: pointer; transition: 0.3s; }
-        .tool-icon:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px var(--gold); }
+        /* FIXED LOGO SIZE */
+        .logo-container { margin: 50px auto 10px; width: 120px; animation: float 4s ease-in-out infinite; filter: drop-shadow(0 0 10px var(--gold)); }
+        .logo-container img { width: 100%; height: auto; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-        /* Header */
-        .logo-container { margin: 60px auto 20px; width: 140px; animation: float 4s ease-in-out infinite; filter: drop-shadow(0 0 15px var(--gold)); }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-        .brand-title { font-size: 3rem; letter-spacing: 15px; font-weight: 100; color: #fff; text-shadow: 0 0 20px rgba(212,175,55,0.4); margin: 0; }
+        .brand-title { font-size: 2.5rem; letter-spacing: 12px; font-weight: 100; color: #fff; margin: 0; }
 
-        /* Glass Box Style */
-        .glass-box { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 30px; max-width: 850px; margin: 40px auto; backdrop-filter: blur(15px); }
+        /* HUB STYLES */
+        .hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; padding: 0 8%; margin: 50px 0; }
+        .hub-card { position: relative; height: 350px; border-radius: 30px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; transition: 0.5s; background-size: cover; background-position: center; }
+        .hub-card:hover { transform: translateY(-10px); border-color: var(--gold); box-shadow: 0 0 30px rgba(212,175,55,0.3); }
 
-        /* Showcase Grid Fixed */
-        .showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; padding: 0 8%; margin-top: 40px; }
-        .showcase-item { position: relative; border-radius: 15px; overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.2); height: 350px; background: #000; }
-        .showcase-item img { width: 100%; height: 100%; object-fit: contain; background: #0a0a0a; transition: 0.5s; }
-        .showcase-item:hover img { transform: scale(1.05); }
-        .showcase-info { position: absolute; bottom: 0; width: 100%; padding: 12px 0; background: rgba(0,0,0,0.9); color: var(--gold); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; border-top: 1px solid var(--gold); }
+        /* THE GAMING FORTRESS (කුළුණ) */
+        .fortress-card { border: 2px solid var(--purple) !important; box-shadow: 0 0 20px rgba(168, 85, 247, 0.2); }
+        .fortress-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; }
 
-        /* Buttons */
-        .luxury-btn { display: inline-block; background: transparent; color: var(--gold); border: 1px solid var(--gold); padding: 12px 35px; border-radius: 50px; text-decoration: none; transition: 0.4s; letter-spacing: 2px; font-size: 11px; margin: 10px; cursor: pointer; text-transform: uppercase; }
-        .luxury-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px var(--gold); }
-        .hire-btn { background: var(--gold); color: #000; font-weight: bold; }
+        /* SHOWCASE */
+        .showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 0 8%; margin-top: 30px; }
+        .showcase-item { border-radius: 15px; overflow: hidden; border: 1px solid rgba(212,175,55,0.2); height: 250px; position: relative; }
+        .showcase-item img { width: 100%; height: 100%; object-fit: cover; }
+        .showcase-info { position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.8); color: var(--gold); padding: 8px 0; font-size: 10px; }
 
-        .contact-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 25px; }
-        .contact-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.2); padding: 15px 25px; border-radius: 20px; transition: 0.3s; text-decoration: none; color: #fff; font-size: 13px; display: flex; align-items: center; gap: 10px; }
-        .contact-item:hover { border-color: var(--gold); background: rgba(212,175,55,0.1); }
+        /* MODAL / OVERLAY */
+        .hub-display { position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,0.98); display: none; align-items: center; justify-content: center; backdrop-filter: blur(20px); }
+        .hub-inner { width: 90%; max-width: 800px; background: rgba(20,20,20,0.8); padding: 40px; border-radius: 40px; border: 1px solid var(--gold); overflow-y: auto; max-height: 80vh; }
 
-        footer { padding: 60px 20px; border-top: 1px solid rgba(212, 175, 55, 0.1); color: #444; font-size: 10px; letter-spacing: 2px; }
+        .luxury-btn { display: inline-block; background: transparent; color: var(--gold); border: 1px solid var(--gold); padding: 10px 25px; border-radius: 50px; text-decoration: none; transition: 0.3s; font-size: 11px; cursor: pointer; margin: 10px; }
+        .luxury-btn:hover { background: var(--gold); color: #000; }
+
+        .secret-path { display: block; background: rgba(168, 85, 247, 0.1); padding: 15px; margin: 10px 0; border-radius: 15px; border: 1px solid var(--purple); color: #fff; text-decoration: none; transition: 0.3s; }
+        .secret-path:hover { background: var(--purple); transform: scale(1.02); }
+
+        footer { padding: 40px; color: #444; font-size: 10px; }
     </style>
 </head>
 <body>
 
     <canvas id="dust-canvas"></canvas>
 
-    <div class="magic-toolbar">
-        <div class="tool-icon" onclick="alert('KME AI: Virtual Assistant Active.')"><i class="fas fa-robot"></i></div>
-        <div class="tool-icon" onclick="window.open('https://wa.me/94774799172')"><i class="fab fa-whatsapp"></i></div>
-    </div>
-
     <div class="logo-container reveal">
         <img src="./logo-animated.gif.gif" alt="Logo">
     </div>
     <h1 class="brand-title reveal">ELITE KINGDOM</h1>
-    <p class="reveal" style="color:var(--gold); letter-spacing:8px; font-size:14px; margin-bottom:10px;">ALL-IN-ONE SERVICE</p>
+    <p class="reveal" style="color:var(--gold); letter-spacing:8px; font-size:14px;">ALL-IN-ONE SERVICE</p>
 
     <section class="reveal">
-        <div class="glass-box">
-            <h2 style="color:var(--gold); letter-spacing:3px;">ABOUT THE FREELANCER</h2>
-            <p style="color:#aaa; line-height:1.8; font-size: 16px;">
-                I am <strong>Kinuri Edirisinghe</strong>, a 14-year-old Canva Certified Freelance Designer. 
-                I specialize in high-end visual storytelling, luxury branding, and all-in-one digital solutions 
-                crafted to elevate your global presence.
+        <div style="background:rgba(255,255,255,0.02); padding:30px; border-radius:30px; max-width:700px; margin: 20px auto; border: 1px solid rgba(255,255,255,0.05);">
+            <h2 style="color:var(--gold); font-weight: 300;">ABOUT THE FREELANCER</h2>
+            <p style="color:#aaa; font-size:15px; line-height:1.6;">
+                I am <b>Kinuri Edirisinghe</b>, a 14-year-old Canva Certified Freelance Designer. 
+                Crafting luxury branding and digital experiences for the elite.
             </p>
-            <div style="margin-top:20px;">
-                <a href="https://wa.me/94774799172?text=I want to hire you!" class="luxury-btn hire-btn">Hire Me Now</a>
-                <a href="https://canva.link/xawfs47c04lmskd" target="_blank" class="luxury-btn">Portfolio</a>
+            <a href="https://wa.me/94774799172" class="luxury-btn" style="background:var(--gold); color:#000; font-weight:bold;">HIRE ME NOW</a>
+        </div>
+    </section>
+
+    <section class="reveal">
+        <div class="hub-grid">
+            <div class="hub-card" style="background-image: url('https://i.ibb.co/20DbJzpn/Screenshot-2026-05-12-163843.png');" onclick="openHub('marvel')">
+                <div class="fortress-overlay"><h3>MARVELOUS HUB</h3></div>
+            </div>
+
+            <div class="hub-card fortress-card" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800');" onclick="openHub('gaming')">
+                <div class="fortress-overlay">
+                    <h2 style="color:var(--purple); margin:0;">GAMING FORTRESS</h2>
+                    <p style="font-size:10px; letter-spacing:2px;">ENTER THE TOWER</p>
+                </div>
+            </div>
+
+            <div class="hub-card" style="background-image: url('Gemini_Generated_Image_zc8ozgzc8ozgzc8o.png');" onclick="openHub('aqua')">
+                <div class="fortress-overlay"><h3>AQUA LEAF</h3></div>
             </div>
         </div>
     </section>
 
     <section class="reveal">
-        <h2 style="color:var(--gold); letter-spacing:5px; margin-bottom:40px;">ELITE SHOWCASE</h2>
+        <h2 style="color:var(--gold); letter-spacing:4px;">ELITE SHOWCASE</h2>
         <div class="showcase-grid">
-            <div class="showcase-item">
-                <img src="https://i.ibb.co/PH91yF9/Screenshot-2026-05-12-163240.png" alt="Mystery Poster">
-                <div class="showcase-info">CINEMATIC POSTER</div>
-            </div>
-            <div class="showcase-item">
-                <img src="https://i.ibb.co/W4jV0StW/Screenshot-2026-05-12-163441.png" alt="Anniversary Card">
-                <div class="showcase-info">ANNIVERSARY DESIGN</div>
-            </div>
-            <div class="showcase-item">
-                <img src="https://i.ibb.co/HDLmFQVc/Screenshot-2026-05-12-163515.png" alt="Business Card">
-                <div class="showcase-info">BUSINESS IDENTITY</div>
-            </div>
-            <div class="showcase-item">
-                <img src="https://i.ibb.co/mr6hNGR7/Screenshot-2026-05-12-163653.png" alt="Birthday Card">
-                <div class="showcase-info">BIRTHDAY WISHES</div>
-            </div>
-            <div class="showcase-item">
-                <img src="https://i.ibb.co/B2Hm3Lwb/Screenshot-2026-05-12-163757.png" alt="Wedding Mockup">
-                <div class="showcase-info">WEDDING MOCKUP</div>
-            </div>
-            <div class="showcase-item">
-                <img src="https://i.ibb.co/20DbJzpn/Screenshot-2026-05-12-163843.png" alt="Legal Observe">
-                <div class="showcase-info">OBSERVE BRANDING</div>
-            </div>
+            <div class="showcase-item"><img src="https://i.ibb.co/PH91yF9/Screenshot-2026-05-12-163240.png"><div class="showcase-info">POSTER</div></div>
+            <div class="showcase-item"><img src="https://i.ibb.co/W4jV0StW/Screenshot-2026-05-12-163441.png"><div class="showcase-info">ANNIVERSARY</div></div>
+            <div class="showcase-item"><img src="https://i.ibb.co/HDLmFQVc/Screenshot-2026-05-12-163515.png"><div class="showcase-info">BUSINESS</div></div>
         </div>
     </section>
 
-    <section class="reveal">
-        <div class="glass-box">
-            <h2 style="color:var(--gold); letter-spacing:3px;">CONNECT WITH ME</h2>
-            <div class="contact-grid">
-                <a href="https://wa.me/94774799172" target="_blank" class="contact-item"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                <a href="mailto:kinuriedirisinghe@gmail.com" target="_blank" class="contact-item"><i class="fas fa-envelope"></i> Email</a>
-                <a href="https://www.linkedin.com/in/kinuri-mahoshadhi-edirisinghe-9b4921405" target="_blank" class="contact-item"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            </div>
+    <div id="hub-display" class="hub-display">
+        <div class="hub-inner">
+            <div id="hub-content"></div>
+            <button class="luxury-btn" onclick="closeHub()">LEAVE KINGDOM</button>
         </div>
-    </section>
+    </div>
 
-    <footer>
-        <p>ELITE KINGDOM © 2026 | KINURI EDIRISINGHE | FREELANCE DESIGNER</p>
-    </footer>
+    <footer>ELITE KINGDOM © 2026 | KINURI EDIRISINGHE</footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
         });
 
+        function openHub(type) {
+            const display = document.getElementById('hub-display');
+            const content = document.getElementById('hub-content');
+            display.style.display = 'flex';
+
+            if(type === 'gaming') {
+                content.innerHTML = `
+                    <h2 style="color:var(--purple); letter-spacing:5px;">GAMING FORTRESS</h2>
+                    <p style="color:#888;">Select a secret path to enter the multiverse.</p>
+                    <div style="margin-top:20px;">
+                        <a href="#" class="secret-path" onclick="loadGame('https://www.google.com/logos/2010/pacman10-i.html')">
+                            <i class="fas fa-ghost"></i> PATH 01: PACMAN GOLD (FREE)
+                        </a>
+                        <a href="https://wa.me/94774799172?text=I want to buy the Premium Game Path!" class="secret-path" style="border-color:var(--gold); color:var(--gold);">
+                            <i class="fas fa-lock"></i> PATH 02: PREMIUM ELITE GAMES (LKR 500)
+                        </a>
+                    </div>
+                    <div id="game-container" style="margin-top:20px;"></div>
+                `;
+            } else if(type === 'marvel') {
+                content.innerHTML = `<h2>MARVELOUS HUB</h2><p>Cinematic Branding Multiverse.</p>`;
+            } else if(type === 'aqua') {
+                content.innerHTML = `<h2>AQUA LEAF</h2><p>Organic Luxury Assets.</p>`;
+            }
+        }
+
+        function loadGame(url) {
+            document.getElementById('game-container').innerHTML = `<iframe src="${url}" style="width:100%; height:300px; border-radius:20px; border:1px solid var(--purple);"></iframe>`;
+        }
+
+        function closeHub() { document.getElementById('hub-display').style.display = 'none'; }
+
+        // Background Dust
         const canvas = document.getElementById('dust-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
